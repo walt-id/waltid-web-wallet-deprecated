@@ -1,5 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
+import Login from '@/views/Login.vue'
+import Signup from '@/views/Signup.vue'
+import Credentials from '@/views/Credentials.vue'
+import Credential from '@/views/Credential.vue'
+import CredentialOffer from '@/views/CredentialOffer.vue'
+import CredentialRequest from '@/views/CredentialRequest.vue'
+import Connections from '@/views/Connections.vue'
+import Settings from '@/views/Settings.vue'
 
 const routes = [
   {
@@ -8,12 +16,44 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/credentials',
+    name: 'Credentials',
+    component: Credentials
+  },
+  {
+    path: '/credential',
+    name: 'Credential',
+    component: Credential
+  },
+  {
+    path: '/credential-offer',
+    name: 'CredentialOffer',
+    component: CredentialOffer
+  },
+  {
+    path: '/credential-request',
+    name: 'CredentialRequest',
+    component: CredentialRequest
+  },
+  {
+    path: '/connections',
+    name: 'Connections',
+    component: Connections
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   }
 ]
 
