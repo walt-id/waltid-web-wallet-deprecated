@@ -22,3 +22,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# Test Server
+
+https://tender-hamilton-60606c.netlify.app/
+
+# Task Board
+
+https://github.com/orgs/walt-id/projects/8/views/1
