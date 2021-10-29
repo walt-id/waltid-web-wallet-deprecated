@@ -1,4 +1,4 @@
-# project
+# waltid-wallet
 
 ## Project setup
 ```
