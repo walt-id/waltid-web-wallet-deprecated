@@ -12,6 +12,11 @@ import Settings from '@/views/Settings.vue'
 const routes = [
   {
     path: '/',
+    name: 'Credentials',
+    component: Credentials
+  },
+  {
+    path: '/old-home',
     name: 'Home',
     component: Home
   },
@@ -24,11 +29,6 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup
-  },
-  {
-    path: '/credentials',
-    name: 'Credentials',
-    component: Credentials
   },
   {
     path: '/credential',
