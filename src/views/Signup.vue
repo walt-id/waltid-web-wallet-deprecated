@@ -25,8 +25,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
+/* eslint-disable */
 export default {
   name: 'Signup',
 }
