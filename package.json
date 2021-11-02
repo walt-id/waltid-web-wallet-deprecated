@@ -12,6 +12,7 @@
         "animate.css": "^4.1.1",
         "bootstrap": "^5.1.3",
         "core-js": "^3.6.5",
+        "eslint-webpack-plugin": "^3.1.0",
         "register-service-worker": "^1.7.1",
         "vue": "^3.0.0",
         "vue-router": "^4.0.0-0"
@@ -28,5 +29,7 @@
         "eslint-plugin-vue": "^7.0.0",
         "sass-loader": "^8.0.2"
     },
-    "resolutions": { "eslint-loader": "2.1.2" }
+    "resolutions": {
+        "eslint-loader": "2.1.1"
+    }
 }
