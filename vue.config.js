@@ -1,9 +1,7 @@
 module.exports = {
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      // mutate config for production...
-    } else {
-      // mutate for development...
-    }
+  chainWebpack: config => {
+    config.performance
+      .maxEntrypointSize(400000)
+      .maxAssetSize(400000)
   }
 }
