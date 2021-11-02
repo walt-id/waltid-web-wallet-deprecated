@@ -1,6 +1,5 @@
 
 export const menuTransitionShow = () =>{
-    //Dom's variable
     let widget = document.getElementById('widget')
     let dash1 = document.getElementById('dash-1')
     let dash2 = document.getElementById('dash-2')
@@ -8,7 +7,6 @@ export const menuTransitionShow = () =>{
     let content = document.getElementById('content')
     let menuContent = document.getElementById('menu-content')
     let copyright = document.getElementById('copyright')
-    //Dom's execute
     console.log('show menu')
     content.classList.add('hide')
     menuContent.classList.remove('hide')
@@ -23,7 +21,6 @@ export const menuTransitionShow = () =>{
     copyright.classList.add('_white-color')
 }
 export const menuTransitionHide = () =>{
-    //Dom's variable
     let widget = document.getElementById('widget')
     let dash1 = document.getElementById('dash-1')
     let dash2 = document.getElementById('dash-2')
@@ -31,7 +28,6 @@ export const menuTransitionHide = () =>{
     let content = document.getElementById('content')
     let menuContent = document.getElementById('menu-content')
     let copyright = document.getElementById('copyright')
-    //Dom's execute
     content.classList.remove('hide')
     menuContent.classList.add('hide')
     widget.classList.add('bg-w')

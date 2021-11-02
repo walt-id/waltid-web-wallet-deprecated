@@ -12,7 +12,7 @@ import Settings from '@/views/Settings.vue'
 const routes = [
   {
     path: '/',
-    name: 'Credentials',
+    name: 'Index',
     component: Credentials
   },
   {
@@ -22,7 +22,7 @@ const routes = [
   },
   {
     path: '/old-home',
-    name: 'Home',
+    name: 'OldHome',
     component: Home
   },
   {

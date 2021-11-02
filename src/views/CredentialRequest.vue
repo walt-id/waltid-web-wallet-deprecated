@@ -48,7 +48,7 @@
 </template>
 
 <script>
-/* eslint-disable */
+
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
 
 export default {
