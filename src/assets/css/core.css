@@ -135,6 +135,7 @@ body ._main #widget ._toggle-menu ._dash {
   background-color: #888888;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  cursor: pointer;
 }
 
 body ._main #widget ._toggle-menu ._close-x {

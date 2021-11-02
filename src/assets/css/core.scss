@@ -133,6 +133,7 @@ body {
                     height: 2px;
                     background-color: $second-text-muted;
                     transition: 0.4s;
+                    cursor: pointer;
                 }
                 ._close-x {
                     transform: rotate(45deg);

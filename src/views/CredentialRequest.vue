@@ -12,7 +12,7 @@
                 <div id="content">
                     <h2>Credential request</h2>
                     <div class="_container d-flex flex-column align-items-center justify-content-center">
-                        <router-link class="_card d-flex" to="/Credential">
+                        <router-link class="_card d-flex _animation-fade" to="/Credential">
                             <div class="col-12 d-flex align-items-center">
                                 <div>
                                     <h5>National ID</h5>

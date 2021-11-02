@@ -2,7 +2,7 @@
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center p-0">
         <div id="widget" class="_form d-black bg-w shadow-lg">
             <div class="_top-bar  position-sticky d-flex justify-content-center col-12 align-items-center px-3">
-                <div class="col-6 d-flex align-items-center">
+                <div class="col-6 d-flex align-items-center _animation-fade">
                     <router-link to="/credentials" class="_back-button">
                         <span class="d-flex align-items-center">
                             <i class="bi bi-chevron-left"></i>
@@ -11,7 +11,7 @@
                     </router-link>
                 </div>
                 <div class="col-6 d-flex align-items-center justify-content-end">
-                    <div class="btn-group dropstart">
+                    <div class="btn-group dropstart  _animation-fade">
                         <button type="button" class="_more-button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="d-flex align-items-center justify-content-center">
                                 <i class="bi bi-three-dots"></i>

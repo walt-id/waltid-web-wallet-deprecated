@@ -6,6 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import '@/assets/css/core.css'
 import '@/assets/css/bootstrap-icons.css'
-import 'animate.css'
+import '@/assets/css/animations.css'
 
 createApp(App).use(router).mount('#app')
