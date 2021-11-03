@@ -5,14 +5,14 @@
                 <h2>Login</h2>
                 <p class="mt-3">Access to your wallet.</p>
                 <form action="" id="login-form" class="my-4">
-                    <div class="my-2">
+                    <div class="my-2 _animation-fade">
                         <input type="email" placeholder="E-mail" name="email" id="login-form-email" class="border rounded px-3" autocomplete="off">
                     </div>
-                    <div class="my-2">
+                    <div class="my-2 _animation-fade">
                         <input type="password" placeholder="Password" name="password" id="login-form-password" class="border rounded px-3" autocomplete="off">
                     </div>
                     <div class="my-2">
-                        <button type="submit" name="submit" class="text-white border-0 rounded">Login</button>
+                        <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">Login</button>
                        <br> <router-link to="/credential-request">should go to => Credential Request</router-link>
                     </div>
                     <div class="my-2 d-flex mt-4 justify-content-center">
@@ -20,14 +20,14 @@
                         <a href="/forgot-password.html" class="px-3 py-0 border-start border-2 ">Forgot password?</a>
                     </div>
                 </form>
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-/* eslint-disable */
+
 export default {
   name: 'Login',
 }

@@ -10,7 +10,7 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content">
-                    <h2>My Credentials</h2>
+                    <h2 class="_animation-fade">My Credentials</h2>
                     <div class="_search">
                         <form action="" id="search-form">
                             <input name="search-input" type="text" placeholder="Search...">
@@ -118,7 +118,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
 
