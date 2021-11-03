@@ -12,16 +12,16 @@
                 <div id="content">
                     <h2>Credential request</h2>
                     <div class="_container d-flex flex-column align-items-center justify-content-center">
-                        <router-link class="_card d-flex _animation-fade" to="/Credential">
+                        <router-link class="_card d-flex _animation-fade" to="/Credential" v-for="credential in claimedCredentials.list" :key="credential.id">
                             <div class="col-12 d-flex align-items-center">
                                 <div>
-                                    <h5>National ID</h5>
-                                    <p>by Great Government</p>
+                                    <h5>{{ credential.credentialSubject.firstName }} {{ credential.credentialSubject.familyName }}</h5>
+                                    <p>{{ credential.credentialSubject.dateOfBirth }}</p>
                                 </div>
                             </div>
                         </router-link>
                         <div class="_button">
-                            <button href="#share" class="_share col-12 mb-2">Share</button>
+                            <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Share</button>
                             <a href="#reject" class="_reject col-12">Reject</a>
                         </div>
                     </div>
@@ -43,6 +43,10 @@
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
                 <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
             </div>
+            <form ref="responseForm" method="post" :action="pe.request.redirect_uri">
+              <input ref="responseIdToken" type="hidden" name="id_token" >
+              <input ref="responseVpToken" type="hidden" name="vp_token" >
+            </form>
         </div>
     </section>
 </template>
@@ -59,6 +63,13 @@ export default {
       id: 'xxxxxxxxxx'
     }
   },
+  async asyncData ({ $axios, query }) {
+    // TODO: select DID to use
+    const dids = await $axios.$get("/api/wallet/did/list")
+    const pe = await $axios.$get("/api/wallet/siopv2/presentationExchange", { params: { ...query, subject_did: dids[0] } })
+    const claimedCredentials = await $axios.$get("/api/wallet/credentials/list", { params: { id: pe.claimedCredentials.map(c => c.credentialId) } })
+    return { pe, claimedCredentials }
+  },
   methods:{
     menuTrigger: function(){
           if(this.trigger === true){
@@ -69,6 +80,13 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
+    },
+    async peSubmit () {
+      const peResp = await this.$axios.$post("/api/wallet/siopv2/presentationExchange", this.pe)
+      console.log("PE Response:", peResp)
+      this.$refs.responseIdToken.value = peResp.id_token
+      this.$refs.responseVpToken.value = peResp.vp_token
+      this.$refs.responseForm.submit()
     }
   }
 };

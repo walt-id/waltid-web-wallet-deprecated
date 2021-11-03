@@ -4,12 +4,12 @@
             <div>
                 <h2>Login</h2>
                 <p class="mt-3">Access to your wallet.</p>
-                <form action="" id="login-form" class="my-4">
+                <form action="" id="login-form" class="my-4" @submit.prevent="login">
                     <div class="my-2 _animation-fade">
-                        <input type="email" placeholder="E-mail" name="email" id="login-form-email" class="border rounded px-3" autocomplete="off">
+                        <input type="email" placeholder="E-mail" name="email" id="login-form-email" class="border rounded px-3" autocomplete="off" v-model="email">
                     </div>
                     <div class="my-2 _animation-fade">
-                        <input type="password" placeholder="Password" name="password" id="login-form-password" class="border rounded px-3" autocomplete="off">
+                        <input type="password" placeholder="Password" name="password" id="login-form-password" class="border rounded px-3" autocomplete="off" v-model="password">
                     </div>
                     <div class="my-2">
                         <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">Login</button>
@@ -30,5 +30,29 @@
 
 export default {
   name: 'Login',
+
+  data () {
+    return {
+      email: "",
+      password: "",
+      error: null
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        })
+        this.$auth.setUser(loginResponse.data)
+        this.$router.push("/dashboard")
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    }
+  }
 }
 </script>

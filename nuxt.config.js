@@ -41,11 +41,49 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
+    "@nuxtjs/pwa",
+    "@nuxtjs/auth"
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    "/api/": "http://localhost:8080"
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: "token",
+          global: true,
+          required: true,
+          type: "Bearer"
+        },
+        user: false,
+        endpoints: {
+          login: { url: "api/auth/login", method: "post" },
+          user: { url: "api/auth/userInfo", method: "get" },
+          logout: false
+        }
+      }
+    }
+  },
+
+  router: {
+    middleware: ["auth"]
+  },
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: "en"
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
