@@ -4,7 +4,7 @@
             <div>
                 <h2>Sign up</h2>
                 <p class="mt-3">Create a new wallet account.</p>
-                <form action="" id="signup-form" class="my-4 _animation-fade">
+                <form action="" id="signup-form" class="my-4">
                     <div class="my-2">
                         <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3" autocomplete="off">
                     </div>
@@ -15,17 +15,17 @@
                         <button type="submit" name="submit" class="text-white border-0 rounded">Create Account</button>
                     </div>
                     <div class="my-2">
-                        <a href="/login.html">Already have account? Login</a>
+                        <NuxtLink to="/login">Already have account? Login</NuxtLink>
                     </div>
                 </form>
-                <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-
+/* eslint-disable */
 export default {
   name: 'Signup',
 }

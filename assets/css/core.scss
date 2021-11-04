@@ -133,6 +133,7 @@ body {
                     height: 2px;
                     background-color: $second-text-muted;
                     transition: 0.4s;
+                    cursor: pointer;
                 }
                 ._close-x {
                     transform: rotate(45deg);
@@ -156,6 +157,7 @@ body {
                     overflow-x: hidden !important;
                     min-width: 25vw;
                     max-height: 45vh;
+                    min-height: 275px;
                     margin: 12px 0;
                     //padding: 10px;
                     &::-webkit-scrollbar {

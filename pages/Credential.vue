@@ -3,12 +3,12 @@
         <div id="widget" class="_form d-black bg-w shadow-lg">
             <div class="_top-bar  position-sticky d-flex justify-content-center col-12 align-items-center px-3">
                 <div class="col-6 d-flex align-items-center _animation-fade">
-                    <router-link to="/credentials" class="_back-button">
+                    <NuxtLink to="/credentials" class="_back-button">
                         <span class="d-flex align-items-center">
                             <i class="bi bi-chevron-left"></i>
                             <p>Back</p>
                         </span>
-                    </router-link>
+                    </NuxtLink>
                 </div>
                 <div class="col-6 d-flex align-items-center justify-content-end">
                     <div class="btn-group dropstart  _animation-fade">
