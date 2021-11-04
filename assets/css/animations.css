@@ -1,0 +1,37 @@
+ul li {
+    animation: fadeIn;
+    animation-duration: 1.3s;
+}
+
+._copyright a {
+    animation: fadeInUp;
+    animation-duration: 1.3s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+._card {
+    animation: fadeInDown;
+    animation-duration: 1.5s;
+}
+
+._image,
+._search,
+h2._animation-fade,
+._animation-fade,
+._animation-fade span i,
+._animation-fade span p {
+    animation: fadeIn;
+    animation-duration: 2s;
+}
+
+._button,
+._btns {
+    animation: bounceIn;
+    animation-duration: 0.7s;
+}
