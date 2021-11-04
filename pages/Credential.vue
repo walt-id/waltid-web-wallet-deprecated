@@ -3,12 +3,12 @@
         <div id="widget" class="_form d-black bg-w shadow-lg">
             <div class="_top-bar  position-sticky d-flex justify-content-center col-12 align-items-center px-3">
                 <div class="col-6 d-flex align-items-center _animation-fade">
-                    <NuxtLink to="/credential-request" class="_back-button">
+                    <a href="#back" @click="routerBack" class="_back-button">
                         <span class="d-flex align-items-center">
                             <i class="bi bi-chevron-left"></i>
                             <p>Back</p>
                         </span>
-                    </NuxtLink>
+                    </a>
                 </div>
                 <div class="col-6 d-flex align-items-center justify-content-end">
                     <div class="btn-group dropstart  _animation-fade">
@@ -73,8 +73,32 @@
                                 <p>{{credential.credentialSubject.familyName}}</p>
                             </span>
                             <span class="col-12 px-3">
-                                <h5>No°</h5>
+                                <h5>Name And Family Name At Birth</h5>
+                                <p>{{credential.credentialSubject.nameAndFamilyNameAtBirth}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>Gender</h5>
+                                <p>{{credential.credentialSubject.gender}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>Date Of Birth</h5>
+                                <p>{{credential.credentialSubject.dateOfBirth}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>Nationality</h5>
+                                <p>{{credential.credentialSubject.nationality}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>Place Of Birth</h5>
+                                <p>{{credential.credentialSubject.placeOfBirth}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>Personal Identifier</h5>
                                 <p>{{credential.credentialSubject.personalIdentifier}}</p>
+                            </span>
+                            <span class="col-12 px-3">
+                                <h5>DID</h5>
+                                <p>{{credential.credentialSubject.id}}</p>
                             </span>
                         </div>
                     </div>
@@ -176,6 +200,9 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
+    },
+    routerBack: function(){
+         window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     }
   }
 };
