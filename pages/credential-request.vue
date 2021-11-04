@@ -12,11 +12,11 @@
                 <div id="content">
                     <h2>Credential request</h2>
                     <div class="_container d-flex flex-column align-items-center justify-content-center">
-                        <NuxtLink class="_card d-flex _animation-fade" to="/Credential">
+                        <NuxtLink v-for="credential in credentials" v-bind:key="credential.id" class="_card d-flex _animation-fade" v-bind:to="'/credential?'+credential.id">
                             <div class="col-12 d-flex align-items-center">
                                 <div>
-                                    <h5>National ID</h5>
-                                    <p>by Great Government</p>
+                                    <h5>{{credential.title}}</h5>
+                                    <p>By {{credential.issuerName}}</p>
                                 </div>
                             </div>
                         </NuxtLink>
@@ -37,6 +37,9 @@
                         <li>
                             <NuxtLink to="/settings">Settings</NuxtLink>
                         </li>
+                        <li>
+                            <NuxtLink to="/login">logout</NuxtLink>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +59,76 @@ export default {
   data() {
     return {
       trigger: true,
-      id: 'xxxxxxxxxx'
+      credentials: [{
+                     "@context":[
+                        "https://www.w3.org/2018/credentials/v1",
+                        "https://base.uri.vid/vid/contexts/v1"
+                     ],
+                     "type":[
+                        "VerifiableCredential",
+                        "VerifiableID"
+                     ],
+                     "id":"urn:uuid:1dee...674e",
+                     "title":"National ID",
+                     "issuer":"did:ebsi:EsnW...QEka",
+                     "issuerName":"Great Government",
+                     "issuanceDate":"2021-06-25T04:46:02Z",
+                     "validFrom":"2021-06-25T04:46:02Z",
+                     "expirationDate":"2022-06-25T04:46:02Z",
+                     "credentialSubject":{
+                        "type":[
+                           "NaturalPerson"
+                        ],
+                        "id":"did:ebsi:Ef3u...KqGH",
+                        "familyName":"Mustermann",
+                        "nameAndFamilyNameAtBirth":"Muster",
+                        "firstName":"Max",
+                        "personalIdentifier":"ES/DE/01234567",
+                        "dateOfBirth":"1982-06-07",
+                        "nationality":"DEU",
+                        "placeOfBirth":"Hamburg",
+                        "currentAddress":{
+                        "locatorDesignator":"22",
+                        "thoroughfare":"Arcacia Avenue",
+                        "postName":"Berlin",
+                        "postCode":"10115"
+                      },
+                      "gender":"Male",
+                        "portrait":"data:image/jp2;base64,"
+                      },
+                      "credentialStatus":{
+                      "id":"https://",
+                      "type":"TrustedCredentialStatus2021"
+                    },
+                    "credentialSchema":{
+                    "id":"https://",
+                    "type":"TrustedSchemaValidator2021"
+                    },
+                    "evidence":[{
+                      "id":"https://",
+                      "type":[
+                       "DocumentVerification",
+                       "PassportVerification"
+                     ],
+                     "verifier":"did:ebsi:2962...4a7a",
+                     "subjectPresence":"Physical",
+                     "documentPresence":"Physical",
+                     "evidenceDocument":{
+                         "type":"Passport",
+                         "documentCode":"P",
+                         "documentNumber":"SPECI2014",
+                         "documentIssuingState":"NLD",
+                         "documentExpirationDate":"2031-06-25"
+                      }
+                    }],
+                    "proof":{
+                       "type":"EidasEseal2021",
+                       "created":"2021-06-25T04:46:02Z",
+                       "proofPurpose":"assertionMethod",
+                       "verificationMethod":"urn:uuid:4321...42de",
+                       "proofValue":""
+                    }
+                   }],
     }
   },
   methods:{

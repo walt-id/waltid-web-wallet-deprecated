@@ -78,6 +78,9 @@
                         <li>
                             <NuxtLink to="/settings">Settings</NuxtLink>
                         </li>
+                        <li>
+                            <NuxtLink to="/login">logout</NuxtLink>
+                        </li>
                     </ul>
                 </div>
             </div>
