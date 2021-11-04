@@ -2,7 +2,7 @@
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center p-0">
         <div id="widget" class="_form d-black bg-w shadow-lg text-center">
             <div class="_toggle-menu position-sticky d-flex justify-content-end col-12 align-items-center px-3">
-                <a href="#sm" id="toggle-menu" @click="menuTrigger">
+                <a id="toggle-menu" @click="menuTrigger">
                     <div id="dash-1" class="_dash my-2"></div>
                     <div id="dash-2" class="_dash my-2"></div>
                     <div id="dash-3" class="_dash my-2"></div>
@@ -70,13 +70,13 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <router-link to="/credentials">Credentials</router-link>
+                            <NuxtLink to="/credentials">Credentials</NuxtLink>
                         </li>
                         <li>
-                            <router-link to="/connections">Connections</router-link>
+                            <NuxtLink to="/connections">Connections</NuxtLink>
                         </li>
                         <li>
-                            <router-link to="/settings">Settings</router-link>
+                            <NuxtLink to="/settings">Settings</NuxtLink>
                         </li>
                     </ul>
                 </div>

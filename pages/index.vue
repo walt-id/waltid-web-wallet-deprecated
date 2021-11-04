@@ -1,7 +1,15 @@
 <template>
-  <Tutorial />
+<div></div>
 </template>
 
 <script>
-export default {}
+
+export default {
+  name: 'Credentials',
+  middleware: [
+    function ({redirect}) {
+      redirect('/Credentials')
+    }
+  ]
+};
 </script>
