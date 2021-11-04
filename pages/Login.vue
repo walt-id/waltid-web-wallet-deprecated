@@ -12,8 +12,9 @@
                         <input type="password" placeholder="Password" name="password" id="login-form-password" class="border rounded px-3" autocomplete="off">
                     </div>
                     <div class="my-2">
-                        <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">Login</button>
-                       <br> <NuxtLink to="/credential-request">should go to => Credential Request</NuxtLink>
+                       <NuxtLink to="/credential-request">
+                         <button class="text-white border-0 rounded _animation-fade">Login</button>
+                       </NuxtLink>
                     </div>
                     <div class="my-2 d-flex mt-4 justify-content-center">
                         <a href="/signup" class="px-3 py-0">Sign up</a>
