@@ -13,11 +13,11 @@
                     <h2 class="_animation-fade">My Credentials</h2>
                     <div class="_search">
                         <form action="" id="search-form">
-                            <input name="search-input" type="text" placeholder="Search...">
+                            <input name="search-input" type="text" v-model="search" placeholder="Search...">
                         </form>
                     </div>
                     <div class="_scrollable d-flex flex-column align-items-center">
-                        <NuxtLink class="_card d-flex" v-for="credential in credentials" v-bind:key="credential.id" to="/Credential?" >
+                        <NuxtLink class="_card d-flex" v-for="credential in filteredList" v-bind:key="credential.id" to="/Credential?" >
                             <div class="col-10 d-flex align-items-center">
                                 <div>
                                     <h5 class="mb-1">{{credential.title}}</h5>
@@ -63,7 +63,9 @@ export default {
   data() {
     return {
       trigger: true,
-      credentials: [{
+      search: '',
+      credentials: [
+          {
                      "@context":[
                         "https://www.w3.org/2018/credentials/v1",
                         "https://base.uri.vid/vid/contexts/v1"
@@ -132,8 +134,16 @@ export default {
                        "verificationMethod":"urn:uuid:4321...42de",
                        "proofValue":""
                     }
-                   }],
+          },
+        ],
     }
+  },
+  computed:{
+      filteredList() {
+        return this.credentials.filter(credential => {
+          return credential.title.toLowerCase().includes(this.search.toLowerCase())
+        })
+    },
   },
   methods:{
       menuTrigger: function(){
