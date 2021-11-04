@@ -3,7 +3,7 @@
         <div id="widget" class="_form d-black bg-w shadow-lg">
             <div class="_top-bar  position-sticky d-flex justify-content-center col-12 align-items-center px-3">
                 <div class="col-6 d-flex align-items-center _animation-fade">
-                    <NuxtLink to="/credentials" class="_back-button">
+                    <NuxtLink to="/credential-request" class="_back-button">
                         <span class="d-flex align-items-center">
                             <i class="bi bi-chevron-left"></i>
                             <p>Back</p>
