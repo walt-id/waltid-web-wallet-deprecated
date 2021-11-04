@@ -10,90 +10,24 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content">
-                    <h2>My Credentials</h2>
+                    <h2 class="_animation-fade">My Credentials</h2>
                     <div class="_search">
                         <form action="" id="search-form">
                             <input name="search-input" type="text" placeholder="Search...">
                         </form>
                     </div>
                     <div class="_scrollable d-flex flex-column align-items-center">
-                        <NuxtLink class="_card d-flex" to="/Credential?id=273-29F-38">
+                        <NuxtLink class="_card d-flex" v-for="credential in credentials" v-bind:key="credential.id" to="/Credential?" >
                             <div class="col-10 d-flex align-items-center">
                                 <div>
-                                    <h5>National ID</h5>
-                                    <p>by Great Government</p>
+                                    <h5 class="mb-1">{{credential.type[1]}}</h5>
+                                    <p>by {{credential.issuer}}</p>
                                 </div>
                             </div>
                             <div class="col d-flex justify-content-end">
                                 <i class="bi bi-bookmark-star-fill _icon-active"></i>
                             </div>
                         </NuxtLink>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>Permanent Resident Card</h5>
-                                    <p>by Great Government</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <i class="bi bi-person-bounding-box _icon-inactive"></i>
-                            </div>
-                        </div>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>Europass</h5>
-                                    <p>by Université de Lille</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <i class="bi bi-pip _icon-inactive"></i>
-                            </div>
-                        </div>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>Bachelor Degree</h5>
-                                    <p>by Université de Lille</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <!--<i class="bi bi-plus-circle-dotted _icon"></i>-->
-                            </div>
-                        </div>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>National ID 1</h5>
-                                    <p>by Great Government</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <!--<i class="bi bi-plus-circle-dotted _icon"></i>-->
-                            </div>
-                        </div>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>National ID 1</h5>
-                                    <p>by Great Government</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <!--<i class="bi bi-plus-circle-dotted _icon"></i>-->
-                            </div>
-                        </div>
-                        <div class="_card d-flex ">
-                            <div class="col-10 d-flex align-items-center">
-                                <div>
-                                    <h5>National ID 1</h5>
-                                    <p>by Great Government</p>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <!--<i class="bi bi-plus-circle-dotted _icon"></i>-->
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
@@ -118,7 +52,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
 
@@ -127,7 +60,77 @@ export default {
   data() {
     return {
       trigger: true,
-      id: 'xxxxxxxxxx'
+      credentials: [
+          {
+                "@context":[
+                  "https://www.w3.org/2018/credentials/v1",
+                  "https://base.uri.vid/vid/contexts/v1"
+                ],
+                "type":[
+                  "VerifiableCredential",
+                  "VerifiableID"
+                ],
+                "id":"urn:uuid:1dee...674e",
+                "issuer":"did:ebsi:EsnW...QEka",
+                "issuanceDate":"2021-06-25T04:46:02Z",
+                "validFrom":"2021-06-25T04:46:02Z",
+                "expirationDate":"2022-06-25T04:46:02Z",
+                "credentialSubject":{
+                   "type":[
+                    "NaturalPerson"
+                   ],
+                   "id":"did:ebsi:Ef3u...KqGH",
+                   "familyName":"Mustermann",
+                   "nameAndFamilyNameAtBirth":"Muster",
+                   "firstName":"Max",
+                   "personalIdentifier":"ES/DE/01234567",
+                   "dateOfBirth":"1982-06-07",
+                   "nationality":"DEU",
+                   "placeOfBirth":"Hamburg",
+                   "currentAddress":{
+                      "locatorDesignator":"22",
+                      "thoroughfare":"Arcacia Avenue",
+                      "postName":"Berlin",
+                      "postCode":"10115"
+                    },
+                    "gender":"Male",
+                    "portrait":"data:image/jp2;base64,"
+                },
+                "credentialStatus":{
+                   "id":"https://",
+                   "type":"TrustedCredentialStatus2021"
+                },
+                "credentialSchema":{
+                 "id":"https://",
+                 "type":"TrustedSchemaValidator2021"
+                },
+                "evidence":[{
+                   "id":"https://",
+                   "type":[
+                     "DocumentVerification",
+                     "PassportVerification"
+                   ],
+                   "verifier":"did:ebsi:2962...4a7a",
+                   "subjectPresence":"Physical",
+                   "documentPresence":"Physical",
+                   "evidenceDocument":{
+                      "type":"Passport",
+                      "documentCode":"P",
+                      "documentNumber":"SPECI2014",
+                      "documentIssuingState":"NLD",
+                      "documentExpirationDate":"2031-06-25"
+                   }
+                }],
+                "proof":{
+                   "type":"EidasEseal2021",
+                   "created":"2021-06-25T04:46:02Z",
+                   "proofPurpose":"assertionMethod",
+                   "verificationMethod":"urn:uuid:4321...42de",
+                   "proofValue":""
+                }
+          },
+          
+      ],
     }
   },
   methods:{
