@@ -15,8 +15,8 @@
                         <NuxtLink class="_card d-flex _animation-fade" :to="'/Credential?id='+encodeURIComponent(credential.id)" v-for="credential in claimedCredentials.list" :key="credential.id">
                           <div class="col-10 d-flex align-items-center">
                             <div>
-                              <h5 class="mb-1">{{credential.type[credential.type.length-1]}}</h5>
-                              <p class="d-inline-block text-truncate" style="max-width: 12em" v-b-tooltip="credential.issuer">by {{credential.issuer}}</p>
+                              <h5>{{credential.title}}</h5>
+                              <p>By {{credential.issuerName}}</p>
                             </div>
                           </div>
                         </NuxtLink>
@@ -36,6 +36,9 @@
                         </li>
                         <li>
                             <NuxtLink to="/settings">Settings</NuxtLink>
+                        </li>
+                        <li>
+                          <NuxtLink to="/login">logout</NuxtLink>
                         </li>
                     </ul>
                 </div>
