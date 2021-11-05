@@ -18,7 +18,7 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <NuxtLink to="/credentials">Credentials</NuxtLink>
+                            <NuxtLink to="/credentials">Credentials </NuxtLink>
                         </li>
                         <li>
                             <NuxtLink to="/connections">Connections</NuxtLink>
