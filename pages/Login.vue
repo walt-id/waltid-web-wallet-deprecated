@@ -29,5 +29,28 @@
 
 export default {
   name: 'Login',
+  data () {
+    return {
+      email: "",
+      password: "",
+      error: null
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        })
+        this.$auth.setUser(loginResponse.data)
+        this.$router.push("/dashboard")
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    }
+  }
 }
 </script>
