@@ -1,6 +1,7 @@
+
 <template>
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center p-0">
-      <transition name="slide-fade"> 
+      <transition name="slide-fade">
         <div id="widget" class="_form d-black bg-w shadow-lg text-center">
             <div class="_toggle-menu position-sticky d-flex justify-content-end col-12 align-items-center px-3">
                 <a id="toggle-menu" @click="menuTrigger">
@@ -24,6 +25,9 @@
                         </li>
                         <li>
                             <NuxtLink to="/settings">Settings</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/login">logout</NuxtLink>
                         </li>
                     </ul>
                 </div>

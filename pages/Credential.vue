@@ -38,7 +38,6 @@
 <script>
 
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
-
 export default {
   name: 'Credential',
   data() {
