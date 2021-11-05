@@ -138,12 +138,13 @@ export default {
         ],
     }
   },
-  computed:{
-      filteredList() {
-        return this.credentials.filter(credential => {
-          return credential.title.toLowerCase().includes(this.search.toLowerCase())
-        })
-    },
+  computed: {
+    filteredList() {
+      return this.credentials.filter(credential => {
+        return credential.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+  },
   async asyncData ({ $axios }) {
     // TODO: select DID to use
     const credList = await $axios.$get("/api/wallet/credentials/list")
