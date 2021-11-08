@@ -1,5 +1,25 @@
 # waltid-web-wallet
 
+An SSI web wallet front-end, leveraging the backend API of https://github.com/walt-id/waltid-wallet-backend
+
+## Wallet backend connection
+
+###### Development
+
+The wallet backend for development purposes, can be defined in the `nuxt.config.js` file, like so:
+```
+proxy: {
+"/api/": "http://localhost:8080"
+}
+```
+
+###### Production
+
+In a production environment it is recommended to set up the backend and frontend using an ingress router or API gateway.
+For an example, see the docker-compose setup in:
+
+https://github.com/walt-id/waltid-wallet-backend
+
 ## Build Setup
 
 ```bash
