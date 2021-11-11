@@ -3,7 +3,7 @@ name: Snapshot release workflow for Walt.ID Web Wallet
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   ci:
