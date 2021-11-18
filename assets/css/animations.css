@@ -35,3 +35,8 @@ h2._animation-fade,
     animation: bounceIn;
     animation-duration: 0.7s;
 }
+
+._bounce {
+    animation: bounceIn;
+    animation-duration: 0.7s;
+}
