@@ -351,6 +351,37 @@ body {
                         border-radius: 7px;
                     }
                 }
+                ._setting {
+                    margin-top: -70px;
+                }
+                ._setting-items {
+                    ._item {
+                        text-align: left;
+                    }
+                    h4 {
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                    p {
+                        margin-bottom: 0
+                    }
+                    a._button-view {
+                        background-color: transparent;
+                        color: $main-color;
+                        padding: 7px 25px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        font-family: "Poppins";
+                        border: 2px solid $main-color;
+                        border-radius: 5px;
+                        transition: .3s;
+                        &:hover {
+                            background-color: $main-color;
+                            color: white
+                        }
+                    }
+                }
             }
             ._menu-content {
                 ul {

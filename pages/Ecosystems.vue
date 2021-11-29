@@ -10,34 +10,34 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content" class="_setting">
-                    <h2>Settings</h2>
+                    <h2>Ecosystems</h2>
                     <br>
-                    <!--<p class="mt-3">You have no settings.</p>-->
+                    <!--<p class="mt-3">You have no Ecosystems.</p>-->
                     <div class="d-flex mt-3 align-items-center _setting-items">
                         <div class="col-10 _item">
-                            <h4>Account</h4>
-                            <p>Manage your account.</p>
+                            <h4>EBSI/ESSIF</h4>
+                            <p>BAsed on the<br>EU blockchain (EBSI).</p>
                         </div>
                         <div class="col">
-                            <a class="_button-view">View</a>
+                            <a class="_button-view _bounce">Join</a>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-center _setting-items">
                         <div class="col-10 _item">
-                            <h4>Data</h4>
-                            <p>Manage your data.</p>
+                            <h4>DNS</h4>
+                            <p>Based on the domain<br>name service (DNS).</p>
                         </div>
                         <div class="col">
-                            <a class="_button-view">View</a>
+                            <a class="_button-view _bounce">Join</a>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-center _setting-items">
                         <div class="col-10 _item">
-                            <h4>Ecosystems</h4>
-                            <p>Join and manage your<br>identity ecosystems.</p>
+                            <h4>Key</h4>
+                            <p>Peer-to-peer based<br>key distribution.</p>
                         </div>
                         <div class="col">
-                            <a href="/Ecosystems" class="_button-view">View</a>
+                            <a class="_button-view _bounce">Join</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
 
 export default {
-  name: 'Settings',
+  name: 'Ecosystems',
   data() {
     return {
       trigger: true
