@@ -58,7 +58,7 @@ export default {
     "/api/": "http://localhost:8080"
   },
 
-  /*auth: {
+  auth: {
     strategies: {
       local: {
         token: {
@@ -80,11 +80,11 @@ export default {
         home: '/Credentials'
       }
     }
-  },*/
+  },
 
-  /*router: {
+  router: {
     middleware: ["auth"]
-  },*/
+  },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
