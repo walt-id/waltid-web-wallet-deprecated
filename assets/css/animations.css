@@ -41,3 +41,13 @@ h2._animation-fade,
     animation: bounceIn;
     animation-duration: 0.7s;
 }
+
+._left-fade {
+    animation: flipInX;
+    animation-duration: 2s;
+}
+
+._fidin {
+    animation: fadeIn;
+    animation-duration: 1s;
+}

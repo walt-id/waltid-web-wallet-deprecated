@@ -55,9 +55,8 @@ export default {
   },
 
   proxy: {
-    "/api/": "http://localhost:8080"
+   "/api/": "http://localhost:8080"
   },
-
   auth: {
     strategies: {
       local: {
@@ -81,7 +80,6 @@ export default {
       }
     }
   },
-
   router: {
     middleware: ["auth"]
   },

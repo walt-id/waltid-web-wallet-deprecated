@@ -2,6 +2,55 @@
 @import url("https://fonts.google.com/specimen/Poppins?query=poppins");
 /*Colors and Shdows*/
 /* Amimations */
+@-webkit-keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@-webkit-keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #4bb71b;
+            box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
+}
+
+@keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #4bb71b;
+            box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
+}
+
 /*For all*/
 * a {
   text-decoration: none !important;
@@ -38,11 +87,11 @@
 .bg-g {
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  background-color: #0573F0;
+  background-color: #0573f0;
 }
 
 ._border {
-  border-color: #0573F0 !important;
+  border-color: #0573f0 !important;
 }
 
 body {
@@ -106,11 +155,11 @@ body ._main #widget form input {
 body ._main #widget form input:focus {
   -webkit-transition: 0.1s;
   transition: 0.1s;
-  outline: 1.5px solid #0573F0;
+  outline: 1.5px solid #0573f0;
 }
 
 body ._main #widget form button {
-  background-color: #0573F0;
+  background-color: #0573f0;
   width: 70%;
   height: 45px;
   font-size: 18px;
@@ -175,7 +224,7 @@ body ._main #widget ._content ._scrollable::-webkit-scrollbar {
 }
 
 body ._main #widget ._content ._scrollable::-webkit-scrollbar-track {
-  background: #E9EFFF;
+  background: #e9efff;
   border-radius: 5px;
 }
 
@@ -193,7 +242,7 @@ body ._main #widget ._content ._scrollable ._card {
   text-align: left;
   width: 22vw;
   min-height: 100px;
-  border: 2px solid #E9EFFF;
+  border: 2px solid #e9efff;
   padding: 15px;
   border-radius: 15px;
 }
@@ -214,7 +263,7 @@ body ._main #widget ._content ._scrollable ._card p {
 
 body ._main #widget ._content ._scrollable ._card i._icon-active {
   font-size: 22.5px;
-  color: #0573F0;
+  color: #0573f0;
 }
 
 body ._main #widget ._content ._scrollable ._card i._icon-inactive {
@@ -224,15 +273,15 @@ body ._main #widget ._content ._scrollable ._card i._icon-inactive {
 
 body ._main #widget ._content ._search form input {
   text-align: center;
-  background-color: #E9EFFF;
-  border: 2px solid #E9EFFF;
+  background-color: #e9efff;
+  border: 2px solid #e9efff;
   border-radius: 7px;
   margin-bottom: 5px;
 }
 
 body ._main #widget ._content ._search form button {
   height: 45px;
-  background-color: #0573F0;
+  background-color: #0573f0;
   border: none;
   font-size: 15px;
   border-radius: 7px;
@@ -250,7 +299,7 @@ body ._main #widget ._content ._container ._card {
   text-align: left;
   width: 22vw;
   min-height: 175px;
-  border: 2px solid #E9EFFF;
+  border: 2px solid #e9efff;
   padding: 15px;
   border-radius: 15px;
 }
@@ -277,7 +326,7 @@ body ._main #widget ._content ._container ._button {
 }
 
 body ._main #widget ._content ._container ._button button._share {
-  background-color: #0573F0;
+  background-color: #0573f0;
   padding: 10px 0;
   color: white;
   font-size: 17px;
@@ -307,7 +356,7 @@ body ._main #widget ._content ._container-list ._window-content {
   overflow: auto;
   overflow-x: hidden !important;
   border-radius: 25px;
-  border: 2px solid #E9EFFF;
+  border: 2px solid #e9efff;
 }
 
 body ._main #widget ._content ._container-list ._window-content::-webkit-scrollbar {
@@ -316,7 +365,7 @@ body ._main #widget ._content ._container-list ._window-content::-webkit-scrollb
 }
 
 body ._main #widget ._content ._container-list ._window-content::-webkit-scrollbar-track {
-  background: #E9EFFF;
+  background: #e9efff;
 }
 
 body ._main #widget ._content ._container-list ._window-content::-webkit-scrollbar-thumb {
@@ -361,8 +410,8 @@ body ._main #widget ._content ._container-list ._window-content ul li i {
 
 body ._main #widget ._content ._container-list ._window-content ul li i:hover {
   color: #888888;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 body ._main #widget ._content ._btns {
@@ -372,7 +421,7 @@ body ._main #widget ._content ._btns {
 }
 
 body ._main #widget ._content ._btns button._share {
-  background-color: #0573F0;
+  background-color: #0573f0;
   padding: 10px 0;
   color: white;
   font-size: 17px;
@@ -387,6 +436,135 @@ body ._main #widget ._content ._btns a._reject {
   font-size: 17px;
   font-weight: 600;
   border-radius: 7px;
+}
+
+body ._main #widget ._content ._setting {
+  margin-top: -70px;
+}
+
+body ._main #widget ._content ._setting-items ._item {
+  text-align: left;
+}
+
+body ._main #widget ._content ._setting-items h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content ._setting-items p {
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content ._setting-items a._button-view {
+  background-color: transparent;
+  color: #0573f0;
+  padding: 7px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins";
+  border: 2px solid #0573f0;
+  border-radius: 5px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+body ._main #widget ._content ._setting-items a._button-view:hover {
+  background-color: #0573f0;
+  color: white;
+}
+
+body ._main #widget ._content ._wizard {
+  width: 330px;
+  text-align: center;
+  height: 200px;
+}
+
+body ._main #widget ._content ._wizard h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content ._wizard p {
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content ._wizard input {
+  text-align: center;
+  width: 200px;
+  padding: 10px 10px;
+}
+
+body ._main #widget ._content ._wizard ._button-view {
+  width: 330px;
+}
+
+body ._main #widget ._content ._wizard ._button-view a {
+  width: 200px;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: #0573f0;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+body ._main #widget ._content ._wizard .success-animation {
+  margin-bottom: 20px;
+}
+
+body ._main #widget ._content ._wizard .checkmark {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #0573f0;
+  stroke-miterlimit: 10;
+  -webkit-box-shadow: inset 0px 0px 0px #0573f0;
+          box-shadow: inset 0px 0px 0px #0573f0;
+  -webkit-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+          animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  position: relative;
+  top: 5px;
+  right: 5px;
+  margin: 0 auto;
+}
+
+body ._main #widget ._content ._wizard .checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #0573f0;
+  fill: #fff;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+body ._main #widget ._content ._wizard .checkmark__check {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+body ._main #widget ._content p._help {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content p._help a {
+  color: #0573f0;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+body ._main #widget ._content p._help a:hover {
+  text-decoration: underline !important;
 }
 
 body ._main #widget ._menu-content ul {
@@ -421,7 +599,7 @@ body ._main #widget ._copyright a {
 }
 
 body ._main #widget ._copyright a._blue-color {
-  color: #0573F0;
+  color: #0573f0;
 }
 
 body ._main #widget ._copyright a._white-color {
@@ -438,12 +616,12 @@ body ._main #widget ._top-bar {
 }
 
 body ._main #widget ._top-bar ._back-button i {
-  color: #0573F0;
+  color: #0573f0;
   font-size: 22px;
 }
 
 body ._main #widget ._top-bar ._back-button p {
-  color: #0573F0;
+  color: #0573f0;
   font-size: 18px;
   margin-bottom: 0 !important;
   font-weight: 600;
@@ -455,20 +633,20 @@ body ._main #widget ._top-bar ._more-button {
 }
 
 body ._main #widget ._top-bar ._more-button span {
-  border: 1px solid #0573F0;
+  border: 1px solid #0573f0;
   width: 30px;
   height: 30px;
   border-radius: 30px;
 }
 
 body ._main #widget ._top-bar ._more-button i {
-  color: #0573F0;
+  color: #0573f0;
   font-size: 22px;
 }
 
 body ._main #widget ._top-bar ._dropdown {
   padding: 0;
-  border-color: #E9EFFF;
+  border-color: #e9efff;
   padding: 0;
 }
 
@@ -478,7 +656,7 @@ body ._main #widget ._top-bar ._dropdown a {
 }
 
 body ._main #widget ._top-bar ._dropdown a:hover {
-  background-color: #E9EFFF;
+  background-color: #e9efff;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -496,7 +674,7 @@ body ._main #widget ._window ._window-content {
   overflow: auto;
   overflow-x: hidden !important;
   border-radius: 25px;
-  border: 2px solid #E9EFFF;
+  border: 2px solid #e9efff;
 }
 
 body ._main #widget ._window ._window-content::-webkit-scrollbar {
@@ -505,7 +683,7 @@ body ._main #widget ._window ._window-content::-webkit-scrollbar {
 }
 
 body ._main #widget ._window ._window-content::-webkit-scrollbar-track {
-  background: #E9EFFF;
+  background: #e9efff;
 }
 
 body ._main #widget ._window ._window-content::-webkit-scrollbar-thumb {
@@ -525,7 +703,7 @@ body ._main #widget ._window ._window-content::-webkit-scrollbar-button {
 body ._main #widget ._window ._window-content ._image {
   width: 150px;
   height: 150px;
-  background-color: #E9EFFF;
+  background-color: #e9efff;
   background-position: center;
   background-size: cover;
 }

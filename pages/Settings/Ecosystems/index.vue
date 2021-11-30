@@ -19,7 +19,7 @@
                             <p>BAsed on the<br>EU blockchain (EBSI).</p>
                         </div>
                         <div class="col">
-                            <a class="_button-view _bounce">Join</a>
+                            <a href="/settings/Ecosystems/ebsi-essif" class="_button-view _bounce">Join</a>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-center _setting-items">
@@ -67,7 +67,7 @@
 
 <script>
 
-import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {menuTransitionShow, menuTransitionHide} from '../../../helpers/menuTransation'
 
 export default {
   name: 'Ecosystems',
