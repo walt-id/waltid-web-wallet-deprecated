@@ -9,9 +9,37 @@
                 </a>
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
-                <div id="content">
+                <div id="content" class="_setting">
                     <h2>Settings</h2>
-                    <p class="mt-3">You have no settings.</p>
+                    <br>
+                    <!--<p class="mt-3">You have no settings.</p>-->
+                    <div class="d-flex mt-3 align-items-center _setting-items">
+                        <div class="col-10 _item">
+                            <h4>Account</h4>
+                            <p>Manage your account.</p>
+                        </div>
+                        <div class="col">
+                            <a class="_button-view">View</a>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-4 align-items-center _setting-items">
+                        <div class="col-10 _item">
+                            <h4>Data</h4>
+                            <p>Manage your data.</p>
+                        </div>
+                        <div class="col">
+                            <a class="_button-view">View</a>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-4 align-items-center _setting-items">
+                        <div class="col-10 _item">
+                            <h4>Ecosystems</h4>
+                            <p>Join and manage your<br>identity ecosystems.</p>
+                        </div>
+                        <div class="col">
+                            <a href="/settings/Ecosystems" class="_button-view">View</a>
+                        </div>
+                    </div>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
@@ -39,7 +67,7 @@
 
 <script>
 
-import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {menuTransitionShow, menuTransitionHide} from '../../helpers/menuTransation'
 
 export default {
   name: 'Settings',

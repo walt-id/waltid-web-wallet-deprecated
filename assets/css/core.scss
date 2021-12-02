@@ -1,17 +1,39 @@
 /* Fonts*/
 
-@import url('https://fonts.google.com/specimen/Poppins?query=poppins');
+@import url("https://fonts.google.com/specimen/Poppins?query=poppins");
 
 /*Colors and Shdows*/
 
-$main-color: #0573F0;
-$light-color: #E9EFFF;
+$main-color: #0573f0;
+$light-color: #e9efff;
 $main-text: #292928;
 $second-text: #575756;
 $second-text-muted: #888888;
 $ui-border-raduis: 25px;
 
 /* Amimations */
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%,
+    100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #4bb71b;
+    }
+}
 
 
 /*For all*/
@@ -35,7 +57,7 @@ $ui-border-raduis: 25px;
 
 ::-webkit-scrollbar-thumb {
     background: #292928;
-    height: 35px
+    height: 35px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -219,7 +241,7 @@ body {
                             border: none;
                             font-size: 15px;
                             border-radius: 7px;
-                            color: white
+                            color: white;
                         }
                     }
                 }
@@ -323,7 +345,7 @@ body {
                                     color: #ccc;
                                     &:hover {
                                         color: $second-text-muted;
-                                        transition: .4s;
+                                        transition: 0.4s;
                                     }
                                 }
                             }
@@ -349,6 +371,111 @@ body {
                         font-size: 17px;
                         font-weight: 600;
                         border-radius: 7px;
+                    }
+                }
+                ._setting {
+                    margin-top: -70px;
+                }
+                ._setting-items {
+                    ._item {
+                        text-align: left;
+                    }
+                    h4 {
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                    p {
+                        margin-bottom: 0;
+                    }
+                    a._button-view {
+                        background-color: transparent;
+                        color: $main-color;
+                        padding: 7px 25px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        font-family: "Poppins";
+                        border: 2px solid $main-color;
+                        border-radius: 5px;
+                        transition: 0.3s;
+                        &:hover {
+                            background-color: $main-color;
+                            color: white;
+                        }
+                    }
+                }
+                ._wizard {
+                    width: 330px;
+                    text-align: center;
+                    height: 200px;
+                    h4 {
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                    p {
+                        margin-bottom: 0;
+                    }
+                    input {
+                        text-align: center;
+                        width: 200px;
+                        padding: 10px 10px;
+                    }
+                    ._button-view {
+                        width: 330px;
+                        a {
+                            width: 200px;
+                            text-align: center;
+                            padding: 10px 10px;
+                            background-color: $main-color;
+                            color: white;
+                            font-weight: 600;
+                            font-size: 17px;
+                        }
+                    }
+                    .success-animation {
+                        margin-bottom: 20px;
+                    }
+                    .checkmark {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        display: block;
+                        stroke-width: 2;
+                        stroke: $main-color;
+                        stroke-miterlimit: 10;
+                        box-shadow: inset 0px 0px 0px $main-color;
+                        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+                        position: relative;
+                        top: 5px;
+                        right: 5px;
+                        margin: 0 auto;
+                    }
+                    .checkmark__circle {
+                        stroke-dasharray: 166;
+                        stroke-dashoffset: 166;
+                        stroke-width: 2;
+                        stroke-miterlimit: 10;
+                        stroke: $main-color;
+                        fill: #fff;
+                        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+                    }
+                    .checkmark__check {
+                        transform-origin: 50% 50%;
+                        stroke-dasharray: 48;
+                        stroke-dashoffset: 48;
+                        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+                    }
+                }
+                p._help {
+                    font-size: 15px;
+                    margin-bottom: 0;
+                    a {
+                        color: $main-color;
+                        transition: .5s;
+                        &:hover {
+                            text-decoration: underline !important;
+                        }
                     }
                 }
             }

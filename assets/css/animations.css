@@ -1,3 +1,4 @@
+a._button-view,
 ul li {
     animation: fadeIn;
     animation-duration: 1.3s;
@@ -34,4 +35,19 @@ h2._animation-fade,
 ._btns {
     animation: bounceIn;
     animation-duration: 0.7s;
+}
+
+._bounce {
+    animation: bounceIn;
+    animation-duration: 0.7s;
+}
+
+._left-fade {
+    animation: flipInX;
+    animation-duration: 2s;
+}
+
+._fidin {
+    animation: fadeIn;
+    animation-duration: 1s;
 }
