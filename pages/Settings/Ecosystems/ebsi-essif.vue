@@ -29,7 +29,7 @@
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
-                                    <input placeholder="Insert your token" id="inserted-token" name="insertedToken" class="form-control my-2"/>
+                                    <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
                                     <a @click="tokenSubmit" class="_bounce btn">Submit</a>
                                 </div>
                             </div>
@@ -70,8 +70,8 @@
 </template>
 
 <script>
-
-import {menuTransitionShow, menuTransitionHide} from '../../../helpers/menuTransation'
+import axios from 'axios';
+import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
 
 export default {
   name: 'Ecosystems',
@@ -79,7 +79,9 @@ export default {
     return {
       trigger: true,
       wizardIndex: 0,
+      token: '',
       tokenSubmitted: false,
+      tokenWrong: false
     }
   },
   methods:{
@@ -98,10 +100,28 @@ export default {
         this.wizardIndex = this.wizardIndex+1
     },
     tokenSubmit: function(){
-        this.tokenSubmitted=true
-        if(this.tokenSubmitted === true){
-            this.wizardIndex = this.wizardIndex+1
-        }
+        axios.post('/api/wallet/did/create?method=ebsi', {
+           header:{
+               "Content-Type": "application/x-www-form-urlencoded"
+           },
+           data:{
+               "ebsiBearerToken": `${this.token}`
+           }
+        })
+        .then(
+            res=>{
+                console.log(res)
+                this.tokenSubmitted=true
+                this.wizardIndex = this.wizardIndex+1
+            }
+        )
+        .catch(
+            e=>{
+                console.log(e)
+                this.tokenWrong=true
+            }
+        )
+        
     }
   }
 };
