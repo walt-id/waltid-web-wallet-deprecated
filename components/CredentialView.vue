@@ -32,41 +32,47 @@
                                 <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
                             </span>
     </div>
-    <div class="col-12 py-3">
-      <div class="_image" style="background-image: url('https://www.urbanpedaltours.com/wp-content/uploads/2019/04/team.png');"></div>
-    </div>
+
     <div class="text-left">
                             <span class="col-12 pb-3">
                                 <h5>First Name</h5>
-                                <p>{{credential.credentialSubject.firstName}}</p>
+                                <p>{{credential.credentialSubject.givenNames}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>Last Name</h5>
                                 <p>{{credential.credentialSubject.familyName}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>Name And Family Name At Birth</h5>
-                                <p>{{credential.credentialSubject.nameAndFamilyNameAtBirth}}</p>
-                            </span>
-      <span class="col-12 px-3">
                                 <h5>Gender</h5>
-                                <p>{{credential.credentialSubject.gender}}</p>
+                                <p>{{credential.credentialSubject.personSex}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>Date Of Birth</h5>
                                 <p>{{credential.credentialSubject.dateOfBirth}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>Nationality</h5>
-                                <p>{{credential.credentialSubject.nationality}}</p>
+                                <h5>Vaccine Or Prophylaxis</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].vaccineOrProphylaxis}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>Place Of Birth</h5>
-                                <p>{{credential.credentialSubject.placeOfBirth}}</p>
+                                <h5>Vaccine Medicinal Product</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].vaccineMedicinalProduct}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>Personal Identifier</h5>
-                                <p>{{credential.credentialSubject.personalIdentifier}}</p>
+                                <h5>Dose Number</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].doseNumber}} / {{credential.credentialSubject.vaccinationProphylaxisInformation[0].totalSeriesOfDoses}}</p>
+                            </span>
+      <span class="col-12 px-3">
+                                <h5>Date Of Vaccination</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].dateOfVaccination}}</p>
+                            </span>
+      <span class="col-12 px-3">
+                                <h5>Administering Centre</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].administeringCentre}}</p>
+                            </span>
+      <span class="col-12 px-3">
+                                <h5>Country Of Vaccination</h5>
+                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].countryOfVaccination}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>DID</h5>
