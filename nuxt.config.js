@@ -55,7 +55,7 @@ export default {
   },
 
   proxy: {
-   "/api/": "http://localhost:8080"
+   "/api/": "https://wallet.waltid.org"
   },
   auth: {
     strategies: {

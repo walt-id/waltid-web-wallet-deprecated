@@ -102,7 +102,7 @@ export default {
     tokenSubmit: function(){
         axios.post('/api/wallet/did/create?method=ebsi', {
            header:{
-               "Content-Type": "application/x-www-form-urlencoded"
+               'Content-Type': 'text/plain'
            },
            data:{
                "ebsiBearerToken": `${this.token}`

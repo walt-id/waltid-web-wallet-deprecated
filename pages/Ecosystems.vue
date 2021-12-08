@@ -19,7 +19,7 @@
                             <p>BAsed on the<br>EU blockchain (EBSI).</p>
                         </div>
                         <div class="col">
-                            <a href="/ebsi-essif" class="_button-view _bounce">Join</a>
+                            <NuxtLink to="/ebsi-essif" class="_button-view _bounce">Join</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-center _setting-items">
