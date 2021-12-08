@@ -37,7 +37,7 @@
                             <p>Join and manage your<br>identity ecosystems.</p>
                         </div>
                         <div class="col">
-                            <a href="/settings/Ecosystems" class="_button-view">View</a>
+                            <a href="/Ecosystems" class="_button-view">View</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
 
 <script>
 
-import {menuTransitionShow, menuTransitionHide} from '../../helpers/menuTransation'
+import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
 
 export default {
   name: 'Settings',
