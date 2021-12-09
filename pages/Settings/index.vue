@@ -37,7 +37,7 @@
                             <p>Join and manage your<br>identity ecosystems.</p>
                         </div>
                         <div class="col">
-                            <a href="/settings/Ecosystems" class="_button-view">View</a>
+                            <NuxtLink to="/settings/ecosystems" class="_button-view">View</NuxtLink>
                         </div>
                     </div>
                 </div>

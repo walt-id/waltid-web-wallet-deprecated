@@ -29,8 +29,10 @@
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
-                                    <input placeholder="Insert your token" id="inserted-token" name="insertedToken" class="form-control my-2"/>
-                                    <a @click="tokenSubmit" class="_bounce btn">Submit</a>
+                                    <form action="" id="token-submit" @submit.prevent="tokenSubmit">
+                                        <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
+                                        <button type="submit" name="submit" class="_bounce btn text-white">Submit</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +72,7 @@
 </template>
 
 <script>
-
-import {menuTransitionShow, menuTransitionHide} from '../../../helpers/menuTransation'
+import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
 
 export default {
   name: 'Ecosystems',
@@ -79,7 +80,9 @@ export default {
     return {
       trigger: true,
       wizardIndex: 0,
+      token: '',
       tokenSubmitted: false,
+      tokenWrong: false
     }
   },
   methods:{
@@ -97,11 +100,24 @@ export default {
     wizardNext: function(){
         this.wizardIndex = this.wizardIndex+1
     },
-    tokenSubmit: function(){
-        this.tokenSubmitted=true
-        if(this.tokenSubmitted === true){
+    async tokenSubmit (){
+        try{
+            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', {
+              header:{
+                "accept": "text/plain",
+                "Content-Type": "application/x-www-form-urlencoded" 
+              },
+              data:{
+                ebsiBearerToken:`${this.token}`,
+              }
+            })
+            console.log(data.data)
+            this.tokenSubmitted=true
             this.wizardIndex = this.wizardIndex+1
-        }
+        }catch(e){
+            console.warn(e)
+            this.tokenWrong=true
+        }  
     }
   }
 };

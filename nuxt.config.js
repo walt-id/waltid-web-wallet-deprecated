@@ -79,7 +79,10 @@ export default {
       redirect: {
         login: '/login',
         logout: '/logout',
-        home: '/Credentials'
+        home: '/Credentials',
+        ecosystems: '/ecosystems',
+        "ebsi-essif": '/ebsi-essif',
+        Settings: '/Settings'
       }
     }
   },
