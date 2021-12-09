@@ -29,8 +29,10 @@
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
-                                    <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
-                                    <a @click="tokenSubmit" class="_bounce btn">Submit</a>
+                                    <form action="" id="token-submit" @submit.prevent="tokenSubmit">
+                                        <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
+                                        <button type="submit" name="submit" class="_bounce btn">Submit</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +72,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
 
 export default {
@@ -99,29 +100,24 @@ export default {
     wizardNext: function(){
         this.wizardIndex = this.wizardIndex+1
     },
-    tokenSubmit: function(){
-        axios.post('/api/wallet/did/create?method=ebsi', {
-           header:{
-               'Content-Type': 'text/plain'
-           },
-           data:{
-               "ebsiBearerToken": `${this.token}`
-           }
-        })
-        .then(
-            res=>{
-                console.log(res)
-                this.tokenSubmitted=true
-                this.wizardIndex = this.wizardIndex+1
-            }
-        )
-        .catch(
-            e=>{
-                console.log(e)
-                this.tokenWrong=true
-            }
-        )
-        
+    async tokenSubmit (){
+        try{
+            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', {
+              header:{
+                "accept": "text/plain",
+                "Content-Type": "application/x-www-form-urlencoded" 
+              },
+              data:{
+                ebsiBearerToken:`${this.token}`,
+              }
+            })
+            console.log(data.data)
+            this.tokenSubmitted=true
+            this.wizardIndex = this.wizardIndex+1
+        }catch(e){
+            console.warn(e)
+            this.tokenWrong=true
+        }  
     }
   }
 };
