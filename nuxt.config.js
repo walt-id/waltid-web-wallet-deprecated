@@ -31,7 +31,10 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components',
+    '~/components/credentials'
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -55,7 +58,7 @@ export default {
   },
 
   proxy: {
-   "/api/": "http://localhost:8080"
+   "/api/": "https://wallet.waltid.org"
   },
   auth: {
     strategies: {
@@ -95,5 +98,11 @@ export default {
     babel: {
       compact: true,
     },
+    extend(config, { isClient }) {
+      // Extend only webpack config for client-bundle
+      if (isClient) {
+        config.devtool = 'source-map'
+      }
+    }
   }
 }
