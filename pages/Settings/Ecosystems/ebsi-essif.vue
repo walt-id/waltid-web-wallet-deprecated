@@ -31,7 +31,7 @@
                                 <div>
                                     <form action="" id="token-submit" @submit.prevent="tokenSubmit">
                                         <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
-                                        <button type="submit" name="submit" class="_bounce btn">Submit</button>
+                                        <button type="submit" name="submit" class="_bounce btn text-white">Submit</button>
                                     </form>
                                 </div>
                             </div>

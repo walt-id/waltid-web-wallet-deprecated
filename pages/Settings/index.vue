@@ -37,7 +37,7 @@
                             <p>Join and manage your<br>identity ecosystems.</p>
                         </div>
                         <div class="col">
-                            <NuxtLink to="/ecosystems" class="_button-view">View</NuxtLink>
+                            <NuxtLink to="/settings/ecosystems" class="_button-view">View</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
 
 <script>
 
-import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {menuTransitionShow, menuTransitionHide} from '../../helpers/menuTransation'
 
 export default {
   name: 'Settings',
