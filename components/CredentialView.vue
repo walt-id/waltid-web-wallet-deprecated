@@ -1,12 +1,13 @@
 <template>
   <div class="p-4">
     <VerifiableVaccinationCertificate v-if="credential.type[credential.type.length-1] == 'VerifiableVaccinationCertificate'" :credential="credential" />
+    <VerifiableID v-if="credential.type[credential.type.length-1] == 'VerifiableId'" :credential="credential" />
+    <VerifiableDiploma v-if="credential.type[credential.type.length-1] == 'VerifiableDiploma'" :credential="credential" />
   </div>
 </template>
 
 <script>
 import moment from "moment"
-import VerifiableVaccinationCertificate from "@/components/credentials/VerifiableVaccinationCertificate";
 export default {
   name: "CredentialView",
   props: {
