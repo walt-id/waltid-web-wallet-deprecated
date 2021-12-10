@@ -15,17 +15,17 @@ export const mutations = {
     setCurrentDid(state, did) {
         state.currentDid = did
     },
-    initialize(state, dids, currentDid) {
+    initialize(state, dids) {
       state.initialized = true
       state.dids = dids
-      state.currentDid = currentDid
+      state.currentDid = dids[0]
     }
 }
 
 export const actions = {
   initialize({ commit }, didsPromise) {
     didsPromise.then(dids => 
-      commit('initialize', dids, dids[0])
+      commit('initialize', dids)
     )
   }
 }

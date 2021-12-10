@@ -16,7 +16,8 @@
                     <div class="d-flex mt-3 align-items-center _setting-items">
                         <div class="col-10 _item">
                             <h4>EBSI/ESSIF</h4>
-                            <p>BAsed on the<br>EU blockchain (EBSI).</p>
+                            <p>Based on the<br>EU blockchain (EBSI).</p>
+                            <b v-if="hasType(currentDid, 'ebsi')"><em>Selected</em></b>
                         </div>
                         <div class="col" v-if="!hasDidFor('ebsi')">
                             <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Join</NuxtLink>
@@ -26,6 +27,7 @@
                         <div class="col-10 _item">
                             <h4>DNS</h4>
                             <p>Based on the domain<br>name service (DNS).</p>
+                            <b v-if="hasType(currentDid, 'web')"><em>Selected</em></b>
                         </div>
                         <div class="col" v-if="!hasDidFor('web')">
                             <a class="_button-view _bounce">Join</a>
@@ -35,6 +37,7 @@
                         <div class="col-10 _item">
                             <h4>Key</h4>
                             <p>Peer-to-peer based<br>key distribution.</p>
+                            <b v-if="hasType(currentDid, 'key')"><em>Selected</em></b>
                         </div>
                         <div class="col" v-if="!hasDidFor('key')">
                             <a class="_button-view _bounce">Join</a>
@@ -79,6 +82,9 @@ export default {
   computed: {
     dids () {
       return this.$store.state.wallet.dids
+    },
+    currentDid () {
+        return this.$store.state.wallet.currentDid
     }
   },
   methods:{
@@ -94,7 +100,10 @@ export default {
       },
       hasDidFor: function(type) {
           console.log("wallet state", this.dids)
-          return this.dids.findIndex(d => d.match(`\\w+:${type}:.*`)) != -1
+          return this.dids.findIndex(d => this.hasType(d, type)) != -1
+      },
+      hasType: function(did, type) {
+          return did.match(`\\w+:${type}:.*`)
       }
   }
 };
