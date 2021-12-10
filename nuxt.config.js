@@ -59,6 +59,7 @@ export default {
 
   proxy: {
    "/api/": "https://wallet.waltid.org"
+   //"/api/": "http://localhost:8080"
   },
   auth: {
     strategies: {
@@ -87,7 +88,7 @@ export default {
     }
   },
   router: {
-    middleware: ["auth"]
+    middleware: ["auth", "wallet"]
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

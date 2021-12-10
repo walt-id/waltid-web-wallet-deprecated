@@ -18,7 +18,7 @@
                             <h4>EBSI/ESSIF</h4>
                             <p>BAsed on the<br>EU blockchain (EBSI).</p>
                         </div>
-                        <div class="col">
+                        <div class="col" v-if="!hasDidFor('ebsi')">
                             <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Join</NuxtLink>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <h4>DNS</h4>
                             <p>Based on the domain<br>name service (DNS).</p>
                         </div>
-                        <div class="col">
+                        <div class="col" v-if="!hasDidFor('web')">
                             <a class="_button-view _bounce">Join</a>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             <h4>Key</h4>
                             <p>Peer-to-peer based<br>key distribution.</p>
                         </div>
-                        <div class="col">
+                        <div class="col" v-if="!hasDidFor('key')">
                             <a class="_button-view _bounce">Join</a>
                         </div>
                     </div>
@@ -76,6 +76,11 @@ export default {
       trigger: true
     }
   },
+  computed: {
+    dids () {
+      return this.$store.state.wallet.dids
+    }
+  },
   methods:{
      menuTrigger: function(){
           if(this.trigger === true){
@@ -86,6 +91,10 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
+      },
+      hasDidFor: function(type) {
+          console.log("wallet state", this.dids)
+          return this.dids.findIndex(d => d.match(`\\w+:${type}:.*`)) != -1
       }
   }
 };
