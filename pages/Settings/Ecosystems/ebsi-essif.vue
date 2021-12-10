@@ -100,24 +100,18 @@ export default {
     wizardNext: function(){
         this.wizardIndex = this.wizardIndex+1
     },
-    async tokenSubmit (){
+    async tokenSubmit (submitEvent){
+        const formData = new FormData();
+        formData.append('ebsiBearerToken', submitEvent.target.elements.insertedToken.value);
         try{
-            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', {
-              header:{
-                "accept": "text/plain",
-                "Content-Type": "application/x-www-form-urlencoded" 
-              },
-              data:{
-                ebsiBearerToken:`${this.token}`,
-              }
-            })
+            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', formData)
             console.log(data.data)
             this.tokenSubmitted=true
             this.wizardIndex = this.wizardIndex+1
         }catch(e){
             console.warn(e)
             this.tokenWrong=true
-        }  
+        }
     }
   }
 };
