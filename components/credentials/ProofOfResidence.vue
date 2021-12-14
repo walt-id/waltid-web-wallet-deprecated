@@ -32,11 +32,10 @@
                                 <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
                             </span>
     </div>
-
     <div class="text-left">
                             <span class="col-12 pb-3">
                                 <h5>{{$t('CREDENTIAL.FIRST_NAME')}}</h5>
-                                <p>{{credential.credentialSubject.givenNames}}</p>
+                                <p>{{credential.credentialSubject.firstNames}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.LAST_NAME')}}</h5>
@@ -44,35 +43,26 @@
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.GENDER')}}</h5>
-                                <p>{{credential.credentialSubject.personSex}}</p>
+                                <p>{{credential.credentialSubject.gender}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.DATE_OF_BIRTH')}}</h5>
                                 <p>{{credential.credentialSubject.dateOfBirth}}</p>
                             </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.VACCINE_OR_PROFYLAXIS')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].vaccineOrProphylaxis}}</p>
+            <span class="col-12 px-3">
+                                <h5>{{$t('CREDENTIAL.ADDRESS')}}</h5>
+                                <p>{{credential.credentialSubject.address.streetAddress}}</p>
+                                <p>{{credential.credentialSubject.address.postalCode}}</p>
+                                <p>{{credential.credentialSubject.address.locality}}</p>
+                                <p>{{credential.credentialSubject.address.countryName}}</p>
+                            </span>
+            <span class="col-12 px-3">
+                                <h5>{{$t('CREDENTIAL.FAMILY_STATUS')}}</h5>
+                                <p>{{credential.credentialSubject.familyStatus}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.VACCINE_MEDICINAL_PRODUCT')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].vaccineMedicinalProduct}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.DOSE_NUMBER')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].doseNumber}} / {{credential.credentialSubject.vaccinationProphylaxisInformation[0].totalSeriesOfDoses}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.DATE_OF_VACCINATION')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].dateOfVaccination}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.ADMINISTERING_CENTER')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].administeringCentre}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.COUNTRY_OF_VACCINATION')}}</h5>
-                                <p>{{credential.credentialSubject.vaccinationProphylaxisInformation[0].countryOfVaccination}}</p>
+                                <h5>{{$t('CREDENTIAL.IDENTIFICATION_NUMBER')}}</h5>
+                                <p>{{credential.credentialSubject.identificationNumber}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.DID')}}</h5>
@@ -83,9 +73,10 @@
 </template>
 
 <script>
-import moment from "moment"
+import moment from "moment";
+
 export default {
-  name: "VerifiableVaccinationCertificate",
+  name: "ProofOfResidence",
   props: {
     credential: {}
   },

@@ -10,7 +10,7 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content-confirm" v-if="!receivedCredentials && !selectedCredential">
-                    <h2>Confirm credential issuance</h2>
+                    <h2>{{$t('RECEIVE_CREDENTIALS.CONFIRM_TITLE')}}</h2>
                     <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
                         <div class="col-10 d-flex align-items-center">
                           <div>
@@ -19,13 +19,13 @@
                           </div>
                         </div>
                         <div class="_button">
-                            <button href="#confirm" class="_share col-12 mb-2" @click="peSubmit()">Confirm</button>
-                            <a href="#reject" class="_reject col-12">Reject</a>
+                            <button href="#confirm" class="_share col-12 mb-2" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
+                            <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
                         </div>
                     </div>
                 </div>
                 <div id="content-credentials" v-if="receivedCredentials && !selectedCredential">
-                  <h2>Received credentials</h2>
+                  <h2>{{$t('RECEIVE_CREDENTIALS.RECEIVED_CREDENTIALS_TITLE')}}</h2>
                   <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
                     <a v-for="credential in receivedCredentials" :key="credential.id"
                        class="_card d-flex _animation-fade" href="#selectCredential"
@@ -38,8 +38,8 @@
                       </div>
                     </a>
                     <div class="_button">
-                      <button href="#share" class="_share col-12 mb-2" @click="$router.push('/Credentials')">Accept</button>
-                      <a href="#reject" class="_reject col-12">Reject</a>
+                      <button href="#share" class="_share col-12 mb-2" @click="$router.push('/Credentials')">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
+                      <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
                     </div>
                   </div>
                 </div>
@@ -49,7 +49,7 @@
                       <a href="" @click.prevent="selectedCredential = null" class="_back-button">
                         <span class="d-flex align-items-center">
                             <i class="bi bi-chevron-left"></i>
-                            <p>Back</p>
+                            <p>{{$t('BACK')}}</p>
                         </span>
                       </a>
                     </div>
@@ -64,16 +64,16 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <NuxtLink to="/credentials">Credentials</NuxtLink>
+                            <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/connections">Connections</NuxtLink>
+                            <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/settings">Settings</NuxtLink>
+                            <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
                         </li>
                         <li>
-                          <NuxtLink to="/login">logout</NuxtLink>
+                          <NuxtLink to="/login">{{$t('MENU.LOGOUT')}}</NuxtLink>
                         </li>
                     </ul>
                 </div>
