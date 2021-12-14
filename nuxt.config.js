@@ -50,7 +50,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
-    "@nuxtjs/auth"
+    "@nuxtjs/auth",
+    '@nuxtjs/i18n'
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -85,6 +86,20 @@ export default {
         "ebsi-essif": '/ebsi-essif',
         Settings: '/Settings'
       }
+    }
+  },
+  i18n: {
+    /* module options */
+    langDir: '~/locales/',
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.js' },
+      { code: 'de', iso: 'de-DE', file: 'de.js' },
+      { code: 'fr', iso: 'fr-FR', file: 'fr.js' },
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    vueI18n: {
+      fallbackLocale: 'en'
     }
   },
   router: {
