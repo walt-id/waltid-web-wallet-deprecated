@@ -33,16 +33,16 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <NuxtLink to="/credentials">Credentials</NuxtLink>
+                            <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/connections">Connections</NuxtLink>
+                            <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/settings">Settings</NuxtLink>
+                            <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/login">logout</NuxtLink>
+                          <NuxtLink to="/login">{{$t('MENU.LOGOUT')}}</NuxtLink>
                         </li>
                     </ul>
                 </div>
