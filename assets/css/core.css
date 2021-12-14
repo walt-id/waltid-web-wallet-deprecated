@@ -107,7 +107,7 @@ body ._main {
   /* mountains night: background-image: url("https://images.unsplash.com/photo-1489183988443-b37b7e119ba6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2944&q=80");*/
   /* wall: background-image: url("https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?cs=srgb&dl=pexels-shonejai-1227511.jpg&fm=jpg");*/
   /* clouds: background-image: url("https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?cs=srgb&dl=pexels-pixabay-531756.jpg&fm=jpg");*/
-  background-image: url("https://images.unsplash.com/photo-1607499699372-7bb722dff7e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80");
+  background-image: url("/background.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
