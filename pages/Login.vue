@@ -1,11 +1,10 @@
 <template>
   <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" class="_form d-grid align-items-center bg-white shadow-lg text-center">
-      <div>
+      <div :class="this.isSignin ? '_fade' : 'hide'"> 
         <h2>Login</h2>
         <p class="mt-3">Access to your wallet.</p>
         <div>
-          
         </div>
         <form action="" id="login-form" class="my-4" @submit.prevent="login">
           <ErrorMessage :message-content="errorMessage" :is-active="error" />
@@ -19,11 +18,49 @@
             <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">Login</button>
           </div>
           <div class="my-2 d-flex mt-4 justify-content-center">
-            <a href="/signup" class="px-3 py-0">Sign up</a>
-            <a href="/forgot-password" class="px-3 py-0 border-start border-2 ">Forgot password?</a>
+            <a @click="toSignup" class="px-3 py-0">Sign up</a>
+            <a @click="toResetPassword" class="px-3 py-0 border-start border-2 ">Forgot password?</a>
           </div>
         </form>
         <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
+      </div>
+      <div :class="this.isSignup ? '_fadehi' : 'hide'">
+          <h2>Sign up</h2>
+          <p class="mt-3">Create a new wallet account.</p>
+            <form action="" id="signup-form" class="my-4">
+              <div class="my-2">
+                  <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3" autocomplete="off">
+              </div>
+              <div class="my-2">
+                  <input type="password" placeholder="Password" name="password" id="signup-form-password" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="password" @input="confirmPassword()">
+              </div>
+              <div class="my-2">
+                  <input type="password" placeholder="Confirm the password" name="password" id="signup-form-password-confirm" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="repassword" @input="confirmPassword()">
+              </div>
+              <div class="my-2">
+                  <button type="submit" name="submit" class="text-white border-0 rounded">Create Account</button>
+              </div>
+              <div class="my-2">
+                  <a @click="toSignIn">Already have account? Login</a>
+              </div>
+            </form>
+          <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+      </div>
+      <div :class="this.isResetPassword ? '_fadehi' : 'hide'">
+          <h2>Reset password</h2>
+          <p class="mt-3">Reset your account password</p>
+            <form action="" id="signup-form" class="my-4">
+              <div class="my-2">
+                  <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3" autocomplete="off">
+              </div>
+              <div class="my-2">
+                  <button type="submit" name="submit" class="text-white border-0 rounded">Rest my password</button>
+              </div>
+              <div class="my-2">
+                  <a @click="toSignIn">Already know your account? Login</a>
+              </div>
+            </form>
+          <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
       </div>
     </div>
   </section>
@@ -41,12 +78,33 @@ export default {
       email: "",
       validEmail: true,
       password: "",
+      repassword: "",
+      confirmedPassword: null,
       validPassword: true,
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      isSignin: true,
+      isSignup: false,
+      isResetPassword: false,
     }
   },
   methods: {
+    //We included all pages in each condition for reset whole routing states for no UX errors
+    toSignIn(){
+      this.isSignup= false
+      this.isResetPassword= false
+      this.isSignin= true
+    },
+    toSignup(){
+      this.isSignin= false
+      this.isResetPassword= false
+      this.isSignup= true
+    },
+    toResetPassword(){
+      this.isSignup= false
+      this.isSignin= false
+      this.isResetPassword= true
+    },
     // validate email if a domain name typed after @
     emailValidation (email){
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -97,6 +155,12 @@ export default {
       this.validPassword = true
       this.error = false
     },
+    //confirm the password
+    confirmPassword(){
+      if(this.password.length>0 && this.repassword.length>0){
+        this.password === this.repassword ? this.confirmedPassword = true : this.confirmedPassword = false
+      }
+    }
   }
 }
 </script>

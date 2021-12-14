@@ -172,6 +172,10 @@ body ._main #widget form a {
   color: #888888;
 }
 
+body ._main #widget a {
+  cursor: pointer;
+}
+
 body ._main #widget ._toggle-menu {
   height: 6vh;
   max-height: 6vh;

@@ -146,6 +146,9 @@ body {
                     color: $second-text-muted;
                 }
             }
+            a {
+                cursor: pointer;
+            }
             ._toggle-menu {
                 height: 6vh;
                 max-height: 6vh;
