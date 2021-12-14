@@ -41,7 +41,7 @@
                               <div class="success-animation">
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                               </div>
-                              <p>You just succefully onboarded on EBSI</p>
+                              <p>You just succesfully onboarded on EBSI</p>
                             </div>
                         </div>
                     </div>
@@ -100,11 +100,11 @@ export default {
     wizardNext: function(){
         this.wizardIndex = this.wizardIndex+1
     },
-    async tokenSubmit (submitEvent){
-        const formData = new FormData();
-        formData.append('ebsiBearerToken', submitEvent.target.elements.insertedToken.value);
+    async tokenSubmit (){
         try{
-            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', formData)
+            const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', {
+                "bearerToken": this.token
+            })
             console.log(data.data)
             this.tokenSubmitted=true
             this.wizardIndex = this.wizardIndex+1
