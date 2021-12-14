@@ -3,6 +3,7 @@
     <VerifiableVaccinationCertificate v-if="credential.type[credential.type.length-1] == 'VerifiableVaccinationCertificate'" :credential="credential" />
     <VerifiableID v-if="credential.type[credential.type.length-1] == 'VerifiableId'" :credential="credential" />
     <VerifiableDiploma v-if="credential.type[credential.type.length-1] == 'VerifiableDiploma'" :credential="credential" />
+    <ProofOfResidence v-if="credential.type[credential.type.length-1] == 'ProofOfResidence'" :credential="credential" />
   </div>
 </template>
 
