@@ -20,7 +20,7 @@
                             </div>
                           </div>
                         </NuxtLink>
-                        <div class="_button">
+                        <div class="_button mt-4">
                             <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Share</button>
                             <a href="#reject" class="_reject col-12">Reject</a>
                         </div>

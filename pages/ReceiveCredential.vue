@@ -78,9 +78,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
-            </div>
         </div>
     </section>
 </template>
