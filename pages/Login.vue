@@ -33,21 +33,21 @@
       <div :class="this.isSignup ? '_fadehi' : 'hide'">
           <h2>Sign up</h2>
           <p class="mt-3">Create a new wallet account.</p>
-            <form action="" id="signup-form" class="my-4">
+            <form action="" id="signup-form" class="my-4" @submit.prevent="login">
               <div class="my-2">
-                  <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3" autocomplete="off">
+                  <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()" v-bind:class="this.validEmail === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="email">
               </div>
               <div class="my-2">
-                  <input type="password" placeholder="Password" name="password" id="signup-form-password" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="password" @input="confirmPassword()">
+                  <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
               </div>
               <div class="my-2">
-                  <input type="password" placeholder="Confirm the password" name="password" id="signup-form-password-confirm" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="repassword" @input="confirmPassword()">
+                  <input type="password" :placeholder="$t('LOGIN.CONFIRM_PASSWORD')" name="password" id="signup-form-password-confirm" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="repassword" @input="confirmPassword()">
               </div>
               <div class="my-2">
-                  <button type="submit" name="submit" class="text-white border-0 rounded">Create Account</button>
+                  <button type="submit" name="submit" class="text-white border-0 rounded">{{$t('LOGIN.CREATE_ACCOUNT')}}</button>
               </div>
               <div class="my-2">
-                  <a @click="toSignIn">Already have account? Login</a>
+                  <a @click="toSignIn">{{$t('LOGIN.ALREADY_ACCOUNT_LOGIN')}}</a>
               </div>
             </form>
           <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
@@ -60,7 +60,7 @@
                   <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3" autocomplete="off">
               </div>
               <div class="my-2">
-                  <button type="submit" name="submit" class="text-white border-0 rounded">Rest my password</button>
+                  <button type="submit" name="submit" class="text-white border-0 rounded">Reset my password</button>
               </div>
               <div class="my-2">
                   <a @click="toSignIn">Already know your account? Login</a>
