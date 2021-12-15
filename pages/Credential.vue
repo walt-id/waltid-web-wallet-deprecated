@@ -27,8 +27,7 @@
             </div>
             <div class="_window d-flex justify-content-center align-items-center">
                 <div class="_window-content m-2 p-2 ">
-                    <CredentialView :credential="credential" class="p-4">
-                    </CredentialView>
+                    <CredentialView :credential="credential" class="p-4"></CredentialView>
                 </div>
             </div>
         </div>
