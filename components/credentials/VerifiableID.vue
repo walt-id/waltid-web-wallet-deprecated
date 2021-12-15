@@ -18,7 +18,7 @@
                                 <p>Valid</p>
                             </span>
     </div>
-    <div class="d-flex py-3 border-bottom border-secondary">
+    <div class="d-flex py-3 border-bottom mb-3 border-secondary">
                             <span class="col-4">
                                 <h5>{{$t('CREDENTIAL.ISSUED_ON')}}</h5>
                                 <p>{{moment(credential.issuanceDate).format("MMM Do YYYY")}}</p>
