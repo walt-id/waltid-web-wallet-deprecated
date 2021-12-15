@@ -18,7 +18,7 @@
                                 <p>Valid</p>
                             </span>
     </div>
-    <div class="d-flex py-3 border-bottom mb-3 border-secondary">
+    <div class="d-flex py-3 border-bottom border-secondary">
                             <span class="col-4">
                                 <h5>{{$t('CREDENTIAL.ISSUED_ON')}}</h5>
                                 <p>{{moment(credential.issuanceDate).format("MMM Do YYYY")}}</p>
@@ -32,21 +32,14 @@
                                 <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
                             </span>
     </div>
-    <div class="col-12 py-3">
-      <div class="_image" style="background-image: url('https://www.urbanpedaltours.com/wp-content/uploads/2019/04/team.png');"></div>
-    </div>
     <div class="text-left">
                             <span class="col-12 pb-3">
                                 <h5>{{$t('CREDENTIAL.FIRST_NAME')}}</h5>
-                                <p>{{credential.credentialSubject.firstName}}</p>
+                                <p>{{credential.credentialSubject.firstNames}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.LAST_NAME')}}</h5>
                                 <p>{{credential.credentialSubject.familyName}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.NAME_AND_FAMILY_NAME_AT_BIRTH')}}</h5>
-                                <p>{{credential.credentialSubject.nameAndFamilyNameAtBirth}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.GENDER')}}</h5>
@@ -56,17 +49,20 @@
                                 <h5>{{$t('CREDENTIAL.DATE_OF_BIRTH')}}</h5>
                                 <p>{{credential.credentialSubject.dateOfBirth}}</p>
                             </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.NATIONALITY')}}</h5>
-                                <p>{{credential.credentialSubject.nationality}}</p>
+            <span class="col-12 px-3">
+                                <h5>{{$t('CREDENTIAL.ADDRESS')}}</h5>
+                                <p>{{credential.credentialSubject.address.streetAddress}}</p>
+                                <p>{{credential.credentialSubject.address.postalCode}}</p>
+                                <p>{{credential.credentialSubject.address.locality}}</p>
+                                <p>{{credential.credentialSubject.address.countryName}}</p>
+                            </span>
+            <span class="col-12 px-3">
+                                <h5>{{$t('CREDENTIAL.FAMILY_STATUS')}}</h5>
+                                <p>{{credential.credentialSubject.familyStatus}}</p>
                             </span>
       <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.PLACE_OF_BIRTH')}}</h5>
-                                <p>{{credential.credentialSubject.placeOfBirth}}</p>
-                            </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.PERSONAL_IDENTIFIER')}}</h5>
-                                <p>{{credential.credentialSubject.personalIdentifier}}</p>
+                                <h5>{{$t('CREDENTIAL.IDENTIFICATION_NUMBER')}}</h5>
+                                <p>{{credential.credentialSubject.identificationNumber}}</p>
                             </span>
       <span class="col-12 px-3">
                                 <h5>{{$t('CREDENTIAL.DID')}}</h5>
@@ -80,7 +76,7 @@
 import moment from "moment";
 
 export default {
-  name: "VerifiableID",
+  name: "ProofOfResidence",
   props: {
     credential: {}
   },

@@ -10,10 +10,10 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content">
-                    <h2 class="_animation-fade">My Credentials</h2>
+                    <h2 class="_animation-fade">{{$t('CREDENTIALS.TITLE')}}</h2>
                     <div class="_search">
                         <form action="" id="search-form">
-                            <input name="search-input" type="text" v-model="search" placeholder="Search...">
+                            <input name="search-input" type="text" v-model="search" :placeholder="$t('CREDENTIALS.SEARCH')">
                         </form>
                     </div>
                     <div class="_scrollable d-flex flex-column align-items-center">
@@ -33,16 +33,16 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <NuxtLink to="/credentials">Credentials</NuxtLink>
+                            <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/connections">Connections</NuxtLink>
+                            <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/settings">Settings</NuxtLink>
+                            <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/login">logout</NuxtLink>
+                          <NuxtLink to="/login">{{$t('MENU.LOGOUT')}}</NuxtLink>
                         </li>
                     </ul>
                 </div>

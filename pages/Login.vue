@@ -2,24 +2,30 @@
   <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" class="_form d-grid align-items-center bg-white shadow-lg text-center">
       <div :class="this.isSignin ? '_fade' : 'hide'"> 
-        <h2>Login</h2>
-        <p class="mt-3">Access to your wallet.</p>
+        <h2>{{$t('LOGIN.TITLE')}}</h2>
+        <p class="mt-3">{{$t('LOGIN.MSG')}}</p>
         <div>
         </div>
         <form action="" id="login-form" class="my-4" @submit.prevent="login">
           <ErrorMessage :message-content="errorMessage" :is-active="error" />
           <div class="my-2 _animation-fade">
-            <input type="text" placeholder="E-mail" name="email" id="login-form-email" @input="resetError()" v-bind:class="this.validEmail === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="email">
+            <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()" v-bind:class="this.validEmail === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="email">
           </div>
           <div class="my-2 _animation-fade">
-            <input type="password" placeholder="Password" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
+            <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
           </div>
           <div class="my-2">
-            <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">Login</button>
+            <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">{{$t('LOGIN.LOGIN')}}</button>
           </div>
           <div class="my-2 d-flex mt-4 justify-content-center">
-            <a @click="toSignup" class="px-3 py-0">Sign up</a>
-            <a @click="toResetPassword" class="px-3 py-0 border-start border-2 ">Forgot password?</a>
+            <a @click="toSignup" class="px-3 py-0">{{$t('LOGIN.SIGN_UP')}}</a>
+            <a @click="toResetPassword" class="px-3 py-0 border-start border-2 ">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
+            <a
+            href="#"
+            class="px-3 py-0 border-start border-2 "
+            v-for="locale in availableLocales"
+            :key="locale.code"
+            @click.prevent.stop="$i18n.setLocale(locale.code)">{{ locale.code }}</a>
           </div>
         </form>
         <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
@@ -86,6 +92,12 @@ export default {
       isSignin: true,
       isSignup: false,
       isResetPassword: false,
+    }
+  },
+  computed: {
+    availableLocales () {
+      console.log("locales", this.$i18n.locales)
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
     }
   },
   methods: {
