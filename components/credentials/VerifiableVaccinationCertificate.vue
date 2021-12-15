@@ -3,7 +3,7 @@
     <div class="col-12 py-3">
                             <span>
                                 <h5>{{$t('CREDENTIAL.TITLE')}}</h5>
-                                <p>{{credential.title ? credential.title : credential.type[credential.type.length-1]}}</p>
+                                <p>{{$t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1])}}</p>
                             </span>
     </div>
     <div class="d-flex py-3">
