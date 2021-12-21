@@ -92,9 +92,9 @@ export default {
     /* module options */
     langDir: '~/locales/',
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'de', iso: 'de-DE', file: 'de.js' },
-      { code: 'fr', iso: 'fr-FR', file: 'fr.js' },
+      { code: 'en', iso: 'en-US', file: 'en.js', flag: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png' },
+      { code: 'de', iso: 'de-DE', file: 'de.js', flag: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png' },
+      { code: 'fr', iso: 'fr-FR', file: 'fr.js', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931958%29.svg/1200px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931958%29.svg.png' },
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',

@@ -17,16 +17,13 @@
           <div class="my-2">
             <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">{{$t('LOGIN.LOGIN')}}</button>
           </div>
-          <div class="my-2 d-flex mt-4 justify-content-center">
-            <a @click="toSignup" class="px-3 py-0">{{$t('LOGIN.SIGN_UP')}}</a>
-            <a @click="toResetPassword" class="px-3 py-0 border-start border-2 ">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
-            <a
-            href="#"
-            class="px-3 py-0 border-start border-2 "
-            v-for="locale in availableLocales"
-            :key="locale.code"
-            @click.prevent.stop="$i18n.setLocale(locale.code)">{{ locale.code }}</a>
+          <div class="my-3 d-flex mt-4 justify-content-center">
+            <a @click="toSignup" class="px-3 py-0 fw-normal">{{$t('LOGIN.SIGN_UP')}}</a>
+            <a @click="toResetPassword" class="px-3 py-0 border-start border-2  fw-normal">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
           </div>
+          <a href="#" v-for="locale in availableLocales" :key="locale.code" @click.prevent.stop="$i18n.setLocale(locale.code)">
+            <img :src="locale.flag" width="20px" height="15px" :alt="locale.iso" class="me-2 border border-white" />
+          </a>
         </form>
         <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
       </div>

@@ -7,7 +7,8 @@ export default {
         PASSWORD: 'Mot de passe',
         LOGIN: 'Login',
         SIGN_UP: 'S\'inscrire',
-        FORGOT_PASSWORD: 'Mot de passe oublié?'
+        FORGOT_PASSWORD: 'Mot de passe oublié?',
+        REMEMBER_ME: 'Souviens-toi de moi',
     },
     CREDENTIALS: {
         TITLE: 'Mes informations d\'identification',
