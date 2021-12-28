@@ -42,7 +42,7 @@
                             <NuxtLink to="/settings">Settings</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/login">logout</NuxtLink>
+                            <a to="/login">logout</a>
                         </li>
                     </ul>
                 </div>
