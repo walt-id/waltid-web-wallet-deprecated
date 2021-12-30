@@ -27,7 +27,7 @@
                             <NuxtLink to="/settings">Settings</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/login">logout</NuxtLink>
+                            <a @click="logout">{{$t('MENU.LOGOUT')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods:{
-     menuTrigger: function(){
+    menuTrigger: function(){
           if(this.trigger === true){
               menuTransitionShow()
               this.trigger = false
@@ -60,7 +60,11 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
-      }
+    },
+    logout: async function() {
+      await this.$auth.logout();
+      this.$router.push('/login')
+    },
   }
 };
 </script>

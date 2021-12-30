@@ -16,16 +16,16 @@
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
                         <li>
-                            <NuxtLink to="/credentials">Credentials</NuxtLink>
+                            <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/connections">Connections</NuxtLink>
+                            <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/settings">Settings</NuxtLink>
+                            <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/login">logout</NuxtLink>
+                            <a href="#" @click="logout">{{$t('MENU.LOGOUT')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +50,7 @@ export default {
     }
   },
   methods:{
-     menuTrigger: function(){
+    menuTrigger: function(){
           if(this.trigger === true){
               menuTransitionShow()
               this.trigger = false
@@ -59,7 +59,11 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
-      }
+      },
+    logout: async function() {
+      await this.$auth.logout();
+      this.$router.push('/login')
+    },
   }
 };
 </script>
