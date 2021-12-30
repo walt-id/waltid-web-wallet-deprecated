@@ -88,14 +88,19 @@
                         <h2>All Selected DID</h2>
                         <br>
                         <div class="d-grid justify-content-center">
-                            <div v-for="did in dids" v-bind:key="did.index" class="_card d-flex">
-                                <div class="col-10 d-flex align-items-center">
-                                  <div>
-                                    <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
-                                    <p class="text-truncate" style="max-width: 12em">by walt.id</p>
+                                <a href="#" v-for="did in dids" @click="setDD === true ? setDefaultDID(did) : null" v-bind:key="did.index" class="_card d-flex">
+                                  <div class="col-10 d-flex align-items-center">
+                                    <div>
+                                      <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
+                                      <p class="text-truncate" style="max-width: 12em">by walt.id</p>
+                                    </div>
                                   </div>
-                                </div>
-                            </div>
+                                  <div class="col d-flex justify-content-end">
+                                    <i v-if="currentDefaultDid === did" class="bi bi-bookmark-plus-fill _icon-active"></i>
+                                    <i v-else :class="setDD === true ? 'bi bi-bookmark-plus _icon-inactive' : 'invisible'"></i>
+                                  </div>
+                                </a>
+                                <a class="mt-2 fw-bold" @click="trySetDefaultDID">Set a default DID</a>
                         </div>
                     </div>  
                 </div>
@@ -108,15 +113,17 @@
 </template>
 
 <script>
-
 import {menuTransitionShow, menuTransitionHide} from '../../../helpers/menuTransation'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'Ecosystems',
   data() {
     return {
       trigger: true,
-      didListModal: false
+      didListModal: false,
+      setDD: false,
+      currentDefaultDid: Cookies.get('default_did') || null
     }
   },
   computed: {
@@ -154,9 +161,16 @@ export default {
       hideModal: function(){
           this.didListModal=false
       },
-      test: function(){
-          console.log(this.dids)
+      trySetDefaultDID: function(){
+          this.setDD=true
+      },
+      setDefaultDID: function(did){
+          Cookies.set('default_did', did)
+          this.currentDefaultDid=did
+          Cookies.set('default_did', did)
+          this.setDD=false
       }
+      
   }
 };
 </script>

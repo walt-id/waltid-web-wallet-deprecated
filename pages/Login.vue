@@ -131,7 +131,7 @@ export default {
            }
           })
           this.$auth.setUser(loginResponse.data)
-          this.$router.push("/dashboard")
+          this.$router.push("/")
         } catch (e) {
           console.log(e.response.data)
           this.error = true
