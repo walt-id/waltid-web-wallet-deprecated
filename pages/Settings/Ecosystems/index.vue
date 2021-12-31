@@ -95,12 +95,13 @@
                                       <p class="text-truncate" style="max-width: 12em">by walt.id</p>
                                     </div>
                                   </div>
-                                  <div class="col d-flex justify-content-end">
-                                    <i v-if="currentDefaultDid === did" class="bi bi-bookmark-plus-fill _icon-active"></i>
+                                  <div class="col d-flex justify-content-end align-items-start">
+                                    <b v-if="currentDefaultDid === did" class="_tag mt-2"><em>Default</em></b>
                                     <i v-else :class="setDD === true ? 'bi bi-bookmark-plus _icon-inactive' : 'invisible'"></i>
                                   </div>
                                 </a>
-                                <a class="mt-2 fw-bold" @click="trySetDefaultDID">Set a default DID</a>
+                                <a v-if="!setDD" class="mt-2 fw-bold" @click="trySetDefaultDID">Set a default DID</a>
+                                <a v-else class="mt-2 fw-bold text-danger" @click="cancelSetDefaultDID">Cancel</a>
                         </div>
                     </div>  
                 </div>
@@ -163,6 +164,9 @@ export default {
       },
       trySetDefaultDID: function(){
           this.setDD=true
+      },
+      cancelSetDefaultDID: function(){
+          this.setDD=false
       },
       setDefaultDID: function(did){
           Cookies.set('default_did', did)

@@ -139,7 +139,6 @@ export default {
           })
           this.$auth.setUser(loginResponse.data)
           this.$router.push("/")
-          this.loginLoading=false
         } catch (e) {
           this.loginLoading=false
           console.log(e.response.data)

@@ -469,6 +469,15 @@ body ._main #widget ._content ._did-content ._card {
   border-radius: 15px;
 }
 
+body ._main #widget ._content ._did-content ._card ._tag {
+  color: white;
+  background-color: #888888;
+  font-size: 11px;
+  padding: 2px 10px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
 body ._main #widget ._content ._did-content ._card h5 {
   font-size: 16px;
   color: #575756;
