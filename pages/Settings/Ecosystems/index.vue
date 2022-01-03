@@ -88,8 +88,8 @@
                         <h2>All Selected DID</h2>
                         <br>
                         <div class="d-grid justify-content-center">
-                                <a href="#" v-for="did in dids" @click="setDD === true ? setDefaultDID(did) : null" v-bind:key="did.index" class="_card d-flex">
-                                  <div class="col-10 d-flex align-items-center">
+                                <a href="#" v-for="did in dids" @click="setDefaultDID(did)" v-bind:key="did.index" class="_card d-flex">
+                                  <div class="col-9 d-flex align-items-center">
                                     <div>
                                       <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
                                       <p class="text-truncate" style="max-width: 12em">by walt.id</p>
@@ -97,11 +97,10 @@
                                   </div>
                                   <div class="col d-flex justify-content-end align-items-start">
                                     <b v-if="currentDefaultDid === did" class="_tag mt-2"><em>Default</em></b>
-                                    <i v-else :class="setDD === true ? 'bi bi-bookmark-plus _icon-inactive' : 'invisible'"></i>
+                                    <b v-else class="_tag-active mt-2"><em>Set default</em></b>
+                                    
                                   </div>
                                 </a>
-                                <a v-if="!setDD" class="mt-2 fw-bold" @click="trySetDefaultDID">Set a default DID</a>
-                                <a v-else class="mt-2 fw-bold text-danger" @click="cancelSetDefaultDID">Cancel</a>
                         </div>
                     </div>  
                 </div>

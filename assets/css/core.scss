@@ -405,6 +405,14 @@ body {
                             font-weight: 500;
                             border-radius: 2px;
                         }
+                        ._tag-active {
+                            color: white;
+                            background-color: $main-color;
+                            font-size: 11px;
+                            padding: 2px 10px;
+                            font-weight: 500;
+                            border-radius: 2px;
+                        }
                         h5 {
                             font-size: 16px;
                             color: $second-text;
