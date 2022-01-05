@@ -20,7 +20,7 @@
                           </div>
                         </div>
                         <div class="_button">
-                            <button href="#confirm" class="_share col-12 mb-2" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
+                            <button href="#confirm" class="_share col-12 mb-2 mt-4" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
                             <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
                         </div>
                     </div>
