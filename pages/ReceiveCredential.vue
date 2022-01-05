@@ -14,12 +14,13 @@
                     <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
                         <div class="col-10 d-flex align-items-center">
                           <div>
+                            <p>{{$t('RECEIVE_CREDENTIALS.CONFIRM_CONNECTION_WITH')}}</p>
                             <h5 class="mb-1">{{pe.request.registration.client_name}}</h5>
-                            <p>{{pe.request.registration.client_purpose}}</p>
+                            <em>{{pe.request.registration.client_purpose}}</em>
                           </div>
                         </div>
                         <div class="_button">
-                            <button href="#confirm" class="_share col-12 mb-2" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
+                            <button href="#confirm" class="_share col-12 mb-2 mt-4" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
                             <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
                         </div>
                     </div>
@@ -32,7 +33,7 @@
                        @click="selectedCredential = credential">
                       <div class="col-10 d-flex align-items-center">
                         <div>
-                          <h5 class="mb-1">{{credential.title ? credential.title : credential.type[credential.type.length-1]}}</h5>
+                          <h5 class="mb-1">{{$t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1])}}</h5>
                           <p class="text-truncate" style="max-width: 12em">by {{credential.issuerName ? credential.issuerName : credential.issuer}}</p>
                         </div>
                       </div>
@@ -77,9 +78,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
             </div>
         </div>
     </section>

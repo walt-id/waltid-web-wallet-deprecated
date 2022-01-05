@@ -20,7 +20,7 @@
                         <NuxtLink class="_card d-flex" v-for="credential in filteredList" v-bind:key="credential.id" :to="'/Credential?id='+encodeURIComponent(credential.id)" >
                             <div class="col-10 d-flex align-items-center">
                                 <div>
-                                    <h5 class="mb-1">{{credential.title ? credential.title : credential.type[credential.type.length-1]}}</h5>
+                                    <h5 class="mb-1">{{$t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1])}}</h5>
                                     <p class="text-truncate" style="max-width: 12em">by {{credential.issuerName ? credential.issuerName : credential.issuer}}</p>
                                 </div>
                             </div>

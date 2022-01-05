@@ -8,6 +8,9 @@ export default {
         LOGIN: 'Login',
         SIGN_UP: 'S\'inscrire',
         FORGOT_PASSWORD: 'Mot de passe oublié?',
+        CONFIRM_PASSWORD: 'Confirmez le mot de passe',
+        CREATE_ACCOUNT: 'Créer un compte',
+        ALREADY_ACCOUNT_LOGIN: 'Vous avez déjà un compte? Login',
         REMEMBER_ME: 'Souviens-toi de moi',
     },
     CREDENTIALS: {
@@ -15,7 +18,8 @@ export default {
         SEARCH: 'Chercher...'
     },
     RECEIVE_CREDENTIALS: {
-        CONFIRM_TITLE: 'Confirmer la délivrance des informations d\'identification',
+        CONFIRM_TITLE: 'Demande de connexion',
+        CONFIRM_CONNECTION_WITH: 'Confirmer la connexion avec',
         CONFIRM: 'Confirmer',
         REJECT: 'Rejeter',
         RECEIVED_CREDENTIALS_TITLE: 'Reçu des informations d\'identification',
@@ -52,6 +56,12 @@ export default {
         DOSE_NUMBER: 'Numéro de dose',
         DATE_OF_VACCINATION: 'Date de la vaccination',
         ADMINISTERING_CENTER: 'Centre d\'administration',
-        COUNTRY_OF_VACCINATION: 'Pays de vaccination'
+        COUNTRY_OF_VACCINATION: 'Pays de vaccination',
+        TYPE: {
+            VerifiableId: 'Document d\'identification vérifiable',
+            VerifiableDiploma: 'Diplôme universitaire vérifiable',
+            VerifiableVaccinationCertificate: 'Certificat de vaccination vérifiable',
+            ProofOfResidence: 'Certificat de Résidence'
+        }
     }
 }

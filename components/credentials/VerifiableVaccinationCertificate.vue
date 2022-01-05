@@ -3,7 +3,7 @@
     <div class="col-12 py-3">
                             <span>
                                 <h5>{{$t('CREDENTIAL.TITLE')}}</h5>
-                                <p>{{credential.title ? credential.title : credential.type[credential.type.length-1]}}</p>
+                                <p>{{$t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1])}}</p>
                             </span>
     </div>
     <div class="d-flex py-3">
@@ -18,7 +18,7 @@
                                 <p>Valid</p>
                             </span>
     </div>
-    <div class="d-flex py-3 border-bottom border-secondary">
+    <div class="d-flex py-3 border-bottom mb-3 border-secondary">
                             <span class="col-4">
                                 <h5>{{$t('CREDENTIAL.ISSUED_ON')}}</h5>
                                 <p>{{moment(credential.issuanceDate).format("MMM Do YYYY")}}</p>
