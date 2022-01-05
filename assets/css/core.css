@@ -446,6 +446,71 @@ body ._main #widget ._content ._setting {
   margin-top: -70px;
 }
 
+body ._main #widget ._content ._setting ._tag {
+  color: white;
+  background-color: #888888;
+  font-size: 11px;
+  padding: 2px 10px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+body ._main #widget ._content ._did-content {
+  width: 27vw;
+}
+
+body ._main #widget ._content ._did-content ._card {
+  margin: 10px;
+  text-align: left;
+  width: 22vw;
+  min-height: 100px;
+  border: 2px solid #e9efff;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+body ._main #widget ._content ._did-content ._card ._tag {
+  color: white;
+  background-color: #888888;
+  font-size: 11px;
+  padding: 2px 10px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+body ._main #widget ._content ._did-content ._card ._tag-active {
+  color: white;
+  background-color: #0573f0;
+  font-size: 11px;
+  padding: 2px 10px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+body ._main #widget ._content ._did-content ._card h5 {
+  font-size: 16px;
+  color: #575756;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+body ._main #widget ._content ._did-content ._card p {
+  font-size: 14px;
+  font-style: italic;
+  color: #575756;
+  margin-bottom: 0;
+}
+
+body ._main #widget ._content ._did-content ._card i._icon-active {
+  font-size: 22.5px;
+  color: #0573f0;
+}
+
+body ._main #widget ._content ._did-content ._card i._icon-inactive {
+  font-size: 22.5px;
+  color: #888888;
+}
+
 body ._main #widget ._content ._setting-items ._item {
   text-align: left;
 }
@@ -911,6 +976,38 @@ body ._main #widget ._window ._window-content p {
   body ._main #widget ._content ._container-list ._window-content ul {
     width: 45vw;
   }
+  body ._main #widget ._content ._did-content {
+    width: 60vw;
+  }
+  body ._main #widget ._content ._did-content ._card {
+    margin: 10px;
+    text-align: left;
+    width: 50vw;
+    min-height: 100px;
+    border: 2px solid #e9efff;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  body ._main #widget ._content ._did-content ._card h5 {
+    font-size: 16px;
+    color: #575756;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+  body ._main #widget ._content ._did-content ._card p {
+    font-size: 14px;
+    font-style: italic;
+    color: #575756;
+    margin-bottom: 0;
+  }
+  body ._main #widget ._content ._did-content ._card i._icon-active {
+    font-size: 22.5px;
+    color: #0573f0;
+  }
+  body ._main #widget ._content ._did-content ._card i._icon-inactive {
+    font-size: 22.5px;
+    color: #888888;
+  }
   body ._main #widget ._copyright {
     min-height: 7vh;
   }
@@ -924,6 +1021,35 @@ body ._main #widget ._window ._window-content p {
     width: 55vw;
     max-height: 50vh;
     min-height: 400px;
+  }
+  body ._main #widget ._did-content ._card {
+    margin: 10px;
+    text-align: left;
+    width: 100vw;
+    min-height: 100px;
+    border: 2px solid #e9efff;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  body ._main #widget ._did-content ._card h5 {
+    font-size: 16px;
+    color: #575756;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+  body ._main #widget ._did-content ._card p {
+    font-size: 14px;
+    font-style: italic;
+    color: #575756;
+    margin-bottom: 0;
+  }
+  body ._main #widget ._did-content ._card i._icon-active {
+    font-size: 22.5px;
+    color: #0573f0;
+  }
+  body ._main #widget ._did-content ._card i._icon-inactive {
+    font-size: 22.5px;
+    color: #888888;
   }
 }
 
@@ -995,6 +1121,38 @@ body ._main #widget ._window ._window-content p {
   body ._main #widget ._content ._container-list ._window-content ul {
     width: 90vw;
   }
+  body ._main #widget ._content ._did-content {
+    width: 100vw;
+  }
+  body ._main #widget ._content ._did-content ._card {
+    margin: 10px;
+    text-align: left;
+    width: 90vw;
+    min-height: 100px;
+    border: 2px solid #e9efff;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  body ._main #widget ._content ._did-content ._card h5 {
+    font-size: 16px;
+    color: #575756;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+  body ._main #widget ._content ._did-content ._card p {
+    font-size: 14px;
+    font-style: italic;
+    color: #575756;
+    margin-bottom: 0;
+  }
+  body ._main #widget ._content ._did-content ._card i._icon-active {
+    font-size: 22.5px;
+    color: #0573f0;
+  }
+  body ._main #widget ._content ._did-content ._card i._icon-inactive {
+    font-size: 22.5px;
+    color: #888888;
+  }
   body ._main #widget ._copyright {
     min-height: 7vh;
   }
@@ -1008,6 +1166,35 @@ body ._main #widget ._window ._window-content p {
     width: 95vw;
     max-height: 85vh;
     min-height: 85vh;
+  }
+  body ._main #widget ._did-content ._card {
+    margin: 10px;
+    text-align: left;
+    width: 100vw;
+    min-height: 100px;
+    border: 2px solid #e9efff;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  body ._main #widget ._did-content ._card h5 {
+    font-size: 16px;
+    color: #575756;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+  body ._main #widget ._did-content ._card p {
+    font-size: 14px;
+    font-style: italic;
+    color: #575756;
+    margin-bottom: 0;
+  }
+  body ._main #widget ._did-content ._card i._icon-active {
+    font-size: 22.5px;
+    color: #0573f0;
+  }
+  body ._main #widget ._did-content ._card i._icon-inactive {
+    font-size: 22.5px;
+    color: #888888;
   }
 }
 /*# sourceMappingURL=core.css.map */

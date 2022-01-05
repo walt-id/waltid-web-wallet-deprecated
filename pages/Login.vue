@@ -15,18 +15,20 @@
             <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
           </div>
           <div class="my-2">
-            <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">{{$t('LOGIN.LOGIN')}}</button>
+            <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">
+              <span v-if="loginLoading">
+                <img src="dark-loader.gif" width="30px" style="opacity: 0.7" />
+              </span>
+              <span v-else>{{$t('LOGIN.LOGIN')}}</span> 
+            </button>
           </div>
-          <div class="my-2 d-flex mt-4 justify-content-center">
-            <a @click="toSignup" class="px-3 py-0">{{$t('LOGIN.SIGN_UP')}}</a>
-            <a @click="toResetPassword" class="px-3 py-0 border-start border-2 ">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
-            <a
-            href="#"
-            class="px-3 py-0 border-start border-2 "
-            v-for="locale in availableLocales"
-            :key="locale.code"
-            @click.prevent.stop="$i18n.setLocale(locale.code)">{{ locale.code }}</a>
+          <div class="my-3 d-flex mt-4 justify-content-center">
+            <a @click="toSignup" class="px-3 py-0 fw-normal">{{$t('LOGIN.SIGN_UP')}}</a>
+            <a @click="toResetPassword" class="px-3 py-0 border-start border-2  fw-normal">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
           </div>
+          <a href="#" v-for="locale in availableLocales" :key="locale.code" @click.prevent.stop="$i18n.setLocale(locale.code)">
+            <img :src="locale.flag" width="20px" height="15px" :alt="locale.iso" class="me-2 border border-white" />
+          </a>
         </form>
         <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
       </div>
@@ -92,6 +94,7 @@ export default {
       isSignin: true,
       isSignup: false,
       isResetPassword: false,
+      loginLoading: false,
     }
   },
   computed: {
@@ -123,6 +126,7 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     async login (){
+      this.loginLoading=true
       this.resetError()
       // check if  email && pw not empty === login
       if(this.emailValidation(this.email) && this.password.length > 0){
@@ -134,8 +138,9 @@ export default {
            }
           })
           this.$auth.setUser(loginResponse.data)
-          this.$router.push("/dashboard")
+          this.$router.push("/")
         } catch (e) {
+          this.loginLoading=false
           console.log(e.response.data)
           this.error = true
           this.errorMessage = e.response.data

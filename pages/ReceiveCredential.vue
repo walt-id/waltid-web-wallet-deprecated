@@ -74,7 +74,7 @@
                             <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
                         </li>
                         <li>
-                          <NuxtLink to="/login">{{$t('MENU.LOGOUT')}}</NuxtLink>
+                          <a href="#" @click="logout">{{$t('MENU.LOGOUT')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -117,7 +117,11 @@ export default {
     async peSubmit () {
       const peResp = await this.$axios.$post("/api/wallet/siopv2/credentialIssuance", this.pe)
       this.receivedCredentials = peResp
-    }
+    },
+    logout: async function() {
+      this.$auth.logout();
+      this.$router.push('/login')
+    },
   }
 };
 </script>

@@ -10,7 +10,8 @@ export default {
         FORGOT_PASSWORD: 'Passwort vergessen?',
         CONFIRM_PASSWORD: 'Passwort bestätigen',
         CREATE_ACCOUNT: 'Account erstellen',
-        ALREADY_ACCOUNT_LOGIN: 'Haben Sie schon einen Account? Login'
+        ALREADY_ACCOUNT_LOGIN: 'Haben Sie schon einen Account? Login',
+        REMEMBER_ME: 'Eingeloggt bleiben',
     },
     CREDENTIALS: {
         TITLE: 'Meine Credentials',
