@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
-                <div id="content">
+                <div v-if="claimedCredentials.list.length > 0" id="content">
                     <h2>Credential request</h2>
                     <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
                         <NuxtLink class="_card d-flex _animation-fade" :to="'/Credential?id='+encodeURIComponent(credential.id)" v-for="credential in claimedCredentials.list" :key="credential.id">
@@ -25,6 +25,9 @@
                             <a href="#reject" class="_reject col-12">Reject</a>
                         </div>
                     </div>
+                </div>
+                <div v-if="claimedCredentials.list.length == 0" id="content">
+                    <em>No matching credentials found for the current DID</em>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
@@ -70,12 +73,15 @@ export default {
     // TODO: select DID to use
     const dids = await $axios.$get("/api/wallet/did/list")
     const pe = await $axios.$get("/api/wallet/siopv2/presentationExchange", { params: { ...query, subject_did: dids[0] } })
-    var params = new URLSearchParams();
-    pe.claimedCredentials.map(c => c.credentialId).forEach(id => params.append("id", id))
-    const requestCfg = {
-      params: params
-    };
-    const claimedCredentials = await $axios.$get("/api/wallet/credentials/list", requestCfg)
+    let claimedCredentials = { list: [] }
+    if(pe.claimedCredentials.length > 0) {
+      var params = new URLSearchParams();
+      pe.claimedCredentials.map(c => c.credentialId).forEach(id => params.append("id", id))
+      const requestCfg = {
+        params: params
+      };
+      claimedCredentials = await $axios.$get("/api/wallet/credentials/list", requestCfg)
+    }
     return { pe, claimedCredentials }
   },
   methods:{
