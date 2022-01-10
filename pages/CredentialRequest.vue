@@ -69,10 +69,8 @@ export default {
       id: 'xxxxxxxxxx'
     }
   },
-  async asyncData ({ $axios, query }) {
-    // TODO: select DID to use
-    const dids = await $axios.$get("/api/wallet/did/list")
-    const pe = await $axios.$get("/api/wallet/siopv2/presentationExchange", { params: { ...query, subject_did: dids[0] } })
+  async asyncData ({ $axios, query, store }) {
+    const pe = await $axios.$get("/api/wallet/siopv2/presentationExchange", { params: { ...query, subject_did: store.state.wallet.currentDid } })
     let claimedCredentials = { list: [] }
     if(pe.claimedCredentials.length > 0) {
       var params = new URLSearchParams();

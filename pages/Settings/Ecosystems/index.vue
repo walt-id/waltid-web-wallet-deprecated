@@ -96,7 +96,7 @@
                                     </div>
                                   </div>
                                   <div class="col d-flex justify-content-end align-items-start">
-                                    <b v-if="currentDefaultDid === did" class="_tag mt-2"><em>Default</em></b>
+                                    <b v-if="currentDid === did" class="_tag mt-2"><em>Default</em></b>
                                     <b v-else class="_tag-active mt-2"><em>Set default</em></b>
                                     
                                   </div>
@@ -114,7 +114,6 @@
 
 <script>
 import {menuTransitionShow, menuTransitionHide} from '../../../helpers/menuTransation'
-import Cookies from 'js-cookie'
 
 export default {
   name: 'Ecosystems',
@@ -122,8 +121,7 @@ export default {
     return {
       trigger: true,
       didListModal: false,
-      setDD: false,
-      currentDefaultDid: Cookies.get('default_did') || null
+      setDD: false
     }
   },
   computed: {
@@ -168,9 +166,7 @@ export default {
           this.setDD=false
       },
       setDefaultDID: function(did){
-          Cookies.set('default_did', did)
-          this.currentDefaultDid=did
-          Cookies.set('default_did', did)
+          this.$store.commit('wallet/setCurrentDid', did)
           this.setDD=false
       },
       logout: async function() {

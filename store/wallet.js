@@ -14,18 +14,22 @@ export const mutations = {
     },
     setCurrentDid(state, did) {
         state.currentDid = did
+        localStorage.setItem('default_did', did)
     },
     initialize(state, dids) {
       state.initialized = true
       state.dids = dids
-      state.currentDid = dids[0]
+      let default_did = localStorage.getItem("default_did")
+      if(dids.findIndex(i => i == default_did) < 0)
+        state.currentDid = dids[0]
+      else
+        state.currentDid = default_did
+      console.log("wallet initialized with ", state.currentDid)
     }
 }
 
 export const actions = {
-  initialize({ commit }, didsPromise) {
-    didsPromise.then(dids => 
-      commit('initialize', dids)
-    )
+  initialize({ commit }, dids) {
+    commit('initialize', dids)
   }
 }
