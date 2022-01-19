@@ -1,8 +1,9 @@
 <template>
   <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" class="_form d-grid align-items-center bg-white shadow-lg text-center">
-      <div :class="this.isSignin ? '_fade' : 'hide'"> 
-        <h2>{{$t('LOGIN.TITLE')}}</h2>
+      <div :class="this.isSignin ? '_fade' : 'hide'">
+        <img src="/favicon.png" width="50px" />
+        
         <p class="mt-3">{{$t('LOGIN.MSG')}}</p>
         <div>
         </div>
