@@ -182,8 +182,13 @@ export default {
       if (typeof ethereum !== 'undefined') {
          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
          const account = accounts[0];
-         alert(account)
+         this.eth_account = account
       }      
+      else{
+        this.validPassword = false
+        this.error = true
+        this.errorMessage = "Please install Metamask!"
+      }
     },
     // is a use Experience method to reset error state in retyping
     resetError (){
