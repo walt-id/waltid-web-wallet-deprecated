@@ -96,6 +96,7 @@ export default {
       isSignup: false,
       isResetPassword: false,
       loginLoading: false,
+      eth_account: null
     }
   },
   computed: {
