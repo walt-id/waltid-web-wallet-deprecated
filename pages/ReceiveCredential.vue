@@ -97,11 +97,24 @@ export default {
       selectedCredential: null
     }
   },
-  async asyncData ({ $axios, query }) {
-    // TODO: select DID to use
-    const dids = await $axios.$get("/api/wallet/did/list")
-    const pe = await $axios.$get("/api/wallet/siopv2/credentialIssuance", { params: { ...query, subject_did: dids[0] } })
-    return { pe }
+  computed: {
+    dids () {
+      console.log(this.$store.state.wallet.dids)
+      return this.$store.state.wallet.dids
+    },
+    currentDid () {
+        console.log(this.$store.state.wallet.currentDid)
+        return this.$store.state.wallet.currentDid
+    }
+  },
+  async asyncData ({ $axios, query, store }) {
+    if(query.sessionId == null) {
+      const pe = await $axios.$get("/api/wallet/siopv2/credentialIssuance", { params: { ...query, subject_did: store.state.wallet.currentDid } })
+      return { pe }
+    } else {
+      const receivedCredentials = await $axios.$get("/api/wallet/siopv2/issuedCredentials", { params: query })
+      return { receivedCredentials }
+    }
   },
   methods:{
     menuTrigger: function(){

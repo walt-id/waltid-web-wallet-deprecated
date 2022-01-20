@@ -106,6 +106,16 @@ export default {
     const issuers = await $axios.$get("/api/wallet/siopv2/issuer/list");
     return { issuers };
   },
+  computed: {
+    dids () {
+      console.log(this.$store.state.wallet.dids)
+      return this.$store.state.wallet.dids
+    },
+    currentDid () {
+        console.log(this.$store.state.wallet.currentDid)
+        return this.$store.state.wallet.currentDid
+    }
+  },
   methods: {
     fetchIssuerMeta: async function ($event) {
       this.selectedIssuerMeta = await this.$axios.$get(
@@ -122,8 +132,9 @@ export default {
     },
     initIssuance: async function() {
       const location = await this.$axios.$post('/api/wallet/siopv2/initIssuance', {
+        did: this.currentDid,
         issuerId: this.selectedIssuer,
-        schemaId: this.selectedCredentialSchema,
+        schemaIds: [ this.selectedCredentialSchema ],
         walletRedirectUri: '/Credentials'
       })
       window.location = location
