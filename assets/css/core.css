@@ -166,6 +166,19 @@ body ._main #widget form button {
   font-weight: 500;
 }
 
+body ._main #widget form a._meta-mask {
+  background-color: #F6851B !important;
+  width: 70%;
+  height: 45px;
+}
+
+body ._main #widget form a._meta-mask p {
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
 body ._main #widget form a {
   font-size: 17px;
   font-weight: 500;
