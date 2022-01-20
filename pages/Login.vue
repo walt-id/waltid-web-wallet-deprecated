@@ -23,6 +23,14 @@
               <span v-else>{{$t('LOGIN.LOGIN')}}</span> 
             </button>
           </div>
+          <div>
+            <a href="#metamask" class="_meta-mask btn" @click="metamask">
+              <span class="d-flex justify-content-center align-items-center">
+                <img src="https://i.ibb.co/dK5Fb6N/metamsk-icon.png" width="20px" class="mx-2" />
+                <p>Metamask</p>
+              </span> 
+            </a>
+          </div>
           <div class="my-3 d-flex mt-4 justify-content-center">
             <a @click="toSignup" class="px-3 py-0 fw-normal">{{$t('LOGIN.SIGN_UP')}}</a>
             <a @click="toResetPassword" class="px-3 py-0 border-start border-2  fw-normal">{{$t('LOGIN.FORGOT_PASSWORD')}}</a>
@@ -77,6 +85,7 @@
 
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue'
+
 export default {
   name: 'Login',
   components:{
@@ -167,6 +176,14 @@ export default {
         this.error = true
         this.errorMessage = "Please fill your password!"
       }
+    },
+    async metamask () {
+      const ethereum =  window.ethereum;
+      if (typeof ethereum !== 'undefined') {
+         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+         const account = accounts[0];
+         alert(account)
+      }      
     },
     // is a use Experience method to reset error state in retyping
     resetError (){
