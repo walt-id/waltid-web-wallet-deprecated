@@ -25,6 +25,9 @@ export default {
         RECEIVED_CREDENTIALS_TITLE: 'Received credentials',
         ACCEPT: 'Accept'
     },
+    ADD_CREDENTIAL: {
+        TITLE: 'Add credential'
+    },
     BACK: 'Back',
     MENU: {
         CREDENTIALS: 'Credentials',
