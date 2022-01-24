@@ -144,7 +144,7 @@ export default {
         try {
           const loginResponse = await this.$auth.loginWith("local", {
             data: {
-            email: this.email,
+            id: this.email,
             password: this.password
            }
           })
