@@ -182,10 +182,22 @@ export default {
       if (typeof ethereum !== 'undefined') {
          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
          const account = accounts[0];
-         this.eth_account = account
+         this.eth_account = account;
+         try {
+          const loginResponse = await this.$auth.loginWith("local", {
+            data: {
+            id: `${this.eth_account}`,
+           }
+          })
+          this.$auth.setUser(loginResponse.data)
+          this.$router.push("/")
+        } catch (e) {
+          console.log(e.response.data)
+          this.error = true
+          this.errorMessage = e.response.data.title
+        }
       }      
       else{
-        this.validPassword = false
         this.error = true
         this.errorMessage = "Please install Metamask!"
       }
