@@ -1,0 +1,45 @@
+name: tag workflow for Walt.ID Web Wallet
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Get yarn cache directory path 🛠
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2.1.6
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      #- name: Run linter 👀
+      #  run: yarn lint
+
+      #- name: Run tests 🧪
+      #  run: yarn test --passWithNoTests
+
+      - name: Docker Build and Push SNAPSHOT
+        uses: philpotisk/github-action-docker-build-push@master
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          DOCKER_FILE: Dockerfile
+          CONTAINER_TAG: waltid/ssikit-web-wallet:$GITHUB_REF_NAME
