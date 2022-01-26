@@ -42,4 +42,4 @@ jobs:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           DOCKER_FILE: Dockerfile
-          CONTAINER_TAG: waltid/ssikit-web-wallet:${{env.GITHUB_REF_NAME}}
+          CONTAINER_TAG: waltid/ssikit-web-wallet:${{GITHUB_REF_NAME}}
