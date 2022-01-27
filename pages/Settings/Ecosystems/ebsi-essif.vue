@@ -41,11 +41,11 @@
                               <div class="success-animation">
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                               </div>
-                              <p>You just succesfully onboarded on EBSI</p>
+                              <p>You just successfully onboarded on EBSI</p>
                             </div>
                         </div>
                     </div>
-                    <p :class="this.wizardIndex === 2 ? 'hide': '_help'">Want help? <span><a href="#">Detailed instructions</a></span></p>
+                    <p :class="this.wizardIndex === 2 ? 'hide': '_help'">Get token for the EBSI Pre Production environment <span><a href="https://app.preprod.ebsi.eu/users-onboarding" target="_blank">here</a></span></p>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
                     <ul>
