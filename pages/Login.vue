@@ -27,7 +27,7 @@
             <a href="#metamask" class="_meta-mask btn" @click="metamask">
               <span class="d-flex justify-content-center align-items-center">
                 <img src="https://i.ibb.co/dK5Fb6N/metamsk-icon.png" width="20px" class="mx-2" />
-                <p>Metamask</p>
+                <p>MetaMask</p>
               </span> 
             </a>
           </div>
@@ -199,7 +199,7 @@ export default {
       }      
       else{
         this.error = true
-        this.errorMessage = "Please install Metamask!"
+        this.errorMessage = "Please install MetaMask!"
       }
     },
     // is a use Experience method to reset error state in retyping
