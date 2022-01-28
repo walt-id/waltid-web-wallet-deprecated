@@ -33,6 +33,7 @@ export default {
         LOGOUT: 'Logout'
     },
     CREDENTIAL: {
+        ID: 'Id',
         TITLE: 'Titel',
         ISSUER: 'Aussteller',
         STATUS: 'Status',
@@ -44,6 +45,10 @@ export default {
         GENDER: 'Geschlecht',
         DATE_OF_BIRTH: 'Geburtsdatum',
         ADDRESS: 'Adresse',
+        STREET_ADDRESS: 'Straße',
+        POSTAL_CODE: 'Postleitzahl',
+        LOCALITY: 'Ort',
+        COUNTRY_NAME: 'Land',
         FAMILY_STATUS: 'Familienstand',
         IDENTIFICATION_NUMBER: 'Identifikationsnummer',
         DID: 'DID',
@@ -57,11 +62,15 @@ export default {
         DATE_OF_VACCINATION: 'Datum der Impfung',
         ADMINISTERING_CENTER: 'Impfzentrum',
         COUNTRY_OF_VACCINATION: 'Land der Impfung',
+        PROGRAM_NAME: 'Programm Name',
+        ETH_ADDRESS: 'ETH Address',
+        DOMAIN: 'Domain',
         TYPE: {
             VerifiableId: 'Verifizierbares ID Dokument',
             VerifiableDiploma: 'Verifizierbares Universitätsdiplom',
             VerifiableVaccinationCertificate: 'Verifizierbares Impfzertifikat',
-            ProofOfResidence: 'Nachweis des Wohnsitzes'
+            ProofOfResidence: 'Nachweis des Wohnsitzes',
+            ParticipantCredential: "Gaia-X Mitgliedschafts Zertifikat"
         }
     }
 }
