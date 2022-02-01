@@ -70,11 +70,17 @@
                   </span>
               </div>
               <div class="my-2">
-                  <button type="submit" name="submit" class="text-white border-0 rounded">{{$t('LOGIN.CREATE_ACCOUNT')}}</button>
+                <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">
+                   <span v-if="loginLoading">
+                    <img src="dark-loader.gif" width="30px" style="opacity: 0.7" />
+                   </span>
+                   <span v-else>{{$t('LOGIN.CREATE_ACCOUNT')}}</span> 
+                </button>
               </div>
               <div class="my-2">
                   <a @click="toSignIn">{{$t('LOGIN.ALREADY_ACCOUNT_LOGIN')}}</a>
               </div>
+              
             </form>
           <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
       </div>
@@ -165,6 +171,7 @@ export default {
           })
           this.$auth.setUser(loginResponse.data)
           this.$router.push("/")
+          //this.loginLoading=false
         } catch (e) {
           this.loginLoading=false
           console.log(e.response.data)
