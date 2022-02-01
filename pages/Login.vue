@@ -11,9 +11,15 @@
           <ErrorMessage :message-content="errorMessage" :is-active="error" />
           <div class="my-2 _animation-fade">
             <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()" v-bind:class="this.validEmail === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="email">
+            <span style="margin-left: -35px; margin-right: 15px; z-index: 999; position: absulute ">
+              <i class="bi bi-people"></i>
+            </span>
           </div>
           <div class="my-2 _animation-fade">
-            <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
+            <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded ps-3' : 'border rounded  ps-3 border-danger'" autocomplete="off" v-model="password" >
+            <span style="margin-left: -35px; margin-right: 15px; z-index: 999; position: absulute ">
+              <i class="bi bi-lock"></i>
+            </span>
           </div>
           <div class="my-2">
             <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">
@@ -47,12 +53,21 @@
             <form action="" id="signup-form" class="my-4" @submit.prevent="login">
               <div class="my-2">
                   <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()" v-bind:class="this.validEmail === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="email">
+                  <span style="margin-left: -35px; margin-right: 15px; z-index: 999; position: absulute ">
+                    <i class="bi bi-people"></i>
+                  </span>
               </div>
               <div class="my-2">
                   <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password" @input="resetError()" :data="this.password" :class="this.validPassword === true ? 'border rounded px-3' : 'border rounded px-3 border-danger'" autocomplete="off" v-model="password" >
+                  <span style="margin-left: -35px; margin-right: 15px; z-index: 999; position: absulute ">
+                    <i class="bi bi-lock"></i>
+                  </span>
               </div>
               <div class="my-2">
                   <input type="password" :placeholder="$t('LOGIN.CONFIRM_PASSWORD')" name="password" id="signup-form-password-confirm" :class="this.confirmedPassword === false ? 'border border-danger rounded px-3' : 'border rounded px-3'" autocomplete="off" v-model="repassword" @input="confirmPassword()">
+                  <span style="margin-left: -35px; margin-right: 15px; z-index: 999; position: absulute ">
+                    <i class="bi bi-lock"></i>
+                  </span>
               </div>
               <div class="my-2">
                   <button type="submit" name="submit" class="text-white border-0 rounded">{{$t('LOGIN.CREATE_ACCOUNT')}}</button>
