@@ -9,26 +9,10 @@
                 </a>
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
-                <div id="content-confirm" v-if="!receivedCredentials && !selectedCredential">
-                    <h2>{{$t('RECEIVE_CREDENTIALS.CONFIRM_TITLE')}}</h2>
-                    <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
-                        <div class="col-10 d-flex align-items-center">
-                          <div>
-                            <p>{{$t('RECEIVE_CREDENTIALS.CONFIRM_CONNECTION_WITH')}}</p>
-                            <h5 class="mb-1">{{pe.request.registration.client_name}}</h5>
-                            <em>{{pe.request.registration.client_purpose}}</em>
-                          </div>
-                        </div>
-                        <div class="_button">
-                            <button href="#confirm" class="_share col-12 mb-2 mt-4" @click="peSubmit()">{{$t('RECEIVE_CREDENTIALS.CONFIRM')}}</button>
-                            <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div id="content-credentials" v-if="receivedCredentials && !selectedCredential">
+                <div id="content-credentials" v-if="issuanceSessionInfo && !selectedCredential">
                   <h2>{{$t('RECEIVE_CREDENTIALS.RECEIVED_CREDENTIALS_TITLE')}}</h2>
                   <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
-                    <a v-for="credential in receivedCredentials" :key="credential.id"
+                    <a v-for="credential in issuanceSessionInfo.credentials" :key="credential.id"
                        class="_card d-flex _animation-fade" href="#selectCredential"
                        @click="selectedCredential = credential">
                       <div class="col-10 d-flex align-items-center">
@@ -39,7 +23,7 @@
                       </div>
                     </a>
                     <div class="_button">
-                      <button href="#share" class="_share col-12 mb-2" @click="$router.push('/Credentials')">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
+                      <button href="#share" class="_share col-12 mb-2" @click="accept()">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
                       <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
                     </div>
                   </div>
@@ -93,7 +77,7 @@ export default {
     return {
       trigger: true,
       id: 'xxxxxxxxxx',
-      receivedCredentials: null,
+      issuanceSessionInfo: null,
       selectedCredential: null
     }
   },
@@ -107,13 +91,10 @@ export default {
         return this.$store.state.wallet.currentDid
     }
   },
-  async asyncData ({ $axios, query, store }) {
-    if(query.sessionId == null) {
-      const pe = await $axios.$get("/api/wallet/siopv2/credentialIssuance", { params: { ...query, subject_did: store.state.wallet.currentDid } })
-      return { pe }
-    } else {
-      const receivedCredentials = await $axios.$get("/api/wallet/siopv2/issuedCredentials", { params: query })
-      return { receivedCredentials }
+  async asyncData ({ $axios, query }) {
+    if(query.sessionId != null) {
+      const issuanceSessionInfo = await $axios.$get("/api/wallet/siopv2/issuanceSessionInfo", { params: query })
+      return { issuanceSessionInfo }
     }
   },
   methods:{
@@ -127,14 +108,17 @@ export default {
               this.trigger = true
           }
     },
-    async peSubmit () {
-      const peResp = await this.$axios.$post("/api/wallet/siopv2/credentialIssuance", this.pe)
-      this.receivedCredentials = peResp
-    },
     logout: async function() {
       this.$auth.logout();
       this.$router.push('/login')
     },
+    accept: async function() {
+      let path = '/Credentials'
+      if(this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != null) {
+        path = this.issuanceSessionInfo.issuanceRequest.walletRedirectUri
+      }
+      this.$router.push(path)
+    }
   }
 };
 </script>

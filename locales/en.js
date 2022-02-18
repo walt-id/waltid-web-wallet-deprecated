@@ -73,7 +73,9 @@ export default {
             VerifiableDiploma: 'Verifiable university diploma',
             VerifiableVaccinationCertificate: 'Verifiable certificate of vaccination',
             ProofOfResidence: 'Proof of residence',
-            ParticipantCredential: "Gaia-X Participant Credential"
+            ParticipantCredential: "Gaia-X Participant Credential",
+            VerifiableAttestation: "Verifiable attestation",
+            EuropeanBankIdentity: "European bank identity"
         }
     }
 }
