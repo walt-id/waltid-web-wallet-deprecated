@@ -5,6 +5,7 @@
     <VerifiableDiploma v-if="credential.type[credential.type.length-1] == 'VerifiableDiploma'" :credential="credential" />
     <ProofOfResidence v-if="credential.type[credential.type.length-1] == 'ProofOfResidence'" :credential="credential" />
     <ParticipantCredential v-if="credential.type[credential.type.length-1] == 'ParticipantCredential'" :credential="credential" />
+    <EuropeanBankIdentity v-if="credential.type[credential.type.length-1] == 'EuropeanBankIdentity'" :credential="credential" />
   </div>
 </template>
 
