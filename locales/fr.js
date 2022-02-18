@@ -41,7 +41,9 @@ export default {
         EXPIRE: 'Expirer',
         VALID_FROM: 'Valide à partir de',
         FIRST_NAME: 'Prénoms',
+        GIVEN_NAME: 'Prénoms',
         LAST_NAME: 'Nom',
+        FAMILY_NAME: 'Nom',
         GENDER: 'Sexe',
         DATE_OF_BIRTH: 'Date de naissance',
         ADDRESS: 'Adresse',
@@ -55,6 +57,8 @@ export default {
         NAME_AND_FAMILY_NAME_AT_BIRTH: 'Nom et nom de famille à la naissance',
         NATIONALITY: 'Nationalité',
         PLACE_OF_BIRTH: 'Lieu de naissance',
+        PLACE_OF_BIRTH_COUNTRY: 'de campagne (lieu de naissance)',
+        DATE_OF_BIRTH_LOCALITY: 'Localité (lieu de naissance)',
         PERSONAL_IDENTIFIER: 'Identifiant personnel',
         VACCINE_OR_PROFYLAXIS: 'Vaccin ou prophylaxie',
         VACCINE_MEDICINAL_PRODUCT: 'Médicament de vaccin',
@@ -70,7 +74,9 @@ export default {
             VerifiableDiploma: 'Diplôme universitaire vérifiable',
             VerifiableVaccinationCertificate: 'Certificat de vaccination vérifiable',
             ProofOfResidence: 'Certificat de Résidence',
-            ParticipantCredential: "Gaia-X Identifiant du participant"
+            ParticipantCredential: "Gaia-X Identifiant du participant",
+            VerifiableAttestation: "Verifiable attestation",
+            EuropeanBankIdentity: "Identité bancaire européenne"
         }
     }
 }
