@@ -104,7 +104,8 @@ export default {
       trigger: true,
       id: 'xxxxxxxxxx',
       selectedCredential: null,
-      checkedCredentialIds: []
+      checkedCredentialIds: [],
+      selectedIssuer: null
     }
   },
   async asyncData ({ $axios, query, store }) {
@@ -120,11 +121,12 @@ export default {
         const presentableCredentialsList = await $axios.$get("/api/wallet/credentials/list", requestCfg)
         presentableCredentials = presentableCredentialsList.list
       }
+      const checkedCredentialIds = presentableCredentials.map(cred => cred.id)
       let selectedIssuer = null
       if(presentationSessionInfo.availableIssuers != null && presentationSessionInfo.availableIssuers.length > 0) {
         selectedIssuer = presentationSessionInfo.availableIssuers[0].id
       }
-      return { presentationSessionInfo, presentableCredentials, selectedIssuer }
+      return { presentationSessionInfo, presentableCredentials, selectedIssuer, checkedCredentialIds }
     }
   },
   computed: {
