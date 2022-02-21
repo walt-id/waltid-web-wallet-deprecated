@@ -50,7 +50,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
-    "@nuxtjs/auth",
+    "@nuxtjs/auth-next",
     '@nuxtjs/i18n'
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,8 +59,8 @@ export default {
   },
 
   proxy: {
-   "/api/": "https://wallet.waltid.org"
-   //"/api/": "http://localhost:8080"
+   //"/api/": "https://wallet.waltid.org"
+   "/api/": "http://localhost:8080"
   },
   auth: {
     strategies: {
@@ -77,15 +77,12 @@ export default {
           user: { url: "api/auth/userInfo", method: "get" },
           logout: false
         }
-      },
-      redirect: {
-        login: '/login',
-        logout: '/logout',
-        home: '/Credentials',
-        ecosystems: '/ecosystems',
-        "ebsi-essif": '/ebsi-essif',
-        Settings: '/Settings'
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/logout',
+      home: '/Credentials'
     }
   },
   i18n: {
@@ -123,5 +120,7 @@ export default {
         config.devtool = 'source-map'
       }
     }
-  }
+  },
+
+  ssr: false
 }
