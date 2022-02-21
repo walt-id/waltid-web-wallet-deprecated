@@ -45,11 +45,11 @@
       </span>
       <span class="col-12 px-3">
           <h5>{{ $t('CREDENTIAL.GIVEN_NAME') }}</h5>
-          <p>{{ credential.credentialSubject.givenNames }}</p>
+          <p>{{ credential.credentialSubject.givenName }}</p>
       </span>
       <span class="col-12 px-3">
           <h5>{{ $t('CREDENTIAL.DATE_OF_BIRTH') }}</h5>
-          <p>{{ credential.credentialSubject.dateOfBirth }}</p>
+          <p>{{ credential.credentialSubject.birthDate }}</p>
       </span>
       <span class="col-12 px-3">
           <h5>{{ $t('CREDENTIAL.PLACE_OF_BIRTH_COUNTRY') }}</h5>
