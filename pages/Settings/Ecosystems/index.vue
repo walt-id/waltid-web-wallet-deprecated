@@ -16,7 +16,7 @@
                     <div class="d-flex mt-3 align-items-start _setting-items">
                         <div class="col-10 _item">
                             <h4>EBSI/ESSIF</h4>
-                            <p>Based on the<br>EU blockchain (EBSI).</p>
+                            <p>did:ebsi - Based on the<br>EU blockchain (EBSI).</p>
                             <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
                         </div>
                         <div class="col" v-if="hasDidFor('ebsi')">
@@ -29,7 +29,7 @@
                     <div class="d-flex mt-4 align-items-start _setting-items">
                         <div class="col-10 _item">
                             <h4>DNS</h4>
-                            <p>Based on the domain<br>name service (DNS).</p>
+                            <p>did:web - Based on the <br>domain name service (DNS).</p>
                             <b v-if="hasType(currentDid, 'web')" class="_tag">
                                 <em>Selected</em>
                             </b>
@@ -38,13 +38,13 @@
                             <a class="_button-view _bounce" @click="showModal">View</a>
                         </div>
                         <div class="col" v-else>
-                            <a class="_button-view _bounce">Join</a>
+                          <NuxtLink to="/settings/ecosystems/did-web" class="_button-view _bounce">Join</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-start _setting-items">
                         <div class="col-10 _item">
                             <h4>Key</h4>
-                            <p>Peer-to-peer based<br>key distribution.</p>
+                            <p>did:key - Peer-to-peer <br>based key distribution.</p>
                             <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
                         </div>
                         <div class="col" v-if="hasDidFor('key')">
