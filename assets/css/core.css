@@ -100,6 +100,31 @@ body {
   margin: 0;
 }
 
+body ._notice {
+  width: 100vw;
+  position: fixed;
+  padding: 5px 5px;
+}
+
+body ._notice img {
+  width: 25px;
+  margin-right: 10px;
+}
+
+body ._notice p,
+body ._notice strong {
+  margin-bottom: 0;
+}
+
+body ._notice a {
+  cursor: pointer;
+}
+
+body ._notice a i {
+  color: white;
+  font-size: 20px;
+}
+
 body ._main {
   width: 100vw;
   height: 100vh;

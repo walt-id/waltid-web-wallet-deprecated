@@ -1,5 +1,7 @@
 <template>
-  <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
+  <div>
+    <Notice></Notice>
+    <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" class="_form d-grid align-items-center bg-white shadow-lg text-center">
       <div :class="this.isSignin ? '_fade' : 'hide'">
         <img src="/favicon.png" width="50px" />
@@ -101,16 +103,19 @@
           <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue'
+import Notice from '@/components/Notice.vue'
 
 export default {
   name: 'Login',
   components:{
-    ErrorMessage
+    ErrorMessage,
+    Notice
   },
   data () {
     return {

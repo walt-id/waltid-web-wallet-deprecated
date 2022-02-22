@@ -88,6 +88,26 @@ body {
     overflow-x: hidden !important;
     padding: 0;
     margin: 0;
+    ._notice {
+        width: 100vw;
+        position: fixed;
+        padding: 5px 5px;
+        img {
+            width: 25px;
+            margin-right: 10px;
+        }
+        p,
+        strong {
+            margin-bottom: 0;
+        }
+        a {
+            cursor: pointer;
+            i {
+                color: white;
+                font-size: 20px;
+            }
+        }
+    }
     ._main {
         width: 100vw;
         height: 100vh;

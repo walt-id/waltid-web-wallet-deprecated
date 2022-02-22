@@ -51,3 +51,8 @@ h2._animation-fade,
     animation: fadeIn;
     animation-duration: 1s;
 }
+
+._fadeInDown {
+    animation: fadeInDown;
+    animation-duration: 1s;
+}
