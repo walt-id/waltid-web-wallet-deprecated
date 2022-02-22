@@ -66,7 +66,7 @@ export default {
     },
     deleteCredential: async function() {
         if(this.credential != null) {
-            const delResp = await this.$axios.delete("/api/wallet/credentials/delete/" + this.credential.id)
+            const delResp = await this.$axios.delete("/api/wallet/credentials/delete/" + encodeURIComponent(this.credential.id))
             if(delResp.status == 200) {
                 this.$router.back()
             }
