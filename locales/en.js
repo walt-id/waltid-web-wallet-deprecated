@@ -72,6 +72,7 @@ export default {
         PROGRAM_NAME: 'Programm Name',
         ETH_ADDRESS: 'ETH Address',
         DOMAIN: 'Domain',
+        DELETE: 'Delete credential',
         TYPE: {
             VerifiableId: 'Verifiable ID document',
             VerifiableDiploma: 'Verifiable university diploma',

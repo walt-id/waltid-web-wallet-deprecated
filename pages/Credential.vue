@@ -28,6 +28,9 @@
             <div class="_window d-flex justify-content-center align-items-center">
                 <div class="_window-content m-2 p-2 ">
                     <CredentialView :credential="credential" class="p-4"></CredentialView>
+                    <div class="_button">
+                        <button href="#fetch" class="btn btn-danger col-12" @click="deleteCredential()">{{$t('CREDENTIAL.DELETE')}}</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +63,14 @@ export default {
               menuTransitionHide()
               this.trigger = true
           }
+    },
+    deleteCredential: async function() {
+        if(this.credential != null) {
+            const delResp = await this.$axios.delete("/api/wallet/credentials/delete/" + this.credential.id)
+            if(delResp.status == 200) {
+                this.$router.back()
+            }
+        }
     }
   }
 };
