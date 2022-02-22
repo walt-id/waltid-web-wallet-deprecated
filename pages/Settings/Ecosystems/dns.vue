@@ -25,13 +25,14 @@
                         <div :class="this.wizardIndex === 1 ? '_left-fade': 'hide'">
                             <div class="_item">
                               <h4>Step 2</h4>
-                              <p>Define key and domain. On default a new key will be generated and the did:web will be hosted at walt.id.</p>
+<!--                              <p>Define key and domain. On default a new key will be generated and the did:web will be hosted at walt.id.</p>-->
+                              <p>The did:web will be hosted at walt.id.</p>
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
                                     <form action="" id="token-submit" @submit.prevent="DIDgenerate">
-                                        <input placeholder="Insert the domain …" id="inserted-doamin" name="insertedDomain" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.domain" v-model="domain"/>
-                                        <button type="submit" name="submit" class="_bounce btn text-white">Generate DID</button>
+<!--                                        <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.domain" v-model="domain"/>-->
+                                        <button type="submit" name="submit" class="_bounce btn text-white" style="width: 12em">Generate DID</button>
                                     </form>
                                 </div>
                             </div>
@@ -42,10 +43,10 @@
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                               </div>
                               <p><strong>Successfully created</strong></p>
-                              <p>Host the did:web at:</p>
-                              <a href="#">{{this.didHost}}</a>
-                              <a type="submit" name="submit" class="_bounce btn _btn-blue text-white mt-2">Download DID</a>
-                              <a type="submit" name="submit" class="_bounce btn _btn-blue text-white mt-2">Done</a>
+                              <p>did:web at:</p>
+                              {{this.didHost}}
+<!--                              <a type="submit" name="submit" class="_bounce btn _btn-blue text-white mt-2">Download DID</a>-->
+                              <a type="submit" href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
                             </div>
                         </div>
                     </div>
