@@ -30,14 +30,19 @@
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
-                                    <form action="" id="token-submit" @submit.prevent="DIDgenerate">
-<!--                                        <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.domain" v-model="domain"/>-->
-                                        <button type="submit" name="submit" class="_bounce btn text-white" style="width: 12em">Generate DID</button>
+                                    <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
+                                       <!--<input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="form-control my-2" :data="this.domain" v-model="domain"/>-->
+                                        <button type="submit" name="submit" class="_bounce btn text-white" style="width: 12em">
+                                            <span v-if="generationLoading">
+                                               <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
+                                            </span>
+                                            <span v-else>Generate DID</span> 
+                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div :class="this.tokenSubmitted === true ? '_fadin': 'hide'">
+                        <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
                             <div class="_item">
                               <div class="success-animation">
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
@@ -47,6 +52,7 @@
                               {{this.didHost}}
 <!--                              <a type="submit" name="submit" class="_bounce btn _btn-blue text-white mt-2">Download DID</a>-->
                               <a type="submit" href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
+                              <!--<NuxtLink to="/" class="_bounce btn _btn-blue text-white mt-2">Done</NuxtLink> -->
                             </div>
                         </div>
                     </div>
@@ -85,11 +91,10 @@ export default {
     return {
       trigger: true,
       wizardIndex: 0,
-      token: '',
-      tokenSubmitted: false,
-      tokenWrong: false,
+      DIDgenerated: false,
       domain: '',
-      didHost: ''
+      didHost: '',
+      generationLoading: false,
     }
   },
   methods:{
@@ -108,19 +113,21 @@ export default {
         this.wizardIndex = this.wizardIndex+1
     },
     async DIDgenerate (){
+        this.generationLoading= true;
         try{
             const data = await this.$axios.$post('/api/wallet/did/create', {
                 "method": 'web',
                 "didWebDomain": this.domain
             })
             console.log(data)
+            this.generationLoading= false;
             this.didHost = data
-            this.tokenSubmitted=true
+            this.DIDgenerated=true
             this.wizardIndex = this.wizardIndex+1
             
         }catch(e){
             console.warn(e)
-            this.tokenWrong=true
+            this.generationLoading=false
         }
     },
     logout: async function() {

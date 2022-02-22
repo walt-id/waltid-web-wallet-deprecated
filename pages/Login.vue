@@ -185,18 +185,21 @@ export default {
         this.validPassword = false
         this.error = true
         this.errorMessage = "Please verify your credentials!"
+        this.loginLoading=false
       }
       // check if just email is not validate
       else if(this.emailValidation(this.email) === false){
         this.validEmail = false
         this.error = true
         this.errorMessage = "Please verify your email!"
+        this.loginLoading=false
       }
       // check just the pw is empty
       else if(this.password.length === 0){
         this.validPassword = false
         this.error = true
         this.errorMessage = "Please fill your password!"
+        this.loginLoading=false
       }
     },
     async metamask () {
