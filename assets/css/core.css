@@ -559,7 +559,7 @@ body ._main #widget ._content ._setting-items a._button-view:hover {
 body ._main #widget ._content ._wizard {
   width: 330px;
   text-align: center;
-  height: 200px;
+  height: 275px;
 }
 
 body ._main #widget ._content ._wizard h4 {
@@ -583,6 +583,16 @@ body ._main #widget ._content ._wizard ._button-view {
 }
 
 body ._main #widget ._content ._wizard ._button-view a {
+  width: 200px;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: #0573f0;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+body ._main #widget ._content ._wizard ._btn-blue {
   width: 200px;
   text-align: center;
   padding: 10px 10px;

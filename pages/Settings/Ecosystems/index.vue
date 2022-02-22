@@ -38,7 +38,7 @@
                             <a class="_button-view _bounce" @click="showModal">View</a>
                         </div>
                         <div class="col" v-else>
-                            <a class="_button-view _bounce">Join</a>
+                            <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Join</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-start _setting-items">
