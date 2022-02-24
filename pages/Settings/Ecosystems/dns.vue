@@ -31,7 +31,7 @@
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
                                     <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
-                                       <!--<input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="form-control my-2" :data="this.domain" v-model="domain"/>-->
+                                       <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="form-control" :data="this.domain" v-model="domain"/>
                                         <button type="submit" name="submit" class="_bounce btn text-white" style="width: 12em">
                                             <span v-if="generationLoading">
                                                <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
