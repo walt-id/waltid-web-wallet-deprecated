@@ -498,7 +498,7 @@ body {
                 ._wizard {
                     width: 330px;
                     text-align: center;
-                    height: 275px;
+                    height: 350px;
                     h4 {
                         font-size: 18px;
                         font-weight: 700;
@@ -532,6 +532,20 @@ body {
                         color: white;
                         font-weight: 600;
                         font-size: 17px;
+                    }
+                    ._btn-copy {
+                        width: 200px;
+                        text-align: center;
+                        padding: 10px 10px;
+                        background-color: $second-text-muted;
+                        color: white;
+                        font-weight: 600;
+                        font-size: 17px;
+                    }
+                    textarea._did-content {
+                        font-size: 12px;
+                        width: 250px;
+                        height: 130px;
                     }
                     .success-animation {
                         margin-bottom: 20px;

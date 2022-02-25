@@ -584,7 +584,7 @@ body ._main #widget ._content ._setting-items a._button-view:hover {
 body ._main #widget ._content ._wizard {
   width: 330px;
   text-align: center;
-  height: 275px;
+  height: 350px;
 }
 
 body ._main #widget ._content ._wizard h4 {
@@ -625,6 +625,22 @@ body ._main #widget ._content ._wizard ._btn-blue {
   color: white;
   font-weight: 600;
   font-size: 17px;
+}
+
+body ._main #widget ._content ._wizard ._btn-copy {
+  width: 200px;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: #888888;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+body ._main #widget ._content ._wizard textarea._did-content {
+  font-size: 12px;
+  width: 250px;
+  height: 130px;
 }
 
 body ._main #widget ._content ._wizard .success-animation {

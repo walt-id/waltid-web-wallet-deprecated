@@ -31,8 +31,8 @@
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
                                     <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
-                                       <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" :class="form-control" :data="this.domain" v-model="domain"/>
-                                        <button type="submit" name="submit" class="_bounce btn text-white" style="width: 12em">
+                                        <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" class="form-control _domain-form" style="width: 12em" :data="this.domain" v-model="domain"/>
+                                        <button type="submit" name="submit" class="_bounce btn text-white mt-3" style="width: 200px">
                                             <span v-if="generationLoading">
                                                <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
                                             </span>
@@ -42,17 +42,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
+                        <div :class="this.wizardIndex === 2 ? '_fadin': 'hide'">
                             <div class="_item">
                               <div class="success-animation">
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                               </div>
+                              <p>Your DID:web generated successfully</p>
+                            </div>
+                        </div>
+                        <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
+                            <div class="_item">
                               <p><strong>Successfully created</strong></p>
                               <p>did:web at:</p>
                               {{this.didHost}}
-<!--                              <a type="submit" name="submit" class="_bounce btn _btn-blue text-white mt-2">Download DID</a>-->
-                              <a type="submit" href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
-                              <!--<NuxtLink to="/" class="_bounce btn _btn-blue text-white mt-2">Done</NuxtLink> -->
+                              <textarea name="did-content" id="" cols="30" rows="5" class="mt-2 _did-content" :data="this.didContent" v-model="this.didContent"></textarea>
+                              <p v-if="coppied" class="text-secondary _bounce" style="font-size: 13px">Copied successfully</p>
+                              <button type="button" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2" ><i class="bi bi-files me-2"></i>Copy DID</button>
+                              <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
                             </div>
                         </div>
                     </div>
@@ -78,12 +84,13 @@
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
                 <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
             </div>
-        </div>
+        </div> 
     </section>
 </template>
 
 <script>
 import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
+import { copyText } from 'vue3-clipboard'
 
 export default {
   name: 'Ecosystems',
@@ -95,6 +102,8 @@ export default {
       domain: '',
       didHost: '',
       generationLoading: false,
+      didContent: '',
+      coppied: false
     }
   },
   methods:{
@@ -112,6 +121,7 @@ export default {
     wizardNext: function(){
         this.wizardIndex = this.wizardIndex+1
     },
+    
     async DIDgenerate (){
         this.generationLoading= true;
         try{
@@ -120,19 +130,40 @@ export default {
                 "didWebDomain": this.domain
             })
             console.log(data)
+            this.$axios.get('https://wallet.waltid.org/api/did-registry/715bdc317dd0481d9514585b4fafe751/did.json')
+            .then(
+              res=>this.didContent=JSON.stringify(res.data, undefined, 2)
+            )
+            .catch(
+              e=>console.log(e)
+            )
             this.generationLoading= false;
             this.didHost = data
-            this.DIDgenerated=true
             this.wizardIndex = this.wizardIndex+1
+            setTimeout(()=>{
+                this.DIDgenerated=true
+                this.wizardIndex = this.wizardIndex+1
+            }, 2500);
             
         }catch(e){
             console.warn(e)
             this.generationLoading=false
         }
     },
+    onCopy: function(){
+        copyText(this.didContent, undefined, (error, event) => {
+          if (error) {
+            alert('Can not copy')
+            console.log(error)
+          } else {
+            this.coppied=true;
+            console.log(event)
+          }
+        })
+    },
     logout: async function() {
       await this.$auth.logout();
-      this.$router.push('/login')
+      this.$router.push('../login')
     },
   }
 };
