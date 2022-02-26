@@ -124,13 +124,22 @@ export default {
     
     async DIDgenerate (){
         this.generationLoading= true;
-        try{
-            const data = await this.$axios.$post('/api/wallet/did/create', {
-                "method": 'web',
-                "didWebDomain": this.domain
+      var did = "";
+      try{
+          if (this.domain) {
+               did = await this.$axios.$post('/api/wallet/did/create', {
+              "method": 'web',
+              "didWebDomain": this.domain
             })
-            console.log(data)
-            this.$axios.get('https://wallet.waltid.org/api/did-registry/715bdc317dd0481d9514585b4fafe751/did.json')
+          } else {
+               did = await this.$axios.$post('/api/wallet/did/create', {
+              "method": 'web',
+              "didWebDomain": this.domain
+            })
+          }
+
+            console.log(did)
+            this.$axios.$get("/api/wallet/did", { params: { id: did }})
             .then(
               res=>this.didContent=JSON.stringify(res.data, undefined, 2)
             )
@@ -138,7 +147,7 @@ export default {
               e=>console.log(e)
             )
             this.generationLoading= false;
-            this.didHost = data
+            this.didHost = did
             this.wizardIndex = this.wizardIndex+1
             setTimeout(()=>{
                 this.DIDgenerated=true

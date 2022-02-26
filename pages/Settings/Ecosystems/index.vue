@@ -36,6 +36,7 @@
                         </div>
                         <div class="col" v-if="hasDidFor('web')">
                             <a class="_button-view _bounce" @click="showModal">View</a>
+                            <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
                         </div>
                         <div class="col" v-else>
                             <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Join</NuxtLink>
