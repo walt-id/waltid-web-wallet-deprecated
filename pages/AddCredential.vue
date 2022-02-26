@@ -33,25 +33,33 @@
       <div class="_content justify-content-center d-flex align-items-center">
         <div id="content">
           <h2 class="_animation-fade">{{ $t("ADD_CREDENTIAL.TITLE") }}</h2>
-          <div>
-            <b>Choose issuer</b>
-            <select v-model="selectedIssuer" @change="fetchIssuerMeta($event)">
-              <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
-                {{ issuer.description }}
-              </option>
-            </select>
+          <div class="mt-4 d-flex justify-content-center align-items-center" style="height: 200px">
+            <div>
+              <div>
+              <p class="mb-2 text-secondary">Choose issuer</p>
+              <div>
+                <select class="form-select" aria-label="Default select example" v-model="selectedIssuer" @change="fetchIssuerMeta($event)">
+                  <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
+                   {{ issuer.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
             <div v-if="selectedIssuerMeta != null">
-              <b>Choose credential type</b>
-              <select v-model="selectedCredentialSchema">
-                <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
-                  {{ schema.name }}
-                </option>
-              </select>
+              <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
+              <div>
+                <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
+                  <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
+                    {{ schema.name }}
+                  </option>
+                </select>
+              </div>
             </div>
             <div v-if="selectedCredentialSchema">
-              <button type="button" class="btn btn-primary" @click="initIssuance()">
+              <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
                 Fetch credential
               </button>
+            </div>
             </div>
           </div>
         </div>

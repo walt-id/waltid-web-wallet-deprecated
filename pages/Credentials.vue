@@ -29,8 +29,8 @@
                             </div>
                         </NuxtLink>
                     </div>
-                    <NuxtLink to="/AddCredential" type="button" class="btn btn-primary btn-floating float-end">
-                      <i class="bi bi-plus-circle-fill "></i>
+                    <NuxtLink to="/AddCredential" class="btn btn-primary py-2" style="width: 70%;">
+                      <i class="bi bi-plus-lg me-2"></i>Request Credential
                     </NuxtLink>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
