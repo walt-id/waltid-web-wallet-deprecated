@@ -19,11 +19,8 @@
                             <p>Based on the<br>EU blockchain (EBSI).</p>
                             <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
                         </div>
-                        <div class="col" v-if="hasDidFor('ebsi')">
-                            <a class="_button-view _bounce" @click="showModal">View</a>
-                        </div>
-                        <div class="col" v-else>
-                            <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Join</NuxtLink>
+                        <div class="col">
+                            <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Add</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-start _setting-items">
@@ -34,12 +31,8 @@
                                 <em>Selected</em>
                             </b>
                         </div>
-                        <div class="col" v-if="hasDidFor('web')">
-                            <a class="_button-view _bounce" @click="showModal">View</a>
+                        <div class="col">
                             <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
-                        </div>
-                        <div class="col" v-else>
-                            <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Join</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-start _setting-items">
@@ -48,12 +41,14 @@
                             <p>Peer-to-peer based<br>key distribution.</p>
                             <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
                         </div>
-                        <div class="col" v-if="hasDidFor('key')">
-                            <a class="_button-view _bounce" @click="showModal">View</a>
+                        <div class="col">
+                            <a class="_button-view _bounce">Add</a>
                         </div>
-                        <div class="col" v-else>
-                            <a class="_button-view _bounce">Join</a>
-                        </div>
+                    </div>
+                    <div class=" mt-3">
+                        <a @click="showModal" class="btn btn-primary py-2" style="width: 120%;">
+                           Select Ecosystem
+                        </a>
                     </div>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
