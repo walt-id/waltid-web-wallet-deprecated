@@ -61,9 +61,8 @@ export default {
           }
       },
     logout: async function() {
-      await this.$auth.logout();
-      this.$router.push('/login')
-    },
+        await this.$auth.logout();
+      },
   }
 };
 </script>
