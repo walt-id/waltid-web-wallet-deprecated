@@ -123,7 +123,7 @@ export default {
     },
     
     async DIDgenerate (){
-        this.generationLoading= true;
+      this.generationLoading= true;
       var did = "";
       try{
           if (this.domain) {
@@ -137,22 +137,25 @@ export default {
               "didWebDomain": this.domain
             })
           }
-
             console.log(did)
-            this.$axios.$get("/api/wallet/did", { params: { id: did }})
+            this.$axios.$get(`https://wallet.waltid.org/api/wallet/did/${did}`)
             .then(
-              res=>this.didContent=JSON.stringify(res.data, undefined, 2)
+              res=>{
+                this.didHost = did
+                this.didContent=JSON.stringify(res, undefined, 2)
+                console.log(res)
+                this.generationLoading= false;
+                this.wizardIndex = this.wizardIndex+1
+                setTimeout(()=>{
+                   this.DIDgenerated=true
+                   this.wizardIndex = this.wizardIndex+1
+                }, 2500);
+              }
             )
             .catch(
               e=>console.log(e)
             )
-            this.generationLoading= false;
-            this.didHost = did
-            this.wizardIndex = this.wizardIndex+1
-            setTimeout(()=>{
-                this.DIDgenerated=true
-                this.wizardIndex = this.wizardIndex+1
-            }, 2500);
+            
             
         }catch(e){
             console.warn(e)
