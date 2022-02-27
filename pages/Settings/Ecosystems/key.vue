@@ -10,13 +10,13 @@
             </div>
             <div class="_content justify-content-center d-flex align-items-center ">
                 <div id="content" class="_setting">
-                    <h2>DNS (did:web)</h2>
+                    <h2>Key (did:key)</h2>
                     <!--<p class="mt-3">You have no Ecosystems.</p>-->
                     <div class="d-flex align-items-center justify-content-center _wizard mt-3">
                         <div :class="this.wizardIndex === 0 ? '': 'animate__fadeOutRight hide'">
                             <div class="_item">
                               <h4>Step 1</h4>
-                              <p>Create & register a did:web.</p>
+                              <p>Create & register your did:key.</p>
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                               <a class="_bounce btn" @click="wizardNext">Get started</a>
@@ -25,8 +25,8 @@
                         <div :class="this.wizardIndex === 1 ? '_left-fade': 'hide'">
                             <div class="_item">
                               <h4>Step 2</h4>
-<!--                              <p>Define key and domain. On default a new key will be generated and the did:web will be hosted at walt.id.</p>-->
-                              <p>If no domain is entered, the did:web will be registered at walt.id.</p>
+<!--                              <p>Define key and domain. On default a new key will be generated and the did:key will be hosted at walt.id.</p>-->
+                              <p>The did:key will be hosted at walt.id.</p>
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
@@ -47,15 +47,14 @@
                               <div class="success-animation">
                                   <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                               </div>
-                              <p>did:web generated successfully</p>
+                              <p>Your DID:key generated successfully</p>
                             </div>
                         </div>
                         <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
                             <div class="_item">
                               <p><strong>Successfully created</strong></p>
-                                <p>
-                                  <b>{{this.didHost}}</b>
-                                </p>
+                              <p>did:key at:</p>
+                              {{this.didHost}}
                               <textarea name="did-content" id="" cols="30" rows="5" class="mt-2 _did-content" :data="this.didContent" v-model="this.didContent"></textarea>
                               <p v-if="coppied" class="text-secondary _bounce" style="font-size: 13px">Copied successfully</p>
                               <button type="button" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2" ><i class="bi bi-files me-2"></i>Copy DID</button>
@@ -94,7 +93,7 @@ import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
 import { copyText } from 'vue3-clipboard'
 
 export default {
-  name: 'Dns',
+  name: 'Key',
   data() {
     return {
       trigger: true,

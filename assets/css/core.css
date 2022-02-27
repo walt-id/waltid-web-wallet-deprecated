@@ -1152,9 +1152,9 @@ body ._main #widget ._window ._window-content p {
   body ._main #widget ._content ._scrollable {
     overflow: auto;
     width: 100vw;
-    min-height: 73vh;
+    min-height: 63vh;
     max-width: 100vw;
-    max-height: 73vh;
+    max-height: 63vh;
   }
   body ._main #widget ._content ._scrollable ._card {
     width: 80vw;

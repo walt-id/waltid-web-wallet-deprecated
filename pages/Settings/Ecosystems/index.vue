@@ -42,7 +42,7 @@
                             <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
                         </div>
                         <div class="col">
-                            <a class="_button-view _bounce">Add</a>
+                            <NuxtLink to="/settings/ecosystems/key" class="_button-view _bounce">Add</NuxtLink>
                         </div>
                     </div>
                     <div class=" mt-3">
