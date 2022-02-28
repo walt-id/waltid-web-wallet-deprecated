@@ -643,6 +643,12 @@ body ._main #widget ._content ._wizard textarea._did-content {
   height: 130px;
 }
 
+body ._main #widget ._content ._wizard textarea._asymmetric-key {
+  font-size: 12px;
+  width: 250px;
+  height: 130px;
+}
+
 body ._main #widget ._content ._wizard .success-animation {
   margin-bottom: 20px;
 }
