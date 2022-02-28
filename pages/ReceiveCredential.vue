@@ -114,7 +114,7 @@ export default {
     },
     accept: async function() {
       let path = '/Credentials'
-      if(this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != null) {
+      if(this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != null && this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != "") {
         path = this.issuanceSessionInfo.issuanceRequest.walletRedirectUri
       }
       this.$router.push(path)
