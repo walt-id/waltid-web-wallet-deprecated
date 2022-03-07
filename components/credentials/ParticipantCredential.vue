@@ -32,9 +32,7 @@
                                 <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
                             </span>
     </div>
-    <div class="col-12 py-3">
-      <div class="_image" style="background-image: url('https://www.urbanpedaltours.com/wp-content/uploads/2019/04/team.png');"></div>
-    </div>
+
     <div class="text-left">
                             <span class="col-12 pb-3">
                                 <h5>{{$t('CREDENTIAL.ID')}}</h5>
@@ -48,10 +46,10 @@
                                 <h5>{{$t('CREDENTIAL.DOMAIN')}}</h5>
                                 <p>{{credential.credentialSubject.domain}}</p>
                             </span>
-      <span class="col-12 px-3">
-                                <h5>{{$t('CREDENTIAL.ETH_ADDRESS')}}</h5>
-                                <p>{{credential.credentialSubject.ethereumAddress}}</p>
-                            </span>
+<!--      <span class="col-12 px-3">-->
+<!--                                <h5>{{$t('CREDENTIAL.ETH_ADDRESS')}}</h5>-->
+<!--                                <p>{{credential.credentialSubject.ethereumAddress}}</p>-->
+<!--                            </span>-->
     </div>
   </div>
 </template>
