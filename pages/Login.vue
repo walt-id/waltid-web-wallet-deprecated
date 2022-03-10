@@ -4,7 +4,7 @@
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" class="_form d-grid align-items-center bg-white shadow-lg text-center">
       <div :class="this.isSignin ? '_fade' : 'hide'">
-        <img src="/favicon.png" width="50px" />
+        <img :src="this.logo.path" width="50px" :alt="this.logo.alt" />
         
         <p class="mt-3">{{$t('LOGIN.MSG')}}</p>
         <div>
@@ -47,7 +47,7 @@
             <img :src="locale.flag" width="20px" height="15px" :alt="locale.iso" class="me-2 border border-white" />
           </a>
         </form>
-        <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">by walt.id</a>
+        <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
       </div>
       <div :class="this.isSignup ? '_fadehi' : 'hide'">
           <h2>Sign up</h2>
@@ -84,7 +84,7 @@
               </div>
               
             </form>
-          <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+          <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
       </div>
       <div :class="this.isResetPassword ? '_fadehi' : 'hide'">
           <h2>Reset password</h2>
@@ -100,7 +100,7 @@
                   <a @click="toSignIn">Already know your account? Login</a>
               </div>
             </form>
-          <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+          <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
       </div>
     </div>
     </section>
@@ -110,6 +110,7 @@
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import Notice from '@/components/Notice.vue'
+import {config} from '/config.js'
 
 export default {
   name: 'Login',
@@ -119,6 +120,8 @@ export default {
   },
   data () {
     return {
+      copyright: config.copyright,
+      logo: config.logo,
       email: "",
       validEmail: true,
       password: "",
@@ -194,8 +197,8 @@ export default {
       }
       // check if just email is not validate
       else if(this.emailValidation(this.email) === false){
-        this.validEmail = false
-        this.error = true
+        this.validEmail = false;
+        this.error = true;
         this.errorMessage = "Please verify your email!"
         this.loginLoading=false
       }

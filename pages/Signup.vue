@@ -18,7 +18,7 @@
                         <NuxtLink to="/login">Already have account? Login</NuxtLink>
                     </div>
                 </form>
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
             </div>
         </div>
     </section>
@@ -26,7 +26,14 @@
 
 <script>
 /* eslint-disable */
+import {config} from '/config.js'
+
 export default {
   name: 'Signup',
+  data(){
+      return{
+          copyright: config.copyright
+      }
+  }
 }
 </script>
