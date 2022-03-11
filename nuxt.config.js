@@ -109,6 +109,11 @@ export default {
     }
   },
 
+  publicRuntimeConfig: {
+    salt: process.env.SALT
+  },
+
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {
