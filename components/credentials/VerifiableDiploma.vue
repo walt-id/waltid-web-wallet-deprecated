@@ -53,6 +53,20 @@
           <p>{{credential.credentialSubject.id}}</p>
       </span>
 
+      <span class="col-12 px-3">
+          <h5>{{$t('CREDENTIAL.GRADING_SCHEMA')}}</h5>
+          <p>{{credential.credentialSubject.gradingScheme.title}}</p>
+      </span>
+
+      <span class="col-12 px-3">
+          <h5>{{$t('CREDENTIAL.LEARNING_ACHIEVEMENT')}}</h5>
+          <p>{{credential.credentialSubject.learningAchievement.title}}</p>
+      </span>
+
+      <span class="col-12 px-3">
+          <h5>{{$t('CREDENTIAL.ECTS_CREDIT_POINTS')}}</h5>
+          <p>{{credential.credentialSubject.learningSpecification.ectsCreditPoints}}</p>
+      </span>
 
     </div>
   </div>

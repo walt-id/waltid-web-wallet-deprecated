@@ -69,6 +69,9 @@ export default {
         PROGRAM_NAME: 'Programm Name',
         ETH_ADDRESS: 'ETH Address',
         DOMAIN: 'Domain',
+        GRADING_SCHEMA: 'Bewertungsschema',
+        LEARNING_ACHIEVEMENT: 'Lernerfolg',
+        ECTS_CREDIT_POINTS: 'ECTS credit points',
         TYPE: {
             VerifiableId: 'Verifizierbares ID Dokument',
             VerifiableDiploma: 'Verifizierbares Universitätsdiplom',

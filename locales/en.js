@@ -73,6 +73,9 @@ export default {
         ETH_ADDRESS: 'ETH Address',
         DOMAIN: 'Domain',
         DELETE: 'Delete credential',
+        GRADING_SCHEMA: 'Grading schema',
+        LEARNING_ACHIEVEMENT: 'Learning achievement',
+        ECTS_CREDIT_POINTS: 'ECTS credit points',
         TYPE: {
             VerifiableId: 'Verifiable ID document',
             VerifiableDiploma: 'Verifiable university diploma',
