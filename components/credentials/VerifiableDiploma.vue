@@ -50,7 +50,7 @@
       <!-- TODO: add more properties for VerifiableDiploma -->
       <span class="col-12 px-3">
           <h5>{{$t('CREDENTIAL.DID')}}</h5>
-          <p>{{credential.credentialSubject.id}}</p>
+          <p style="word-wrap: break-word;">{{credential.credentialSubject.id}}</p>
       </span>
 
       <span class="col-12 px-3">
