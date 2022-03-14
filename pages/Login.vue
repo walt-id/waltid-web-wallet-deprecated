@@ -111,6 +111,7 @@
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import Notice from '@/components/Notice.vue'
 import {config} from '/config.js'
+const { hashSync } = require('bcryptjs');
 
 export default {
   name: 'Login',
@@ -165,6 +166,9 @@ export default {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
     },
+    async bcrypt(val) {
+      return hashSync(val, this.$config.salt);
+    },
     async login (){
       this.loginLoading=true
       this.resetError()
@@ -173,8 +177,8 @@ export default {
         try {
           const loginResponse = await this.$auth.loginWith("local", {
             data: {
-            id: this.email,
-            password: this.password
+            id: this.bcrypt(this.email),
+            password: this.bcrypt(this.password)
            }
           })
           this.$auth.setUser(loginResponse.data)
