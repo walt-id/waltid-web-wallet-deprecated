@@ -1,5 +1,5 @@
 const config = {
-    'copyright': ' not by walt.id',
+    'copyright': 'powered by walt.id',
     'logo': {
         path: '/favicon.png',
         alt: 'walt.id logo'
