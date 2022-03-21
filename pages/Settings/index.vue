@@ -28,7 +28,7 @@
                             <p>Manage your data.</p>
                         </div>
                         <div class="col">
-                            <a class="_button-view">View</a>
+                            <NuxtLink to="/settings/data" class="_button-view">View</NuxtLink>
                         </div>
                     </div>
                     <div class="d-flex mt-4 align-items-center _setting-items">
