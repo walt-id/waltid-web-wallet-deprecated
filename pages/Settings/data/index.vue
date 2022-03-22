@@ -10,45 +10,17 @@
             </div>
             <div :class="this.didListModal === false ? '_content justify-content-center d-flex align-items-center':'hide'">
                 <div id="content" class="_setting">
-                    <h2>Ecosystems</h2>
+                    <h2>Data</h2>
                     <br>
                     <!--<p class="mt-3">You have no Ecosystems.</p>-->
-                    <div class="d-flex mt-3 align-items-start _setting-items">
-                        <div class="col-10 _item">
-                            <h4>EBSI/ESSIF</h4>
-                            <p>Based on the<br>EU blockchain (EBSI).</p>
-                            <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
-                        </div>
-                        <div class="col">
-                            <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Add</NuxtLink>
-                        </div>
-                    </div>
                     <div class="d-flex mt-4 align-items-start _setting-items">
                         <div class="col-10 _item">
-                            <h4>DNS</h4>
-                            <p>Based on the domain<br>name service (DNS).</p>
-                            <b v-if="hasType(currentDid, 'web')" class="_tag">
-                                <em>Selected</em>
-                            </b>
+                            <h4>Key Import</h4>
+                            <!--<p>Based on the domain<br>name service (DNS).</p>-->
                         </div>
                         <div class="col">
-                            <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
+                            <NuxtLink to="/settings/data/key/import" class="_button-view _bounce">Import</NuxtLink>
                         </div>
-                    </div>
-                    <div class="d-flex mt-4 align-items-start _setting-items">
-                        <div class="col-10 _item">
-                            <h4>Key</h4>
-                            <p>Peer-to-peer based<br>key distribution.</p>
-                            <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
-                        </div>
-                        <div class="col">
-                            <NuxtLink to="/settings/ecosystems/key" class="_button-view _bounce">Add</NuxtLink>
-                        </div>
-                    </div>
-                    <div class=" mt-3">
-                        <a @click="showModal" class="btn btn-primary py-2" style="width: 120%;">
-                           Select Ecosystem
-                        </a>
                     </div>
                 </div>
                 <div id="menu-content" class="_menu-content hide">
