@@ -39,7 +39,8 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/pwa'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -104,9 +105,19 @@ export default {
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      default: '/favicon.png'
+    },
+    meta: {
+      title: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
+      author: 'walt.id',
+    },
     manifest: {
-      lang: "en"
-    }
+      name: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
+      short_name: "walt.id PWA",
+      lang: 'en',
+      display: 'standalone',
+    },
   },
 
   publicRuntimeConfig: {
