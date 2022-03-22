@@ -84,9 +84,9 @@ export default {
         COMPANY_NUMBER: 'Firmennummer',
         COMPANY_NAME: 'Firmenname',
         HEADQUARTER_COUNTRY: 'Hauptsitz',
-        LEGAL_COUNTRY: 'Rechtliches land',
-        LEI: 'Lei',
-        PARENT_ORGANIZATION: 'Elternorganisation',
-        SUB_ORGANIZATION: 'Unterorganisation'
+        LEGAL_COUNTRY: 'Rechtliches Land',
+        LEI: 'LEI',
+        PARENT_ORGANIZATION: 'Dach-Gesellschaft',
+        SUB_ORGANIZATION: 'Tochter-Gesellschaft'
     }
 }

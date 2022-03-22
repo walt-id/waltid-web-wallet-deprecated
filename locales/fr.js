@@ -85,7 +85,7 @@ export default {
         COMPANY_NAME: 'Nom de l\'entreprise ',
         HEADQUARTER_COUNTRY: 'Pays du siège ',
         LEGAL_COUNTRY: 'Pays légal',
-        LEI: 'Lei',
+        LEI: 'LEI',
         PARENT_ORGANIZATION: 'Organisation mère',
         SUB_ORGANIZATION: 'Sous-organisation'
     }

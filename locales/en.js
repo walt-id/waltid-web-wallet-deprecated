@@ -89,7 +89,7 @@ export default {
         COMPANY_NAME: 'Company name',
         HEADQUARTER_COUNTRY: 'Headquarter country',
         LEGAL_COUNTRY: 'Legal country',
-        LEI: 'Lei',
+        LEI: 'LEI',
         PARENT_ORGANIZATION: 'Parent organization',
         SUB_ORGANIZATION: 'Sub-organization'
     }

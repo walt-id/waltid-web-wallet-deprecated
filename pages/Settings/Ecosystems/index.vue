@@ -88,7 +88,7 @@
                                   <div class="col-9 d-flex align-items-center">
                                     <div>
                                       <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
-                                      <p class="text-truncate" style="max-width: 12em">{{copyright}}</p>
+                                      <p class="text-truncate" style="max-width: 12em">{{this.copyright}}</p>
                                     </div>
                                   </div>
                                   <div class="col d-flex justify-content-end align-items-start">
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div :class="this.didListModal === false ? '_copyright _blue-color d-flex align-items-center justify-content-center': 'hide'">
-                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
             </div>
         </div>
     </section>
