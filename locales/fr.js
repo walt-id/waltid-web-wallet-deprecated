@@ -80,6 +80,13 @@ export default {
             ParticipantCredential: "Gaia-X Identifiant du participant",
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "Identité bancaire européenne"
-        }
+        },
+        COMPANY_NUMBER: 'Numéro d\'entreprise',
+        COMPANY_NAME: 'Nom de l\'entreprise ',
+        HEADQUARTER_COUNTRY: 'Pays du siège ',
+        LEGAL_COUNTRY: 'Pays légal',
+        LEI: 'LEI',
+        PARENT_ORGANIZATION: 'Organisation mère',
+        SUB_ORGANIZATION: 'Sous-organisation'
     }
 }
