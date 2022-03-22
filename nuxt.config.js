@@ -114,7 +114,7 @@ export default {
     },
     manifest: {
       name: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
-      short_name: "walt.id PWA",
+      short_name: "walt.id",
       lang: 'en',
       display: 'standalone',
     },

@@ -30,8 +30,13 @@
                     <CredentialView :credential="credential" class="p-3"></CredentialView>
                     <div class="_button mb-5 mx-5 text-center">
                         <a href="#copy" class="btn btn-secondary col-12 mb-3" @click="onCopy"><i class="bi bi-files me-3"></i>Copy Credential</a>
-                        <a href="#delete" class="btn btn-danger col-12 mb-3" @click="deleteCredential"><i class="bi bi-trash me-3"></i>{{$t('CREDENTIAL.DELETE')}}</a>
+                        <a class="btn btn-danger col-12 mb-3" @click="deleteCredential"><i class="bi bi-trash me-3"></i>{{$t('CREDENTIAL.DELETE')}}</a>
                         <span v-if="this.coppied" class="text-secondary _fadin">Credential coppied to your clipboard</span>
+                        <span v-if="this.deleted" class="text-secondary _fadin">Deleted Credential Successfully</span>
+                        <span v-if="this.onDelete" class="text-secondary _fadin">
+                            <img src="dark-loader.gif" width="30px" style="opacity: 0.9" />
+                        </span>
+                        <span v-if="this.onDelete" class="text-danger _fadin">Deleting the credential...</span>
                     </div>
                 </div>
             </div>
@@ -51,6 +56,8 @@ export default {
       trigger: true,
       credentialContent: '',
       coppied: false,
+      onDelete: false,
+      deleted: false
     }
   },
   async asyncData ({ $axios, query }) {
@@ -74,8 +81,14 @@ export default {
     deleteCredential: async function() {
         if(this.credential != null) {
             const delResp = await this.$axios.delete("/api/wallet/credentials/delete/" + encodeURIComponent(this.credential.id))
+            this.onDelete = true;
             if(delResp.status == 200) {
-                this.$router.back()
+                this.onDelete = false;
+                this.deleted = true;
+                setTimeout(() => {
+                    this.$router.back()
+                }, 2500);
+                
             }
         }
     },
