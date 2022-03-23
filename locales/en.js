@@ -91,6 +91,92 @@ export default {
         LEI_CODE: 'LEI code',
         ETH_ADDRESS: 'ETH Address',
         PARENT_ORGANIZATION: 'Parent organization',
-        SUB_ORGANIZATION: 'Sub organization'
+        SUB_ORGANIZATION: 'Sub organization',
+        LEARNING_ACHIEVEMENT: 'Learning achievement',
+        ECTS_CREDIT_POINTS: 'ECTS credit points',
+        DEFINITION: 'Definition',
+        EQFL_LEVEL: 'EQFL level',
+        NQFL_LEVEL: 'NQFL level',
+        LOCATION: 'Location',
+        STARTED_AT_TIME: 'Started at time',
+        ENDED_AT_TIME: 'Ended at time',
+        HOME_PAGE: 'Home page',
+        ADDITIONAL_NOTE: 'Additional note',
+        WORKLOAD: 'Workload',
+        AWARDING_BODY: 'Awarding body',
+        MAXIMUM_DURATION: 'Maximum duration',
+        VOLUME_OF_LEARNING: 'Volume of learning',
+        IS_PARTIAL_QUALIFICATION: 'Is Partial Qualification',
+        LANGUAGE: 'Language',
+        ALTERNATIVE_LABEL: 'Alternative label',
+        SUPPLEMENTARY_DOCUMENT: 'Supplementary document',
+        MODE: 'Mode',
+        ISCEDF_CODE: 'ISCEDF code',
+        IDENTIFIER: 'Identifier',
+        HAS_PART: 'Has part',
+        ACHIEVED: 'Achieved',
+        WAS_DERIVED_FROM: 'Was derived from',
+        WAS_INFLUENCED_BY: 'Was influenced by',
+        WAS_AWARDED_BY: 'Was awarded by',
+        SPECIFIED_BY: 'Specified by',
+        LEARNING_OUTCOME: 'Learning outcome',
+        AWARDING_OPPORTUNITY: 'Awarding opportunity',
+        LEARNING_ACTIVITY_TYPE: 'Learning activity type',
+        DIRECTED_BY: 'Directed by',
+        GRADE: 'Grade',
+        AWARDING_DATE: 'Awarding date',
+        AWARDING_LOCATION: 'Awarding location',
+        DESCRIPTION: 'Description',
+        ISSUED_DATE: 'Issued date',
+        ENTITLEMENT_TYPE: 'Entitlement type',
+        LIMIT_ORGANIZATION: 'Limit organization',
+        LIMIT_JURISDICTION: 'Limit jurisdiction',
+        EUROPASS: {
+            IDENTIFIER: {
+                SCHEME_ID: 'Scheme Id',
+                VALUE: 'Value'
+            },
+            ACHIEVED: {
+                WAS_DERIVED_FROM: {
+                    ASSESSED_BY: 'Assessed by',
+                },
+                WAS_INFLUENCED_BY: {
+                    SPECIFIED_BY: {
+                        LEARNING_ACTIVITY_TYPE: 'Learning activity type',
+                        TEACHES: 'Teaches',
+                        HAS_PART: 'Has part',
+                        SPECIALIZATION_OF: 'Specialization of'
+                    }
+                },
+                SPECIFIED_BY: {
+                    ENTRY_REQUIREMENTS_NOTE: 'Entry requirements note',
+                    LEARNING_OUTCOME: {
+                        NAME: 'Name',
+                        LEARNING_OUTCOME_TYPE: 'Learning outcome type',
+                        REUSABILITY_LEVEL: 'Reusability level',
+                        RELATED_SKILL: 'Related skill',
+                        RELATED_ESCO_SKILL: 'Related ESCO skill'
+                    },
+                    LEARNING_OPPORTUNITY_TYPE: 'Learning opportunity type',
+                    LEARNING_OUTCOME_DESCRIPTION: 'Learning outcome description',
+                    EDUCATION_SUBJECT: 'Education subject',
+                    CREDIT_POINTS: 'Credit points',
+                    EDUCATION_LEVEL: 'Education level',
+                    LEARNING_SETTING: 'Learning setting',
+                    TARGET_GROUP: 'Target group',
+                    LEARNING_ACTIVITY_SPECIFICATION: 'Learning activity specification',
+                    ASSESSMENT_SPECIFICATION: 'Assessment specification',
+                    ENTITLEMENT_SPECIFICATION: 'Entitlement specification',
+                    SPECIALIZATION_OF: 'Specialization of'
+                }
+            },
+            AWARDING_OPPORTUNITY: {
+                AWARDING_BODY: {
+                    EIDAS_LEGAL_IDENTIFIER: 'EIDAS legal identifier',
+                    REGISTRATION: 'Registration',
+                    PREFERRED_NAME: 'Preferred name',
+                },
+            },
+        }
     }
 }

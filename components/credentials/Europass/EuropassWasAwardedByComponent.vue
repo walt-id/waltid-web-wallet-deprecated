@@ -1,0 +1,34 @@
+<template>
+    <span class="col-12 pb-3">
+        <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="wasAwardedBy.id"/>
+        <LoopLiComponent :title="$t('AWARDING_BODY')" :items="wasAwardedBy.awardingBody"/>
+        <ItemValueComponent :title="$t('CREDENTIAL.AWARDING_DATE')" :value="wasAwardedBy.awardingDate"/>
+        <LoopLiComponent :title="$t('CREDENTIAL.AWARDING_LOCATION')" :items="wasAwardedBy.awardingLocation"/>
+    </span>
+</template>
+
+<script>
+import moment from "moment";
+import LoopLiComponent from "./LoopLiComponent.vue";
+import ItemValueComponent from "./ItemValueComponent.vue";
+
+export default {
+  name: "EuropassWasAwardedByComponent",
+  props: {
+    wasAwardedBy: {}
+  },
+  data() {
+    return {
+      moment: moment
+    }
+  },
+  components: {
+    LoopLiComponent,
+    ItemValueComponent,
+  },
+}
+</script>
+
+<style scoped>
+
+</style>
