@@ -88,6 +88,7 @@
             <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
               <input ref="responseIdToken" type="hidden" name="id_token" >
               <input ref="responseVpToken" type="hidden" name="vp_token" >
+              <input type="hidden" name="state" :value="presentationSessionInfo.req.state">
             </form>
         </div>
     </section>
