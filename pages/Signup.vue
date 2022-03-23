@@ -18,7 +18,7 @@
                         <NuxtLink to="/login">Already have account? Login</NuxtLink>
                     </div>
                 </form>
-                <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
             </div>
         </div>
     </section>

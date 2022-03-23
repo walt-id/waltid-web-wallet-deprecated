@@ -47,7 +47,7 @@
             <img :src="locale.flag" width="20px" height="15px" :alt="locale.iso" class="me-2 border border-white" />
           </a>
         </form>
-        <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
+        <a id="copyright" class="_animation-fade" href="https://walt.id/" target="_blank">{{copyright}}</a>
       </div>
       <div :class="this.isSignup ? '_fadehi' : 'hide'">
           <h2>Sign up</h2>
@@ -84,7 +84,7 @@
               </div>
               
             </form>
-          <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
+          <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
       </div>
       <div :class="this.isResetPassword ? '_fadehi' : 'hide'">
           <h2>Reset password</h2>
@@ -100,7 +100,7 @@
                   <a @click="toSignIn">Already know your account? Login</a>
               </div>
             </form>
-          <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
+          <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
       </div>
     </div>
     </section>
