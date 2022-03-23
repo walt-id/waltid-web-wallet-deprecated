@@ -59,8 +59,8 @@ export default {
   },
 
   proxy: {
-   "/api/": "https://wallet.waltid.org"
-   //"/api/": "http://localhost:8080"
+   //"/api/": "https://wallet.waltid.org"
+   "/api/": "http://localhost:8080"
   },
   auth: {
     strategies: {
@@ -83,7 +83,8 @@ export default {
       login: '/login',
       logout: '/login',
       home: '/Credentials'
-    }
+    },
+    cookie: false
   },
   i18n: {
     /* module options */
