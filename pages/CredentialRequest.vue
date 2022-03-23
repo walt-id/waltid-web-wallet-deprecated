@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
             </div>
             <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
               <input ref="responseIdToken" type="hidden" name="id_token" >
@@ -96,11 +96,13 @@
 <script>
 
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {config} from '/config.js'
 
 export default {
   name: 'CredentialRequest',
   data() {
     return {
+      copyright: config.copyright,
       trigger: true,
       id: 'xxxxxxxxxx',
       selectedCredential: null,

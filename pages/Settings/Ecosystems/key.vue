@@ -16,7 +16,7 @@
                         <div :class="this.wizardIndex === 0 ? '': 'animate__fadeOutRight hide'">
                             <div class="_item">
                               <h4>Step 1</h4>
-                              <p>Create & register your did:key.</p>
+                              <p>Create a did:key.</p>
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                               <a class="_bounce btn" @click="wizardNext">Get started</a>
@@ -26,12 +26,11 @@
                             <div class="_item">
                               <h4>Step 2</h4>
 <!--                              <p>Define key and domain. On default a new key will be generated and the did:key will be hosted at walt.id.</p>-->
-                              <p>The did:key will be hosted at walt.id.</p>
+                              <p>The did:key will does not require any DLT, as the identifier is the encoded public key.</p>
                             </div>
                             <div class="mt-3 d-flex _button-view justify-content-center">
                                 <div>
                                     <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
-                                        <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" class="form-control _domain-form" style="width: 12em" :data="this.domain" v-model="domain"/>
                                         <button type="submit" name="submit" class="_bounce btn text-white mt-3" style="width: 200px">
                                             <span v-if="generationLoading">
                                                <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
@@ -53,8 +52,7 @@
                         <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
                             <div class="_item">
                               <p><strong>Successfully created</strong></p>
-                              <p>did:key at:</p>
-                              {{this.didHost}}
+                              <p>{{this.didHost}}</p>
                               <textarea name="did-content" id="" cols="30" rows="5" class="mt-2 _did-content" :data="this.didContent" v-model="this.didContent"></textarea>
                               <p v-if="coppied" class="text-secondary _bounce" style="font-size: 13px">Copied successfully</p>
                               <button type="button" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2" ><i class="bi bi-files me-2"></i>Copy DID</button>
@@ -82,7 +80,7 @@
                 </div>
             </div>
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
             </div>
         </div> 
     </section>
@@ -91,11 +89,13 @@
 <script>
 import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
 import { copyText } from 'vue3-clipboard'
+import {config} from '/config.js'
 
 export default {
   name: 'Key',
   data() {
     return {
+      copyright: config.copyright,
       trigger: true,
       wizardIndex: 0,
       DIDgenerated: false,
@@ -133,8 +133,7 @@ export default {
             })
           } else {
                did = await this.$axios.$post('/api/wallet/did/create', {
-              "method": 'web',
-              "didWebDomain": this.domain
+              "method": 'key'
             })
           }
             console.log(did)

@@ -70,9 +70,11 @@ export default {
         ADMINISTERING_CENTER: 'Administering center',
         COUNTRY_OF_VACCINATION: 'Country of vaccination',
         PROGRAM_NAME: 'Programm Name',
-        ETH_ADDRESS: 'ETH Address',
         DOMAIN: 'Domain',
         DELETE: 'Delete credential',
+        GRADING_SCHEMA: 'Grading schema',
+        LEARNING_ACHIEVEMENT: 'Learning achievement',
+        ECTS_CREDIT_POINTS: 'ECTS credit points',
         TYPE: {
             VerifiableId: 'Verifiable ID document',
             VerifiableDiploma: 'Verifiable university diploma',
@@ -81,6 +83,14 @@ export default {
             ParticipantCredential: "Gaia-X Participant Credential",
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "European bank identity"
-        }
+        },
+        REGISTRATION_NUMBER: 'Registration number',
+        LEGALLY_BINDING_NAME: 'Legally binding name',
+        JURISDICTION: 'Jurisdiction',
+        COUNTRY: 'Country',
+        LEI_CODE: 'LEI code',
+        ETH_ADDRESS: 'ETH Address',
+        PARENT_ORGANIZATION: 'Parent organization',
+        SUB_ORGANIZATION: 'Sub organization'
     }
 }

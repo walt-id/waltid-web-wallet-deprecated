@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
             </div>
         </div> 
     </section>
@@ -67,11 +67,13 @@
 
 <script>
 import {menuTransitionShow, menuTransitionHide} from '@/helpers/menuTransation'
+import {config} from '/config.js'
 
 export default {
   name: 'Import',
   data() {
     return {
+      copyright: config.copyright,
       trigger: true,
       wizardIndex: 0,
       asymmetrickey: '',

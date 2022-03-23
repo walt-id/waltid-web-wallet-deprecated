@@ -93,17 +93,20 @@
           justify-content-center
         "
       >
-        <a id="copyright" href="https://walt.id/" target="_blank">by walt.id</a>
+        <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
       </div>
     </div>
   </section>
 </template>
 <script>
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {config} from '/config.js'
+
 export default {
   name: "AddCredential",
   data() {
     return {
+      copyright: config.copyright,
       selectedIssuer: null,
       selectedIssuerMeta: null,
       selectedCredentialSchema: null,

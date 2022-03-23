@@ -70,11 +70,13 @@
 <script>
 
 import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
+import {config} from '/config.js'
 
 export default {
   name: 'CredentialRequest',
   data() {
     return {
+      copyright: config.copyright,
       trigger: true,
       id: 'xxxxxxxxxx',
       issuanceSessionInfo: null,
