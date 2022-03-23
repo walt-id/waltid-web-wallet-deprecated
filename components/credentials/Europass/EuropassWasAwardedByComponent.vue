@@ -1,5 +1,5 @@
 <template>
-    <span class="col-12 pb-3">
+    <span class="col-12 pb-3" v-if="wasAwardedBy">
         <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="wasAwardedBy.id"/>
         <LoopLiComponent :title="$t('AWARDING_BODY')" :items="wasAwardedBy.awardingBody"/>
         <ItemValueComponent :title="$t('CREDENTIAL.AWARDING_DATE')" :value="wasAwardedBy.awardingDate"/>

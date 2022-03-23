@@ -5,14 +5,8 @@
       </span>
       <!-- outer loop -->
         <div v-for="achievedValue in achieved"  v-bind:key="achievedValue">
-          <span class="col-12 pb-3">
-            <h5>{{ $t("CREDENTIAL.ID") }}</h5>
-            <p>{{ achievedValue.id }}</p>
-          </span>
-          <span class="col-12 px-3">
-            <h5>{{ $t("CREDENTIAL.TITLE") }}</h5>
-            <p>{{ achievedValue.title }}</p>
-          </span>
+          <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="achievedValue.id"/>
+          <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="achievedValue.title"/>
           <!-- additional note -->
           <LoopLiComponent :items="achievedValue.additionalNote" :title="$t('CREDENTIAL.ADDITIONAL_NOTE')"/>
           <!-- identifier -->
@@ -50,6 +44,7 @@
 
 <script>
 import moment from "moment";
+import ItemValueComponent from "./ItemValueComponent.vue"
 import LoopLiComponent from "./LoopLiComponent.vue";
 import EuropassIdentifierComponent from "./EuropassIdentifierComponent.vue";
 import EuropassWasInfluencedByComponent from "./EuropassWasInfluencedByComponent.vue";
@@ -71,6 +66,7 @@ export default {
   },
   components: {
     LoopLiComponent,
+    ItemValueComponent,
     EuropassIdentifierComponent,
     EuropassWasDerivedFromComponent,
     EuropassWasInfluencedByComponent,
