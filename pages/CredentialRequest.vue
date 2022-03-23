@@ -88,7 +88,7 @@
             <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
               <input ref="responseIdToken" type="hidden" name="id_token" >
               <input ref="responseVpToken" type="hidden" name="vp_token" >
-              <input type="hidden" name="state" :value="presentationSessionInfo.req.state">
+              <input ref="responseState" type="hidden" name="state" >
             </form>
         </div>
     </section>
@@ -162,6 +162,7 @@ export default {
         console.log("PE Response:", siopResp)
         this.$refs.responseIdToken.value = siopResp.id_token
         this.$refs.responseVpToken.value = siopResp.vp_token
+        this.$refs.responseState.value = siopResp.state
         this.$refs.responseForm.submit()
       }
     },
