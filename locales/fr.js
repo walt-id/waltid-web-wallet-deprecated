@@ -67,7 +67,6 @@ export default {
         ADMINISTERING_CENTER: 'Centre d\'administration',
         COUNTRY_OF_VACCINATION: 'Pays de vaccination',
         PROGRAM_NAME: 'Nom du programme',
-        ETH_ADDRESS: 'ETH Address',
         DOMAIN: 'Domain',
         GRADING_SCHEMA: 'Schéma de notation',
         LEARNING_ACHIEVEMENT: 'Acquis d\'apprentissage',
@@ -81,11 +80,12 @@ export default {
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "Identité bancaire européenne"
         },
-        COMPANY_NUMBER: 'Numéro d\'entreprise',
-        COMPANY_NAME: 'Nom de l\'entreprise ',
-        HEADQUARTER_COUNTRY: 'Pays du siège ',
-        LEGAL_COUNTRY: 'Pays légal',
-        LEI: 'LEI',
+        REGISTRATION_NUMBER: 'Numéro d\'entreprise',
+        LEGALLY_BINDING_NAME: 'Nom de l\'entreprise ',
+        JURISDICTION: 'Pays du siège ',
+        COUNTRY: 'Pays légal',
+        LEI_CODE: 'LEI',
+        ETH_ADDRESS: 'ETH Address',
         PARENT_ORGANIZATION: 'Organisation mère',
         SUB_ORGANIZATION: 'Sous-organisation'
     }

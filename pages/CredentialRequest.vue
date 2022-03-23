@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
-                <a id="copyright" href="https://walt.id/" target="_blank">{{this.copyright}}</a>
+                <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
             </div>
             <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
               <input ref="responseIdToken" type="hidden" name="id_token" >
