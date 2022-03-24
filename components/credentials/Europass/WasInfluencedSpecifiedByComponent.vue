@@ -1,5 +1,6 @@
 <template>
-    <span class="col-12 pb-3">
+    <span class="col-12 pb-3" v-if="specifiedBy">
+        <h5>{{ title }}</h5>
         <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="specifiedBy.id"/>
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="specifiedBy.title"/>
         <!-- identifier -->
@@ -31,7 +32,8 @@ import IdentifierComponent from "./IdentifierComponent.vue";
 export default {
   name: "WasInfluencedSpecifiedByComponent",
   props: {
-    specifiedBy: {}
+    specifiedBy: {},
+    title: {}
   },
   data() {
     return {

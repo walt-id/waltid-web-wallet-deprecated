@@ -38,15 +38,15 @@
             <LoopLiComponent :title="$t('CREDENTIAL.MODE')" :items="specifiedBy.modes"/>
             <ItemValueComponent :title="$t('CREDENTIAL.LEARNING_SETTING')" :value="specifiedBy.learningSetting"/>
             <ItemValueComponent :title="$t('CREDENTIAL.TARGET_GROUP')" :value="specifiedBy.targetGroups"/>
-            <!-- TODO -->
             <!-- learningActivitySpecification -->
-            <h5>{{ $t("CREDENTIAL.LEARNING_ACTIVITY_SPECIFICATION") }}</h5>
-
-
+            <WasInfluencedSpecifiedByComponent :specifiedBy="specifiedBy.learningActivitySpecification" :title="$t('CREDENTIAL.LEARNING_ACTIVITY_SPECIFICATION')"/>
             <!-- assessmentSpecification -->
+            <WasDerivedSpecifiedByComponent :specifiedBy="specifiedBy.assessmentSpecification" :title="$t('CREDENTIAL.ASSESSMENT_SPECIFICATION')"/>
             <!-- entitlementSpecification -->
-            <!-- hasPart -->
-            <!-- specialisationOf -->
+            <h5>{{ $t("CREDENTIAL.ENTITLEMENT_SPECIFICATION") }}</h5>
+            <div v-for="entitlement in specifiedBy.entitlementSpecification" v-bind:key="entitlement">
+              <EntitlesToSpecifiedByComponent :specifiedBy="entitlement"/>
+            </div>
             <!-- awardingOpportunity -->
             <span class="col-12 pb-3">
                 <h5>{{ $t("CREDENTIAL.AWARDING_OPPORTUNITY") }}</h5>
@@ -59,6 +59,9 @@
                     <ItemValueComponent :title="$t('CREDENTIAL.ENDED_AT_TIME')" :value="awardingOpportunity.endedAtTime"/>
                 </div>
             </span>
+            <!-- TODO -->
+            <!-- hasPart -->
+            <!-- specialisationOf -->
         </div>
     </div>
 </template>
@@ -68,6 +71,9 @@ import moment from "moment";
 import LoopLiComponent from "./LoopLiComponent.vue";
 import ItemValueComponent from "./ItemValueComponent.vue";
 import IdentifierComponent from "./IdentifierComponent.vue";
+import WasDerivedSpecifiedByComponent from "./WasDerivedSpecifiedByComponent.vue";
+import WasInfluencedSpecifiedByComponent from "./WasInfluencedSpecifiedByComponent.vue";
+import EntitlesToSpecifiedByComponent from "./EntitlesToSpecifiedByComponent.vue";
 
 export default {
   name: "AchievedSpecifiedByComponent",
@@ -83,6 +89,9 @@ export default {
     LoopLiComponent,
     ItemValueComponent,
     IdentifierComponent,
+    WasDerivedSpecifiedByComponent,
+    WasInfluencedSpecifiedByComponent,
+    EntitlesToSpecifiedByComponent,
   },
 }
 </script>

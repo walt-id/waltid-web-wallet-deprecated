@@ -12,7 +12,7 @@
           <ItemValueComponent :title="$t('CREDENTIAL.ENDED_AT_TIME')" :value="wasInfluencedBy.endedAtTime"/>
           <LoopLiComponent :title="$t('CREDENTIAL.DIRECTED_BY')" :items="wasInfluencedBy.directedBy"/>
           <LoopLiComponent :title="$t('CREDENTIAL.LOCATION')" :items="wasInfluencedBy.location"/>
-          <WasInfluencedSpecifiedByComponent :specifiedBy="wasInfluencedBy.specifiedBy"/>
+          <WasInfluencedSpecifiedByComponent :specifiedBy="wasInfluencedBy.specifiedBy" :title="$t('CREDENTIAL.SPECIFIED_BY')"/>
     </span>
 </template>
 

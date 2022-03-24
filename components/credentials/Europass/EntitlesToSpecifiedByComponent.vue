@@ -1,6 +1,6 @@
 <template>
-    <span class="col-12 px-3">
-        <h5>{{ $t("CREDENTIAL.SPECIFIED_BY") }}</h5>
+    <span class="col-12 px-3" v-if="specifiedBy">
+        <h5>{{ title }}</h5>
         <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="specifiedBy.id"/>
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="specifiedBy.title"/>
         <ItemValueComponent :title="$t('CREDENTIAL.ENTITLEMENT_TYPE')" :value="specifiedBy.entitlementType"/>
@@ -18,7 +18,8 @@ import LoopLiComponent from "./LoopLiComponent.vue";
 export default {
   name: "EntitlesToSpecifiedByComponent",
   props: {
-    specifiedBy: {}
+    specifiedBy: {},
+    title: {},
   },
   data() {
     return {
