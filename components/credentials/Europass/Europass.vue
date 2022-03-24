@@ -1,14 +1,6 @@
 <template>
   <div class="p-4">
     <CredentialHeader :credential="credential"></CredentialHeader>
-    <div class="col-12 py-3">
-      <div
-        class="_image"
-        style="
-          background-image: url('https://www.urbanpedaltours.com/wp-content/uploads/2019/04/team.png');
-        "
-      ></div>
-    </div>
     <div class="text-left">
       <IdentifierComponent :identifier="credential.credentialSubject.identifier"/>
     </div>
