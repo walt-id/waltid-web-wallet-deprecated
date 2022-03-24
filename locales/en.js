@@ -131,52 +131,31 @@ export default {
         ENTITLEMENT_TYPE: 'Entitlement type',
         LIMIT_ORGANIZATION: 'Limit organization',
         LIMIT_JURISDICTION: 'Limit jurisdiction',
-        EUROPASS: {
-            IDENTIFIER: {
-                SCHEME_ID: 'Scheme Id',
-                VALUE: 'Value'
-            },
-            ACHIEVED: {
-                WAS_DERIVED_FROM: {
-                    ASSESSED_BY: 'Assessed by',
-                },
-                WAS_INFLUENCED_BY: {
-                    SPECIFIED_BY: {
-                        LEARNING_ACTIVITY_TYPE: 'Learning activity type',
-                        TEACHES: 'Teaches',
-                        HAS_PART: 'Has part',
-                        SPECIALIZATION_OF: 'Specialization of'
-                    }
-                },
-                SPECIFIED_BY: {
-                    ENTRY_REQUIREMENTS_NOTE: 'Entry requirements note',
-                    LEARNING_OUTCOME: {
-                        NAME: 'Name',
-                        LEARNING_OUTCOME_TYPE: 'Learning outcome type',
-                        REUSABILITY_LEVEL: 'Reusability level',
-                        RELATED_SKILL: 'Related skill',
-                        RELATED_ESCO_SKILL: 'Related ESCO skill'
-                    },
-                    LEARNING_OPPORTUNITY_TYPE: 'Learning opportunity type',
-                    LEARNING_OUTCOME_DESCRIPTION: 'Learning outcome description',
-                    EDUCATION_SUBJECT: 'Education subject',
-                    CREDIT_POINTS: 'Credit points',
-                    EDUCATION_LEVEL: 'Education level',
-                    LEARNING_SETTING: 'Learning setting',
-                    TARGET_GROUP: 'Target group',
-                    LEARNING_ACTIVITY_SPECIFICATION: 'Learning activity specification',
-                    ASSESSMENT_SPECIFICATION: 'Assessment specification',
-                    ENTITLEMENT_SPECIFICATION: 'Entitlement specification',
-                    SPECIALIZATION_OF: 'Specialization of'
-                }
-            },
-            AWARDING_OPPORTUNITY: {
-                AWARDING_BODY: {
-                    EIDAS_LEGAL_IDENTIFIER: 'EIDAS legal identifier',
-                    REGISTRATION: 'Registration',
-                    PREFERRED_NAME: 'Preferred name',
-                },
-            },
-        }
+        SCHEME_ID: 'Scheme Id',
+        VALUE: 'Value',
+        ASSESSED_BY: 'Assessed by',
+        TEACHES: 'Teaches',
+        HAS_PART: 'Has part',
+        SPECIALIZATION_OF: 'Specialization of',
+        ENTRY_REQUIREMENTS_NOTE: 'Entry requirements note',
+        NAME: 'Name',
+        LEARNING_OUTCOME_TYPE: 'Learning outcome type',
+        REUSABILITY_LEVEL: 'Reusability level',
+        RELATED_SKILL: 'Related skill',
+        RELATED_ESCO_SKILL: 'Related ESCO skill',
+        LEARNING_OPPORTUNITY_TYPE: 'Learning opportunity type',
+        LEARNING_OUTCOME_DESCRIPTION: 'Learning outcome description',
+        EDUCATION_SUBJECT: 'Education subject',
+        CREDIT_POINTS: 'Credit points',
+        EDUCATION_LEVEL: 'Education level',
+        LEARNING_SETTING: 'Learning setting',
+        TARGET_GROUP: 'Target group',
+        LEARNING_ACTIVITY_SPECIFICATION: 'Learning activity specification',
+        ASSESSMENT_SPECIFICATION: 'Assessment specification',
+        ENTITLEMENT_SPECIFICATION: 'Entitlement specification',
+        SPECIALIZATION_OF: 'Specialization of',
+        EIDAS_LEGAL_IDENTIFIER: 'EIDAS legal identifier',
+        REGISTRATION: 'Registration',
+        PREFERRED_NAME: 'Preferred name',
     }
 }

@@ -14,7 +14,7 @@ import ItemValueComponent from "./ItemValueComponent.vue";
 import EntitlesToSpecifiedByComponent from "./EntitlesToSpecifiedByComponent.vue";
 
 export default {
-  name: "EuropassEntitlesToComponent",
+  name: "EntitlesToComponent",
   props: {
     entitlesTo: {}
   },

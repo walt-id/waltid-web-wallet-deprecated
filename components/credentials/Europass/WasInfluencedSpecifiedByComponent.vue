@@ -4,9 +4,9 @@
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="specifiedBy.title"/>
         <!-- identifier -->
           <div v-for="identifier in specifiedBy.identifier" v-bind:key="identifier">
-              <EuropassIdentifierComponent :identifier="identifier"/>
+              <IdentifierComponent :identifier="identifier"/>
           </div>
-          <LoopLiComponent :title="$t('LEARNING_ACTIVITY_TYPE')" :items="specifiedBy.learningActivityType"/>
+          <LoopLiComponent :title="$t('CREDENTIAL.LEARNING_ACTIVITY_TYPE')" :items="specifiedBy.learningActivityType"/>
           <ItemValueComponent :title="$t('CREDENTIAL.WORKLOAD')" :value="specifiedBy.workload"/>
           <LoopLiComponent :title="$t('CREDENTIAL.LANGUAGE')" :items="specifiedBy.language"/>
           <LoopLiComponent :title="$t('CREDENTIAL.ALTERNATIVE_LABEL')" :items="specifiedBy.alternativeLabel"/>
@@ -26,7 +26,7 @@
 import moment from "moment";
 import LoopLiComponent from "./LoopLiComponent.vue";
 import ItemValueComponent from "./ItemValueComponent.vue";
-import EuropassIdentifierComponent from "./EuropassIdentifierComponent.vue";
+import IdentifierComponent from "./IdentifierComponent.vue";
 
 export default {
   name: "WasInfluencedSpecifiedByComponent",
@@ -41,7 +41,7 @@ export default {
   components: {
     LoopLiComponent,
     ItemValueComponent,
-    EuropassIdentifierComponent
+    IdentifierComponent
   },
 }
 </script>

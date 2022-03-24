@@ -4,21 +4,21 @@
         <div v-for="achievement in hasPart.learningAchievements"  v-bind:key="achievement">
             <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="achievement.id"/>
             <div v-for="identifier in achievement.identifier"  v-bind:key="identifier">
-                <EuropassIdentifierComponent :identifier="identifier"/>
+                <IdentifierComponent :identifier="identifier"/>
             </div>
             <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="achievement.title"/>
             <!-- was derived from -->
             <h5>{{ $t("CREDENTIAL.WAS_DERIVED_FROM") }}</h5>
             <div v-for="derived in hasPart.wasDerivedFrom"  v-bind:key="derived">
-              <EuropassWasDerivedFromComponent :wasDerivedFrom="derived"/>
+              <WasDerivedFromComponent :wasDerivedFrom="derived"/>
             </div>
           <!-- was influenced by -->
             <h5>{{ $t("CREDENTIAL.WAS_INFLUENCED_BY") }}</h5>
             <div v-for="wasInfluencedBy in hasPart.wasInfluencedBy"  v-bind:key="wasInfluencedBy">
-                <EuropassWasInfluencedByComponent :wasInfluencedBy="wasInfluencedBy"/>
+                <WasInfluencedByComponent :wasInfluencedBy="wasInfluencedBy"/>
             </div>
           <!-- was awarded by -->
-          <EuropassWasAwardedByComponent :wasAwardedBy="hasPart.wasAwardedBy"/>
+          <WasAwardedByComponent :wasAwardedBy="hasPart.wasAwardedBy"/>
           <!-- specified by -->
           <h5>{{ $t("CREDENTIAL.SPECIFIED_BY") }}</h5>
           <div v-for="specifiedBy in hasPart.specifiedBy"  v-bind:key="specifiedBy">
@@ -31,14 +31,14 @@
 <script>
 import moment from "moment";
 import ItemValueComponent from "./ItemValueComponent.vue";
-import EuropassIdentifierComponent from "./EuropassIdentifierComponent.vue";
-import EuropassWasInfluencedByComponent from "./EuropassWasInfluencedByComponent.vue";
-import EuropassWasDerivedFromComponent from "./EuropassWasDerivedFromComponent.vue";
-import EuropassWasAwardedByComponent from "./EuropassWasAwardedByComponent.vue";
+import IdentifierComponent from "./IdentifierComponent.vue";
+import WasInfluencedByComponent from "./WasInfluencedByComponent.vue";
+import WasDerivedFromComponent from "./WasDerivedFromComponent.vue";
+import WasAwardedByComponent from "./WasAwardedByComponent.vue";
 import HasPartSpecifiedByComponent from "./HasPartSpecifiedByComponent.vue";
 
 export default {
-  name: "EuropassHasPartComponent",
+  name: "HasPartComponent",
   props: {
     hasPart: {}
   },
@@ -49,10 +49,10 @@ export default {
   },
   components: {
     ItemValueComponent,
-    EuropassIdentifierComponent,
-    EuropassWasDerivedFromComponent,
-    EuropassWasInfluencedByComponent,
-    EuropassWasAwardedByComponent,
+    IdentifierComponent,
+    WasDerivedFromComponent,
+    WasInfluencedByComponent,
+    WasAwardedByComponent,
     HasPartSpecifiedByComponent,
   },
 }

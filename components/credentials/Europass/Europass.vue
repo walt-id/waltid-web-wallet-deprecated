@@ -10,7 +10,7 @@
       ></div>
     </div>
     <div class="text-left">
-      <EuropassIdentifierComponent :identifier="credential.credentialSubject.identifier"/>
+      <IdentifierComponent :identifier="credential.credentialSubject.identifier"/>
     </div>
     <div class="text-left">
       <span class="col-12 pb-3">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- achieved -->
-    <EuropassAchievedComponent :achieved="credential.credentialSubject.achieved"/>
+    <AchievedComponent :achieved="credential.credentialSubject.achieved"/>
 
     <!-- learning achievemnt -->
     <!-- end learning achievement -->
@@ -46,8 +46,8 @@
 <script>
 import moment from "moment";
 import CredentialHeader from "../CredentialHeader.vue";
-import EuropassAchievedComponent from "./EuropassAchievedComponent.vue";
-import EuropassIdentifierComponent from "./EuropassIdentifierComponent.vue";
+import AchievedComponent from "./AchievedComponent.vue";
+import IdentifierComponent from "./IdentifierComponent.vue";
 
 export default {
   name: "Europass",
@@ -61,8 +61,8 @@ export default {
   },
   components: {
     CredentialHeader,
-    EuropassAchievedComponent,
-    EuropassIdentifierComponent,
+    AchievedComponent,
+    IdentifierComponent,
   },
 };
 </script>

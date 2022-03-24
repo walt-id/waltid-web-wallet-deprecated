@@ -1,8 +1,8 @@
 <template>
     <span class="col-12 pb-3" v-if="identifier">
         <h5>{{ $t("CREDENTIAL.IDENTIFIER") }}</h5>
-        <ItemValueComponent :title="$t('CREDENTIAL.EUROPASS.IDENTIFIER.SCHEME_ID')" :value="identifier.schemeID"/>
-        <ItemValueComponent :title="$t('CREDENTIAL.EUROPASS.IDENTIFIER.VALUE')" :value="identifier.value"/>
+        <ItemValueComponent :title="$t('CREDENTIAL.SCHEME_ID')" :value="identifier.schemeID"/>
+        <ItemValueComponent :title="$t('CREDENTIAL.VALUE')" :value="identifier.value"/>
     </span>
 </template>
 
@@ -11,7 +11,7 @@ import moment from "moment";
 import ItemValueComponent from './ItemValueComponent.vue';
 
 export default {
-  name: "EuropassIdentifierComponent",
+  name: "IdentifierComponent",
   props: {
     identifier: {}
   },

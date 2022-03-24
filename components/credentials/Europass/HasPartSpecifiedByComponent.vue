@@ -16,7 +16,7 @@ import moment from "moment";
 import ItemValueComponent from "./ItemValueComponent.vue";
 
 export default {
-  name: "EuropassHasPartComponent",
+  name: "HasPartSpecifiedByComponent",
   props: {
     specifiedBy: {}
   },

@@ -11,28 +11,28 @@
           <LoopLiComponent :items="achievedValue.additionalNote" :title="$t('CREDENTIAL.ADDITIONAL_NOTE')"/>
           <!-- identifier -->
           <div v-for="identifier in achievedValue.identifier" v-bind:key="identifier">
-              <EuropassIdentifierComponent :identifier="identifier"/>
+              <IdentifierComponent :identifier="identifier"/>
           </div>
           <!-- was derived from -->
           <span class="col-12 px-3">
             <h5>{{ $t("CREDENTIAL.WAS_DERIVED_FROM") }}</h5>
             <div v-for="derived in achievedValue.wasDerivedFrom"  v-bind:key="derived">
-              <EuropassWasDerivedFromComponent :wasDerivedFrom="derived"/>
+              <WasDerivedFromComponent :wasDerivedFrom="derived"/>
             </div>
           </span>
           <!-- was influenced by -->
           <span class="col-12 px-3">
             <h5>{{ $t("CREDENTIAL.WAS_INFLUENCED_BY") }}</h5>
             <div v-for="wasInfluencedBy in achievedValue.wasInfluencedBy"  v-bind:key="wasInfluencedBy">
-              <EuropassWasInfluencedByComponent :wasInfluencedBy="wasInfluencedBy"/>
+              <WasInfluencedByComponent :wasInfluencedBy="wasInfluencedBy"/>
             </div>
           </span>
           <!-- was awarded by -->
-          <EuropassWasAwardedByComponent :wasAwardedBy="achievedValue.wasAwardedBy"/>
+          <WasAwardedByComponent :wasAwardedBy="achievedValue.wasAwardedBy"/>
           <!-- has part -->
-          <EuropassHasPartComponent :hasPart="achievedValue.hasPart"/>
+          <HasPartComponent :hasPart="achievedValue.hasPart"/>
           <!-- entitles to -->
-          <EuropassEntitlesToComponent :entitlesTo="achievedValue.entitlesTo"/>
+          <EntitlesToComponent :entitlesTo="achievedValue.entitlesTo"/>
           <!-- specified by -->
           <h5>{{ $t("CREDENTIAL.WAS_INFLUENCED_BY") }}</h5>
           <div v-for="specifiedBy in achievedValue.specifiedBy"  v-bind:key="specifiedBy">
@@ -46,16 +46,16 @@
 import moment from "moment";
 import ItemValueComponent from "./ItemValueComponent.vue"
 import LoopLiComponent from "./LoopLiComponent.vue";
-import EuropassIdentifierComponent from "./EuropassIdentifierComponent.vue";
-import EuropassWasInfluencedByComponent from "./EuropassWasInfluencedByComponent.vue";
-import EuropassWasDerivedFromComponent from "./EuropassWasDerivedFromComponent.vue";
-import EuropassWasAwardedByComponent from "./EuropassWasAwardedByComponent.vue";
-import EuropassHasPartComponent from "./EuropassHasPartComponent.vue";
-import EuropassEntitlesToComponent from "./EuropassEntitlesToComponent.vue";
+import IdentifierComponent from "./IdentifierComponent.vue";
+import WasInfluencedByComponent from "./WasInfluencedByComponent.vue";
+import WasDerivedFromComponent from "./WasDerivedFromComponent.vue";
+import WasAwardedByComponent from "./WasAwardedByComponent.vue";
+import HasPartComponent from "./HasPartComponent.vue";
+import EntitlesToComponent from "./EntitlesToComponent.vue";
 import AchievedSpecifiedByComponent from "./AchievedSpecifiedByComponent.vue";
 
 export default {
-  name: "EuropassAchievedComponent",
+  name: "AchievedComponent",
   props: {
     achieved: {},
   },
@@ -67,12 +67,12 @@ export default {
   components: {
     LoopLiComponent,
     ItemValueComponent,
-    EuropassIdentifierComponent,
-    EuropassWasDerivedFromComponent,
-    EuropassWasInfluencedByComponent,
-    EuropassWasAwardedByComponent,
-    EuropassHasPartComponent,
-    EuropassEntitlesToComponent,
+    IdentifierComponent,
+    WasDerivedFromComponent,
+    WasInfluencedByComponent,
+    WasAwardedByComponent,
+    HasPartComponent,
+    EntitlesToComponent,
     AchievedSpecifiedByComponent,
   },
 };
