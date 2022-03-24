@@ -16,7 +16,7 @@
                         <div :class="this.wizardIndex === 0 ? '': 'animate__fadeOutRight hide'">
                          <form id="key-import-form" @submit.prevent="keyImport">
                             <div class="_item">
-                              <p>Import a key in PME or JWK format.</p>
+                              <p>Import a key in PEM or JWK format.</p>
                               <p class="text-primary">Asymmetric key</p>
                               <textarea :class="this.error ? '_asymmetric-key mt-3 border-danger' : '_asymmetric-key mt-3'" :data="this.asymmetrickey" v-model="asymmetrickey"></textarea>
                             </div>

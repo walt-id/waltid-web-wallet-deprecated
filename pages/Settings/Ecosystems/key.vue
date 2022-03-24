@@ -54,8 +54,11 @@
                               <p><strong>Successfully created</strong></p>
                               <p>{{this.didHost}}</p>
                               <textarea name="did-content" id="" cols="30" rows="5" class="mt-2 _did-content" :data="this.didContent" v-model="this.didContent"></textarea>
-                              <p v-if="coppied" class="text-secondary _bounce" style="font-size: 13px">Copied successfully</p>
-                              <button type="button" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2" ><i class="bi bi-files me-2"></i>Copy DID</button>
+                              <br>
+                              <p v-if="coppied" class="text-secondary _bounce mt-2" style="font-size: 13px">Copied successfully</p>
+                              <br>
+                              <a hre="#copy" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2" ><i class="bi bi-files me-2"></i>Copy DID</a>
+                              <br>
                               <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
                             </div>
                         </div>
