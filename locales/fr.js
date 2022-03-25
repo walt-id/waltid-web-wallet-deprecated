@@ -69,8 +69,6 @@ export default {
         PROGRAM_NAME: 'Nom du programme',
         DOMAIN: 'Domain',
         GRADING_SCHEMA: 'Schéma de notation',
-        LEARNING_ACHIEVEMENT: 'Acquis d\'apprentissage',
-        ECTS_CREDIT_POINTS: 'ECTS points de crédit',
         TYPE: {
             VerifiableId: 'Document d\'identification vérifiable',
             VerifiableDiploma: 'Diplôme universitaire vérifiable',
@@ -78,7 +76,8 @@ export default {
             ProofOfResidence: 'Certificat de Résidence',
             ParticipantCredential: "Gaia-X Identifiant du participant",
             VerifiableAttestation: "Verifiable attestation",
-            EuropeanBankIdentity: "Identité bancaire européenne"
+            EuropeanBankIdentity: "Identité bancaire européenne",
+            Europass: "Europass"
         },
         REGISTRATION_NUMBER: 'Numéro d\'entreprise',
         LEGALLY_BINDING_NAME: 'Nom de l\'entreprise ',
@@ -109,7 +108,6 @@ export default {
         MODE: 'Mode',
         ISCEDF_CODE: 'ISCEDF code',
         IDENTIFIER: 'Identifier',
-        HAS_PART: 'Has part',
         ACHIEVED: 'Achieved',
         WAS_DERIVED_FROM: 'Was derived from',
         WAS_INFLUENCED_BY: 'Was influenced by',
@@ -132,7 +130,6 @@ export default {
         ASSESSED_BY: 'Assessed by',
         TEACHES: 'Teaches',
         HAS_PART: 'Has part',
-        SPECIALIZATION_OF: 'Specialization of',
         ENTRY_REQUIREMENTS_NOTE: 'Entry requirements note',
         NAME: 'Name',
         LEARNING_OUTCOME_TYPE: 'Learning outcome type',

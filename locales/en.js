@@ -73,8 +73,6 @@ export default {
         DOMAIN: 'Domain',
         DELETE: 'Delete credential',
         GRADING_SCHEMA: 'Grading schema',
-        LEARNING_ACHIEVEMENT: 'Learning achievement',
-        ECTS_CREDIT_POINTS: 'ECTS credit points',
         TYPE: {
             VerifiableId: 'Verifiable ID document',
             VerifiableDiploma: 'Verifiable university diploma',
@@ -82,7 +80,8 @@ export default {
             ProofOfResidence: 'Proof of residence',
             ParticipantCredential: "Gaia-X Participant Credential",
             VerifiableAttestation: "Verifiable attestation",
-            EuropeanBankIdentity: "European bank identity"
+            EuropeanBankIdentity: "European bank identity",
+            Europass: "Europass"
         },
         REGISTRATION_NUMBER: 'Registration number',
         LEGALLY_BINDING_NAME: 'Legally binding name',
@@ -135,8 +134,6 @@ export default {
         VALUE: 'Value',
         ASSESSED_BY: 'Assessed by',
         TEACHES: 'Teaches',
-        HAS_PART: 'Has part',
-        SPECIALIZATION_OF: 'Specialization of',
         ENTRY_REQUIREMENTS_NOTE: 'Entry requirements note',
         NAME: 'Name',
         LEARNING_OUTCOME_TYPE: 'Learning outcome type',
