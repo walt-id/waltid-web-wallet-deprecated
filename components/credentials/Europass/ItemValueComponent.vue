@@ -1,5 +1,5 @@
 <template>
-    <span class="col-12 pb-3">
+    <span class="col-12 pb-3" v-if="value">
         <h5>{{ title }}</h5>
         <p>{{ value }}</p>
     </span>

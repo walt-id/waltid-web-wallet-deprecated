@@ -5,7 +5,6 @@
       </span>
       <!-- outer loop -->
         <div v-for="achievedValue in achieved"  v-bind:key="achievedValue">
-          <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="achievedValue.id"/>
           <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="achievedValue.title"/>
           <!-- additional note -->
           <LoopLiComponent :items="achievedValue.additionalNote" :title="$t('CREDENTIAL.ADDITIONAL_NOTE')"/>
@@ -28,13 +27,16 @@
             </div>
           </span>
           <!-- was awarded by -->
-          <WasAwardedByComponent :wasAwardedBy="achievedValue.wasAwardedBy"/>
+          <span class="col-12 px-3" v-if="achievedValue.wasAwardedBy">
+            <h5>{{ $t("CREDENTIAL.WAS_AWARDED_BY") }}</h5>
+            <WasAwardedByComponent :wasAwardedBy="achievedValue.wasAwardedBy"/>
+          </span>
           <!-- has part -->
           <HasPartComponent :hasPart="achievedValue.hasPart"/>
           <!-- entitles to -->
           <EntitlesToComponent :entitlesTo="achievedValue.entitlesTo"/>
           <!-- specified by -->
-          <h5>{{ $t("CREDENTIAL.WAS_INFLUENCED_BY") }}</h5>
+          <h5>{{ $t("CREDENTIAL.SPECIFIED_BY") }}</h5>
           <div v-for="specifiedBy in achievedValue.specifiedBy"  v-bind:key="specifiedBy">
             <AchievedSpecifiedByComponent :specifiedBy="specifiedBy"/>
            </div>
