@@ -1,8 +1,7 @@
 <template>
-    <span class="col-12 px-3">
+    <span class="col-12 px-3" v-if="hasPart">
         <h5>{{ $t("CREDENTIAL.LEARNING_ACHIEVEMENT") }}</h5>
         <div v-for="achievement in hasPart.learningAchievements"  v-bind:key="achievement">
-            <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="achievement.id"/>
             <div v-for="identifier in achievement.identifier"  v-bind:key="identifier">
                 <IdentifierComponent :identifier="identifier"/>
             </div>

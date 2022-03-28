@@ -1,6 +1,5 @@
 <template>
     <span class="col-12 px-3">
-        <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="specifiedBy.id"/>
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="specifiedBy.title"/>
         <ItemValueComponent :title="$t('CREDENTIAL.VOLUME_OF_LEARNING')" :value="specifiedBy.volumeOfLearning"/>
         <ItemValueComponent :title="$t('CREDENTIAL.ECTS_CREDIT_POINTS')" :value="specifiedBy.eCTSCreditPoints"/>

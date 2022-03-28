@@ -1,6 +1,5 @@
 <template>
-    <span class="col-12 px-3">
-        <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="entitlesTo.id"/>
+    <span class="col-12 px-3" v-if="entitlesTo">
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="entitlesTo.title"/>
         <ItemValueComponent :title="$t('CREDENTIAL.DEFINITION')" :value="entitlesTo.definition"/>
         <ItemValueComponent :title="$t('CREDENTIAL.ISSUED_DATE')" :value="entitlesTo.issuedDate"/>

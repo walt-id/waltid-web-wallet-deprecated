@@ -1,7 +1,6 @@
 <template>
     <span class="col-12 pb-3" v-if="specifiedBy">
         <h5>{{ title }}</h5>
-        <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="specifiedBy.id"/>
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="specifiedBy.title"/>
         <!-- identifier -->
           <div v-for="identifier in specifiedBy.identifier" v-bind:key="identifier">
@@ -15,7 +14,7 @@
           <LoopLiComponent :title="$t('CREDENTIAL.ADDITIONAL_NOTE')" :items="specifiedBy.additionalNote"/>
           <ItemValueComponent :title="$t('CREDENTIAL.HOME_PAGE')" :value="specifiedBy.homePages"/>
           <LoopLiComponent :title="$t('CREDENTIAL.SUPPLEMENTARY_DOCUMENT')" :items="specifiedBy.suplementaryDocument"/>
-          <ItemValueComponent :title="$t('CREDENTIAL.MODE')" :value="specifiedBy.mode"/>
+          <LoopLiComponent :title="$t('CREDENTIAL.MODE')" :items="specifiedBy.mode"/>
           <!-- TODO -->
           <!-- teaches -->
           <!-- hasPart -->

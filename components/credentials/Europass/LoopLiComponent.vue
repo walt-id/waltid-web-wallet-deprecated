@@ -1,5 +1,5 @@
 <template>
-  <span class="col-12 pb-3">
+  <span class="col-12 pb-3" v-if="items">
     <h5>{{ title }}</h5>
     <ul>
       <li v-for="value in items" v-bind:key="value">

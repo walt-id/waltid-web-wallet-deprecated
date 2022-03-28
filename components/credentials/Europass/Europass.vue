@@ -5,15 +5,15 @@
       <IdentifierComponent :identifier="credential.credentialSubject.identifier"/>
     </div>
     <div class="text-left">
-      <span class="col-12 pb-3">
+      <span class="col-12 pb-3" v-if="credential.credentialSubject.givenNames">
         <h5>{{ $t("CREDENTIAL.FIRST_NAME") }}</h5>
         <p>{{ credential.credentialSubject.givenNames }}</p>
       </span>
-      <span class="col-12 px-3">
+      <span class="col-12 px-3" v-if="credential.credentialSubject.familyName">
         <h5>{{ $t("CREDENTIAL.LAST_NAME") }}</h5>
         <p>{{ credential.credentialSubject.familyName }}</p>
       </span>
-      <span class="col-12 px-3">
+      <span class="col-12 px-3" v-if="credential.credentialSubject.dateOfBirth">
         <h5>{{ $t("CREDENTIAL.DATE_OF_BIRTH") }}</h5>
         <p>{{ credential.credentialSubject.dateOfBirth }}</p>
       </span>

@@ -1,6 +1,5 @@
 <template>
     <span class="col-12 pb-3">
-        <ItemValueComponent :title="$t('CREDENTIAL.ID')" :value="wasInfluencedBy.id"/>
         <ItemValueComponent :title="$t('CREDENTIAL.TITLE')" :value="wasInfluencedBy.title"/>
         <!-- identifier -->
           <div v-for="identifier in wasInfluencedBy.identifier" v-bind:key="identifier">
