@@ -106,7 +106,7 @@ export default {
     async tokenSubmit (){
         try{
             const data = await this.$axios.$post('/api/wallet/did/create?method=ebsi', {
-                "bearerToken": this.token
+                "didEbsiBearerToken": this.token
             })
             console.log(data.data)
             this.tokenSubmitted=true

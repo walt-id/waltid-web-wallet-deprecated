@@ -97,24 +97,17 @@ export default {
     
     async keyImport (){
         this.importLoading= true;
-        this.wizardIndex = this.wizardIndex+1
-        /*await this.$axios.$post('/api/wallet/keys/import', {
-            "data": this.asymmetrickey
+        await this.$axios
+        .$post("/api/wallet/keys/import", this.asymmetrickey)
+        .then((res) => {
+          console.log(res);
+          this.wizardIndex = this.wizardIndex + 1;
         })
-        .then(
-            res=>{
-                console.log(res)
-                this.importLoading=false;
-                this.wizardIndex = this.wizardIndex+1
-            }
-        )
-        .catch(
-            e=>{
-                console.log(e)
-                this.importLoading=false;
-                this.error=true
-            }
-        )*/
+        .catch((e) => {
+          console.log(e);
+          this.error = true;
+        })
+        .finally(() => (this.importLoading = false));
     },
     logout: async function() {
       await this.$auth.logout();
