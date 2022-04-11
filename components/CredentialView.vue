@@ -1,5 +1,6 @@
 <template>
   <div class="p-4">
+    <canvas :id="'qr-' + credential.id" v-on:click="loadQr()" />
     <VerifiableVaccinationCertificate v-if="credential.type[credential.type.length-1] == 'VerifiableVaccinationCertificate'" :credential="credential" />
     <VerifiableID v-if="credential.type[credential.type.length-1] == 'VerifiableId'" :credential="credential" />
     <VerifiableDiploma v-if="credential.type[credential.type.length-1] == 'VerifiableDiploma'" :credential="credential" />
@@ -12,6 +13,7 @@
 
 <script>
 import moment from "moment"
+import QRious from "qrious"
 export default {
   name: "CredentialView",
   props: {
@@ -19,8 +21,15 @@ export default {
   },
   data() {
     return {
-      moment: moment
+      moment: moment,
     }
+  },
+  mounted() {
+    new QRious({
+        element: document.getElementById('qr-' + this.credential.id),
+        value: JSON.stringify(this.credential),
+        size: 300
+      })
   }
 }
 </script>
