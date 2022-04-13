@@ -996,7 +996,7 @@ body ._main #widget ._window ._window-content p {
   }
   body ._main #widget {
     width: 60vw;
-    height: 60vh;
+    height: 70vh;
     min-height: 500px;
     margin-left: 0;
   }
@@ -1008,7 +1008,6 @@ body ._main #widget ._window ._window-content p {
   body ._main #widget ._content {
     min-width: 50vw;
     min-height: 46vh;
-    height: 46vh;
     border-radius: 0;
     border: none;
   }
