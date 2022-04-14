@@ -932,6 +932,9 @@ body ._main #widget ._window ._window-content p {
     width: 27vw;
     min-height: 500px;
   }
+  body ._main #content {
+    min-width: 20vw;
+  }
   body ._main #widget ._toggle-menu {
     height: 7vh;
     max-height: 7vh;
@@ -946,7 +949,7 @@ body ._main #widget ._window ._window-content p {
   }
   body ._main #widget ._content ._scrollable {
     overflow: auto;
-    max-height: 48vh;
+    max-height: 35vh;
     max-width: 25vw;
     min-width: 25vw;
   }
@@ -955,7 +958,7 @@ body ._main #widget ._window ._window-content p {
     min-height: 100px;
   }
   body ._main #widget ._content ._container {
-    max-height: 48vh;
+    max-height: 35vh;
     max-width: 25vw;
     min-width: 25vw;
   }
@@ -963,7 +966,7 @@ body ._main #widget ._window ._window-content p {
     width: 22vw;
   }
   body ._main #widget ._content ._container-list {
-    max-height: 48vh;
+    max-height: 35vh;
     max-width: 25vw;
     min-width: 25vw;
   }
@@ -999,6 +1002,9 @@ body ._main #widget ._window ._window-content p {
     height: 70vh;
     min-height: 500px;
     margin-left: 0;
+  }
+  body ._main #content {
+    min-width: 50vw;
   }
   body ._main #widget ._toggle-menu {
     height: 7vh;
@@ -1142,6 +1148,9 @@ body ._main #widget ._window ._window-content p {
     min-height: 100vh;
     margin-left: 0;
     border-radius: 0;
+  }
+  body ._main #content {
+    min-width: 95vw;
   }
   body ._main #widget ._toggle-menu {
     height: 7vh;
