@@ -20,6 +20,9 @@
                   <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
               </li>
               <li>
+                  <NuxtLink to="/NFTs" v-if="showNFTSLink">{{$t('MENU.NFTS')}}</NuxtLink>
+              </li>
+              <li>
                   <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
               </li>
               <li>
@@ -33,22 +36,6 @@
       </div>
       <div class="_copyright _blue-color d-flex align-items-center justify-content-center">
         <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
-      </div>
-      <div id="menu-content" class="_menu-content hide">
-          <ul>
-              <li>
-                  <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
-              </li>
-              <li>
-                  <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
-              </li>
-              <li>
-                  <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
-              </li>
-              <li>
-                <a href="#" @click="logout">{{$t('MENU.LOGOUT')}}</a>
-              </li>
-          </ul>
       </div>
     </div>
     </section>
@@ -66,7 +53,8 @@ export default {
     return {
       copyright: config.copyright,
       trigger: true,
-      hideMenu: this.$route.name == "Login"
+      hideMenu: this.$route.name == "Login",
+      showNFTSLink: false
     }
   },
   // computed: {
@@ -78,7 +66,7 @@ export default {
       if(!this.trigger)
         this.menuTrigger()
       this.hideMenu = this.$route.name == "Login"
-      console.log(this.$nuxt.$children[0])
+      this.showNFTSLink = (this.$auth.user.ethAccount != null)
     }
   },
   methods:{
