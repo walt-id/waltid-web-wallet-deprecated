@@ -1,112 +1,43 @@
 <template>
-  <section
-    class="
-      _main
-      bg-light
-      row
-      align-items-center
-      justify-content-center
-      justify-content-lg-start
-      justify-content-md-center
-      justify-content-sm-center
-      p-0
-    "
-  >
-    <div id="widget" class="_form d-black bg-w shadow-lg text-center">
-      <div
-        class="
-          _toggle-menu
-          position-sticky
-          d-flex
-          justify-content-end
-          col-12
-          align-items-center
-          px-3
-        "
-      >
-        <a id="toggle-menu" @click="menuTrigger">
-          <div id="dash-1" class="_dash my-2"></div>
-          <div id="dash-2" class="_dash my-2"></div>
-          <div id="dash-3" class="_dash my-2"></div>
-        </a>
-      </div>
-      <div class="_content justify-content-center d-flex align-items-center">
-        <div id="content">
-          <h2 class="_animation-fade">{{ $t("ADD_CREDENTIAL.TITLE") }}</h2>
-          <div class="mt-4 d-flex justify-content-center align-items-center" style="height: 200px">
-            <div>
-              <div>
-              <p class="mb-2 text-secondary">Choose issuer</p>
-              <div>
-                <select class="form-select" aria-label="Default select example" v-model="selectedIssuer" @change="fetchIssuerMeta($event)">
-                  <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
-                   {{ issuer.description }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div v-if="selectedIssuerMeta != null">
-              <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
-              <div>
-                <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
-                  <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
-                    {{ schema.name }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div v-if="selectedCredentialSchema">
-              <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
-                Fetch credential
-              </button>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div id="menu-content" class="_menu-content hide">
-          <ul>
-            <li>
-              <NuxtLink to="/credentials">{{
-                $t("MENU.CREDENTIALS")
-              }}</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/connections">{{
-                $t("MENU.CONNECTIONS")
-              }}</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/settings">{{ $t("MENU.SETTINGS") }}</NuxtLink>
-            </li>
-            <li>
-              <a @click="logout">{{ $t("MENU.LOGOUT") }}</a>
-            </li>
-          </ul>
+  <div>
+    <h2 class="_animation-fade">{{ $t("ADD_CREDENTIAL.TITLE") }}</h2>
+    <div class="mt-4 d-flex justify-content-center align-items-center" style="height: 200px">
+      <div>
+        <div>
+        <p class="mb-2 text-secondary">Choose issuer</p>
+        <div>
+          <select class="form-select" aria-label="Default select example" v-model="selectedIssuer" @change="fetchIssuerMeta($event)">
+            <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
+              {{ issuer.description }}
+            </option>
+          </select>
         </div>
       </div>
-      <div
-        class="
-          _copyright
-          _blue-color
-          d-flex
-          align-items-center
-          justify-content-center
-        "
-      >
-        <a id="copyright" href="https://walt.id/" target="_blank">{{copyright}}</a>
+      <div v-if="selectedIssuerMeta != null">
+        <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
+        <div>
+          <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
+            <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
+              {{ schema.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div v-if="selectedCredentialSchema">
+        <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
+          Fetch credential
+        </button>
+      </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script>
-import {menuTransitionShow, menuTransitionHide} from '../helpers/menuTransation'
-import {config} from '/config.js'
 
 export default {
   name: "AddCredential",
   data() {
     return {
-      copyright: config.copyright,
       selectedIssuer: null,
       selectedIssuerMeta: null,
       selectedCredentialSchema: null,
@@ -149,20 +80,7 @@ export default {
         walletRedirectUri: '/Credentials'
       })
       window.location = location
-    },
-    menuTrigger: function(){
-          if(this.trigger === true){
-              menuTransitionShow()
-              this.trigger = false
-          }
-          else{
-              menuTransitionHide()
-              this.trigger = true
-          }
-    },
-    logout: async function() {
-        await this.$auth.logout();
-      },
+    }
   },
 };
 </script>
