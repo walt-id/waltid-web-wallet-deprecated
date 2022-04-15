@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <div class="text-center">
-      <canvas :id="'qr-' + credential.id" v-on:click="loadQr()" />
+      <canvas :id="'qr-' + credential.id" />
     </div>
     <VerifiableVaccinationCertificate v-if="credential.type[credential.type.length-1] == 'VerifiableVaccinationCertificate'" :credential="credential" />
     <VerifiableID v-if="credential.type[credential.type.length-1] == 'VerifiableId'" :credential="credential" />

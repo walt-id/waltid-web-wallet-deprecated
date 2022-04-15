@@ -7,10 +7,12 @@
             </form>
         </div>
         <div class="_scrollable d-flex flex-column align-items-center">
-            <div class="_card d-flex" v-for="nft in filteredList" v-bind:key="nft.id.tokenId">
-                <span>{{nft.description}}</span>
-                <img :src="nft.metadata.image" class="img-fluid img-thumbnail rounded mx-auto d-block" />
-            </div>
+          <div class="mx-auto w-50 mb-3" v-for="nft in filteredList" v-bind:key="nft.id.tokenId">
+            <a href="#" @click.prevent="navToNFT(nft)">
+              <img :src="nft.metadata.image" class="img-fluid img-thumbnail" />
+              <div style="font-size: 0.7rem; font-weight: bold;">{{nft.description}}</div>
+            </a>
+          </div>
         </div>
     </div>
 </template>
@@ -22,7 +24,8 @@ export default {
   data() {
     return {
       search: '',
-      nfts: []
+      nfts: [],
+      chain: this.$route.params.chain
     }
   },
   computed: {
@@ -32,9 +35,9 @@ export default {
       })
     }
   },
-  async asyncData ({ $axios, $auth }) {
+  async asyncData ({ $axios, $auth, route }) {
     if($auth.user.ethAccount != null) {
-        const nfts = await $axios.$get("/v1/nft/chain/RINKEBY/owner/" + $auth.user.ethAccount)
+        const nfts = await $axios.$get("/v1/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
         return { nfts }
     } else {
         return {
@@ -43,6 +46,9 @@ export default {
     }
   },
   methods:{
+    navToNFT(nft) {
+      this.$router.push({name: "nfts-chain-id", params: { chain: this.chain, id: nft.contract.address + ":" + nft.id.tokenId}})
+    }
   }
 };
 </script>

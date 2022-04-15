@@ -159,5 +159,13 @@ export default {
     NFTS: {
         TITLE: 'My NFTs',
         SEARCH: 'Search'
+    },
+    NFT: {
+        CONTRACT_ADDRESS: 'Contract address',
+        TOKEN_ID: 'Token ID',
+        TOKEN_STANDARD: 'Token standard',
+        BLOCKCHAIN: 'Blockchain',
+        NAME: 'Name',
+        DESCRIPTION: 'Description'
     }
 }

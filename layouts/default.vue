@@ -20,7 +20,7 @@
                   <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
               </li>
               <li>
-                  <NuxtLink to="/NFTs" v-if="showNFTSLink">{{$t('MENU.NFTS')}}</NuxtLink>
+                  <NuxtLink :to="'/nfts/' + defaultChain" v-if="showNFTSLink">{{$t('MENU.NFTS')}}</NuxtLink>
               </li>
               <li>
                   <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
@@ -53,20 +53,25 @@ export default {
     return {
       copyright: config.copyright,
       trigger: true,
-      hideMenu: this.$route.name == "Login",
-      showNFTSLink: false
     }
   },
-  // computed: {
-  // },
+  computed: {
+    showNFTSLink() {
+      return this.$auth.user != null && this.$auth.user.ethAccount != null
+    },
+    defaultChain() {
+      return this.$store.state.wallet.defaultChain
+    },
+    hideMenu() {
+      return this.$route.name == "Login"
+    }
+  },
   // async asyncData ({ $axios }) {
   // },
   watch: {
     $route() {
       if(!this.trigger)
         this.menuTrigger()
-      this.hideMenu = this.$route.name == "Login"
-      this.showNFTSLink = (this.$auth.user.ethAccount != null)
     }
   },
   methods:{
