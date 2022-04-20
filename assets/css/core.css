@@ -1236,7 +1236,7 @@ body ._main #widget ._window ._window-content p {
   }
   body ._main #widget ._window {
     margin: 0;
-    height: 90vh;
+    height: 100%;
     min-height: 420px;
     width: 100vw;
   }
