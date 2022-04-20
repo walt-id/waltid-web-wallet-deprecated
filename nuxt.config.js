@@ -61,7 +61,8 @@ export default {
 
   proxy: {
    //"/api/": "https://wallet.waltid.org"
-   "/api/": "http://localhost:8080"
+   "/api/": "http://localhost:8080",
+   "/v1/nft": "https://nftkit.waltid.org"
   },
   auth: {
     strategies: {

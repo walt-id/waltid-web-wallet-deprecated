@@ -31,6 +31,7 @@ export default {
     BACK: 'Back',
     MENU: {
         CREDENTIALS: 'Credentials',
+        NFTS: 'NFTs',
         CONNECTIONS: 'Connections',
         SETTINGS: 'Settings',
         LOGOUT: 'Logout'
@@ -154,5 +155,17 @@ export default {
         EIDAS_LEGAL_IDENTIFIER: 'EIDAS legal identifier',
         REGISTRATION: 'Registration',
         PREFERRED_NAME: 'Preferred name',
+    },
+    NFTS: {
+        TITLE: 'My NFTs',
+        SEARCH: 'Search'
+    },
+    NFT: {
+        CONTRACT_ADDRESS: 'Contract address',
+        TOKEN_ID: 'Token ID',
+        TOKEN_STANDARD: 'Token standard',
+        BLOCKCHAIN: 'Blockchain',
+        NAME: 'Name',
+        DESCRIPTION: 'Description'
     }
 }
