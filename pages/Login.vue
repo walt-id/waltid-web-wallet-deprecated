@@ -29,10 +29,10 @@
             </button>
           </div>
           <div>
-            <a href="#metamask" class="_meta-mask btn" @click="metamask">
+            <a href="#metamask" class="_meta-mask btn" @click="web3modal">
               <span class="d-flex justify-content-center align-items-center">
-                <img src="https://i.ibb.co/dK5Fb6N/metamsk-icon.png" width="20px" class="mx-2" />
-                <p>MetaMask</p>
+                <i class="bi bi-wallet2 mx-2 text-white"></i>
+                <p>Connect wallet</p>
               </span> 
             </a>
           </div>
@@ -102,6 +102,20 @@
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import {config} from '/config.js'
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
+const providerOptions = {
+  walletconnect: {
+    package: WalletConnectProvider, // required
+    options: {
+      rpc: {
+        4: "https://rinkeby.infura.io/v3/"
+      },
+      chainId: 4
+    }
+  }
+};
 
 export default {
   name: 'Login',
@@ -238,6 +252,34 @@ export default {
       else{
         this.error = true
         this.errorMessage = "Please install MetaMask!"
+      }
+    },
+    async web3modal () {
+      const web3Modal = new Web3Modal({
+        cacheProvider: false, // optional
+        providerOptions // required
+      });
+      const provider = await web3Modal.connect()
+      console.log("provider", provider)
+      if(provider.isMetaMask) {
+        this.eth_account = provider.selectedAddress
+      } else {
+        this.eth_account = provider.accounts[0]
+        provider.disconnect()
+      }
+
+      try {
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+          id: `${this.eth_account}`,
+          }
+        })
+        this.$auth.setUser(loginResponse.data)
+        this.$router.push("/")
+      } catch (e) {
+        console.log(e.response.data)
+        this.error = true
+        this.errorMessage = e.response.data.title
       }
     },
     // is a use Experience method to reset error state in retyping
