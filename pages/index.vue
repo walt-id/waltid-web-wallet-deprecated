@@ -3,12 +3,13 @@
 </template>
 
 <script>
+import {config} from '/config.js'
 
 export default {
-  name: 'Credentials',
+  name: 'Home',
   middleware: [
     function ({redirect}) {
-      redirect('/Credentials')
+      redirect(config.home)
     }
   ]
 };

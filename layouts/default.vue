@@ -16,16 +16,16 @@
         </div>
         <div id="menu-content" class="_menu-content hide">
           <ul>
-              <li>
+              <li v-if="!config.hidePage.credentials">
                   <NuxtLink to="/credentials">{{$t('MENU.CREDENTIALS')}}</NuxtLink>
               </li>
-              <li>
+              <li v-if="!config.hidePage.nfts">
                   <NuxtLink :to="'/nfts/' + defaultChain" v-if="showNFTSLink">{{$t('MENU.NFTS')}}</NuxtLink>
               </li>
-              <li>
+              <li v-if="!config.hidePage.connections">
                   <NuxtLink to="/connections">{{$t('MENU.CONNECTIONS')}}</NuxtLink>
               </li>
-              <li>
+              <li v-if="!config.hidePage.settings">
                   <NuxtLink to="/settings">{{$t('MENU.SETTINGS')}}</NuxtLink>
               </li>
               <li>
@@ -53,6 +53,7 @@ export default {
     return {
       copyright: config.copyright,
       trigger: true,
+      config: config
     }
   },
   computed: {
