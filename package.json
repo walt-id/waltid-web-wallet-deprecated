@@ -27,6 +27,7 @@
         "js-cookie": "^3.0.1",
         "moment": "^2.29.1",
         "nuxt": "^2.15.7",
+        "qr-scanner": "^1.4.1",
         "qrious": "^4.0.2",
         "vue3-clipboard": "^1.0.0",
         "web3modal": "^1.9.7"
