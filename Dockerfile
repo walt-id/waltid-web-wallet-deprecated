@@ -1,6 +1,8 @@
 FROM node:14 as buildstage
+COPY ./package.json /package.json
+RUN yarn install
 COPY . /
-RUN yarn install && yarn generate
+RUN yarn generate
 FROM nginx:1.15.10-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx --from=buildstage /dist/ /usr/share/nginx/html/
