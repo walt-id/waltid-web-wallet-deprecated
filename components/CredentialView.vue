@@ -10,6 +10,7 @@
     <ParticipantCredential v-if="credential.type[credential.type.length-1] == 'ParticipantCredential'" :credential="credential" />
     <EuropeanBankIdentity v-if="credential.type[credential.type.length-1] == 'EuropeanBankIdentity'" :credential="credential" />
     <Europass v-if="credential.type[credential.type.length-1] == 'Europass'" :credential="credential" />
+    <VerifiableMandate v-if="credential.type[credential.type.length-1] == 'VerifiableMandate'" :credential="credential" />
   </div>
 </template>
 
