@@ -77,6 +77,7 @@ export default {
             ParticipantCredential: "Gaia-X Identifiant du participant",
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "Identité bancaire européenne",
+            OpenBadgeCredential: "Open Badge V3",
             Europass: "Europass"
         },
         REGISTRATION_NUMBER: 'Numéro d\'entreprise',

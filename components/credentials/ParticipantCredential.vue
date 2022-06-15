@@ -79,7 +79,7 @@
 import moment from "moment";
 
 export default {
-  name: "VerifiableID",
+  name: "ParticipantCredential",
   props: {
     credential: {}
   },
