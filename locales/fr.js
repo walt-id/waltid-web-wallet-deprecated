@@ -77,6 +77,7 @@ export default {
             ParticipantCredential: "Gaia-X Identifiant du participant",
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "Identité bancaire européenne",
+            OpenBadgeCredential: "Open Badge V3",
             Europass: "Europass"
         },
         REGISTRATION_NUMBER: 'Numéro d\'entreprise',
@@ -150,5 +151,24 @@ export default {
         EIDAS_LEGAL_IDENTIFIER: 'EIDAS legal identifier',
         REGISTRATION: 'Registration',
         PREFERRED_NAME: 'Preferred name',
-    }
+    },
+    CREDENTIAL_SUBJECT: {
+        TYPE: "Credential Subject Type",
+        ID: "Credential Subject ID",
+    },
+    ISSUER: {
+        TYPE: "Issuer Type",
+        ID: "Issuer ID",
+        URL: "Issuer URL"
+    },
+    ACHIEVEMENT: {
+        TYPE: "Achievement Type",
+        URL: "Achievement Url",
+        NAME: "Achievement Name",
+        DESCRIPTION: "Achievement Description"
+    },
+    CRITERIA: {
+        TYPE: "Criteria Type",
+        NARRATIVE: "Criteria Narrative"
+    },
 }

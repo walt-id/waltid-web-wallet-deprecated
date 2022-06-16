@@ -82,6 +82,7 @@ export default {
             ParticipantCredential: "Gaia-X Participant Credential",
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "European bank identity",
+            OpenBadgeCredential: "Open Badge V3",
             Europass: "Europass"
         },
         REGISTRATION_NUMBER: 'Registration number',
@@ -167,5 +168,24 @@ export default {
         BLOCKCHAIN: 'Blockchain',
         NAME: 'Name',
         DESCRIPTION: 'Description'
-    }
+    },
+    CREDENTIAL_SUBJECT: {
+        TYPE: "Credential Subject Type",
+        ID: "Credential Subject ID",
+    },
+    ISSUER: {
+        TYPE: "Issuer Type",
+        ID: "Issuer ID",
+        URL: "Issuer URL"
+    },
+    ACHIEVEMENT: {
+        TYPE: "Achievement Type",
+        URL: "Achievement Url",
+        NAME: "Achievement Name",
+        DESCRIPTION: "Achievement Description"
+    },
+    CRITERIA: {
+        TYPE: "Criteria Type",
+        NARRATIVE: "Criteria Narrative"
+    },
 }

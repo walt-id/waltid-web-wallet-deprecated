@@ -60,9 +60,9 @@ export default {
   },
 
   proxy: {
-   //"/api/": "https://wallet.waltid.org"
-   "/api/": "http://localhost:8080",
-   "/v1/nft": "https://nftkit.waltid.org"
+   "/api/": "https://wallet.walt-test.cloud",
+   "/v1/nft": "https://nftkit.waltid.org",
+   //  "/api/": "http://localhost:8080",
   },
   auth: {
     strategies: {
