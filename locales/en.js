@@ -182,6 +182,7 @@ export default {
         TYPE: "Achievement Type",
         URL: "Achievement Url",
         NAME: "Achievement Name",
+        DESCRIPTION: "Achievement Description"
     },
     CRITERIA: {
         TYPE: "Criteria Type",
