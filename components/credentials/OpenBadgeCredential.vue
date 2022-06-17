@@ -6,9 +6,41 @@
         <p>{{ $t('TYPE' + credential.type[credential.type.length - 1]) }}</p>
       </span>
     </div>
+    <!-- credential subject -->
+    <div class="text-left py-3 border-bottom mb-3 border-secondary">
+      <span class="col-4">
+        <h5>{{ $t('CREDENTIAL_SUBJECT.TYPE') }}</h5>
+        <p>{{ credential.credentialSubject.type }}</p>
+      </span>
+      <span class="col-4" v-if="credential.credentialSubject.id">
+        <h5>{{ $t('CREDENTIAL_SUBJECT.ID') }}</h5>
+        <p class="text-truncate">{{ credential.credentialSubject.id }}</p>
+      </span>
+      <!-- achievement -->
+      <span class="col-4">
+        <h5>{{ $t('ACHIEVEMENT.TYPE') }}</h5>
+        <p>{{ credential.credentialSubject.achievement.type }}</p>
+      </span>
+      <span class="col-4">
+        <h5>{{ $t('ACHIEVEMENT.NAME') }}</h5>
+        <p>{{ credential.credentialSubject.achievement.name }}</p>
+      </span>
+      <span class="col-4" v-if="credential.credentialSubject.achievement.description">
+        <h5>{{ $t('ACHIEVEMENT.DESCRIPTION') }}</h5>
+        <p>{{ credential.credentialSubject.achievement.description }}</p>
+      </span>
+      <!-- criteria -->
+      <span class="col-4">
+        <h5>{{ $t('CRITERIA.TYPE') }}</h5>
+        <p>{{ credential.credentialSubject.achievement.criteria.type }}</p>
+      </span>
+      <span class="col-4" v-if="credential.credentialSubject.achievement.criteria.narrative">
+        <h5>{{ $t('CRITERIA.NARRATIVE') }}</h5>
+        <p>{{ credential.credentialSubject.achievement.criteria.narrative }}</p>
+      </span>
+    </div>
     <!-- issuer -->
-    <div class="d-flex py-3">
-      <ImageComponent :image="credential.issuer.image"></ImageComponent>
+    <div class="text-left py-3 border-bottom mb-3 border-secondary">
       <span class="col-4">
         <h5>{{ $t('CREDENTIAL.ISSUER') }}</h5>
         <p class="text-truncate" style="max-width: 12em">{{ credential.issuer.name ? credential.issuer.name :
@@ -27,8 +59,9 @@
       <span class="col-4"></span>
       <span class="col-4" v-if="credential.issuer.url">
         <h5>{{ $t('ISSUER.URL') }}</h5>
-        <p class="text-truncate" style="max-width: 12em">{{ credential.issuer.url }}</p>
+        <p  class="text-truncate"><a :href="credential.issuer.url" target="_blank">{{ credential.issuer.url }}</a></p>
       </span>
+      <ImageComponent :image="credential.issuer.url"></ImageComponent>
     </div>
     <!-- credential -->
     <span class="col-4" v-if="credential.id">
@@ -47,40 +80,6 @@
       <span class="col-4" v-if="credential.validFrom">
         <h5>{{$t('CREDENTIAL.VALID_FROM')}}</h5>
         <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
-      </span>
-    </div>
-    <!-- credential subject -->
-    <div class="text-left">
-      <span class="col-12 pb-3">
-        <h5>{{ $t('CREDENTIAL_SUBJECT.TYPE') }}</h5>
-        <p>{{ credential.credentialSubject.type }}</p>
-      </span>
-      <span class="col-12 px-3" v-if="credential.credentialSubject.id">
-        <h5>{{ $t('CREDENTIAL_SUBJECT.ID') }}</h5>
-        <p>{{ credential.credentialSubject.id }}</p>
-      </span>
-      <!-- achievement -->
-      <ImageComponent :image="credential.credentialSubject.achievement.image"></ImageComponent>
-      <span class="col-12 px-3">
-        <h5>{{ $t('ACHIEVEMENT.TYPE') }}</h5>
-        <p>{{ credential.credentialSubject.achievement.type }}</p>
-      </span>
-      <span class="col-12 px-3">
-        <h5>{{ $t('ACHIEVEMENT.NAME') }}</h5>
-        <p>{{ credential.credentialSubject.achievement.name }}</p>
-      </span>
-      <span class="col-12 px-3" v-if="credential.credentialSubject.achievement.description">
-        <h5>{{ $t('ACHIEVEMENT.DESCRIPTION') }}</h5>
-        <p>{{ credential.credentialSubject.achievement.description }}</p>
-      </span>
-      <!-- criteria -->
-      <span class="col-12 px-3">
-        <h5>{{ $t('CRITERIA.TYPE') }}</h5>
-        <p>{{ credential.credentialSubject.achievement.criteria.type }}</p>
-      </span>
-      <span class="col-12 px-3" v-if="credential.credentialSubject.achievement.criteria.narrative">
-        <h5>{{ $t('CRITERIA.NARRATIVE') }}</h5>
-        <p>{{ credential.credentialSubject.achievement.criteria.narrative }}</p>
       </span>
     </div>
   </div>
@@ -102,7 +101,7 @@ export default {
   },
   components: {
     ImageComponent,
-  },
+  }
 }
 </script>
 

@@ -27,7 +27,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/bootstrap'
+    '@/plugins/bootstrap',
+    '@/plugins/globals.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -62,7 +63,7 @@ export default {
   proxy: {
    "/api/": "https://wallet.walt-test.cloud",
    "/v1/nft": "https://nftkit.waltid.org",
-   //  "/api/": "http://localhost:8080",
+    // "/api/": "http://localhost:8080",
   },
   auth: {
     strategies: {

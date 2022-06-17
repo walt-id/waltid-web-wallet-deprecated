@@ -33,7 +33,7 @@ export default {
         LOGOUT: 'Se déconnecter'
     },
     CREDENTIAL: {
-        ID: 'Id',
+        ID: 'Credential Id',
         TITLE: 'Titre',
         ISSUER: 'Émetteur',
         STATUS: 'Statut',

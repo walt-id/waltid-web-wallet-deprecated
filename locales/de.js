@@ -33,7 +33,7 @@ export default {
         LOGOUT: 'Logout'
     },
     CREDENTIAL: {
-        ID: 'Id',
+        ID: 'Credential Id',
         TITLE: 'Titel',
         ISSUER: 'Aussteller',
         STATUS: 'Status',

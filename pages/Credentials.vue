@@ -9,9 +9,10 @@
         <div class="_scrollable d-flex flex-column align-items-center">
             <NuxtLink class="_card d-flex" v-for="credential in filteredList" v-bind:key="credential.id" :to="'/Credential?id='+encodeURIComponent(credential.id)" >
                 <div class="col-10 d-flex align-items-center">
+                    <img class="w-25 p-3 mb-1"  :src="$globals.thumbnail(credential)" v-if="$globals.thumbnail(credential)"/>
                     <div>
                         <h5 class="mb-1">{{$t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1])}}</h5>
-                        <p class="text-truncate" style="max-width: 12em">by {{credential.issuerName ? credential.issuerName : credential.issuer}}</p>
+                        <p class="text-truncate" style="max-width: 12em">by "{{ getIssuerName(credential) }}"</p>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-end">
@@ -111,6 +112,11 @@ export default {
       return this.credentials.filter(credential => {
         return JSON.stringify(credential).toLowerCase().includes(this.search.toLowerCase())
       })
+    }
+  },
+  methods: {
+    getIssuerName(credential){
+      return credential.issuer.name ? credential.issuer.name : credential.issuer
     }
   },
   async asyncData ({ $axios }) {
