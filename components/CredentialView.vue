@@ -1,7 +1,8 @@
 <template>
   <div class="p-4">
     <div class="text-center">
-      <canvas :id="'qr-' + credential.id" />
+      <img :src="$globals.thumbnail(credential)" class="image-fluid mx-auto img-thumbnail" v-if="!showQR && $globals.thumbnail(credential)" @click="toggleShowQR()" />
+      <canvas :id="'qr-' + credential.id" v-show="showQR || !$globals.thumbnail(this.credential)" @click="toggleShowQR()" />
     </div>
     <VerifiableVaccinationCertificate v-if="credential.type[credential.type.length-1] == 'VerifiableVaccinationCertificate'" :credential="credential" />
     <VerifiableID v-if="credential.type[credential.type.length-1] == 'VerifiableId'" :credential="credential" />
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       moment: moment,
+      showQR: false,
     }
   },
   mounted() {
@@ -33,6 +35,11 @@ export default {
         value: JSON.stringify(this.credential),
         size: 300
       })
+  },
+  methods: {
+    toggleShowQR() {
+      this.showQR = !this.showQR
+    }
   }
 }
 </script>
