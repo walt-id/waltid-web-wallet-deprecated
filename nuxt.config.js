@@ -20,9 +20,9 @@ export default {
   css: [
   "@/assets/css/core.scss",
   "@/assets/css/core.css",
-  "@/assets/css/animate.min.css",
+  "@/assets/css/global.scss",
+  "@/assets/css/global.css",
   "@/assets/css/animations.css",
-  "@/assets/css/bootstrap-icons.css"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
