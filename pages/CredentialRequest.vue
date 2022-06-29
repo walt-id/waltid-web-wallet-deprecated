@@ -15,7 +15,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="requiredSchemaIds.length == 0">
+              <div v-if="requiredSchemaIds.length == 0 && presentableCredentials.length == 0">
                 <em>Empty presentation requested, confirm to continue</em>
               </div>
               <div v-if="presentableCredentials.length == 0 && requiredSchemaIds.length > 0" id="content">
