@@ -99,7 +99,10 @@ export default {
   },
   computed: {
     requiredSchemaIds() {
-      return this.presentationSessionInfo.req.claims.vp_token.presentation_definition.input_descriptors.map(idesc => idesc.schema.uri)
+      // TODO: adapt for Presentation exchange (2.0), where no schema uri is necessarily available
+      return this.presentationSessionInfo.req.claims.vp_token.presentation_definition.input_descriptors
+      .filter(idesc => idesc.schema != null)
+      .map(idesc => idesc.schema.uri)
     },
     currentDid () {
         console.log(this.$store.state.wallet.currentDid)
