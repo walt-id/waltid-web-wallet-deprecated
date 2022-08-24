@@ -37,7 +37,7 @@ export default {
   },
   async asyncData ({ $axios, $auth, route }) {
     if($auth.user.ethAccount != null) {
-        const nfts = await $axios.$get("/v1/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
+        const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
         return { nfts }
     } else {
         return {
