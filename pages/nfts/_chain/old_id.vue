@@ -10,10 +10,10 @@
     <div class="_window d-flex justify-content-center align-items-center">
         <div class="_window-content">
           <div class="pt-2">
-            <h1>{{nft.token.title}}</h1>
+            <h1>{{nft.title}}</h1>
             <div class="d-flex justify-content-center mb-3">
               <div style="height: 300px" class="d-flex align-items-center">
-                <img :src="nft.token.transactionExternalUrl" class="image-fluid mx-auto img-thumbnail nft-img" v-show="!showQR" @click="toggleShowQR()" />
+                <img :src="nft.metadata.image" class="image-fluid mx-auto img-thumbnail nft-img" v-show="!showQR" @click="toggleShowQR()" />
                 <canvas :id="'qr-' + tokenId" v-show="showQR" @click="toggleShowQR()" />
               </div>
             </div>
@@ -25,27 +25,27 @@
             <div class="text-left pt-2">
               <span class="col-12 pb-3">
                   <h5>{{ $t('NFT.NAME') }}</h5>
-                  <p>{{ nft.token.title }}</p>
+                  <p>{{ nft.metadata.name }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.CONTRACT_ADDRESS') }}</h5>
-                  <p>{{ nft.address }}</p>
+                  <p>{{ nft.contract.address }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.TOKEN_ID') }}</h5>
-                  <p>{{ nft.token.tokenId }}</p>
+                  <p>{{ nft.id.tokenId }}</p>
               </span>
-              <!-- <span class="col-12 px-3">
+              <span class="col-12 px-3">
                   <h5>{{ $t('NFT.TOKEN_STANDARD') }}</h5>
                   <p>{{ nft.id.tokenMetadata.tokenType }}</p>
-              </span> -->
+              </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.BLOCKCHAIN') }}</h5>
                   <p>{{ chain }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.DESCRIPTION') }}</h5>
-                  <p>{{ nft.token.description }}</p>
+                  <p>{{ nft.metadata.description }}</p>
               </span>
             </div>
           </div>
@@ -72,37 +72,16 @@ export default {
       return this.$route.params.id.split(":")[1]
     },
     nft() {
-      return this.nfts//.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
+      return this.nfts.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
     },
     showRedeem() {
       return this.$route.query.redeem == "true"
     }
   },
-  async asyncData () {
+  async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    // const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
-    // return {nfts}
-    return {
-      nfts: {
-        "address": "0x21dd9b1913d84ab295fdf19834b0b6824a5912ca",
-        "attributes": [],
-        "metadataUrl": "",
-        "standard": "ERC721",
-        "token": {
-            "account": 214,
-            "collectable": 2,
-            "description": "An impressive 2278-meter suspension bridge over the Tagus River, but where does it lead?  Find out on the other side. With this ticket you can cross the bridge.",
-            "id": 756,
-            "imageUrl": "ipfs://bafybeians2y345aqtfpowdqsphjyhfrz32ltjmod6bdk52lbtmukesc26a",
-            "mediaType": "video",
-            "name": "Ticket",
-            "tokenId": "374",
-            "transactionExternalUrl": "https://polygonscan.com/tx/0x0db2dff84301d561aa86749f96862f59956937099936b0cffa487cbd6f9b66ce",
-            "transactionId": "0x0db2dff84301d561aa86749f96862f59956937099936b0cffa487cbd6f9b66ce",
-            "uuid": "0bf2a9c3-0401-4016-b138-f6959e9ad7bd"
-        }
-      }
-    }
+    const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
+    return {nfts}
   },
   mounted() {
     new QRious({
