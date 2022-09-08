@@ -8,24 +8,37 @@
       </a>
     </div>
     <div class="_window d-flex justify-content-center align-items-center">
-        <div class="_window-content">
-          <div class="pt-2">
-            <h1>{{nft.token.title}}</h1>
+        <div class="_window-content px-3">
+          <div class="pt-4">
+            <h2 class="q-sans-md" style="color: #008CC8;">{{$globals.getTokenName(nft.token)}}</h2>
             <div class="d-flex justify-content-center mb-3">
               <div style="height: 300px" class="d-flex align-items-center">
-                <img :src="nft.token.transactionExternalUrl" class="image-fluid mx-auto img-thumbnail nft-img" v-show="!showQR" @click="toggleShowQR()" />
+                <video :src="$globals.mediaUrl(nft.token)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && $globals.isVideo(nft.token)" autoplay loop playsinline />
+                <img :src="$globals.mediaUrl(nft.token)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && !$globals.isVideo(nft.token)" />
                 <canvas :id="'qr-' + tokenId" v-show="showQR" @click="toggleShowQR()" />
               </div>
             </div>
             <div>
-              <button v-if="showRedeem" class="btn btn-primary py-2" style="width: 70%;">
-                <i class="bi bi-cash me-2"></i>Redeem
+              <button v-if="showRedeem" :disabled="isRedeemed || redeemInProgress" :class="'btn py-2 ' + (isRedeemed ? 'btn-danger' : 'btn-success')" style="width: 70%;" @click="redeem">
+                <span v-if="!isRedeemed && !redeemInProgress"><i class="bi bi-cash me-2"></i>Redeem</span>
+                <span v-if="isRedeemed && !redeemInProgress"><i class="bi bi-cash me-2"></i>Token redeemed</span>
+                <div v-if="redeemInProgress" class="spinner-border" role="status">
+                  <span class="sr-only"></span>
+                </div>
               </button>
+              <button v-if="isRedeemable" type="button" class="btn btn-primary mt-2" @click="toggleShowQR" :disabled="isRedeemed"><i class="bi bi-upc-scan me-2"></i><span v-if="showQR">Close QR code</span><span v-if="!showQR">Show QR code</span></button>
             </div>
             <div class="text-left pt-2">
+              <div v-if="isRedeemable && isRedeemed" class="alert alert-info mt-3 mx-3">
+                <em>This token has already been redeemed.</em>
+              </div>
               <span class="col-12 pb-3">
                   <h5>{{ $t('NFT.NAME') }}</h5>
                   <p>{{ nft.token.title }}</p>
+              </span>
+              <span class="col-12 px-3">
+                  <h5>{{ $t('NFT.DESCRIPTION') }}</h5>
+                  <p>{{ nft.token.description }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.CONTRACT_ADDRESS') }}</h5>
@@ -35,18 +48,20 @@
                   <h5>{{ $t('NFT.TOKEN_ID') }}</h5>
                   <p>{{ nft.token.tokenId }}</p>
               </span>
-              <!-- <span class="col-12 px-3">
+              <span class="col-12 px-3">
                   <h5>{{ $t('NFT.TOKEN_STANDARD') }}</h5>
-                  <p>{{ nft.id.tokenMetadata.tokenType }}</p>
-              </span> -->
+                  <p>{{ nft.standard }}</p>
+              </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.BLOCKCHAIN') }}</h5>
                   <p>{{ chain }}</p>
               </span>
-              <span class="col-12 px-3">
-                  <h5>{{ $t('NFT.DESCRIPTION') }}</h5>
-                  <p>{{ nft.token.description }}</p>
-              </span>
+            </div>
+            <div class="p-3" v-if="$globals.isNotNullOrEmpty(nft.token.transactionExternalUrl)">
+              <a type="button" class="btn btn-primary w-100" :href="nft.token.transactionExternalUrl" target="_blank">View on blockchain explorer</a>
+            </div>
+            <div class="px-3 py-3">
+              <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="openSeaUrl" target="_blank">View on OpenSea</a>
             </div>
           </div>
         </div>
@@ -61,10 +76,20 @@ export default {
   data() {
     return {
       chain: this.$route.params.chain,
-      showQR: false
+      showQR: false,
+      redeemInProgress: false
     }
   },
   computed: {
+    showRedeem() {
+      return this.$route.query.redeem == "true"
+    },
+    isRedeemable() {
+      return !this.showRedeem && this.nft.attributes.find(a => a.traitType == "redeemed") != null
+    },
+    isRedeemed() {
+      return this.nft.attributes.find(a => a.traitType == "redeemed" && a.traitValue == "true") != null
+    },
     contractAddress() {
       return this.$route.params.id.split(":")[0]
     },
@@ -74,35 +99,17 @@ export default {
     nft() {
       return this.nfts//.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
     },
-    showRedeem() {
-      return this.$route.query.redeem == "true"
+    openSeaUrl() {
+      return `https://opensea.io/assets/matic/${this.nft.address}/${this.nft.token.tokenId}`
+    },
+    contractUrl(){
+      return `https://polygonscan.com/address/${this.nft.address}`
     }
   },
-  async asyncData () {
+  async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    // const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
-    // return {nfts}
-    return {
-      nfts: {
-        "address": "0x21dd9b1913d84ab295fdf19834b0b6824a5912ca",
-        "attributes": [],
-        "metadataUrl": "",
-        "standard": "ERC721",
-        "token": {
-            "account": 214,
-            "collectable": 2,
-            "description": "An impressive 2278-meter suspension bridge over the Tagus River, but where does it lead?  Find out on the other side. With this ticket you can cross the bridge.",
-            "id": 756,
-            "imageUrl": "ipfs://bafybeians2y345aqtfpowdqsphjyhfrz32ltjmod6bdk52lbtmukesc26a",
-            "mediaType": "video",
-            "name": "Ticket",
-            "tokenId": "374",
-            "transactionExternalUrl": "https://polygonscan.com/tx/0x0db2dff84301d561aa86749f96862f59956937099936b0cffa487cbd6f9b66ce",
-            "transactionId": "0x0db2dff84301d561aa86749f96862f59956937099936b0cffa487cbd6f9b66ce",
-            "uuid": "0bf2a9c3-0401-4016-b138-f6959e9ad7bd"
-        }
-      }
-    }
+    const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
+    return {nfts}
   },
   mounted() {
     new QRious({
@@ -114,7 +121,32 @@ export default {
   methods: {
     toggleShowQR() {
       this.showQR = !this.showQR
-    }
+    },
+    async redeem() {
+      console.log(this.nft)
+      this.redeemInProgress = true
+      await this.$axios.$post(`/api/wallet/nfts/redeemVoucher/${this.chain}/${this.nft.address}/${this.nft.token.tokenId}`)
+      this.nft = {...await this.$axios.$get(`/api/wallet/nfts/get/${this.chain}/${this.nft.token.uuid}`)}
+      this.redeemInProgress = false
+      this.showToast()
+    },
+    showToast() {
+      if(this.isRedeemed) {
+        this.$toast.success('Token successfully redeemed', {duration: 3000, icon: 'bi bi-check-circle-fill', iconPack: 'custom-class', action : {
+          text : 'OK',
+          onClick : (e, toastObject) => {
+              toastObject.goAway(0);
+          }
+        }})
+      } else {
+          this.$toast.error('Failed to redeem token', {duration: 3000, icon: 'bi bi-x-circle-fill', iconPack: 'custom-class',action : {
+          text : 'OK',
+          onClick : (e, toastObject) => {
+              toastObject.goAway(0);
+          }
+        }})
+      }
+    },
   }
 }
 </script>
