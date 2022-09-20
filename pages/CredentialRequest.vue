@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
+      <form ref="responseForm" method="post" :action="presentationSessionInfo.redirectUri">
         <input ref="responseIdToken" type="hidden" name="id_token" >
         <input ref="responseVpToken" type="hidden" name="vp_token" >
         <input ref="responseState" type="hidden" name="state" >
@@ -100,7 +100,7 @@ export default {
   computed: {
     requiredSchemaIds() {
       // TODO: adapt for Presentation exchange (2.0), where no schema uri is necessarily available
-      return this.presentationSessionInfo.req.claims.vp_token.presentation_definition.input_descriptors
+      return this.presentationSessionInfo.presentationDefinition.input_descriptors
       .filter(idesc => idesc.schema != null)
       .map(idesc => idesc.schema.uri)
     },
