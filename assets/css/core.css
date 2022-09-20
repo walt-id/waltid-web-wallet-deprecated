@@ -393,8 +393,8 @@ body ._main #widget ._content ._container-list {
 
 body ._main #widget ._content ._container-list ._window-content {
   width: 24vw;
-  min-height: 25vh;
-  max-height: 25vh;
+  min-height: unset;
+  max-height: 85%;
   overflow: auto;
   overflow-x: hidden !important;
   border-radius: 25px;
@@ -809,7 +809,7 @@ body ._main #widget ._window {
 
 body ._main #widget ._window ._window-content {
   width: 24vw;
-  max-height: 60vh;
+  max-height: 85%;
   overflow: auto;
   overflow-x: hidden !important;
   border-radius: 25px;
@@ -919,11 +919,6 @@ body ._main #widget ._window ._window-content p {
     min-height: 420px;
     width: 600px;
   }
-  body ._main #widget ._window ._window-content {
-    width: 570px;
-    max-height: 900px;
-    min-height: 900px;
-  }
 }
 
 @media only screen and (max-width: 2560px) {
@@ -983,11 +978,6 @@ body ._main #widget ._window ._window-content p {
     height: 60vh;
     min-height: 420px;
     width: 27vw;
-  }
-  body ._main #widget ._window ._window-content {
-    width: 25vw;
-    max-height: 60vh;
-    min-height: 60vh;
   }
 }
 
@@ -1094,8 +1084,8 @@ body ._main #widget ._window ._window-content p {
   }
   body ._main #widget ._window ._window-content {
     width: 55vw;
-    max-height: 50vh;
-    min-height: 400px;
+    max-height: 85%;
+    min-height: unset;
   }
   body ._main #widget ._did-content ._card {
     margin: 10px;

@@ -32,10 +32,6 @@
               <div v-if="isRedeemable && isRedeemed" class="alert alert-info mt-3 mx-3">
                 <em>This token has already been redeemed.</em>
               </div>
-              <span class="col-12 pb-3">
-                  <h5>{{ $t('NFT.NAME') }}</h5>
-                  <p>{{ nft.token.title }}</p>
-              </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.DESCRIPTION') }}</h5>
                   <p>{{ nft.token.description }}</p>
