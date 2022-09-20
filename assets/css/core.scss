@@ -683,7 +683,7 @@ body {
                 width: 27vw;
                 ._window-content {
                     width: 24vw;
-                    max-height: 60vh;
+                    max-height: 85%;
                     overflow: auto;
                     overflow-x: hidden !important;
                     border-radius: $ui-border-raduis;
@@ -793,11 +793,6 @@ body {
                     height: 900px;
                     min-height: 420px;
                     width: 600px;
-                    ._window-content {
-                        width: 570px;
-                        max-height: 900px;
-                        min-height: 900px;
-                    }
                 }
             }
         }
@@ -861,11 +856,6 @@ body {
                     height: 60vh;
                     min-height: 420px;
                     width: 27vw;
-                    ._window-content {
-                        width: 25vw;
-                        max-height: 60vh;
-                        min-height: 60vh;
-                    }
                 }
             }
         }
@@ -970,8 +960,8 @@ body {
                     width: 60vw;
                     ._window-content {
                         width: 55vw;
-                        max-height: 50vh;
-                        min-height: 400px;
+                        max-height: 85%;
+                        min-height: unset;
                     }
                 }
                 ._did-content {
