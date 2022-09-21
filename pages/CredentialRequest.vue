@@ -57,9 +57,10 @@
         </div>
       </div>
       <form ref="responseForm" method="post" :action="presentationSessionInfo.redirectUri">
-        <input ref="responseIdToken" type="hidden" name="id_token" >
-        <input ref="responseVpToken" type="hidden" name="vp_token" >
-        <input ref="responseState" type="hidden" name="state" >
+        <input ref="responseIdToken" type="hidden" name="id_token">
+        <input ref="responseVpToken" type="hidden" name="vp_token">
+        <input ref="responsePresentationSubmission" type="hidden" name="presentation_submission">
+        <input ref="responseState" type="hidden" name="state">
       </form>
   </div>
 </template>
@@ -120,6 +121,7 @@ export default {
         console.log("PE Response:", siopResp)
         this.$refs.responseIdToken.value = siopResp.id_token
         this.$refs.responseVpToken.value = siopResp.vp_token
+        this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
         this.$refs.responseState.value = siopResp.state
         this.$refs.responseForm.submit()
       }
