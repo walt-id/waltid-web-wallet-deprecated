@@ -83,7 +83,8 @@ export default {
             VerifiableAttestation: "Verifiable attestation",
             EuropeanBankIdentity: "European bank identity",
             OpenBadgeCredential: "Open Badge V3",
-            Europass: "Europass"
+            Europass: "Europass",
+            LegalPerson: "Gaia-X Legal Person"
         },
         REGISTRATION_NUMBER: 'Registration number',
         LEGALLY_BINDING_NAME: 'Legally binding name',
