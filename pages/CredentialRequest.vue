@@ -56,10 +56,11 @@
           </div>
         </div>
       </div>
-      <form ref="responseForm" method="post" :action="presentationSessionInfo.req.redirect_uri">
-        <input ref="responseIdToken" type="hidden" name="id_token" >
-        <input ref="responseVpToken" type="hidden" name="vp_token" >
-        <input ref="responseState" type="hidden" name="state" >
+      <form ref="responseForm" method="post" :action="presentationSessionInfo.redirectUri">
+        <input ref="responseIdToken" type="hidden" name="id_token">
+        <input ref="responseVpToken" type="hidden" name="vp_token">
+        <input ref="responsePresentationSubmission" type="hidden" name="presentation_submission">
+        <input ref="responseState" type="hidden" name="state">
       </form>
   </div>
 </template>
@@ -100,7 +101,7 @@ export default {
   computed: {
     requiredSchemaIds() {
       // TODO: adapt for Presentation exchange (2.0), where no schema uri is necessarily available
-      return this.presentationSessionInfo.req.claims.vp_token.presentation_definition.input_descriptors
+      return this.presentationSessionInfo.presentationDefinition.input_descriptors
       .filter(idesc => idesc.schema != null)
       .map(idesc => idesc.schema.uri)
     },
@@ -120,6 +121,7 @@ export default {
         console.log("PE Response:", siopResp)
         this.$refs.responseIdToken.value = siopResp.id_token
         this.$refs.responseVpToken.value = siopResp.vp_token
+        this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
         this.$refs.responseState.value = siopResp.state
         this.$refs.responseForm.submit()
       }

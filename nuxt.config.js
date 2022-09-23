@@ -61,9 +61,9 @@ export default {
   },
 
   proxy: {
-   "/api/": "https://wallet.walt-test.cloud",
+   //"/api/": "https://wallet.walt-test.cloud",
    "/nftkit/nft/": "https://nftkit.walt-test.cloud",
-    // "/api/": "http://localhost:8080",
+   "/api/": "http://localhost:8080",
   },
   auth: {
     strategies: {
