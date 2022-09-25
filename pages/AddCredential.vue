@@ -4,30 +4,31 @@
     <div class="mt-4 d-flex justify-content-center align-items-center" style="height: 200px">
       <div>
         <div>
-        <p class="mb-2 text-secondary">Choose issuer</p>
-        <div>
-          <select class="form-select" aria-label="Default select example" v-model="selectedIssuer" @change="fetchIssuerMeta($event)">
-            <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
-              {{ issuer.description }}
-            </option>
-          </select>
+          <p class="mb-2 text-secondary">Choose issuer</p>
+          <div>
+            <select class="form-select" aria-label="Default select example" v-model="selectedIssuer"
+              @change="fetchIssuerMeta($event)">
+              <option v-for="issuer in issuers" :key="issuer.id" :value="issuer.id">
+                {{ issuer.description }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div v-if="selectedIssuerMeta != null">
-        <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
-        <div>
-          <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
-            <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
-              {{ schema.name }}
-            </option>
-          </select>
+        <div v-if="selectedIssuerMeta != null">
+          <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
+          <div>
+            <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
+              <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
+                {{ schema.name }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div v-if="selectedCredentialSchema">
-        <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
-          Fetch credential
-        </button>
-      </div>
+        <div v-if="selectedCredentialSchema">
+          <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
+            Fetch credential
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -49,13 +50,13 @@ export default {
     return { issuers };
   },
   computed: {
-    dids () {
+    dids() {
       console.log(this.$store.state.wallet.dids)
       return this.$store.state.wallet.dids
     },
-    currentDid () {
-        console.log(this.$store.state.wallet.currentDid)
-        return this.$store.state.wallet.currentDid
+    currentDid() {
+      console.log(this.$store.state.wallet.currentDid)
+      return this.$store.state.wallet.currentDid
     }
   },
   methods: {
@@ -72,11 +73,11 @@ export default {
         );
       } else return [];
     },
-    initIssuance: async function() {
+    initIssuance: async function () {
       const location = await this.$axios.$post('/api/wallet/siopv2/initIssuance', {
         did: this.currentDid,
         issuerId: this.selectedIssuer,
-        schemaIds: [ this.selectedCredentialSchema ],
+        schemaIds: [this.selectedCredentialSchema],
         walletRedirectUri: '/Credentials'
       })
       window.location = location
