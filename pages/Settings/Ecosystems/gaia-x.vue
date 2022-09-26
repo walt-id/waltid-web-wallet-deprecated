@@ -46,7 +46,7 @@
                     <p>did:web generated successfully</p>
                 </div>
             </div>
-            <div :class="this.DIDgenerated === true ? '_fadin': 'hide'">
+            <div :class="this.DIDgenerated === true && this.wizardIndex === 3 ? '_fadin': 'hide'">
                 <div class="_item">
                     <p><strong>Successfully created</strong></p>
                     <p>
@@ -58,9 +58,39 @@
 
                     <button type="button" @click="onCopy" class="_bounce btn _btn-copy text-white mt-2">
                         <i class="bi bi-files me-2"></i>Copy DID</button>
-                    <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
+                        <!-- <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a> -->
+                    <a class="_bounce btn _btn-blue text-white mt-2" @click="wizardNext">Next</a>
                 </div>
             </div>
+            <!-- self-description step -->
+            <div :class="this.wizardIndex === 4 ? '_left-fade': 'hide'">
+                <div class="_item">
+                    <h4>Step 4</h4>
+                    <p>Enter legal person information</p>
+                </div>
+                <div class="mt-3 d-flex _button-view justify-content-center">
+                    <div>
+                        <div>
+                            <div>
+                                <textarea name="self-description" @input="$emit('input', $event.target.value)" id="" cols="30" rows="5" class="mt-2 _did-content"></textarea>
+                                <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- legal person credential step -->
+            <!-- <div :class="this.wizardIndex === 4 ? '_left-fade': 'hide'">
+                <div class="_item">
+                    <h4>Step 4</h4>
+                    <p>Generate Credential</p>
+                </div>
+                <div class="mt-3 d-flex _button-view justify-content-center">
+                    <div>
+                        <a class="_bounce btn _btn-blue text-white mt-2" @click="generateLegalPerson(); wizardNext();">Generate</a>
+                    </div>
+                </div>
+            </div> -->
         </div>
 
     </div>
@@ -79,6 +109,7 @@ export default {
             didHost: '',
             generationLoading: false,
             didContent: '',
+            selfDescription: '',
             coppied: false
         }
     },
@@ -139,6 +170,21 @@ export default {
                     console.log(event)
                 }
             })
+        },
+        generateLegalPerson: function() {
+
+        },
+        uploadFile: function() {
+            this.Images = this.$refs.file.files[0];
+        },
+        submitFile: function() {
+            const formData = new FormData();
+            formData.append('file', this.Images);
+            const headers = { 'Content-Type': 'multipart/form-data' };
+            this.$axios.post('https://httpbin.org/post', formData, { headers }).then((res) => {
+                res.data.files; // binary representation of the file
+                res.status; // HTTP status
+            });
         }
     }
 };
