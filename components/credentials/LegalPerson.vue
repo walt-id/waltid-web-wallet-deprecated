@@ -36,6 +36,10 @@
       <div class="_image" style="background-image: url('https://www.urbanpedaltours.com/wp-content/uploads/2019/04/team.png');"></div>
     </div>
     <div class="text-left">
+      <span class="col-12 pb-3">
+                                <h5>Legal Name</h5>
+                                <p>{{credential.credentialSubject["gx-participant:legalName"]}}</p>
+                            </span>
                             <span class="col-12 pb-3">
                                 <h5>Blockchain Account ID</h5>
                                 <p>{{credential.credentialSubject["gx-participant:blockchainAccountId"]}}</p>
