@@ -73,7 +73,12 @@
                         <div>
                             <div>
                                 <textarea name="self-description" id="" cols="30" rows="5" class="mt-2 _did-content" v-model="selfDescription"></textarea>
-                                <a class="_bounce btn _btn-blue text-white mt-2" @click="generateCredential">Onboard</a>
+                                <a class="_bounce btn _btn-blue text-white mt-2" @click="generateCredential">
+                                    <span v-if="generationLoading">
+                                        <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
+                                    </span>
+                                    <span v-else>Onboard</span>
+                                </a>
                             </div>
                         </div>
                     </div>
