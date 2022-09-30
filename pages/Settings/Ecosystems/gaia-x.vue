@@ -1,6 +1,6 @@
 <template>
     <div class="_setting">
-        <h2>Gaia-X (did:web)</h2>
+        <h2>Gaia-X onboarding</h2>
         <!--<p class="mt-3">You have no Ecosystems.</p>-->
         <div class="d-flex align-items-center justify-content-center _wizard mt-3">
             <div :class="this.wizardIndex === 0 ? '': 'animate__fadeOutRight hide'">
@@ -72,25 +72,35 @@
                     <div>
                         <div>
                             <div>
-                                <textarea name="self-description" @input="$emit('input', $event.target.value)" id="" cols="30" rows="5" class="mt-2 _did-content"></textarea>
-                                <a href="/" class="_bounce btn _btn-blue text-white mt-2">Done</a>
+                                <textarea name="self-description" id="" cols="30" rows="5" class="mt-2 _did-content" v-model="selfDescription"></textarea>
+                                <a class="_bounce btn _btn-blue text-white mt-2" @click="generateCredential">
+                                    <span v-if="generationLoading">
+                                        <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
+                                    </span>
+                                    <span v-else>Onboard</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- legal person credential step -->
-            <!-- <div :class="this.wizardIndex === 4 ? '_left-fade': 'hide'">
+            <!-- complete step -->
+            <div :class="this.wizardIndex === 5 ? '_fadin': 'hide'">
                 <div class="_item">
-                    <h4>Step 4</h4>
-                    <p>Generate Credential</p>
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                    <p>Onboarded successfully!</p>
                 </div>
                 <div class="mt-3 d-flex _button-view justify-content-center">
                     <div>
-                        <a class="_bounce btn _btn-blue text-white mt-2" @click="generateLegalPerson(); wizardNext();">Generate</a>
+                        <a href="/" class="_bounce btn _btn-blue text-white mt-2">Ok</a>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
     </div>
@@ -109,8 +119,8 @@ export default {
             didHost: '',
             generationLoading: false,
             didContent: '',
+            coppied: false,
             selfDescription: '',
-            coppied: false
         }
     },
     methods: {
@@ -171,21 +181,17 @@ export default {
                 }
             })
         },
-        generateLegalPerson: function() {
-
+        async generateCredential() {
+            this.generationLoading = true;
+            this.$axios.$post(`/api/wallet/onboard/gaiax/${this.didHost}`, this.selfDescription).then(res => {
+                console.log(res)
+                this.wizardNext()
+            }).catch(err =>{
+                console.log(err)
+            }).finally(()=>{
+                this.generationLoading = false;
+            })
         },
-        uploadFile: function() {
-            this.Images = this.$refs.file.files[0];
-        },
-        submitFile: function() {
-            const formData = new FormData();
-            formData.append('file', this.Images);
-            const headers = { 'Content-Type': 'multipart/form-data' };
-            this.$axios.post('https://httpbin.org/post', formData, { headers }).then((res) => {
-                res.data.files; // binary representation of the file
-                res.status; // HTTP status
-            });
-        }
     }
 };
 </script>
