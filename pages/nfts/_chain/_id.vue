@@ -10,11 +10,11 @@
     <div class="_window d-flex justify-content-center align-items-center">
         <div class="_window-content px-3">
           <div class="pt-4">
-            <h2 class="q-sans-md" style="color: #008CC8;">{{$globals.getTokenName(nft.token)}}</h2>
+            <h2 class="q-sans-md" style="color: #008CC8;">{{nft.metadata.name}}</h2>
             <div class="d-flex justify-content-center mb-3">
               <div style="height: 300px" class="d-flex align-items-center">
-                <video :src="$globals.mediaUrl(nft.token)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && $globals.isVideo(nft.token)" autoplay loop playsinline />
-                <img :src="$globals.mediaUrl(nft.token)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && !$globals.isVideo(nft.token)" />
+                <video :src="$globals.mediaUrl(nft)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && $globals.isVideo(nft)" autoplay loop playsinline />
+                <img :src="$globals.mediaUrl(nft)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && !$globals.isVideo(nft)" />
                 <canvas :id="'qr-' + tokenId" v-show="showQR" @click="toggleShowQR()" />
               </div>
             </div>
@@ -34,27 +34,27 @@
               </div>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.DESCRIPTION') }}</h5>
-                  <p>{{ nft.token.description }}</p>
+                  <p>{{ nft.metadata.description }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.CONTRACT_ADDRESS') }}</h5>
-                  <p>{{ nft.address }}</p>
+                  <p>{{ nft.contract.address }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.TOKEN_ID') }}</h5>
-                  <p>{{ nft.token.tokenId }}</p>
+                  <p>{{ nft.id.tokenId }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.TOKEN_STANDARD') }}</h5>
-                  <p>{{ nft.standard }}</p>
+                  <p>{{ nft.id.tokenMetadata.tokenType }}</p>
               </span>
               <span class="col-12 px-3">
                   <h5>{{ $t('NFT.BLOCKCHAIN') }}</h5>
                   <p>{{ chain }}</p>
               </span>
             </div>
-            <div class="p-3" v-if="$globals.isNotNullOrEmpty(nft.token.transactionExternalUrl)">
-              <a type="button" class="btn btn-primary w-100" :href="nft.token.transactionExternalUrl" target="_blank">View on blockchain explorer</a>
+            <div class="p-3" v-if="$globals.isNotNullOrEmpty(nft.metadata.external_url)">
+              <a type="button" class="btn btn-primary w-100" :href="nft.metadata.external_url" target="_blank">View on blockchain explorer</a>
             </div>
             <div class="px-3 py-3">
               <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="openSeaUrl" target="_blank">View on OpenSea</a>
@@ -81,10 +81,10 @@ export default {
       return this.$route.query.redeem == "true"
     },
     isRedeemable() {
-      return !this.showRedeem && this.nft.attributes.find(a => a.traitType == "redeemed") != null
+      return !this.showRedeem && this.nft.metadata.attributes && this.nft.metadata.attributes.find(a => a.trait_type == "redeemed") != null
     },
     isRedeemed() {
-      return this.nft.attributes.find(a => a.traitType == "redeemed" && a.traitValue == "true") != null
+      return this.nft.metadata.attributes.find(a => a.trait_type == "redeemed" && a.value == "true") != null
     },
     contractAddress() {
       return this.$route.params.id.split(":")[0]
@@ -93,18 +93,18 @@ export default {
       return this.$route.params.id.split(":")[1]
     },
     nft() {
-      return this.nfts//.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
+      return this.nfts.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
     },
     openSeaUrl() {
-      return `https://opensea.io/assets/matic/${this.nft.address}/${this.nft.token.tokenId}`
+      return `https://opensea.io/assets/matic/${this.nft.contract.address}/${this.nft.id.tokenId}`
     },
     contractUrl(){
-      return `https://polygonscan.com/address/${this.nft.address}`
+      return `https://polygonscan.com/address/${this.nft.contract.address}`
     }
   },
   async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    const nfts = await $axios.$get("/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
+    const nfts = await $axios.$get("/v1/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
     return {nfts}
   },
   mounted() {
@@ -121,8 +121,8 @@ export default {
     async redeem() {
       console.log(this.nft)
       this.redeemInProgress = true
-      await this.$axios.$post(`/api/wallet/nfts/redeemVoucher/${this.chain}/${this.nft.address}/${this.nft.token.tokenId}`)
-      this.nft = {...await this.$axios.$get(`/api/wallet/nfts/get/${this.chain}/${this.nft.token.uuid}`)}
+      await this.$axios.$post(`/api/wallet/nfts/redeemVoucher/${this.chain}/${this.nft.contract.address}/${this.nft.id.tokenId}`)
+      this.nft = {...await this.$axios.$get(`/api/wallet/nfts/get/${this.chain}/${this.nft.id.tokenId}`)}
       this.redeemInProgress = false
       this.showToast()
     },
