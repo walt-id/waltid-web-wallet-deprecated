@@ -5,6 +5,7 @@
             <form action="" id="search-form">
                 <input name="search-input" type="text" v-model="search" :placeholder="$t('NFTS.SEARCH')">
             </form>
+            <b-form-select v-model="chain" :options="chainOptions"/>
         </div>
         <div class="_scrollable d-flex flex-column align-items-center">
           <div class="mx-auto w-50 mb-3" v-for="nft in filteredList" v-bind:key="nft.id.tokenId">
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import {config} from '/config.js'
 
 export default {
   name: 'NFTs',
@@ -26,7 +28,16 @@ export default {
     return {
       search: '',
       nfts: [],
-      chain: this.$route.params.chain
+      chain: this.$route.params.chain,
+      chainOptions: config.chains,
+    }
+  },
+  watch: {
+    chain: function (newVal, oldVal) {
+      if(oldVal != newVal)
+        console.log(`Reloading with ${newVal}`)
+        this.$store.commit('wallet/setDefaultChain', newVal)
+        this.$router.push({ name: "nfts-chain", params: { chain: newVal }})
     }
   },
   computed: {

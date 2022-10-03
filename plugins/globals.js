@@ -19,7 +19,6 @@ export default (context, inject) => {
             let result = false
             let media = this.mediaUrl(nft)
             this.getRemoteFileHeader(media, header => {
-                console.log(this.mimeType(header.type))
                 result = this.mimeType(header.type).toLowerCase() == "video"
             })
             return result
