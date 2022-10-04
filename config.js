@@ -14,6 +14,8 @@ const config = {
         settings: false,
         connections: false
     },
-    home: "/Credentials"
+    home: "/Credentials",
+    defaultChain: "MUMBAI",
+    chains: ["ETHEREUM", "POLYGON", "RINKEBY", "ROPSTEN", "MUMBAI"]
 }
 export{config}

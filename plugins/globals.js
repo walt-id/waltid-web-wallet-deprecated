@@ -15,29 +15,45 @@ export default (context, inject) => {
             }
             return result
         },
-        isVideo(data) {
-            let result = true
-            if(data != null){
-                result = data.mediaType!=null && data.mediaType == "video"
+        isVideo(nft) {
+            let result = false
+            let media = this.mediaUrl(nft)
+            this.getRemoteFileHeader(media, header => {
+                result = this.mimeType(header.type).toLowerCase() == "video"
+            })
+            return result
+        },
+        getRemoteFileHeader(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.responseType = "blob";
+            xhr.onload = function() {
+              callback(xhr.response)
+            };
+            xhr.onerror = function() {
+              console.log('A network error occurred!');
+            };
+            xhr.send();
+        },
+        mimeType(type) {
+            let result = null
+            if(type){
+                result = type.substr(0, type.indexOf('/'))
             }
             return result
         },
         isNotNullOrEmpty(value) {
             return value != null && value !== "";
         },
-        mediaUrl(token){
-            let url = this.convertUrl(token.imageUrl)
+        mediaUrl(nft){
+            let url = this.convertUrl(nft.metadata.image)
+            if(!this.isNotNullOrEmpty(url)){
+                url = nft.metadata.image_data
+            }
             if (!this.isNotNullOrEmpty(url)) {
                 url = "/NoImageAvailable.jpg"
             }
             return url
-        },
-        getTokenName(token){
-            let name = "Missing Name"
-            if(token != null){
-                name = token.name + " #" + token.tokenId
-            }
-            return name
         }
     }
     // Inject $convertUrl(url) in Vue, context and store.

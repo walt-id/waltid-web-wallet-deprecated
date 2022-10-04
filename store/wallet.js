@@ -17,10 +17,18 @@ export const mutations = {
         state.currentDid = did
         localStorage.setItem('default_did', did)
     },
+    setDefaultChain(state, chain){
+      state.defaultChain = chain
+      localStorage.setItem("default_chain", chain)
+    },
     initialize(state, initialState) {
       state.initialized = true
       state.dids = initialState.dids
-      state.defaultChain = initialState.defaultChain
+      let defaultChain = localStorage.getItem("default_chain")
+      if (defaultChain != null)
+        state.defaultChain = defaultChain
+      else
+        state.defaultChain = initialState.defaultChain
       let default_did = localStorage.getItem("default_did")
       if(initialState.currentDid != null)
         state.currentDid = initialState.currentDid
