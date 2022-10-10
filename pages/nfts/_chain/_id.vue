@@ -57,7 +57,7 @@
               <a type="button" class="btn btn-primary w-100" :href="nft.metadata.external_url" target="_blank">View on blockchain explorer</a>
             </div>
             <div class="px-3 py-3">
-              <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="openSeaUrl" target="_blank">View on OpenSea</a>
+              <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="marketplaceUrl" target="_blank">View on {{marketplace}}</a>
             </div>
           </div>
         </div>
@@ -73,7 +73,8 @@ export default {
     return {
       chain: this.$route.params.chain,
       showQR: false,
-      redeemInProgress: false
+      redeemInProgress: false,
+      marketplace: this.$route.params.chain == "POLYGON"? "OpenSea" : "Rarible"
     }
   },
   computed: {
@@ -95,17 +96,50 @@ export default {
     nft() {
       return this.nfts.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
     },
-    openSeaUrl() {
-      return `https://opensea.io/assets/matic/${this.nft.contract.address}/${this.nft.id.tokenId}`
+    marketplaceUrl() {
+      if(this.chain == "POLYGON"){
+        return `https://opensea.io/assets/matic/${this.nft.contract.address}/${this.nft.id.tokenId}`
+      }else if(this.chain == "TEZOS"){
+        return `https://rarible.com/token/tezos/${this.nft.contract.address}:${this.nft.id.tokenId}`
+      }else{
+        return ``
+      }
+      
     },
     contractUrl(){
       return `https://polygonscan.com/address/${this.nft.contract.address}`
-    }
+    },
   },
   async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    const nfts = await $axios.$get("/v1/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
-    return {nfts}
+    const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount
+    const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
+    if(result.evmNfts){
+      const nfts= result.evmNfts
+      return {nfts}
+    }else if(result.tezosNfts){
+      const nfts= result.tezosNfts.map(nft=>{
+          return{
+            contract:{
+              address: nft.token.contract.address
+            },
+            id:{
+              tokenId: nft.token.tokenId,
+              tokenMetadata: {
+                tokenType: nft.token.standard
+              }
+            },
+            metadata:{
+              name: nft.token.metadata?.name,
+              description: nft.token.metadata?.name.description,
+              image: nft.token.metadata?.image ? nft.token.metadata?.image : nft.token.metadata?.displayUri,
+              external_url: route.params.chain == "TEZOS"? `https://tzkt.io/${nft.token.contract.address}/operations/` : `https://ghostnet.tzkt.io/${nft.token.contract.address}/operations/`
+            }
+          }
+      })
+      return {nfts}
+    }
+    
   },
   mounted() {
     new QRious({
