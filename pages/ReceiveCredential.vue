@@ -63,15 +63,15 @@ export default {
   },
   async asyncData ({ $axios, query }) {
     if(query.sessionId != null) {
-      const issuanceSessionInfo = await $axios.$get("/api/wallet/siopv2/issuanceSessionInfo", { params: query })
+      const issuanceSessionInfo = await $axios.$get("/api/wallet/issuance/info", { params: query })
       return { issuanceSessionInfo }
     }
   },
   methods:{
     accept: async function() {
       let path = '/Credentials'
-      if(this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != null && this.issuanceSessionInfo.issuanceRequest.walletRedirectUri != "") {
-        path = this.issuanceSessionInfo.issuanceRequest.walletRedirectUri
+      if(this.issuanceSessionInfo.walletRedirectUri != null && this.issuanceSessionInfo.walletRedirectUri != "") {
+        path = this.issuanceSessionInfo.walletRedirectUri
       }
       this.$router.push(path)
     }

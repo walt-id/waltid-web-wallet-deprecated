@@ -25,6 +25,11 @@ export default {
         RECEIVED_CREDENTIALS_TITLE: 'Received credentials',
         ACCEPT: 'Accept'
     },
+    ISSUANCE_INITIATION: {
+        TITLE: 'Issuance initiation',
+        SUBTITLE: 'A credential issuance request has been initiated',
+        OFFERED_CREDENTIALS: 'Offered credentials'
+    },
     ADD_CREDENTIAL: {
         TITLE: 'Add credential'
     },
