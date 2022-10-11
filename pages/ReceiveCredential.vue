@@ -2,6 +2,7 @@
   <div>
       <div id="content-credentials" v-if="issuanceSessionInfo && !selectedCredential">
         <h2>{{$t('RECEIVE_CREDENTIALS.RECEIVED_CREDENTIALS_TITLE')}}</h2>
+         <p>{{$t('RECEIVE_CREDENTIALS.RECEIVED_CREDENTIALS_SUBTITLE')}}</p>
         <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
           <a v-for="credential in issuanceSessionInfo.credentials" :key="credential.id"
               class="_card d-flex _animation-fade" href="#selectCredential"

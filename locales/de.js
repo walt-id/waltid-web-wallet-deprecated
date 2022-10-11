@@ -23,6 +23,7 @@ export default {
         CONFIRM: 'Bestätigen',
         REJECT: 'Ablehnen',
         RECEIVED_CREDENTIALS_TITLE: 'Erhaltene Credentials',
+        RECEIVED_CREDENTIALS_SUBTITLE: 'Füge die Credential(s) deiner Wallet hinzu, indem du auf "Akzeptieren" klickst',
         ACCEPT: 'Akzeptieren'
     },
     BACK: 'Zurück',

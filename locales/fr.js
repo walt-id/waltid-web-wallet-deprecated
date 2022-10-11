@@ -23,6 +23,7 @@ export default {
         CONFIRM: 'Confirmer',
         REJECT: 'Rejeter',
         RECEIVED_CREDENTIALS_TITLE: 'Reçu des informations d\'identification',
+        RECEIVED_CREDENTIALS_SUBTITLE: 'Cliquez sur "Accepter" pour recevoir vos identifiants dans votre portefeuille',
         ACCEPT: 'J\'accepte'
     },
     BACK: 'Retour',
