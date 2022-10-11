@@ -14,6 +14,10 @@
             {{credentialType}}
           </div>
         </div>
+        <div class="mb-2">
+          <b>{{$t('ISSUANCE_INITIATION.SUBJECT_DID')}}:</b>
+          <div class="text-truncate" style="max-width: 20em;" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="currentDid">{{currentDid}}</div>
+        </div>
         <div class="_button mt-2">
           <button href="#share" class="_share col-12 mb-2" @click="accept()">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
           <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
