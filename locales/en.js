@@ -26,6 +26,13 @@ export default {
         RECEIVED_CREDENTIALS_SUBTITLE: 'Click "Accept" to add the credential(s) to your wallet',
         ACCEPT: 'Accept'
     },
+    ISSUANCE_INITIATION: {
+        TITLE: 'Issuance initiation',
+        SUBTITLE: 'A credential issuance request has been initiated',
+        OFFERED_CREDENTIALS: 'Offered credentials',
+        SUBJECT_DID: 'Subject DID',
+        USER_PIN: 'User PIN'
+    },
     ADD_CREDENTIAL: {
         TITLE: 'Add credential'
     },

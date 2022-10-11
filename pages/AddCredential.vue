@@ -17,15 +17,15 @@
         <div v-if="selectedIssuerMeta != null">
           <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
           <div>
-            <select class="form-select" aria-label="Default select example" v-model="selectedCredentialSchema">
-              <option v-for="schema in credentialSchemas()" :key="schema.schema" :value="schema.schema">
-                {{ schema.name }}
+            <select class="form-select" aria-label="Default select example" v-model="selectedCredentialType">
+              <option v-for="type in credentialTypes" :key="type.type" :value="type.type">
+                {{ type.title }}
               </option>
             </select>
           </div>
         </div>
-        <div v-if="selectedCredentialSchema">
-          <button type="button" class="btn btn-primary mt-3" @click="initIssuance()" style="width: 100%">
+        <div v-if="selectedCredentialType">
+          <button type="button" class="btn btn-primary mt-3" @click="startIssuance()" style="width: 100%">
             Fetch credential
           </button>
         </div>
@@ -41,12 +41,12 @@ export default {
     return {
       selectedIssuer: null,
       selectedIssuerMeta: null,
-      selectedCredentialSchema: null,
+      selectedCredentialType: null,
     };
   },
   async asyncData({ $axios }) {
     // TODO: select DID to use
-    const issuers = await $axios.$get("/api/wallet/siopv2/issuer/list");
+    const issuers = await $axios.$get("/api/wallet/issuer/list");
     return { issuers };
   },
   computed: {
@@ -57,27 +57,42 @@ export default {
     currentDid() {
       console.log(this.$store.state.wallet.currentDid)
       return this.$store.state.wallet.currentDid
+    },
+    credentialTypes() {
+      if (this.selectedIssuerMeta != null) {
+        console.log(this.selectedIssuerMeta);
+        if(this.selectedIssuerMeta.credentials_supported != null) {
+          return Object.keys(this.selectedIssuerMeta.credentials_supported).map(
+            k => { 
+              return {
+              type: k,
+              title: this.selectedIssuerMeta.credentials_supported[k].display[0].name 
+            }}
+          );
+        } else if(this.selectedIssuerMeta.credential_manifests != null) {
+          return this.selectedIssuerMeta.credential_manifests.flatMap(
+            (m) => m.output_descriptors
+          ).map (d => {
+            return {
+              type: d.schema,
+              title: d.name
+            }
+          });
+        } else return [];
+      } else return [];
     }
   },
   methods: {
     fetchIssuerMeta: async function ($event) {
       this.selectedIssuerMeta = await this.$axios.$get(
-        "/api/wallet/siopv2/issuer/metadata?issuerId=" + $event.target.value
+        "/api/wallet/issuer/metadata?issuerId=" + $event.target.value
       );
     },
-    credentialSchemas: function () {
-      if (this.selectedIssuerMeta != null) {
-        console.log(this.selectedIssuerMeta);
-        return this.selectedIssuerMeta.credential_manifests.flatMap(
-          (m) => m.output_descriptors
-        );
-      } else return [];
-    },
-    initIssuance: async function () {
-      const location = await this.$axios.$post('/api/wallet/siopv2/initIssuance', {
+    startIssuance: async function () {
+      const location = await this.$axios.$post('/api/wallet/issuance/start', {
         did: this.currentDid,
         issuerId: this.selectedIssuer,
-        schemaIds: [this.selectedCredentialSchema],
+        credentialTypes: [this.selectedCredentialType],
         walletRedirectUri: '/Credentials'
       })
       window.location = location

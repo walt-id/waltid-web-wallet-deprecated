@@ -23,6 +23,9 @@
         <NuxtLink to="/AddCredential" class="btn btn-primary py-2" style="width: 70%;">
             <i class="bi bi-plus-lg me-2"></i>Request Credential
         </NuxtLink>
+        <NuxtLink to="/AddCredentialQR" class="btn btn-primary py-2">
+          <i class="bi bi-upc-scan"></i>
+        </NuxtLink>
     </div>
 </template>
 

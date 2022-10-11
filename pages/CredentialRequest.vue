@@ -15,13 +15,13 @@
                   </div>
                 </div>
               </div>
-              <div v-if="requiredSchemaIds.length == 0 && presentableCredentials.length == 0">
+              <div v-if="presentableCredentials.length == 0 && emptyPresentationRequested">
                 <em>Click “accept” to confirm the connection request</em>
               </div>
-              <div v-if="presentableCredentials.length == 0 && requiredSchemaIds.length > 0" id="content">
+              <div v-if="presentableCredentials.length == 0 && !emptyPresentationRequested" id="content">
                   <em>No matching credentials found for the current DID</em>
               </div>
-              <div class="_button mt-4" v-if="presentableCredentials.length > 0 || requiredSchemaIds.length == 0">
+              <div class="_button mt-4" v-if="presentableCredentials.length > 0">
                   <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Accept</button>
                   <a href="#reject" class="_reject col-12">Reject</a>
               </div>
@@ -79,7 +79,7 @@ export default {
   },
   async asyncData ({ $axios, query, store }) {
     if(query.sessionId != null) {
-      const presentationSessionInfo = await $axios.$get("/api/wallet/siopv2/continuePresentation", { params: { ...query, did: store.state.wallet.currentDid } })
+      const presentationSessionInfo = await $axios.$get("/api/wallet/presentation/continue", { params: { ...query, did: store.state.wallet.currentDid } })
       let presentableCredentials = []
       if(presentationSessionInfo.presentableCredentials.length > 0) {
         var params = new URLSearchParams();
@@ -99,39 +99,36 @@ export default {
     }
   },
   computed: {
-    requiredSchemaIds() {
+    emptyPresentationRequested() {
       // TODO: adapt for Presentation exchange (2.0), where no schema uri is necessarily available
-      return this.presentationSessionInfo.presentationDefinition.input_descriptors
-      .filter(idesc => idesc.schema != null)
-      .map(idesc => idesc.schema.uri)
+      return this.presentationSessionInfo.presentationDefinition.input_descriptors.length == 0
     },
     currentDid () {
         console.log(this.$store.state.wallet.currentDid)
         return this.$store.state.wallet.currentDid
+    },
+    sessionId() {
+      return this.$route.query.sessionId
     }
   },
   methods:{
     peSubmit: async function() {
       const selectedPresentableCredentials = this.presentationSessionInfo.presentableCredentials.filter(c => this.checkedCredentialIds.findIndex(id => id == c.credentialId) >= 0)
-      if(this.presentationSessionInfo.isPassiveIssuanceSession) {
-        const issuanceSessionId = await this.$axios.$post("/api/wallet/siopv2/fulfillPassiveIssuance", selectedPresentableCredentials, { params: { sessionId: this.presentationSessionInfo.id }})
-        this.$router.push("/ReceiveCredential?sessionId=" + issuanceSessionId)
-      } else {
-        const siopResp = await this.$axios.$post("/api/wallet/siopv2/fulfillPresentation", selectedPresentableCredentials, { params: { sessionId: this.presentationSessionInfo.id }})
-        console.log("PE Response:", siopResp)
-        this.$refs.responseIdToken.value = siopResp.id_token
-        this.$refs.responseVpToken.value = siopResp.vp_token
-        this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
-        this.$refs.responseState.value = siopResp.state
-        this.$refs.responseForm.submit()
-      }
+    
+      const siopResp = await this.$axios.$post("/api/wallet/presentation/fulfill", selectedPresentableCredentials, { params: { sessionId: this.presentationSessionInfo.id }})
+      console.log("PE Response:", siopResp)
+      this.$refs.responseIdToken.value = siopResp.id_token
+      this.$refs.responseVpToken.value = siopResp.vp_token
+      this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
+      this.$refs.responseState.value = siopResp.state
+      this.$refs.responseForm.submit()
     },
     fetchFromIssuer: async function() {
       console.log(this.selectedIssuer)
-      const location = await this.$axios.$post('/api/wallet/siopv2/initIssuance', {
+      const location = await this.$axios.$post('/api/wallet/issuance/startForPresentation', {
         did: this.currentDid,
         issuerId: this.selectedIssuer,
-        schemaIds: this.requiredSchemaIds,
+        presentationSessionId: this.sessionId,
         walletRedirectUri: '/CredentialRequest?sessionId=' + this.presentationSessionInfo.id
       })
       window.location = location
