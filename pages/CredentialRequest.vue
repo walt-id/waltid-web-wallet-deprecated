@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if="presentationSessionInfo && !selectedCredential" id="content">
-          <h2>Presentation request</h2>
+          <h2>Connection request</h2>
           <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
               <div v-if="presentableCredentials.length > 0">
                 <div class="form-check col-md-9 col-sm-12 mb-3" v-for="credential in presentableCredentials" :key="credential.id">
@@ -16,13 +16,13 @@
                 </div>
               </div>
               <div v-if="presentableCredentials.length == 0 && emptyPresentationRequested">
-                <em>Empty presentation requested, confirm to continue</em>
+                <em>Click “accept” to confirm the connection request</em>
               </div>
               <div v-if="presentableCredentials.length == 0 && !emptyPresentationRequested" id="content">
                   <em>No matching credentials found for the current DID</em>
               </div>
               <div class="_button mt-4" v-if="presentableCredentials.length > 0">
-                  <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Share</button>
+                  <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Accept</button>
                   <a href="#reject" class="_reject col-12">Reject</a>
               </div>
               <div class="mt-4" v-if="presentationSessionInfo.availableIssuers != null && presentationSessionInfo.availableIssuers.length > 0">

@@ -23,6 +23,7 @@ export default {
         CONFIRM: 'Confirm',
         REJECT: 'Reject',
         RECEIVED_CREDENTIALS_TITLE: 'Received credentials',
+        RECEIVED_CREDENTIALS_SUBTITLE: 'Click "Accept" to add the credential(s) to your wallet',
         ACCEPT: 'Accept'
     },
     ISSUANCE_INITIATION: {
