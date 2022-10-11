@@ -16,13 +16,13 @@
                 </div>
               </div>
               <div v-if="requiredSchemaIds.length == 0 && presentableCredentials.length == 0">
-                <em>Empty presentation requested, confirm to continue</em>
+                <em>Click “accept” to confirm the connection request</em>
               </div>
               <div v-if="presentableCredentials.length == 0 && requiredSchemaIds.length > 0" id="content">
                   <em>No matching credentials found for the current DID</em>
               </div>
               <div class="_button mt-4" v-if="presentableCredentials.length > 0 || requiredSchemaIds.length == 0">
-                  <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Share</button>
+                  <button href="#share" class="_share col-12 mb-2" @click="peSubmit()">Accept</button>
                   <a href="#reject" class="_reject col-12">Reject</a>
               </div>
               <div class="mt-4" v-if="presentationSessionInfo.availableIssuers != null && presentationSessionInfo.availableIssuers.length > 0">
