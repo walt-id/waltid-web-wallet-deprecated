@@ -48,7 +48,11 @@ export default {
       const location = await this.$axios.$get('/api/wallet/issuance/continueIssuerInitiatedIssuance', { params: {
         did: this.currentDid, sessionId: this.issuanceSessionInfo.id
       }})
-      window.location = location
+      if(location.startsWith("/")) {
+        this.$router.replace(location)
+      } else {
+        window.location = location
+      }
     }
   }
 	
