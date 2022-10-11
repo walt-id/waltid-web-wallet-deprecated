@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if="presentationSessionInfo && !selectedCredential" id="content">
-          <h2>Presentation request</h2>
+          <h2>Connection request</h2>
           <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
               <div v-if="presentableCredentials.length > 0">
                 <div class="form-check col-md-9 col-sm-12 mb-3" v-for="credential in presentableCredentials" :key="credential.id">
