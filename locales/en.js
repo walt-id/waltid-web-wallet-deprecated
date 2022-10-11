@@ -29,7 +29,8 @@ export default {
         TITLE: 'Issuance initiation',
         SUBTITLE: 'A credential issuance request has been initiated',
         OFFERED_CREDENTIALS: 'Offered credentials',
-        SUBJECT_DID: 'Subject DID'
+        SUBJECT_DID: 'Subject DID',
+        USER_PIN: 'User PIN'
     },
     ADD_CREDENTIAL: {
         TITLE: 'Add credential'

@@ -18,8 +18,12 @@
           <b>{{$t('ISSUANCE_INITIATION.SUBJECT_DID')}}:</b>
           <div class="text-truncate" style="max-width: 20em;" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="currentDid">{{currentDid}}</div>
         </div>
+        <div class="mb-2" v-if="issuanceSessionInfo.userPinRequired">
+          <b>{{$t('ISSUANCE_INITIATION.USER_PIN')}}:</b>
+          <input type="password" class="form-control border-primary mb-2 w-50 mx-auto" placeholder="PIN" aria-label="PIN" v-model="userPin" autocomplete="new-password">
+        </div>
         <div class="_button mt-2">
-          <button href="#share" class="_share col-12 mb-2" @click="accept()">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
+          <button href="#share" :disabled="issuanceSessionInfo.userPinRequired && userPin == null" class="btn btn-primary _share col-12 mb-2" @click="accept()">{{$t('RECEIVE_CREDENTIALS.ACCEPT')}}</button>
           <a href="#reject" class="_reject col-12">{{$t('RECEIVE_CREDENTIALS.REJECT')}}</a>
         </div>
       </div>
@@ -32,7 +36,8 @@ export default {
   name: "InitiateIssuance",
   data() {
     return {
-      issuanceSessionInfo: null
+      issuanceSessionInfo: null,
+      userPin: null
     }
   },
   computed: {
@@ -49,14 +54,21 @@ export default {
   },
   methods: {
     accept: async function() {
-      const location = await this.$axios.$get('/api/wallet/issuance/continueIssuerInitiatedIssuance', { params: {
-        did: this.currentDid, sessionId: this.issuanceSessionInfo.id
-      }})
-      if(location.startsWith("/")) {
-        this.$router.replace(location)
-      } else {
-        window.location = location
-      }
+      this.$axios.$get('/api/wallet/issuance/continueIssuerInitiatedIssuance', { params: {
+        did: this.currentDid, sessionId: this.issuanceSessionInfo.id, userPin: this.userPin
+      }}).then(
+        location => {
+          if(location.startsWith("/")) {
+          this.$router.replace(location)
+          } else {
+            window.location = location
+          }
+        },
+        reason => {
+          this.$router.replace("/IssuanceError?reason="+reason)
+        }
+      )
+      
     }
   }
 	
