@@ -8,7 +8,7 @@ export default (context, inject) => {
         convertUrl(url) {
             let result = url
             if (url) {
-                let matches = url.match("^(ipfs://)([1-9A-Za-z]{59})$");
+                let matches = url.match("^(ipfs://)([1-9A-Za-z]{59}|[1-9A-Za-z]{46})$");
                 if (matches != null && matches.length > 2) {
                     result = "https://ipfs.io/ipfs/" + matches[2]
                 }

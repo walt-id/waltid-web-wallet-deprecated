@@ -15,7 +15,9 @@ const config = {
         connections: false
     },
     home: "/Credentials",
-    defaultChain: "MUMBAI",
-    chains: ["ETHEREUM", "POLYGON", "RINKEBY", "ROPSTEN", "MUMBAI"]
+    evmDefaultChain: "MUMBAI",
+    tezosdefaultChain: "TEZOS",
+    evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
+    tezosChains: ["TEZOS", "GHOSTNET"]
 }
 export{config}

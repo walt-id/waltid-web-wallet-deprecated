@@ -28,11 +28,19 @@
               <span v-else>{{$t('LOGIN.LOGIN')}}</span> 
             </button>
           </div>
-          <div>
+          <div class="my-2">
             <a href="#metamask" class="_meta-mask btn" @click="web3modal">
               <span class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-wallet2 mx-2 text-white"></i>
                 <p>Connect wallet</p>
+              </span> 
+            </a>
+          </div>
+          <div>
+            <a href="#metamask" class="_meta-mask btn" @click="beaconTezosWallet">
+              <span class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-wallet2 mx-2 text-white"></i>
+                <p>Connect Tezos wallet</p>
               </span> 
             </a>
           </div>
@@ -104,6 +112,7 @@ import ErrorMessage from '@/components/ErrorMessage.vue'
 import {config} from '/config.js'
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { BeaconWallet } from "@taquito/beacon-wallet";
 
 const providerOptions = {
   walletconnect: {
@@ -116,6 +125,8 @@ const providerOptions = {
     }
   }
 };
+
+const wallet = new BeaconWallet({ name: "Walt.id" });
 
 export default {
   name: 'Login',
@@ -138,7 +149,8 @@ export default {
       isSignup: false,
       isResetPassword: false,
       loginLoading: false,
-      eth_account: null
+      eth_account: null,
+      tezos_account: null
     }
   },
   computed: {
@@ -242,6 +254,7 @@ export default {
            }
           })
           this.$auth.setUser(loginResponse.data)
+          this.$store.commit('wallet/setDefaultChain', config.evmDefaultChain)
           this.$router.push("/")
         } catch (e) {
           console.log(e.response.data)
@@ -274,12 +287,30 @@ export default {
           id: `${this.eth_account}`,
           }
         })
+        console.log(loginResponse.data)
         this.$auth.setUser(loginResponse.data)
+        this.$store.commit('wallet/setDefaultChain', config.evmDefaultChain)
         this.$router.push("/")
       } catch (e) {
         console.log(e.response.data)
         this.error = true
         this.errorMessage = e.response.data.title
+      }
+    },
+    async beaconTezosWallet(){
+      try {
+        const permissions = await wallet.client.requestPermissions();
+        this.tezos_account= permissions.address
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+          id: `${this.tezos_account}`,
+          }
+        })
+        this.$store.commit('wallet/setDefaultChain', config.tezosdefaultChain)
+        this.$auth.setUser(loginResponse.data)
+        this.$router.push("/")
+      } catch (error) {
+        console.log("Got error:", error);
       }
     },
     // is a use Experience method to reset error state in retyping

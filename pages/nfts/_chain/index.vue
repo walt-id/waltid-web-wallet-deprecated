@@ -29,7 +29,7 @@ export default {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: config.chains,
+      chainOptions: this.$auth.user.ethAccount ? config.evmChains : config.tezosChains,
     }
   },
   watch: {
@@ -42,15 +42,36 @@ export default {
   },
   computed: {
     filteredList() {
-      return this.nfts.filter(nft => {
-        return JSON.stringify(nft).toLowerCase().includes(this.search.toLowerCase())
-      })
+      if(this.nfts.evmNfts){
+        return this.nfts.evmNfts.filter(nft => {
+          return JSON.stringify(nft).toLowerCase().includes(this.search.toLowerCase())
+        })
+      }else if(this.nfts.tezosNfts){
+        return this.nfts.tezosNfts.filter(nft=>{return nft.token.metadata}).map(nft=>{
+          return{
+            contract:{
+              address: nft.token.contract.address
+            },
+            id:{
+              tokenId: nft.token.tokenId
+            },
+            metadata:{
+              name: nft.token.metadata.name,
+              image: nft.token.metadata.image ? nft.token.metadata.image : nft.token.metadata.displayUri
+            }
+          }
+        })
+      }else{
+        return []
+      }
+     
     }
   },
   async asyncData ({ $axios, $auth, route }) {
-    if($auth.user.ethAccount != null) {
-        const nfts = await $axios.$get("/v1/nftkit/nft/chain/" + route.params.chain + "/owner/" + $auth.user.ethAccount)
-        return { nfts}
+    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null) {
+      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount
+      const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
+      return { nfts}
     } else {
         return {
             nfts: []
