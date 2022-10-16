@@ -3,7 +3,7 @@
     <div class="col-12 py-3">
       <span>
         <h5>{{ $t('CREDENTIAL.TITLE') }}</h5>
-        <p>{{ $t('TYPE' + credential.type[credential.type.length - 1]) }}</p>
+        <p>{{ $t('TYPE ' + credential.type[credential.type.length - 1]) }}</p>
       </span>
     </div>
     <!-- credential subject -->
@@ -44,7 +44,7 @@
       <span class="col-4">
         <h5>{{ $t('CREDENTIAL.ISSUER') }}</h5>
         <p class="text-truncate" style="max-width: 12em">{{ credential.issuer.name ? credential.issuer.name :
-          credential.issuer }}</p>
+        credential.issuer }}</p>
       </span>
       <span class="col-4"></span>
       <span class="col-4">
@@ -59,7 +59,7 @@
       <span class="col-4"></span>
       <span class="col-4" v-if="credential.issuer.url">
         <h5>{{ $t('ISSUER.URL') }}</h5>
-        <p  class="text-truncate"><a :href="credential.issuer.url" target="_blank">{{ credential.issuer.url }}</a></p>
+        <p class="text-truncate"><a :href="credential.issuer.url" target="_blank">{{ credential.issuer.url }}</a></p>
       </span>
       <ImageComponent :image="credential.issuer.url"></ImageComponent>
     </div>
@@ -69,10 +69,6 @@
       <p>{{ credential.id }}</p>
     </span>
     <div class="d-flex py-3 border-bottom mb-3 border-secondary">
-      <span class="col-4" v-if="credential.issuanceDate">
-        <h5>{{$t('CREDENTIAL.ISSUED_ON')}}</h5>
-        <p>{{moment(credential.issuanceDate).format("MMM Do YYYY")}}</p>
-      </span>
       <span class="col-4">
         <h5>{{$t('CREDENTIAL.EXPIRE')}}</h5>
         <p>{{credential.expirationDate ? moment(credential.expirationDate).format("MMM Do YYYY") : "Never"}}</p>
@@ -80,6 +76,19 @@
       <span class="col-4" v-if="credential.validFrom">
         <h5>{{$t('CREDENTIAL.VALID_FROM')}}</h5>
         <p>{{moment(credential.validFrom).format("MMM Do YYYY")}}</p>
+      </span>
+    </div>
+    <!-- CredentialSchema -->
+    <div class="text-left py-3 border-bottom mb-3 border-secondary">
+      <span class="col-4">
+        <h5>{{$t('CREDENTIAL_SCHEMA.ID')}}</h5>
+        <!-- <p>{{credentialSchema.id}}</p> -->
+        <p>fdsqfsf fsf sdfsf sfd</p>
+      </span>
+      <span class="col-4" v-if="credential.validFrom">
+        <h5>{{$t('CREDENTIAL_SCHEMA.TYPE')}}</h5>
+        <!-- <p>{{credentialSchema.type}}</p> -->
+        <p>  </p>
       </span>
     </div>
   </div>
@@ -106,4 +115,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

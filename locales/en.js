@@ -197,4 +197,8 @@ export default {
         TYPE: "Criteria Type",
         NARRATIVE: "Criteria Narrative"
     },
+    CREDENTIAL_SCHEMA:{
+        ID: "Credntial Schema ID",
+        TYPE: "Credential Schema Type"
+    }
 }
