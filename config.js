@@ -18,6 +18,10 @@ const config = {
     evmDefaultChain: "MUMBAI",
     tezosdefaultChain: "TEZOS",
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
-    tezosChains: ["TEZOS", "GHOSTNET"]
+    tezosChains: ["TEZOS", "GHOSTNET"],
+    marketplaces: {
+        "OpenSea": "https://opensea.io/assets/matic/",
+        "Rarible": "https://rarible.com/token/tezos/"
+    }
 }
 export{config}

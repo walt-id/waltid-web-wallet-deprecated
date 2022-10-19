@@ -56,7 +56,7 @@
             <div class="p-3" v-if="$globals.isNotNullOrEmpty(nft.metadata.external_url)">
               <a type="button" class="btn btn-primary w-100" :href="nft.metadata.external_url" target="_blank">View on blockchain explorer</a>
             </div>
-            <div class="px-3 py-3">
+            <div class="px-3 py-3" v-if="$globals.isNotNullOrEmpty(marketplace)">
               <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="marketplaceUrl" target="_blank">View on {{marketplace}}</a>
             </div>
           </div>
@@ -67,6 +67,9 @@
 
 <script>
 import QRious from "qrious"
+// import globals from "../../../plugins/globals"
+import {config} from '/config.js'
+
 export default {
   name: "NFT",
   data() {
@@ -74,7 +77,6 @@ export default {
       chain: this.$route.params.chain,
       showQR: false,
       redeemInProgress: false,
-      marketplace: this.$route.params.chain == "POLYGON"? "OpenSea" : "Rarible"
     }
   },
   computed: {
@@ -96,15 +98,23 @@ export default {
     nft() {
       return this.nfts.filter(n => n.contract.address == this.contractAddress && n.id.tokenId == this.tokenId)[0]
     },
-    marketplaceUrl() {
-      if(this.chain == "POLYGON"){
-        return `https://opensea.io/assets/matic/${this.nft.contract.address}/${this.nft.id.tokenId}`
-      }else if(this.chain == "TEZOS"){
-        return `https://rarible.com/token/tezos/${this.nft.contract.address}:${this.nft.id.tokenId}`
-      }else{
-        return ``
+    marketplace(){
+      let result = null
+      if(config.evmChains.includes(this.chain)){
+        result = "OpenSea"
       }
-      
+      if(config.tezosChains.includes(this.chain)){
+        result = "Rarible"
+      }
+      return result
+    },
+    marketplaceUrl() {
+      let url = config.marketplaces[this.marketplace]
+      if(url != undefined){
+        return url + `${this.nft.contract.address}/${this.nft.id.tokenId}`
+      }else{
+        return ''
+      }
     },
     contractUrl(){
       return `https://polygonscan.com/address/${this.nft.contract.address}`
