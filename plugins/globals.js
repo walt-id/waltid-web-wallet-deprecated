@@ -15,25 +15,35 @@ export default (context, inject) => {
             }
             return result
         },
-        isVideo(nft) {
-            let result = false
-            let media = this.mediaUrl(nft)
-            this.getRemoteFileHeader(media, header => {
-                result = this.mimeType(header.type).toLowerCase() == "video"
-            })
-            return result
+        getXHRPromise(url, method, header = 'Content-Type') {
+            return new Promise(function (resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url, true);
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300) {
+                        let response = xhr.response
+                        if(method.toUpperCase() == 'HEAD'){
+                            response = xhr.getResponseHeader(header)
+                        }
+                        resolve(response);
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                xhr.send();
+            });
         },
-        getRemoteFileHeader(url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url);
-            xhr.responseType = "blob";
-            xhr.onload = function() {
-              callback(xhr.response)
-            };
-            xhr.onerror = function() {
-              console.log('A network error occurred!');
-            };
-            xhr.send();
+        async getRemoteFileMimeType(url){
+            return this.mimeType(await this.getXHRPromise(url, 'HEAD', 'Content-Type'))
         },
         mimeType(type) {
             let result = null

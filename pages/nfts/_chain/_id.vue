@@ -13,8 +13,7 @@
             <h2 class="q-sans-md" style="color: #008CC8;">{{nft.metadata.name}}</h2>
             <div class="d-flex justify-content-center mb-3">
               <div style="height: 300px" class="d-flex align-items-center">
-                <video :src="$globals.mediaUrl(nft)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && $globals.isVideo(nft)" autoplay loop playsinline />
-                <img :src="$globals.mediaUrl(nft)" class="image-fluid mx-auto img-thumbnail nft-img" v-if="!showQR && !$globals.isVideo(nft)" />
+                <TokenMediaComponent :nft="nft" :showQR="showQR" />
                 <canvas :id="'qr-' + tokenId" v-show="showQR" @click="toggleShowQR()" />
               </div>
             </div>
@@ -67,8 +66,8 @@
 
 <script>
 import QRious from "qrious"
-// import globals from "../../../plugins/globals"
 import {config} from '/config.js'
+import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
 export default {
   name: "NFT",
@@ -78,6 +77,9 @@ export default {
       showQR: false,
       redeemInProgress: false,
     }
+  },
+  components: {
+    TokenMediaComponent,
   },
   computed: {
     showRedeem() {
