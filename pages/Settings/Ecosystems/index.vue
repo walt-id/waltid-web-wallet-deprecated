@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class=" mt-3">
-                    <a @click="showModal" class="btn btn-primary py-2" style="width: 120%;">
+                    <a @click="showModal" class="btn btn-primary py-2" style="width: 100%;">
                         Select Ecosystem
                     </a>
                 </div>
