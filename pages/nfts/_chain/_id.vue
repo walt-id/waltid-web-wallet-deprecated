@@ -55,7 +55,7 @@
             <div class="p-3" v-if="$globals.isNotNullOrEmpty(nft.metadata.external_url)">
               <a type="button" class="btn btn-primary w-100" :href="nft.metadata.external_url" target="_blank">View on blockchain explorer</a>
             </div>
-            <div class="px-3 py-3" v-if="$globals.isNotNullOrEmpty(marketplace)">
+            <div class="px-3 py-3" v-if="$globals.isNotNullOrEmpty(marketplaceUrl)">
               <a type="button" class="btn btn-primary w-100 corp-e-reg" :href="marketplaceUrl" target="_blank">View on {{marketplace}}</a>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default {
       return result
     },
     marketplaceUrl() {
-      let url = config.marketplaces[this.marketplace]
+      let url = config.marketplaces[this.chain]
       if(url != undefined){
         return url + `${this.nft.contract.address}/${this.nft.id.tokenId}`
       }else{
