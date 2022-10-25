@@ -5,6 +5,7 @@
                 <h2>Ecosystems</h2>
                 <br>
                 <!--<p class="mt-3">You have no Ecosystems.</p>-->
+                <!-- EBSI / ESSIF -->
                 <div class="d-flex mt-3 align-items-start _setting-items">
                     <div class="col-10 _item">
                         <h4>EBSI/ESSIF</h4>
@@ -15,8 +16,7 @@
                         <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Add</NuxtLink>
                     </div>
                 </div>
-
-                
+                <!-- DNS (web) -->
                 <div class="d-flex mt-4 align-items-start _setting-items">
                     <div class="col-10 _item">
                         <h4>DNS</h4>
@@ -29,8 +29,7 @@
                         <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
                     </div>
                 </div>
-
-
+                <!-- Gaia-X -->
                 <div class="d-flex mt-4 align-items-start _setting-items">
                     <div class="col-10 _item">
                         <h4>Gaia-X</h4>
@@ -42,8 +41,19 @@
                         <NuxtLink to="/settings/ecosystems/gaia-x" class="_button-view _bounce">Add</NuxtLink>
                     </div>
                 </div>
-
-
+                <!-- IOTA -->
+                <div class="d-flex mt-4 align-items-start _setting-items">
+                    <div class="col-10 _item">
+                        <h4>IOTA</h4>
+                        <p>Onboard the IOTA ecosystem.</p>
+                        <b v-if="hasType(currentDid, 'iota')" class="_tag">
+                        </b>
+                    </div>
+                    <div class="col">
+                        <NuxtLink to="/settings/ecosystems/iota" class="_button-view _bounce">Add</NuxtLink>
+                    </div>
+                </div>
+                <!-- Key -->
                 <div class="d-flex mt-4 align-items-start _setting-items">
                     <div class="col-10 _item">
                         <h4>Key</h4>

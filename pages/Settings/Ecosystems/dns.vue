@@ -22,12 +22,7 @@
                   <div>
                       <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
                           <input placeholder="Insert the domain (optional)" id="inserted-domain" name="insertedDomain" class="form-control _domain-form" style="width: 12em" :data="this.domain" v-model="domain"/>
-                          <button type="submit" name="submit" class="_bounce btn text-white mt-3" style="width: 200px">
-                              <span v-if="generationLoading">
-                                  <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
-                              </span>
-                              <span v-else>Generate DID</span> 
-                          </button>
+                          <BlockingButtonComponent :loading="generationLoading" label="Generate DID" />
                       </form>
                   </div>
               </div>
@@ -59,6 +54,7 @@
 
 <script>
 import { copyText } from 'vue3-clipboard'
+import BlockingButtonComponent from '~/components/BlockingButtonComponent.vue'
 
 export default {
   name: 'Dns',
@@ -72,6 +68,9 @@ export default {
       didContent: '',
       coppied: false
     }
+  },
+  components: {
+    BlockingButtonComponent,
   },
   methods:{
     wizardNext: function(){
@@ -111,8 +110,6 @@ export default {
             .catch(
               e=>console.log(e)
             )
-            
-            
         }catch(e){
             console.warn(e)
             this.generationLoading=false
