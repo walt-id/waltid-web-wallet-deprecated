@@ -21,12 +21,7 @@
               <div class="mt-3 d-flex _button-view justify-content-center">
                   <div>
                       <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
-                          <button type="submit" name="submit" class="_bounce btn text-white mt-3" style="width: 200px">
-                              <span v-if="generationLoading">
-                                  <img src="/dark-loader.gif" width="30px" style="opacity: 0.7" />
-                              </span>
-                              <span v-else>Generate DID</span> 
-                          </button>
+                        <BlockingButtonComponent :loading="generationLoading" label="Generate DID" />
                       </form>
                   </div>
               </div>
@@ -59,6 +54,7 @@
 
 <script>
 import { copyText } from 'vue3-clipboard'
+import BlockingButtonComponent from '~/components/BlockingButtonComponent.vue'
 
 export default {
   name: 'Key',
@@ -72,6 +68,9 @@ export default {
       didContent: '',
       coppied: false
     }
+  },
+  components: {
+      BlockingButtonComponent,
   },
   methods:{
     wizardNext: function(){
@@ -110,8 +109,6 @@ export default {
             .catch(
               e=>console.log(e)
             )
-            
-            
         }catch(e){
             console.warn(e)
             this.generationLoading=false
