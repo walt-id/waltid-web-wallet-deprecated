@@ -18,8 +18,8 @@
           <p class="mb-2 mt-3 text-secondary">Choose credential type</p>
           <div>
             <select class="form-select" aria-label="Default select example" v-model="selectedCredentialType">
-              <option v-for="type in credentialTypes" :key="type.type" :value="type.type">
-                {{ type.title }}
+              <option v-for="type in credentialTypes" :key="type.type" :value="type.type"> {{ type.title }}
+
               </option>
             </select>
           </div>
@@ -61,18 +61,19 @@ export default {
     credentialTypes() {
       if (this.selectedIssuerMeta != null) {
         console.log(this.selectedIssuerMeta);
-        if(this.selectedIssuerMeta.credentials_supported != null) {
+        if (this.selectedIssuerMeta.credentials_supported != null) {
           return Object.keys(this.selectedIssuerMeta.credentials_supported).map(
-            k => { 
+            k => {
               return {
-              type: k,
-              title: this.selectedIssuerMeta.credentials_supported[k].display[0].name 
-            }}
+                type: k,
+                title: this.selectedIssuerMeta.credentials_supported[k].display[0].name
+              }
+            }
           );
-        } else if(this.selectedIssuerMeta.credential_manifests != null) {
+        } else if (this.selectedIssuerMeta.credential_manifests != null) {
           return this.selectedIssuerMeta.credential_manifests.flatMap(
             (m) => m.output_descriptors
-          ).map (d => {
+          ).map(d => {
             return {
               type: d.schema,
               title: d.name
