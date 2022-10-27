@@ -8,9 +8,20 @@ export default (context, inject) => {
         convertUrl(url) {
             let result = url
             if (url) {
-                let matches = url.match("^(ipfs://)([1-9A-Za-z]{59}|[1-9A-Za-z]{46})$");
-                if (matches != null && matches.length > 2) {
-                    result = "https://ipfs.io/ipfs/" + matches[2]
+                const regex = "^((ipfs|ipns)://)([1-9A-Za-z]{59}|[1-9A-Za-z]{46})(/[^\\?]*)*(\\?filename=[^\\?]+)?$"
+                result = this.buildUrlFromMatches(url.match(regex))
+            }
+            return this.isNotNullOrEmpty(result) ? result : url
+        },
+        buildUrlFromMatches(matches){
+            let result = null
+            if (matches != null && matches.length > 3) {
+                result = `https://ipfs.io/${matches[2]}/${matches[3]}`
+                if(matches[4] != null){
+                    result += matches[4]
+                }
+                if(matches[5] != null){
+                    result += matches[5]
                 }
             }
             return result
