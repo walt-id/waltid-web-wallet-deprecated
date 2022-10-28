@@ -253,9 +253,10 @@ export default {
             id: `${this.eth_account}`,
            }
           })
+          this.$auth.options.redirect = false
           this.$auth.setUser(loginResponse.data)
           this.$store.commit('wallet/setDefaultChain', config.evmDefaultChain)
-          this.$router.push("/")
+          this.$router.push("/nfts")
         } catch (e) {
           console.log(e.response.data)
           this.error = true
@@ -288,9 +289,10 @@ export default {
           }
         })
         console.log(loginResponse.data)
+        this.$auth.options.redirect = false
         this.$auth.setUser(loginResponse.data)
         this.$store.commit('wallet/setDefaultChain', config.evmDefaultChain)
-        this.$router.push("/")
+        this.$router.push("/nfts")
       } catch (e) {
         console.log(e.response.data)
         this.error = true
@@ -306,9 +308,10 @@ export default {
           id: `${this.tezos_account}`,
           }
         })
+        this.$auth.options.redirect = false
         this.$store.commit('wallet/setDefaultChain', config.tezosdefaultChain)
         this.$auth.setUser(loginResponse.data)
-        this.$router.push("/")
+        this.$router.push("/nfts")
       } catch (error) {
         console.log("Got error:", error);
       }
