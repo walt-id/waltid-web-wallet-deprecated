@@ -168,7 +168,10 @@ export default {
     },
     NFTS: {
         TITLE: 'My NFTs',
-        SEARCH: 'Search'
+        SEARCH: 'Search',
+        ADJUST_MODAL: {
+            TITLE: 'NFT Settings'
+        },
     },
     NFT: {
         CONTRACT_ADDRESS: 'Contract address',
