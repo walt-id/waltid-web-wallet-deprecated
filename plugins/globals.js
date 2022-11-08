@@ -2,7 +2,7 @@ export default (context, inject) => {
     const globals = {
         thumbnail(credential) {
             if (credential.type[credential.type.length - 1] == "OpenBadgeCredential") {
-                return credential.credentialSubject.achievement.image
+                return credential.credentialSubject.achievement.image.id
             }
         },
         convertUrl(url) {

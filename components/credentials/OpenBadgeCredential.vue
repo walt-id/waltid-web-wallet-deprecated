@@ -78,7 +78,7 @@
           }}</a>
         </p>
       </span>
-      <ImageComponent :image="credential.issuer.url"></ImageComponent>
+      <ImageComponent :image="credential.issuer.image.id"></ImageComponent>
     </div>
     <!-- credential -->
     <span class="col-4" v-if="credential.id">
