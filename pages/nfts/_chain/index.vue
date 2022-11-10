@@ -6,10 +6,11 @@
         <p class="mb-0">Chain</p>
         <span v-b-tooltip.hover.click.topright="{ customClass: 'c-tooltip' }" title="Chain from which NFTs are gathered" class="bi bi-question-circle"></span>
       </div>
-      <b-form-select v-model="chain" :options="chainOptions" class="form-select" />
+      <b-form-select v-model="chain" :options="chainOptions" @change="$store.commit('utils/toggleFullPageModal')" class="form-select" />
     </div>
     <div id="content" v-else>
       <h2 class="_animation-fade">{{$t('NFTS.TITLE')}}</h2>
+      <p v-if="chain != null" @click="$store.commit('utils/toggleFullPageModal')" style="cursor: pointer;" class="mt-3 mb-2">{{chain}}</p>
         <div class="_search">
             <form action="" id="search-form">
                 <div class="d-flex align-items-center justify-content-center" style="gap: 0.3rem">
