@@ -3,10 +3,14 @@ export const state = () => ({
     initialized: false,
     dids: [],
     currentDid: '',
-    defaultChain: ''
+    defaultChain: '',
+    fetchingChains: false,
   })
   
 export const mutations = {
+  setFetchingChains(state, payload){
+    state.fetchingChains = payload
+  },
     addDid(state, did) {
         state.dids.push(did)
     },

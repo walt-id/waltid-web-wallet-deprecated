@@ -170,7 +170,8 @@ export default {
         TITLE: 'My NFTs',
         SEARCH: 'Search',
         ADJUST_MODAL: {
-            TITLE: 'NFT Settings'
+            TITLE: 'NFT Settings',
+            APPLYING_CHANGES: 'Applying Changes'
         },
     },
     NFT: {

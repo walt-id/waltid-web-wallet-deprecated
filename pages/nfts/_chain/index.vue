@@ -1,15 +1,22 @@
 <template>
   <div>
     <div v-if="$store.state.utils.fullPageModal" class="adjust-modal">
-      <h2 class="_animation-fade mb-4">{{$t('NFTS.ADJUST_MODAL.TITLE')}}</h2>
-      <div class="d-flex justify-content-between mb-2">
-        <p class="mb-0">Chain</p>
-        <span v-b-tooltip.hover.click.topright="{ customClass: 'c-tooltip' }" title="Chain from which NFTs are gathered" class="bi bi-question-circle"></span>
+      <h2 class="_animation-fade mb-4" v-if="$store.state.wallet.fetchingChains">{{$t('NFTS.ADJUST_MODAL.APPLYING_CHANGES')}}</h2>
+      <h2 class="_animation-fade mb-4" v-else>{{$t('NFTS.ADJUST_MODAL.TITLE')}}</h2>
+      <div class="spinner-border text-primary mt-3" role="status" v-if="$store.state.wallet.fetchingChains">
+        <span class="visually-hidden">Loading...</span>
       </div>
-      <b-form-select v-model="chain" :options="chainOptions" class="form-select" />
+      <div v-else>
+        <div class="d-flex justify-content-between mb-2">
+          <p class="mb-0">Chain</p>
+          <span v-b-tooltip.hover.click.topright="{ customClass: 'c-tooltip' }" title="Chain from which NFTs are gathered" class="bi bi-question-circle"></span>
+        </div>
+        <b-form-select v-model="chain" :options="chainOptions" class="form-select" />
+      </div>
     </div>
     <div id="content" v-else>
       <h2 class="_animation-fade">{{$t('NFTS.TITLE')}}</h2>
+      <p v-if="chain != null" @click="$store.commit('utils/toggleFullPageModal')" style="cursor: pointer;" class="mt-3 mb-2">{{chain}}</p>
         <div class="_search">
             <form action="" id="search-form">
                 <div class="d-flex align-items-center justify-content-center" style="gap: 0.3rem">
@@ -87,10 +94,14 @@ export default {
      
     }
   },
-  async asyncData ({ $axios, $auth, route }) {
+  async asyncData ({ $axios, $auth, route, store }) {
     if($auth.user.ethAccount != null || $auth.user.tezosAccount != null) {
       const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount
+      store.commit('wallet/setFetchingChains', true)
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
+      store.commit('wallet/setFetchingChains', false)
+      if(store.state.utils.fullPageModal) store.commit('utils/toggleFullPageModal')
+      console.log('HI-E')
       return { nfts}
     } else {
         return {
