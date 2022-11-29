@@ -1,67 +1,69 @@
 <template>
-    <div>
-        <div :class="this.didListModal === false ? '':'hide'">
-            <div class="_setting">
+    <div class="h-100">
+        <div :class="['h-100', this.didListModal === false ? '':'hide']">
+            <div class="_setting h-100">
                 <h2>Ecosystems</h2>
                 <br>
                 <!--<p class="mt-3">You have no Ecosystems.</p>-->
                 <!-- EBSI / ESSIF -->
-                <div class="d-flex mt-3 align-items-start _setting-items">
-                    <div class="col-10 _item">
-                        <h4>EBSI/ESSIF</h4>
-                        <p>Based on the<br>EU blockchain (EBSI).</p>
-                        <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
+                <div class="holder">
+                    <div class="d-flex mt-3 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>EBSI/ESSIF</h4>
+                            <p>Based on the<br>EU blockchain (EBSI).</p>
+                            <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
                     </div>
-                    <div class="col">
-                        <NuxtLink to="/settings/ecosystems/ebsi-essif" class="_button-view _bounce">Add</NuxtLink>
+                    <!-- DNS (web) -->
+                    <div class="d-flex mt-4 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>DNS</h4>
+                            <p>Based on the domain<br>name service (DNS).</p>
+                            <b v-if="hasType(currentDid, 'web')" class="_tag">
+                                <em>Selected</em>
+                            </b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
                     </div>
-                </div>
-                <!-- DNS (web) -->
-                <div class="d-flex mt-4 align-items-start _setting-items">
-                    <div class="col-10 _item">
-                        <h4>DNS</h4>
-                        <p>Based on the domain<br>name service (DNS).</p>
-                        <b v-if="hasType(currentDid, 'web')" class="_tag">
-                            <em>Selected</em>
-                        </b>
+                    <!-- Gaia-X -->
+                    <div class="d-flex mt-4 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>Gaia-X</h4>
+                            <p>Onboard the Gaia-X ecosystem.</p>
+                            <b v-if="hasType(currentDid, 'gaia-x')" class="_tag">
+                            </b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/gaia-x" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
                     </div>
-                    <div class="col">
-                        <NuxtLink to="/settings/ecosystems/dns" class="_button-view _bounce">Add</NuxtLink>
+                    <!-- IOTA -->
+                    <div class="d-flex mt-4 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>IOTA</h4>
+                            <p>Onboard the IOTA ecosystem.</p>
+                            <b v-if="hasType(currentDid, 'iota')" class="_tag">
+                            </b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/iota" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
                     </div>
-                </div>
-                <!-- Gaia-X -->
-                <div class="d-flex mt-4 align-items-start _setting-items">
-                    <div class="col-10 _item">
-                        <h4>Gaia-X</h4>
-                        <p>Onboard the Gaia-X ecosystem.</p>
-                        <b v-if="hasType(currentDid, 'gaia-x')" class="_tag">
-                        </b>
-                    </div>
-                    <div class="col">
-                        <NuxtLink to="/settings/ecosystems/gaia-x" class="_button-view _bounce">Add</NuxtLink>
-                    </div>
-                </div>
-                <!-- IOTA -->
-                <div class="d-flex mt-4 align-items-start _setting-items">
-                    <div class="col-10 _item">
-                        <h4>IOTA</h4>
-                        <p>Onboard the IOTA ecosystem.</p>
-                        <b v-if="hasType(currentDid, 'iota')" class="_tag">
-                        </b>
-                    </div>
-                    <div class="col">
-                        <NuxtLink to="/settings/ecosystems/iota" class="_button-view _bounce">Add</NuxtLink>
-                    </div>
-                </div>
-                <!-- Key -->
-                <div class="d-flex mt-4 align-items-start _setting-items">
-                    <div class="col-10 _item">
-                        <h4>Key</h4>
-                        <p>Peer-to-peer based<br>key distribution.</p>
-                        <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
-                    </div>
-                    <div class="col">
-                        <NuxtLink to="/settings/ecosystems/key" class="_button-view _bounce">Add</NuxtLink>
+                    <!-- Key -->
+                    <div class="d-flex mt-4 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>Key</h4>
+                            <p>Peer-to-peer based<br>key distribution.</p>
+                            <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/key" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
                     </div>
                 </div>
                 <div class=" mt-3">
@@ -157,3 +159,9 @@ export default {
     }
 };
 </script>
+
+<style lang="sass" scoped>
+.holder
+    overflow-y: auto
+    height: calc( 100% - 42px )
+</style>

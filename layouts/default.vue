@@ -16,8 +16,8 @@
         </a>
       </div>
       <div :class="['_content justify-content-center d-flex', !$store.state.utils.fullPageModal && 'align-items-center']" :style="{ marginTop: $store.state.utils.fullPageModal ? '2em' : '-2em' }">
-        <div id="content">
-          <Nuxt />
+        <div id="content" class="h-100">
+          <Nuxt class="h-100" />
         </div>
         <div id="menu-content" class="_menu-content hide">
           <ul>
