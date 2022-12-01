@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="this.didListModal === false ? '_content justify-content-center d-flex align-items-center':'hide'">
+        <div :class="this.didListModal === false ? '_content justify-content-center d-flex':'hide'">
             <div class="_setting">
                 <h2>Data</h2>
                 <br>

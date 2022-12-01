@@ -73,9 +73,9 @@
                 </div>
             </div>
         </div>
-        <div :class="this.didListModal === true ? '_content d-flex':'hide'">
-            <div class="mt-3">
-                <div class="_top-bar px-3">
+        <div :class="['h-100', this.didListModal === true ? '_content d-flex':'hide']">
+            <div class="mt-3 h-100">
+                <div class="_top-bar px-3" style="min-height: auto;">
                     <div class="d-flex align-items-center _animation-fade">
                         <a href="#" @click="hideModal" class="_back-button">
                             <span class="d-flex align-items-center">
@@ -85,24 +85,26 @@
                         </a>
                     </div>
                 </div>
-                <div class="_did-content">
+                <div class="_did-content h-100">
                     <h2>All Selected DID</h2>
                     <br>
-                    <div class="d-grid justify-content-center">
-                        <a href="#" v-for="did in dids" @click="setDefaultDID(did)" v-bind:key="did.index"
-                            class="_card d-flex">
-                            <div class="col-9 d-flex align-items-center">
-                                <div>
-                                    <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
-                                    <p class="text-truncate" style="max-width: 12em">{{copyright}}</p>
+                    <div class="d-grid justify-content-center holder">
+                        <div v-for="did in dids" v-bind:key="did.index">
+                            <a href="#" @click="setDefaultDID(did)"
+                                class="_card d-flex">
+                                <div class="col-9 d-flex align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
+                                        <p class="text-truncate" style="max-width: 12em">{{copyright}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col d-flex justify-content-end align-items-start">
-                                <b v-if="currentDid === did" class="_tag mt-2"><em>Default</em></b>
-                                <b v-else class="_tag-active mt-2"><em>Set default</em></b>
-
-                            </div>
-                        </a>
+                                <div class="col d-flex justify-content-end align-items-start">
+                                    <b v-if="currentDid === did" class="_tag mt-2"><em>Default</em></b>
+                                    <b v-else class="_tag-active mt-2"><em>Set default</em></b>
+    
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,5 +165,5 @@ export default {
 <style lang="sass" scoped>
 .holder
     overflow-y: auto
-    height: calc( 100% - 42px )
+    height: calc( 100% - 48px - 65px )
 </style>
