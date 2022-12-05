@@ -481,7 +481,7 @@ body ._main #widget ._content ._btns a._reject {
 }
 
 body ._main #widget ._content ._setting {
-  margin-top: -70px;
+  /* margin-top: -70px; */
 }
 
 body ._main #widget ._content ._setting ._tag {
