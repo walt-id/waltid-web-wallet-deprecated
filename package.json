@@ -16,6 +16,7 @@
         "@nuxtjs/axios": "^5.13.6",
         "@nuxtjs/i18n": "^7.2.0",
         "@nuxtjs/pwa": "^3.3.5",
+        "@nuxtjs/toast": "^3.3.1",
         "@taquito/beacon-wallet": "^14.0.0",
         "@taquito/taquito": "^14.0.0",
         "@vue/composition-api": "^1.4.9",

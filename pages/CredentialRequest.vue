@@ -66,7 +66,7 @@
 </template>
 
 <script>
-
+import {config} from '/config.js'
 export default {
   name: 'CredentialRequest',
   data() {
@@ -117,11 +117,17 @@ export default {
     
       const siopResp = await this.$axios.$post("/api/wallet/presentation/fulfill", selectedPresentableCredentials, { params: { sessionId: this.presentationSessionInfo.id }})
       console.log("PE Response:", siopResp)
-      this.$refs.responseIdToken.value = siopResp.id_token
-      this.$refs.responseVpToken.value = siopResp.vp_token
-      this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
-      this.$refs.responseState.value = siopResp.state
-      this.$refs.responseForm.submit()
+      if(!siopResp.fulfilled) {
+        this.$refs.responseIdToken.value = siopResp.id_token
+        this.$refs.responseVpToken.value = siopResp.vp_token
+        this.$refs.responsePresentationSubmission.value = siopResp.presentation_submission
+        this.$refs.responseState.value = siopResp.state
+        this.$refs.responseForm.submit()
+      } else {
+        console.log("RP presentation response:", siopResp.rp_response)
+        this.$toast.success("Presentation submitted", {duration: 3000, icon: 'bi bi-check-circle-fill', iconPack: 'custom-class' })
+        this.$router.replace(config.home)
+      }
     },
     fetchFromIssuer: async function() {
       console.log(this.selectedIssuer)

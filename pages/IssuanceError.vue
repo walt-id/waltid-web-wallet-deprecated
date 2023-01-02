@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Issuance Error</h1>
+  <h1>Issuance or Presentation Error</h1>
   <div>{{reason}}</div>
 </div>
 </template>
