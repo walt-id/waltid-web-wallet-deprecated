@@ -1,6 +1,6 @@
 # waltid-web-wallet
 
-An SSI web wallet front-end, leveraging the backend API of https://github.com/walt-id/waltid-wallet-backend
+An SSI web wallet front-end, leveraging the backend API of https://github.com/walt-id/waltid-walletkit
 
 ## Wallet backend connection
 
@@ -18,7 +18,7 @@ proxy: {
 In a production environment it is recommended to set up the backend and frontend using an ingress router or API gateway.
 For an example, see the docker-compose setup in:
 
-https://github.com/walt-id/waltid-wallet-backend
+https://github.com/walt-id/waltid-walletkit
 
 ## Build Setup
 
