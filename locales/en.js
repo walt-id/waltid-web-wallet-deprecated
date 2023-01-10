@@ -204,5 +204,9 @@ export default {
     CREDENTIAL_SCHEMA:{
         ID: "Credntial Schema ID",
         TYPE: "Credential Schema Type"
+    },
+    QR: {
+        SCAN_QR_TITLE: "Scan QR code",
+        SCAN_QR_TIP: "Start credential issuance or presentation by scanning a QR code"
     }
 }

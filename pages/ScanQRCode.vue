@@ -1,6 +1,7 @@
 <template>
 <div>
-  <h2 class="_animation-fade">{{ $t("ADD_CREDENTIAL.TITLE") }}</h2>
+  <h2 class="_animation-fade">{{ $t("QR.SCAN_QR_TITLE") }}</h2>
+  <em>{{ $t("QR.SCAN_QR_TIP") }}</em>
   <video id="scanner-video" class="image-fluid mx-auto img-thumbnail"></video>
   <input type="text" class="form-control border-primary mb-2 mx-auto" v-model="oidcUri">
   <button :disabled="oidcUri == null" class="btn btn-primary" @click="start(null)">Start</button>
@@ -10,7 +11,7 @@
 <script>
 import QrScanner from 'qr-scanner'
 export default {
-	name: "AddCredentialQR",
+	name: "ScanQRCode",
   data() {
     return {
       oidcUri: null
