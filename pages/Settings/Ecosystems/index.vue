@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="_did-content h-100">
-                    <h2>All Selected DID</h2>
+                    <h2>Select default DID</h2>
                     <br>
                     <div class="d-grid justify-content-center holder">
                         <div v-for="did in dids" v-bind:key="did.index">
@@ -94,8 +94,7 @@
                                 class="_card d-flex">
                                 <div class="col-9 d-flex align-items-center">
                                     <div>
-                                        <h5 class="mb-1">{{did.slice(0,25)}}...</h5>
-                                        <p class="text-truncate" style="max-width: 12em">{{copyright}}</p>
+                                        <h5 class="mb-1" data-bs-toggle="tooltip" data-bs-placement="top" :title="did">{{did.slice(0,25)}}...</h5>
                                     </div>
                                 </div>
                                 <div class="col d-flex justify-content-end align-items-start">
@@ -125,7 +124,6 @@ export default {
     computed: {
         dids() {
             console.log(this.$store.state.wallet.dids)
-            console.log(this.copyright)
             return this.$store.state.wallet.dids
         },
         currentDid() {
