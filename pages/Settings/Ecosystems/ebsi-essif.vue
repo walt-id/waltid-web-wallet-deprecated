@@ -6,25 +6,40 @@
             <div :class="this.wizardIndex === 0 ? '': 'animate__fadeOutRight hide'">
                 <div class="_item">
                     <h4>Step 1</h4>
-                    <p>Copy a security token from the EBSI website.</p>
+                    <p>Choose DID version.</p>
+                </div>
+                <div class="mt-3 d-flex _button-view justify-content-center">
+                    <select class="form-select w-75" v-model="version"> 
+                        <option value="1">Legal Person (v1)</option>
+                        <option value="2">Natural Person (v2)</option>
+                    </select>
                 </div>
                 <div class="mt-3 d-flex _button-view justify-content-center">
                     <a class="_bounce btn" @click="wizardNext">Get started</a>
                 </div>
-                <p :class="this.wizardIndex === 2 ? 'hide': '_help mt-3'">Get token for the EBSI<br>Pre Production environment <span><a href="https://app.preprod.ebsi.eu/users-onboarding" target="_blank">here</a></span></p>
+                <p v-if="version == 1" class="_help mt-3">Requires token for the EBSI<br>Pilot environment, from <span><a href="https://app-pilot.ebsi.eu/users-onboarding/v2" target="_blank">here</a></span></p>
             </div>
             <div :class="this.wizardIndex === 1 ? '_left-fade': 'hide'">
                 <div class="_item">
                     <h4>Step 2</h4>
-                    <p>Insert the token below</p>
                 </div>
-                <div class="mt-3 d-flex _button-view justify-content-center">
-                    <div>
-                        <form action="" id="token-submit" @submit.prevent="tokenSubmit">
-                            <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
-                            <BlockingButtonComponent label="Submit" />
-                        </form>
+                <div v-if="version == 1" class="_item">
+                    <p>Insert the security token from the EBSI website</p>
+                    <div class="mt-3 d-flex _button-view justify-content-center">
+                        <div>
+                            <form action="" id="token-submit" @submit.prevent="tokenSubmit">
+                                <input placeholder="Insert your token" id="inserted-token" name="insertedToken" :class="this.tokenWrong===true ? 'form-control my-2 border-danger':'form-control my-2'" :data="this.token" v-model="token"/>
+                                <BlockingButtonComponent label="Submit" />
+                            </form>
+                        </div>
                     </div>
+                    <p :class="this.wizardIndex === 2 ? 'hide': '_help mt-3'">Get token for the EBSI<br>Pilot environment <span><a href="https://app-pilot.ebsi.eu/users-onboarding/v2" target="_blank">here</a></span></p>
+                </div>
+                <div v-else class="_item">
+                    <p>Create new DID EBSI</p>
+                    <form action="" id="token-submit" @submit.prevent="tokenSubmit">
+                        <BlockingButtonComponent label="Submit" />
+                    </form>
                 </div>
             </div>
             <div :class="this.tokenSubmitted === true ? '_fadin': 'hide'">
@@ -51,7 +66,8 @@ export default {
       wizardIndex: 0,
       token: '',
       tokenSubmitted: false,
-      tokenWrong: false
+      tokenWrong: false,
+      version: 2
     }
   },
   components: {
@@ -63,11 +79,13 @@ export default {
     },
     async tokenSubmit (){
         try{
-            const data = await this.$axios.$post('/api/wallet/did/create', {
+            const newDid = await this.$axios.$post('/api/wallet/did/create', {
               "method": 'ebsi',
-              "didEbsiBearerToken": this.token
+              "didEbsiBearerToken": this.token,
+              "didEbsiVersion": this.version
             })
-            console.log(data.data)
+            console.log(newDid)
+            this.$store.commit('wallet/addDid', newDid)
             this.tokenSubmitted=true
             this.wizardIndex = this.wizardIndex+1
         }catch(e){
