@@ -92,7 +92,7 @@ export default {
             })
           }
             console.log(did)
-            this.$axios.$get(`https://wallet.waltid.org/api/wallet/did/${did}`)
+            this.$axios.$get(`/api/wallet/did/${did}`)
             .then(
               res=>{
                 this.didHost = did
