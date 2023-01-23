@@ -41,6 +41,9 @@ export const mutations = {
       else
         state.currentDid = default_did
       console.log("wallet initialized with ", state)
+    },
+    reset(state) {
+      state.initialized = false
     }
 }
 

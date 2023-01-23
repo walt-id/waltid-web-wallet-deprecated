@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div :class="this.didListModal === false ? '_content justify-content-center d-flex':'hide'">
+    <div class="_content position-relative">
+        <div :class="this.didListModal === false ? 'my-2 justify-content-center d-flex':'hide'">
             <div class="_setting">
                 <h2>Data</h2>
                 <br>
@@ -16,7 +16,10 @@
                 </div>
             </div>
         </div>
-        <div :class="this.didListModal === true ? '_content d-flex':'hide'">
+        <div class="my-4 justify-content-center d-flex position-absolute w-100" style="bottom: 0px">
+            <button class="btn btn-danger" @click="resetAllData">Reset all data</button>
+        </div>
+        <div :class="this.didListModal === true ? 'd-flex':'hide'">
             <div class="mt-3">
                 <div class="_top-bar px-3">
                     <div class="d-flex align-items-center _animation-fade">
@@ -96,8 +99,12 @@ export default {
       setDefaultDID: function(did){
           this.$store.commit('wallet/setCurrentDid', did)
           this.setDD=false
+      },
+      async resetAllData() {
+        await this.$axios.$post("/api/wallet/resetUserData")
+        this.$store.commit('wallet/reset')
+        this.$auth.logout()
       }
-      
   }
 };
 </script>
