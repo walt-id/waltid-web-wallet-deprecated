@@ -96,6 +96,14 @@
             </span>
           </a>
         </div>
+        <div class="my-2">
+          <a href="#nearwallet" class="_meta-mask btn" @click="getNearAccount">
+            <span class="d-flex justify-content-center align-items-center">
+              <i class="bi bi-wallet2 mx-2 text-white"></i>
+              <p>get Near wallet</p>
+            </span>
+          </a>
+        </div>
         <div class="my-3 d-flex mt-4 justify-content-center">
           <a @click="toSignup" class="px-3 py-0 fw-normal">{{
             $t("LOGIN.SIGN_UP")
@@ -278,6 +286,8 @@ import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
 import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
 import { setupNeth } from "@near-wallet-selector/neth";
 import { setupXDEFI } from "@near-wallet-selector/xdefi";
+import * as nearAPI from "near-api-js";
+
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider, // required
@@ -508,7 +518,7 @@ export default {
             setupOptoWallet(),
             setupNeth(),
             setupXDEFI(),
-            
+
             setupNightlyConnect({
               url: "wss://relay.nightly.app/app",
               appMetadata: {
@@ -520,17 +530,73 @@ export default {
             }),
           ],
         });
-
         const modal = setupModal(selector, {
-          contractId: "guest-book.testnet",
+          title: "Select a wallet",
+          description: "Select a wallet to connect to this dApp",
         });
 
         modal.show();
+
+        const wallet = await selector.wallet("my-near-wallet");
+        const accounts = await wallet.getAccounts();
+        console.log(accounts[0].accountId); // [{ accountId: "test.testnet" }]
+      if (accounts[0].accountId) {
+          this.near_account = accounts[0].accountId;
+          const loginResponse = await this.$auth.loginWith("local", {
+            data: {
+              id: `${this.near_account}`,
+            },
+          });
+          this.$auth.options.redirect = false;
+          this.$store.commit("wallet/setDefaultChain", config.neardefaultChain);
+          this.$auth.setUser(loginResponse.data);
+          console.log(loginResponse.data);
+          this.$router.push("/nfts");
+        }
       } catch (error) {
         console.log("Got error:", error);
       }
+
+
     },
 
+    async getNearAccount() {
+      const { keyStores, connect, WalletConnection } = nearAPI;
+
+      const connectionConfig = {
+        networkId: "testnet",
+        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+        nodeUrl: "https://rpc.testnet.near.org",
+        walletUrl: "https://wallet.testnet.near.org",
+        helperUrl: "https://helper.testnet.near.org",
+        explorerUrl: "https://explorer.testnet.near.org",
+      };
+
+      // connect to NEAR
+      const nearConnection = await connect(connectionConfig);
+
+      // create wallet connection
+      const walletConnection = new WalletConnection(nearConnection);
+
+      const nearAccount = await walletConnection.account();
+
+      console.log("nearAccount", nearAccount.accountId);
+
+      if (nearAccount) {
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+            id: `${nearAccount.accountId}`,
+          },
+        });
+        this.$auth.options.redirect = false;
+        this.$store.commit("wallet/setDefaultChain", config.neardefaultChain);
+        this.$auth.setUser(loginResponse.data);
+        this.$router.push("/nfts");
+      } else {
+        this.error = true;
+        this.errorMessage = "Please install NEAR Wallet!";
+      }
+    },
     // is a use Experience method to reset error state in retyping
     resetError() {
       this.validEmail = true;
