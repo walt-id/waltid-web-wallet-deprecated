@@ -52,7 +52,7 @@ export default {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: this.$auth.user.ethAccount ? config.evmChains : config.tezosChains,
+      chainOptions: this.$auth.user.ethAccount ? config.evmChains : config.tezosChains ? config.nearChains : [],
       adjustModal: false,
     }
   },

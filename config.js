@@ -17,6 +17,7 @@ const config = {
     home: "/Credentials",
     evmDefaultChain: "MUMBAI",
     tezosdefaultChain: "TEZOS",
+    neardefaultChain: "testnet",
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
     tezosChains: ["TEZOS", "GHOSTNET"],
     nearChains: ["mainnet" , "testnet"],
