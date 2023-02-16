@@ -279,7 +279,7 @@ import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
 import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
 import { setupNeth } from "@near-wallet-selector/neth";
 import { setupXDEFI } from "@near-wallet-selector/xdefi";
-import * as nearAPI from "near-api-js";
+// import * as nearAPI from "near-api-js";
 
 const providerOptions = {
   walletconnect: {
@@ -536,25 +536,29 @@ export default {
         modal.show();
 
         const wallet = await selector.wallet("my-near-wallet");
+        await wallet.signOut();
         const accounts = await wallet.getAccounts();
-        console.log(accounts[0].accountId); // [{ accountId: "test.testnet" }]
-      if (accounts[0].accountId) {
-          this.near_account = accounts[0].accountId;
-          const loginResponse = await this.$auth.loginWith("local", {
-            data: {
-              id: `${this.near_account}`,
-            },
-          });
-          this.$auth.options.redirect = false;
-          this.$store.commit("wallet/setDefaultChain", config.neardefaultChain);
-          this.$auth.setUser(loginResponse.data);
-          await this.$router.push("/nfts");
+        if(accounts.length > 0 && accounts[0].accountId){
+          let accountId = accounts[0].accountId
+          this.loginWithNearAccount(accountId)
         }
       } catch (error) {
         console.log("Got error:", error);
       }
-
-
+    },
+    async loginWithNearAccount(accountId = this.$route.query.account_id){
+      if (accountId) {
+        this.near_account = accountId;
+        const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+            id: `${this.near_account}`,
+          },
+        });
+        this.$auth.options.redirect = false;
+        this.$store.commit("wallet/setDefaultChain", config.neardefaultChain);
+        this.$auth.setUser(loginResponse.data);
+        await this.$router.push("/nfts");
+      }
     },
     // is a use Experience method to reset error state in retyping
     resetError() {
@@ -570,6 +574,11 @@ export default {
           : (this.confirmedPassword = false);
       }
     },
+  },
+  created(){
+    if(this.$route.hash === '#nearwallet'){
+      this.loginWithNearAccount()
+    }
   },
 };
 </script>

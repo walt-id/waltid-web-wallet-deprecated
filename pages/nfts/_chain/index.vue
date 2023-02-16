@@ -101,13 +101,41 @@ export default {
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       store.commit('wallet/setFetchingChains', false)
       if(store.state.utils.fullPageModal) store.commit('utils/toggleFullPageModal')
-      console.log('HI-E')
       return { nfts}
-    } else {
-        return {
-            nfts: []
+    } 
+    let accountId = $auth.user.id
+    let nfts = []
+    if (accountId && accountId.endsWith(".testnet")) {
+      const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      list_of_smart_contracts.forEach(async (contract) => {
+        const list_of_tokens = await $axios.$get(`https://nftkit.walt-test.cloud/v2/nftkit/nft/near/chain/testnet/contract/${contract}/account/${accountId}/NFTS`);
+
+        for (const element of list_of_tokens) {
+          nfts.push({
+            token_id: element,
+            metadata: list_of_tokens,
+          });
         }
+
+      });
+      return { nfts }
     }
+    else if (accountId && accountId.endsWith(".near")){
+      const list_of_smart_contracts = await $axios.$get(`https://api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      list_of_smart_contracts.forEach(async (contract) => {
+        const list_of_tokens = await $axios.$get(`https://nftkit.walt-test.cloud/v2/nftkit/nft/near/chain/mainnet/contract/${contract}/account/${accountId}/NFTS`);
+
+        for (const element of list_of_tokens) {
+          nfts.push({
+            token_id: element,
+            metadata: list_of_tokens,
+          });
+        }
+
+      });
+      return { nfts }
+    }
+    return { nfts: [] }
   },
   methods:{
     navToNFT(nft) {
