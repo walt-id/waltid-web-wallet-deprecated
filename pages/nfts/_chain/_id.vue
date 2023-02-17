@@ -71,6 +71,9 @@ import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
 export default {
   name: "NFT",
+  props: {
+
+  },
   data() {
     return {
       chain: this.$route.params.chain,
@@ -124,34 +127,56 @@ export default {
   },
   async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount
-    const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
-    if(result.evmNfts){
-      const nfts= result.evmNfts
-      return {nfts}
-    }else if(result.tezosNfts){
-      const nfts= result.tezosNfts.map(nft=>{
-          return{
-            contract:{
-              address: nft.token.contract.address
-            },
-            id:{
-              tokenId: nft.token.tokenId,
-              tokenMetadata: {
-                tokenType: nft.token.standard
-              }
-            },
-            metadata:{
-              name: nft.token.metadata?.name,
-              description: nft.token.metadata?.name.description,
-              image: nft.token.metadata?.image ? nft.token.metadata?.image : nft.token.metadata?.displayUri,
-              external_url: route.params.chain == "TEZOS"? `https://tzkt.io/${nft.token.contract.address}/operations/` : `https://ghostnet.tzkt.io/${nft.token.contract.address}/operations/`
-            }
+    let account = $auth.user.ethAccount ? $auth.user.ethAccount : $auth.user.tezosAccount
+    if(route.params.chain == 'testnet'){
+      const contractAddress = route.params.id.split(":")[0]
+      const tokenId = route.params.id.split(":")[1]
+      const result = await $axios.$get("/v2/nftkit/nft/near/chain/" + route.params.chain + "/contract/" + contractAddress + "/NFT/" + tokenId)
+      return { nfts: [{
+        contract: {
+          address: contractAddress
+        },
+        id: {
+          tokenId: result.token_id,
+          tokenMetadata: {
+            tokenType: null
           }
-      })
-      return {nfts}
+        },
+        metadata: {
+          name: result.metadata?.title,
+          description: result.metadata?.description,
+          image: result.metadata?.media,
+          external_url: null
+        }
+      }]}
+    }else {
+      const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
+      if(result.evmNfts){
+        const nfts= result.evmNfts
+        return {nfts}
+      }else if(result.tezosNfts){
+        const nfts= result.tezosNfts.map(nft => {
+            return {
+              contract:{
+                address: nft.token.contract.address
+              },
+              id:{
+                tokenId: nft.token.tokenId,
+                tokenMetadata: {
+                  tokenType: nft.token.standard
+                }
+              },
+              metadata:{
+                name: nft.token.metadata?.name,
+                description: nft.token.metadata?.name.description,
+                image: nft.token.metadata?.image ? nft.token.metadata?.image : nft.token.metadata?.displayUri,
+                external_url: route.params.chain == "TEZOS"? `https://tzkt.io/${nft.token.contract.address}/operations/` : `https://ghostnet.tzkt.io/${nft.token.contract.address}/operations/`
+              }
+            }
+        })
+        return {nfts}
+      }
     }
-    
   },
   mounted() {
     new QRious({

@@ -88,10 +88,23 @@ export default {
             }
           }
         })
-      }else{
+      }else if(this.nfts.nearNfts){
+        return this.nfts.nearNfts.map(nft => {
+          return {
+            id: { tokenId: nft.token_id },
+            metadata: {
+              ...nft.metadata,
+              image: nft.metadata.media,
+              name: nft.metadata.title,
+            },
+            contract: {
+              address: nft.contract
+            },
+          }
+        })
+      }else {
         return []
       }
-     
     }
   },
   async asyncData ({ $axios, $auth, route, store }) {
@@ -104,42 +117,40 @@ export default {
       return { nfts}
     } 
     let accountId = $auth.user.id
-    let nfts = []
     if (accountId && accountId.endsWith(".testnet")) {
       const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      let nfts = []
       list_of_smart_contracts.forEach(async (contract) => {
-        const list_of_tokens = await $axios.$get(`https://nftkit.walt-test.cloud/v2/nftkit/nft/near/chain/testnet/contract/${contract}/account/${accountId}/NFTS`);
-
+        const list_of_tokens = await $axios.$get(`/v2/nftkit/nft/near/chain/testnet/contract/${contract}/account/${accountId}/NFTS`);
         for (const element of list_of_tokens) {
           nfts.push({
-            token_id: element,
-            metadata: list_of_tokens,
+            ...element,
+            contract: contract
           });
         }
-
       });
-      return { nfts }
+      return { nfts: { nearNfts: nfts } }
     }
     else if (accountId && accountId.endsWith(".near")){
       const list_of_smart_contracts = await $axios.$get(`https://api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      let nfts = []
       list_of_smart_contracts.forEach(async (contract) => {
-        const list_of_tokens = await $axios.$get(`https://nftkit.walt-test.cloud/v2/nftkit/nft/near/chain/mainnet/contract/${contract}/account/${accountId}/NFTS`);
-
+        const list_of_tokens = await $axios.$get(`/v2/nftkit/nft/near/chain/mainnet/contract/${contract}/account/${accountId}/NFTS`);
         for (const element of list_of_tokens) {
           nfts.push({
-            token_id: element,
-            metadata: list_of_tokens,
+            ...element,
+            contract: contract
           });
         }
-
       });
-      return { nfts }
+      return { nfts: { nearNfts: nfts } }
     }
     return { nfts: [] }
   },
   methods:{
     navToNFT(nft) {
-      this.$router.push({name: "nfts-chain-id", params: { chain: this.chain, id: nft.contract.address + ":" + nft.id.tokenId}})
+      console.log(nft)
+      this.$router.push({name: "nfts-chain-id", params: { chain: this.chain, id: nft.contract.address + ":" + nft.id.tokenId }})
     }
   }
 };
