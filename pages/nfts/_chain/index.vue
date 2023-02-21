@@ -52,7 +52,7 @@ export default {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: this.$auth.user.ethAccount ? config.evmChains : config.tezosChains,
+      chainOptions: this.$auth.user.ethAccount ? config.evmChains : config.tezosChains ? config.nearChains : [],
       adjustModal: false,
     }
   },
@@ -88,10 +88,23 @@ export default {
             }
           }
         })
-      }else{
+      }else if(this.nfts.nearNfts){
+        return this.nfts.nearNfts.map(nft => {
+          return {
+            id: { tokenId: nft.token_id },
+            metadata: {
+              ...nft.metadata,
+              image: nft.metadata.media,
+              name: nft.metadata.title,
+            },
+            contract: {
+              address: nft.contract
+            },
+          }
+        })
+      }else {
         return []
       }
-     
     }
   },
   async asyncData ({ $axios, $auth, route, store }) {
@@ -101,17 +114,43 @@ export default {
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       store.commit('wallet/setFetchingChains', false)
       if(store.state.utils.fullPageModal) store.commit('utils/toggleFullPageModal')
-      console.log('HI-E')
       return { nfts}
-    } else {
-        return {
-            nfts: []
+    } 
+    let accountId = $auth.user.id
+    if (accountId && accountId.endsWith(".testnet")) {
+      const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      let nfts = []
+      list_of_smart_contracts.forEach(async (contract) => {
+        const list_of_tokens = await $axios.$get(`/v2/nftkit/nft/near/chain/testnet/contract/${contract}/account/${accountId}/NFTS`);
+        for (const element of list_of_tokens) {
+          nfts.push({
+            ...element,
+            contract: contract
+          });
         }
+      });
+      return { nfts: { nearNfts: nfts } }
     }
+    else if (accountId && accountId.endsWith(".near")){
+      const list_of_smart_contracts = await $axios.$get(`https://api.kitwallet.app/account/${accountId}/likelyNFTs`);
+      let nfts = []
+      list_of_smart_contracts.forEach(async (contract) => {
+        const list_of_tokens = await $axios.$get(`/v2/nftkit/nft/near/chain/mainnet/contract/${contract}/account/${accountId}/NFTS`);
+        for (const element of list_of_tokens) {
+          nfts.push({
+            ...element,
+            contract: contract
+          });
+        }
+      });
+      return { nfts: { nearNfts: nfts } }
+    }
+    return { nfts: [] }
   },
   methods:{
     navToNFT(nft) {
-      this.$router.push({name: "nfts-chain-id", params: { chain: this.chain, id: nft.contract.address + ":" + nft.id.tokenId}})
+      console.log(nft)
+      this.$router.push({name: "nfts-chain-id", params: { chain: this.chain, id: nft.contract.address + ":" + nft.id.tokenId }})
     }
   }
 };
