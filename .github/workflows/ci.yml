@@ -17,6 +17,9 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
+      - name: Setup build tools
+        run: sudo apt-get install g++ build-essential
+
       - name: Checkout 🛎
         uses: actions/checkout@master
 
