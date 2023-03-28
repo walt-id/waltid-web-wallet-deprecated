@@ -3,7 +3,10 @@ name: Snapshot release workflow for Walt.ID Web Wallet
 on:
   push:
     branches:
-      - main
+      - '*'
+      - '*/*'
+      - '**'
+      - '!main'
 
 jobs:
   ci:
@@ -14,14 +17,19 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
+      - uses: actions/checkout@v3
+      - name: Calculate release version
+        run: |
+          echo "release_version=1.$(date +'%g%m%d%H%M').$(echo ${{ github.ref_name }} | tr / -)" >> $GITHUB_ENV
+      - name: Set version
+      - run: |
+          git tag v${{ env.release_version }}
+          git push --tags
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.4.1
         with:
-          node-version: '14'
-
+          node-version: '19'
 
       - name: Get yarn cache directory path 🛠
         id: yarn-cache-dir-path
@@ -47,10 +55,18 @@ jobs:
       #- name: Run tests 🧪
       #  run: yarn test --passWithNoTests
 
-      - name: Docker Build and Push SNAPSHOT
-        uses: philpotisk/github-action-docker-build-push@master
-        env:
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          DOCKER_FILE: Dockerfile
-          CONTAINER_TAG: waltid/ssikit-web-wallet:latest
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: waltid/ssikit-web-wallet:${{ env.release_version }}
