@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "release_version=1.$(date +'%g%m%d%H%M').$(echo ${{ github.ref_name }} | tr / -)" >> $GITHUB_ENV
       - name: Set version
-      - run: |
+        run: |
           git tag v${{ env.release_version }}
           git push --tags
 
@@ -31,23 +31,16 @@ jobs:
         with:
           node-version: '19'
 
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v2.1.6
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          version: 7
+
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
+        run: pnpm i
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       #- name: Run linter 👀
       #  run: yarn lint
