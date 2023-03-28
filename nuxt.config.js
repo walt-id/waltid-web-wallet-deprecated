@@ -2,7 +2,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
+    title: "walt.id | NEOM expo",
     htmlAttrs: {
       lang: "en",
     },
