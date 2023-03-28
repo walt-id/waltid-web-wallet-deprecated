@@ -1,5 +1,5 @@
 const config = {
-    'copyright': 'powered by walt.id',
+    'copyright': 'NEOM EXPO | powered by walt.id',
     'logo': {
         path: '/favicon.png',
         alt: 'walt.id logo'
