@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Notice></Notice>
+    <Notice>NEOM EXPO</Notice>
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
     <div id="widget" :class="['_form d-grid bg-w shadow-lg text-center position-relative', !$store.state.utils.fullPageModal && 'align-items-center']">
       <span class="close-icon" @click="$store.commit('utils/toggleFullPageModal')" v-if="$store.state.utils.fullPageModal">
