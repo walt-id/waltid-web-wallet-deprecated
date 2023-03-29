@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="this.isSignin ? '_fade' : 'hide'">
-      <img :src="this.logo.path" width="50px" :alt="this.logo.alt" />
+      <img :src="this.logo.path" width="50px" :alt="this.logo.alt" style="background: radial-gradient(circle, rgba(0,0,0,0.7) 0%, rgba(255,255,255,1) 100%)" />
 
       <p class="mt-3">{{ $t("LOGIN.MSG") }}</p>
       <div></div>
