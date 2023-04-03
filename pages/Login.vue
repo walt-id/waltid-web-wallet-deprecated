@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="this.isSignin ? '_fade' : 'hide'">
-      <img :src="this.logo.path" width="80px" :alt="this.logo.alt" />
+      <img :src="this.logo.path" width="100px" :alt="this.logo.alt" />
 
       <p class="mt-3">{{ $t("LOGIN.MSG") }}</p>
       <div></div>
