@@ -2,7 +2,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
+    title: "EUDI | EU Digital Identity | Wallet Consortium.",
     htmlAttrs: {
       lang: "en",
     },
@@ -17,7 +17,7 @@ export default {
       },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+    link: [{ rel: "icon", type: "image/png", href: "/cropped-eudi-favicon2.png" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -39,8 +39,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    "@nuxtjs/eslint-module",
-    "@nuxtjs/pwa",
+    "@nuxtjs/eslint-module"
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -49,8 +48,6 @@ export default {
     "bootstrap-vue/nuxt",
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
-    // https://go.nuxtjs.dev/pwa
-    "@nuxtjs/pwa",
     "@nuxtjs/auth-next",
     "@nuxtjs/i18n",
     "@nuxtjs/toast",
@@ -108,22 +105,6 @@ export default {
   },
   router: {
     middleware: ["auth", "wallet"],
-  },
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    icon: {
-      default: "/favicon.png",
-    },
-    meta: {
-      title: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
-      author: "walt.id",
-    },
-    manifest: {
-      name: "walt.id | Adopt Europe's new Digital Identity Ecosystem",
-      short_name: "walt.id",
-      lang: "en",
-      display: "standalone",
-    },
   },
 
   publicRuntimeConfig: {

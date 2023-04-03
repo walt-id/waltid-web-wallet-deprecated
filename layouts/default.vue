@@ -172,4 +172,7 @@ body ._main #widget ._content ._scrollable ._card i._icon-active {
 em {
   color: white;
 }
+body ._main #widget form a {
+  color: whitesmoke;
+}
 </style>
