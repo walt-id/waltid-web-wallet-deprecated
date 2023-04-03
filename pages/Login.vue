@@ -97,6 +97,15 @@
           </a>
         </div>
 
+        <div class="my-2">
+          <a href="#polkadot-wallet" class="_meta-mask btn" @click="polkadotjsWallet">
+            <span class="d-flex justify-content-center align-items-center">
+              <i class="bi bi-wallet2 mx-2 text-white"></i>
+              <p>Connect Polkadot Wallet</p>
+            </span>
+          </a>
+        </div>
+
         <div class="my-3 d-flex mt-4 justify-content-center">
           <a @click="toSignup" class="px-3 py-0 fw-normal">{{
             $t("LOGIN.SIGN_UP")
@@ -143,8 +152,7 @@
             v-model="email"
           />
           <span
-            style="
-              margin-left: -35px;
+            style="margin-left: -35px;
               margin-right: 15px;
               z-index: 999;
               position: absulute;
@@ -258,7 +266,6 @@
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { config } from "/config.js";
 import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
@@ -281,17 +288,10 @@ import { setupNeth } from "@near-wallet-selector/neth";
 import { setupXDEFI } from "@near-wallet-selector/xdefi";
 // import * as nearAPI from "near-api-js";
 
-const providerOptions = {
-  walletconnect: {
-    package: WalletConnectProvider, // required
-    options: {
-      rpc: {
-        4: "https://rinkeby.infura.io/v3/",
-      },
-      chainId: 4,
-    },
-  },
-};
+// imports for Unique Parachain (Polkadot)
+import { web3Enable, web3Accounts } from '@polkadot/extension-dapp';
+// ====== END Unique Parachains imports ======
+
 
 const wallet = new BeaconWallet({ name: "Walt.id" });
 
@@ -319,6 +319,7 @@ export default {
       eth_account: null,
       tezos_account: null,
       near_account: null,
+      polkadot_account: null,
     };
   },
   computed: {
@@ -449,7 +450,7 @@ export default {
     async web3modal() {
       const web3Modal = new Web3Modal({
         cacheProvider: false, // optional
-        providerOptions, // required
+        providerOptions: undefined, // required
       });
       const provider = await web3Modal.connect();
       console.log("provider", provider);
@@ -559,6 +560,37 @@ export default {
         this.$auth.setUser(loginResponse.data);
         await this.$router.push("/nfts");
       }
+    },
+    // Connect polkadot-related ecosystems
+    async polkadotjsWallet() {
+      // Request permission to access accounts
+      const extensions = await web3Enable('my dapp (test output)');
+      if (extensions.length === 0) {
+        // No extension installed, or the user did not accept the authorization
+        return;
+      }
+
+      // Get all the accounts
+      const allAccounts = await web3Accounts();
+      if (allAccounts.length === 0) {
+        // No account has been found
+        return;
+      }
+
+      // Use the first account
+      const account = allAccounts[0];
+      this.polkadot_account = account.address;
+
+      const loginResponse = await this.$auth.loginWith("local", {
+          data: {
+            id: `${this.polkadot_account}`,
+          },
+        });
+
+      this.$auth.options.redirect = false;
+      this.$store.commit("wallet/setDefaultChain", config.polkadotdefaultChain);
+      this.$auth.setUser(loginResponse.data);
+      this.$router.push("/nfts");
     },
     // is a use Experience method to reset error state in retyping
     resetError() {
