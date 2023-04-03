@@ -158,10 +158,10 @@ body ._main #widget ._copyright a._blue-color {
   color: #95c6ff;
 }
 a {
-  color: #95c6ff;
+  color: #95c6ff !important;
 }
 a:hover {
-  color: #c0ddff;
+  color: #c0ddff !important;
 }
 body ._main #widget ._toggle-menu ._dash {
   background-color: #95c6ff;
