@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="this.isSignin ? '_fade' : 'hide'">
-      <img :src="this.logo.path" width="50px" :alt="this.logo.alt" />
+      <img :src="this.logo.path" width="80px" :alt="this.logo.alt" />
 
       <p class="mt-3">{{ $t("LOGIN.MSG") }}</p>
       <div></div>
@@ -72,30 +72,7 @@
             <span v-else>{{ $t("LOGIN.LOGIN") }}</span>
           </button>
         </div>
-        <div class="my-2">
-          <a href="#metamask" class="_meta-mask btn" @click="web3modal">
-            <span class="d-flex justify-content-center align-items-center">
-              <i class="bi bi-wallet2 mx-2 text-white"></i>
-              <p>Connect wallet</p>
-            </span>
-          </a>
-        </div>
-        <div>
-          <a href="#metamask" class="_meta-mask btn" @click="beaconTezosWallet">
-            <span class="d-flex justify-content-center align-items-center">
-              <i class="bi bi-wallet2 mx-2 text-white"></i>
-              <p>Connect Tezos wallet</p>
-            </span>
-          </a>
-        </div>
-        <div class="my-2">
-          <a href="#nearwallet" class="_meta-mask btn" @click="nearWallet">
-            <span class="d-flex justify-content-center align-items-center">
-              <i class="bi bi-wallet2 mx-2 text-white"></i>
-              <p>Connect Near wallet</p>
-            </span>
-          </a>
-        </div>
+        
 
         <div class="my-3 d-flex mt-4 justify-content-center">
           <a @click="toSignup" class="px-3 py-0 fw-normal">{{

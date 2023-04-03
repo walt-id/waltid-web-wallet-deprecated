@@ -2,6 +2,7 @@
   <div>
     <Notice></Notice>
     <section class="_main bg-light row align-items-center justify-content-center justify-content-lg-start justify-content-md-center justify-content-sm-center">
+    <div class="eudi-bg-overlay"></div>
     <div id="widget" :class="['_form d-grid bg-w shadow-lg text-center position-relative', !$store.state.utils.fullPageModal && 'align-items-center']">
       <span class="close-icon" @click="$store.commit('utils/toggleFullPageModal')" v-if="$store.state.utils.fullPageModal">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 45px; height: 45px;">
@@ -100,10 +101,27 @@ export default {
 };
 </script>
 
-<style lang="sass">
-.close-icon
-  position: absolute
-  right: 0.5rem
-  top: 1.1rem
-  cursor: pointer
+<style lang="css">
+.close-icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 1.1rem;
+  cursor: pointer;
+}
+body ._main {
+  background-image: url("https://eudiwalletconsortium.org/wp-content/uploads/2022/03/eu-bg.jpg");
+}
+.eudi-bg-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-image: url("https://i0.wp.com/eudiwalletconsortium.org/wp-content/uploads/2022/04/eudi-consortium-logo.png");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 25vw;
+  margin-top: 3rem !important;
+  margin-right: 5rem;
+  right: 0;
+  top: 0;
+}
 </style>
