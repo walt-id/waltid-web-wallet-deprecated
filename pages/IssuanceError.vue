@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Issuance or Presentation Error</h1>
-  <div>{{reason}}</div>
+  <div class="text-secondary">{{reason}}</div>
 </div>
 </template>
 	

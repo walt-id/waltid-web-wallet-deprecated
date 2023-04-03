@@ -133,6 +133,9 @@ body ._main #widget p {
 body ._main #widget h2 {
   color: white;
 }
+body ._main #widget h1 {
+  color: white;
+}
 body ._main #widget ._content ._scrollable ._card h5 {
   color: white;
 }
@@ -149,6 +152,9 @@ body ._main #widget ._window ._window-content p {
   color: white;
 }
 body ._main #widget ._content ._wizard h4 {
+  color: white;
+}
+body ._main #widget h5 {
   color: white;
 }
 .text-secondary {

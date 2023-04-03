@@ -5,21 +5,21 @@
       <em>{{$t('ISSUANCE_INITIATION.SUBTITLE')}}</em>
       <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
         <div class="mb-2">
-          <b>{{$t('CREDENTIAL.ISSUER')}}:</b><br/>
-          {{issuanceSessionInfo.issuerId}}
+          <h5>{{$t('CREDENTIAL.ISSUER')}}:</h5>
+          <div class="text-secondary">{{issuanceSessionInfo.issuerId}}</div>
         </div>
         <div class="mb-2">
-          <b>{{$t('ISSUANCE_INITIATION.OFFERED_CREDENTIALS')}}:</b>
-          <div v-for="credentialType in issuanceSessionInfo.credentialTypes" :key="credentialType">
+          <h5>{{$t('ISSUANCE_INITIATION.OFFERED_CREDENTIALS')}}:</h5>
+          <div v-for="credentialType in issuanceSessionInfo.credentialTypes" :key="credentialType" class="text-secondary">
             {{credentialType}}
           </div>
         </div>
         <div class="mb-2">
-          <b>{{$t('ISSUANCE_INITIATION.SUBJECT_DID')}}:</b>
-          <div class="text-truncate" style="max-width: 20em;" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="currentDid">{{currentDid}}</div>
+          <h5>{{$t('ISSUANCE_INITIATION.SUBJECT_DID')}}:</h5>
+          <div class="text-truncate text-secondary" style="max-width: 20em;" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="currentDid">{{currentDid}}</div>
         </div>
         <div class="mb-2" v-if="issuanceSessionInfo.userPinRequired">
-          <b>{{$t('ISSUANCE_INITIATION.USER_PIN')}}:</b>
+          <h5>{{$t('ISSUANCE_INITIATION.USER_PIN')}}:</h5>
           <input type="password" class="form-control border-primary mb-2 w-50 mx-auto" placeholder="PIN" aria-label="PIN" v-model="userPin" autocomplete="new-password">
         </div>
         <div class="_button mt-2">
