@@ -124,4 +124,52 @@ body ._main {
   right: 0;
   top: 0;
 }
+#widget {
+  background: #233d8f;
+}
+body ._main #widget p {
+  color: white;
+}
+body ._main #widget h2 {
+  color: white;
+}
+body ._main #widget ._content ._scrollable ._card h5 {
+  color: white;
+}
+body ._main #widget ._content ._scrollable ._card p {
+  color: white;
+}
+body ._main #widget ._content ._setting-items h4 {
+  color: white;
+}
+body ._main #widget ._window ._window-content h5 {
+  color: white;
+}
+body ._main #widget ._window ._window-content p {
+  color: white;
+}
+body ._main #widget ._content ._wizard h4 {
+  color: white;
+}
+.text-secondary {
+  color: white !important;
+}
+body ._main #widget ._copyright a._blue-color {
+  color: #95c6ff;
+}
+a {
+  color: #95c6ff;
+}
+a:hover {
+  color: #c0ddff;
+}
+body ._main #widget ._toggle-menu ._dash {
+  background-color: #95c6ff;
+}
+body ._main #widget ._content ._scrollable ._card i._icon-active {
+  color: #95c6ff;
+}
+em {
+  color: white;
+}
 </style>
