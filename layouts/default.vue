@@ -157,10 +157,10 @@ body ._main #widget ._content ._wizard h4 {
 body ._main #widget ._copyright a._blue-color {
   color: #95c6ff;
 }
-a {
+a._back-button {
   color: #95c6ff !important;
 }
-a:hover {
+a:hover._back-button {
   color: #c0ddff !important;
 }
 body ._main #widget ._toggle-menu ._dash {
