@@ -115,7 +115,7 @@ body ._main {
   width: 100vw;
   height: 100vh;
   position: absolute;
-  background-image: url("https://i0.wp.com/eudiwalletconsortium.org/wp-content/uploads/2022/04/eudi-consortium-logo.png");
+  background-image: url("/eudi-consortium-logo.png");
   background-repeat: no-repeat;
   background-position: top right;
   background-size: 25vw;
