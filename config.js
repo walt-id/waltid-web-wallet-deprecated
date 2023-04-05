@@ -1,11 +1,11 @@
 const config = {
     'copyright': 'EUDI | powered by walt.id',
     'logo': {
-        path: 'https://i0.wp.com/eudiwalletconsortium.org/wp-content/uploads/2022/04/cropped-eudi-favicon2.png',
+        path: '/cropped-eudi-favicon2.png',
         alt: 'walt.id logo'
     },
     'whiteLogo': {
-        path: 'https://i0.wp.com/eudiwalletconsortium.org/wp-content/uploads/2022/04/cropped-eudi-favicon2.png',
+        path: '/cropped-eudi-favicon2.png',
         alt: 'walt.id logo'
     },
     hidePage: {
