@@ -45,6 +45,8 @@
 import {config} from '/config.js'
 import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
+// import isValidPolkadotAddress from "../../../utils/polkadot";
+
 export default {
   name: 'NFTs',
   data() {
@@ -102,6 +104,26 @@ export default {
             },
           }
         })
+      } else if (this.nfts.uniqueNfts) {
+        return this.nfts.uniqueNfts.map(nft => {
+          let metadata = {}
+          const attributes = nft["attributes"]
+          for(const attr in attributes) {
+            const key = attr["name"]
+            const value = attr["value"]
+            metadata = {
+              ...metadata,
+              [key]: value
+            }
+          }
+          return {
+            id: { tokenId: nft.tokenId },
+            metadata,
+            contract: {
+              address: nft.collectionId
+            },
+          }
+        })
       }else {
         return []
       }
@@ -144,6 +166,24 @@ export default {
         }
       });
       return { nfts: { nearNfts: nfts } }
+    } else if(accountId) {
+      const chain = this.$route.params.chain
+      const collection = await $axios.$get(`unique/chain/${chain}/account/${accountId}`);
+      let nfts = []
+      for(const nft in collection["data"]) {
+        const collectionId = nft["collection_id"]
+        const tokenId = nft["token_Id"]
+        const metadata = await $axios.$get(`unique/chain/${chain}/collection/${collectionId}/token/${tokenId}/metadata`);
+
+        nfts.push(
+          {
+            collectionId,
+            tokenId,
+            metadata
+          }
+        )
+      }
+      return {nfts: {uniqueNfts: nfts}}
     }
     return { nfts: [] }
   },
