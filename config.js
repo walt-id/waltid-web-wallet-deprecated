@@ -19,14 +19,19 @@ const config = {
     tezosdefaultChain: "TEZOS",
     neardefaultChain: "testnet",
     polkadotdefaultChain: "Unique",
+    polkadotEvmDefaultChain: "MOONBEAM",
+
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
     tezosChains: ["TEZOS", "GHOSTNET"],
     nearChains: ["mainnet" , "testnet"],
     polkadotChains: ["Unique", "Opal"],
+    polkadotEvmChains: ["MOONBEAM", "ASTAR"],
     marketplaces: {
         "POLYGON": "https://opensea.io/assets/matic/",
         "ETHEREUM": "https://opensea.io/assets/ethereum/",
         "TEZOS": "https://rarible.com/token/tezos/",
+        "MOONBEAM":"https://tofunft.com/nft/moonbeam/",
+        "ASTAR": "https://tofunft.com/nft/astar/",
         "mainnet": ""
     }
 }

@@ -8,64 +8,39 @@
       <form action="" id="login-form" class="my-4" @submit.prevent="login">
         <ErrorMessage :message-content="errorMessage" :is-active="error" />
         <div class="my-2 _animation-fade">
-          <input
-            type="text"
-            :placeholder="$t('LOGIN.EMAIL')"
-            name="email"
-            id="login-form-email"
-            @input="resetError()"
-            v-bind:class="
+          <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()"
+                 v-bind:class="
               this.validEmail === true
                 ? 'border rounded px-3'
                 : 'border rounded px-3 border-danger'
-            "
-            autocomplete="off"
-            v-model="email"
-          />
-          <span
-            style="
-              margin-left: -35px;
-              margin-right: 15px;
-              z-index: 999;
-              position: absulute;
-            "
-          >
+            " autocomplete="off" v-model="email" />
+          <span style="
+                margin-left: -35px;
+                margin-right: 15px;
+                z-index: 999;
+                position: absolute;
+              ">
             <i class="bi bi-people"></i>
           </span>
         </div>
         <div class="my-2 _animation-fade">
-          <input
-            type="password"
-            :placeholder="$t('LOGIN.PASSWORD')"
-            name="password"
-            id="login-form-password"
-            @input="resetError()"
-            :data="this.password"
-            :class="
+          <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password"
+                 @input="resetError()" :data="this.password" :class="
               this.validPassword === true
                 ? 'border rounded ps-3'
                 : 'border rounded  ps-3 border-danger'
-            "
-            autocomplete="off"
-            v-model="password"
-          />
-          <span
-            style="
-              margin-left: -35px;
-              margin-right: 15px;
-              z-index: 999;
-              position: absulute;
-            "
-          >
+            " autocomplete="off" v-model="password" />
+          <span style="
+                margin-left: -35px;
+                margin-right: 15px;
+                z-index: 999;
+                position: absolute;
+              ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
         <div class="my-2">
-          <button
-            type="submit"
-            name="submit"
-            class="text-white border-0 rounded _animation-fade"
-          >
+          <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">
             <span v-if="loginLoading">
               <img src="dark-loader.gif" width="30px" style="opacity: 0.7" />
             </span>
@@ -96,39 +71,25 @@
             </span>
           </a>
         </div>
-
         <div class="my-2">
-          <a href="#polkadot-wallet" class="_meta-mask btn" @click="polkadotjsWallet">
+          <a href="#polkadot-evm" class="_meta-mask btn" @click="polkadotEvm">
             <span class="d-flex justify-content-center align-items-center">
               <i class="bi bi-wallet2 mx-2 text-white"></i>
-              <p>Connect Polkadot Wallet</p>
+              <p>Connect Polkadot (EVM) </p>
             </span>
           </a>
         </div>
 
         <div class="my-3 d-flex mt-4 justify-content-center">
           <a @click="toSignup" class="px-3 py-0 fw-normal">{{
-            $t("LOGIN.SIGN_UP")
-          }}</a>
-          <a
-            @click="toResetPassword"
-            class="px-3 py-0 border-start border-2 fw-normal"
-            >{{ $t("LOGIN.FORGOT_PASSWORD") }}</a
-          >
+              $t("LOGIN.SIGN_UP")
+            }}</a>
+          <a @click="toResetPassword" class="px-3 py-0 border-start border-2 fw-normal">{{ $t("LOGIN.FORGOT_PASSWORD")
+            }}</a>
         </div>
-        <a
-          href="#"
-          v-for="locale in availableLocales"
-          :key="locale.code"
-          @click.prevent.stop="$i18n.setLocale(locale.code)"
-        >
-          <img
-            :src="locale.flag"
-            width="20px"
-            height="15px"
-            :alt="locale.iso"
-            class="me-2 border border-white"
-          />
+        <a href="#" v-for="locale in availableLocales" :key="locale.code"
+           @click.prevent.stop="$i18n.setLocale(locale.code)">
+          <img :src="locale.flag" width="20px" height="15px" :alt="locale.iso" class="me-2 border border-white" />
         </a>
       </form>
     </div>
@@ -137,89 +98,55 @@
       <p class="mt-3">Create a new wallet account.</p>
       <form action="" id="signup-form" class="my-4" @submit.prevent="login">
         <div class="my-2">
-          <input
-            type="text"
-            :placeholder="$t('LOGIN.EMAIL')"
-            name="email"
-            id="login-form-email"
-            @input="resetError()"
-            v-bind:class="
+          <input type="text" :placeholder="$t('LOGIN.EMAIL')" name="email" id="login-form-email" @input="resetError()"
+                 v-bind:class="
               this.validEmail === true
                 ? 'border rounded px-3'
                 : 'border rounded px-3 border-danger'
-            "
-            autocomplete="off"
-            v-model="email"
-          />
-          <span
-            style="margin-left: -35px;
-              margin-right: 15px;
-              z-index: 999;
-              position: absulute;
-            "
-          >
+            " autocomplete="off" v-model="email" />
+          <span style="
+                margin-left: -35px;
+                margin-right: 15px;
+                z-index: 999;
+                position: absolute;
+              ">
             <i class="bi bi-people"></i>
           </span>
         </div>
         <div class="my-2">
-          <input
-            type="password"
-            :placeholder="$t('LOGIN.PASSWORD')"
-            name="password"
-            id="login-form-password"
-            @input="resetError()"
-            :data="this.password"
-            :class="
+          <input type="password" :placeholder="$t('LOGIN.PASSWORD')" name="password" id="login-form-password"
+                 @input="resetError()" :data="this.password" :class="
               this.validPassword === true
                 ? 'border rounded px-3'
                 : 'border rounded px-3 border-danger'
-            "
-            autocomplete="off"
-            v-model="password"
-          />
-          <span
-            style="
-              margin-left: -35px;
-              margin-right: 15px;
-              z-index: 999;
-              position: absulute;
-            "
-          >
+            " autocomplete="off" v-model="password" />
+          <span style="
+                margin-left: -35px;
+                margin-right: 15px;
+                z-index: 999;
+                position: absolute;
+              ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
         <div class="my-2">
-          <input
-            type="password"
-            :placeholder="$t('LOGIN.CONFIRM_PASSWORD')"
-            name="password"
-            id="signup-form-password-confirm"
-            :class="
+          <input type="password" :placeholder="$t('LOGIN.CONFIRM_PASSWORD')" name="password"
+                 id="signup-form-password-confirm" :class="
               this.confirmedPassword === false
                 ? 'border border-danger rounded px-3'
                 : 'border rounded px-3'
-            "
-            autocomplete="off"
-            v-model="repassword"
-            @input="confirmPassword()"
-          />
-          <span
-            style="
-              margin-left: -35px;
-              margin-right: 15px;
-              z-index: 999;
-              position: absulute;
-            "
-          >
+            " autocomplete="off" v-model="repassword" @input="confirmPassword()" />
+          <span style="
+                margin-left: -35px;
+                margin-right: 15px;
+                z-index: 999;
+                position: absolute;
+              ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
         <div class="my-2">
-          <button
-            type="submit"
-            name="submit"
-            class="text-white border-0 rounded _animation-fade"
-          >
+          <button type="submit" name="submit" class="text-white border-0 rounded _animation-fade">
             <span v-if="loginLoading">
               <img src="dark-loader.gif" width="30px" style="opacity: 0.7" />
             </span>
@@ -236,21 +163,11 @@
       <p class="mt-3">Reset your account password</p>
       <form action="" id="signup-form" class="my-4">
         <div class="my-2">
-          <input
-            type="email"
-            placeholder="E-mail"
-            name="email"
-            id="signup-form-email"
-            class="border rounded px-3"
-            autocomplete="off"
-          />
+          <input type="email" placeholder="E-mail" name="email" id="signup-form-email" class="border rounded px-3"
+                 autocomplete="off" />
         </div>
         <div class="my-2">
-          <button
-            type="submit"
-            name="submit"
-            class="text-white border-0 rounded"
-          >
+          <button type="submit" name="submit" class="text-white border-0 rounded">
             Reset my password
           </button>
         </div>
@@ -266,6 +183,7 @@
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { config } from "/config.js";
 import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
@@ -288,10 +206,17 @@ import { setupNeth } from "@near-wallet-selector/neth";
 import { setupXDEFI } from "@near-wallet-selector/xdefi";
 // import * as nearAPI from "near-api-js";
 
-// imports for Unique Parachain (Polkadot)
-import { web3Enable, web3Accounts } from '@polkadot/extension-dapp';
-// ====== END Unique Parachains imports ======
-
+const providerOptions = {
+  walletconnect: {
+    package: WalletConnectProvider, // required
+    options: {
+      rpc: {
+        4: "https://rinkeby.infura.io/v3/",
+      },
+      chainId: 4,
+    },
+  },
+};
 
 const wallet = new BeaconWallet({ name: "Walt.id" });
 
@@ -319,7 +244,7 @@ export default {
       eth_account: null,
       tezos_account: null,
       near_account: null,
-      polkadot_account: null,
+      polkadot_evm_account: null
     };
   },
   computed: {
@@ -328,10 +253,10 @@ export default {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
     },
   },
-  watch : {
-    nearWallet : function (val) {
-     console.log("near", val);
-   }
+  watch: {
+    nearWallet: function (val) {
+      console.log("near", val);
+    }
   },
   methods: {
     //We included all pages in each condition for reset whole routing states for no UX errors
@@ -353,7 +278,7 @@ export default {
     // validate email if a domain name typed after @
     emailValidation(email) {
       const re =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
     },
     async hashWithSalt(message) {
@@ -363,8 +288,8 @@ export default {
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
         const hashHex = hashArray
-          .map((b) => b.toString(16).padStart(2, "0"))
-          .join(""); // convert bytes to hex string
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join(""); // convert bytes to hex string
 
         return hashHex;
       } catch (e) {
@@ -395,8 +320,8 @@ export default {
       }
       // check if both wrong: email && pw not empty
       else if (
-        this.emailValidation(this.email) === false &&
-        this.password.length === 0
+          this.emailValidation(this.email) === false &&
+          this.password.length === 0
       ) {
         this.validEmail = false;
         this.validPassword = false;
@@ -450,7 +375,7 @@ export default {
     async web3modal() {
       const web3Modal = new Web3Modal({
         cacheProvider: false, // optional
-        providerOptions: undefined, // required
+        providerOptions, // required
       });
       const provider = await web3Modal.connect();
       console.log("provider", provider);
@@ -539,7 +464,7 @@ export default {
         const wallet = await selector.wallet("my-near-wallet");
         await wallet.signOut();
         const accounts = await wallet.getAccounts();
-        if(accounts.length > 0 && accounts[0].accountId){
+        if (accounts.length > 0 && accounts[0].accountId) {
           let accountId = accounts[0].accountId
           this.loginWithNearAccount(accountId)
         }
@@ -547,7 +472,8 @@ export default {
         console.log("Got error:", error);
       }
     },
-    async loginWithNearAccount(accountId = this.$route.query.account_id){
+
+    async loginWithNearAccount(accountId = this.$route.query.account_id) {
       if (accountId) {
         this.near_account = accountId;
         const loginResponse = await this.$auth.loginWith("local", {
@@ -555,42 +481,44 @@ export default {
             id: `${this.near_account}`,
           },
         });
+        console.log(loginResponse.data)
         this.$auth.options.redirect = false;
         this.$store.commit("wallet/setDefaultChain", config.neardefaultChain);
         this.$auth.setUser(loginResponse.data);
         await this.$router.push("/nfts");
       }
     },
-    // Connect polkadot-related ecosystems
-    async polkadotjsWallet() {
-      // Request permission to access accounts
-      const extensions = await web3Enable('my dapp (test output)');
-      if (extensions.length === 0) {
-        // No extension installed, or the user did not accept the authorization
-        return;
+    async polkadotEvm() {
+      const web3Modal = new Web3Modal({
+        cacheProvider: false, // optional
+        providerOptions, // required
+      });
+      const provider = await web3Modal.connect();
+      console.log("provider", provider);
+      if (provider.isMetaMask) {
+        this.polkadot_evm_account = provider.selectedAddress;
+      } else {
+        this.polkadot_evm_account = provider.accounts[0];
+        provider.disconnect();
       }
 
-      // Get all the accounts
-      const allAccounts = await web3Accounts();
-      if (allAccounts.length === 0) {
-        // No account has been found
-        return;
-      }
-
-      // Use the first account
-      const account = allAccounts[0];
-      this.polkadot_account = account.address;
-
-      const loginResponse = await this.$auth.loginWith("local", {
+      try {
+        const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            id: `${this.polkadot_account}`,
+            polkadotEvmAccount: `p${this.polkadot_evm_account}`,
           },
         });
-
-      this.$auth.options.redirect = false;
-      this.$store.commit("wallet/setDefaultChain", config.polkadotdefaultChain);
-      this.$auth.setUser(loginResponse.data);
-      this.$router.push("/nfts");
+        console.log(loginResponse.data);
+        this.$auth.options.redirect = false;
+        this.$auth.setUser(loginResponse.data);
+        console.log(this.$auth.user);
+        this.$store.commit("wallet/setDefaultChain", config.polkadotEvmDefaultChain);
+        this.$router.push("/nfts");
+      } catch (e) {
+        console.log(e.response.data);
+        this.error = true;
+        this.errorMessage = e.response.data.title;
+      }
     },
     // is a use Experience method to reset error state in retyping
     resetError() {
@@ -602,13 +530,14 @@ export default {
     confirmPassword() {
       if (this.password.length > 0 && this.repassword.length > 0) {
         this.password === this.repassword
-          ? (this.confirmedPassword = true)
-          : (this.confirmedPassword = false);
+            ? (this.confirmedPassword = true)
+            : (this.confirmedPassword = false);
       }
     },
   },
-  created(){
-    if(this.$route.hash === '#nearwallet'){
+
+  created() {
+    if (this.$route.hash === '#nearwallet') {
       this.loginWithNearAccount()
     }
   },
