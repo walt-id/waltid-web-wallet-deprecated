@@ -18,13 +18,16 @@ const config = {
     evmDefaultChain: "MUMBAI",
     tezosdefaultChain: "TEZOS",
     neardefaultChain: "testnet",
+    polkadotdefaultChain: "Unique",
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
     tezosChains: ["TEZOS", "GHOSTNET"],
     nearChains: ["mainnet" , "testnet"],
+    polkadotChains: ["Unique", "Opal"],
     marketplaces: {
         "POLYGON": "https://opensea.io/assets/matic/",
         "ETHEREUM": "https://opensea.io/assets/ethereum/",
         "TEZOS": "https://rarible.com/token/tezos/",
+        "Unique": "https://unqnft.io/market",
         "mainnet": ""
     }
 }

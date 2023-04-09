@@ -45,6 +45,8 @@
 import {config} from '/config.js'
 import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
+// import isValidPolkadotAddress from "../../../utils/polkadot";
+
 export default {
   name: 'NFTs',
   data() {
@@ -52,7 +54,7 @@ export default {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: this.$auth.user.ethAccount ? config.evmChains : this.$auth.user.tezosAccount? config.tezosChains : config.nearChains,
+      chainOptions: this.$auth.user.ethAccount ? config.evmChains : this.$auth.user.tezosAccount? config.tezosChains : this.$auth.user.polkadotAccount ? config.polkadotChains: config.nearChains,
       adjustModal: false,
     }
   },
@@ -102,14 +104,41 @@ export default {
             },
           }
         })
+      } else if (this.nfts.polkadotUniqueNft) {
+        return this.nfts.polkadotUniqueNft.map(nft => {
+          let metadata = {}
+          const attributes = nft["metadata"]["attributes"]
+          for(const attr of attributes) {
+            const key = attr["name"]
+            const value = attr["value"]
+            metadata = {
+              ...metadata,
+              [key]: value
+            }
+          }
+          metadata["name"] = "name" in metadata ? metadata["name"] : "placeholder name";
+          metadata = {
+            ...metadata,
+            image: `${nft["metadata"]["fullUrl"]}`
+          }
+          return {
+            id: { tokenId: nft.tokenId },
+            metadata,
+            contract: {
+              address: nft.collectionId
+            },
+          }
+        })
       }else {
+        console.log("I am in else")
+        console.log("nfts: ", this.nfts)
         return []
       }
     }
   },
   async asyncData ({ $axios, $auth, route, store }) {
-    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null) {
-      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount
+    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null || $auth.user.polkadotAccount != null || $auth.user.nearAccount != null) {
+      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.nearAccount
       store.commit('wallet/setFetchingChains', true)
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       store.commit('wallet/setFetchingChains', false)
@@ -144,6 +173,29 @@ export default {
         }
       });
       return { nfts: { nearNfts: nfts } }
+    } else if(accountId) {
+      const chain = (this.$route.params.chain).toUpperCase();
+      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+      console.log(collection)
+      let nfts = []
+      for(const nft in collection["polkadotUniqueNft"]) {
+        const collectionId = nft["collectionId"]
+        const tokenId = nft["tokenId"]
+        const metadata = nft["metadata"]
+        // const metadata = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`);
+
+        console.log(collectionId)
+        console.log(tokenId)
+        console.log(metadata)
+        nfts.push(
+          {
+            collectionId,
+            tokenId,
+            metadata
+          }
+        )
+      }
+      return {nfts: {uniqueNfts: nfts}}
     }
     return { nfts: [] }
   },
