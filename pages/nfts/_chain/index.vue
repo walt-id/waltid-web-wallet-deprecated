@@ -104,17 +104,22 @@ export default {
             },
           }
         })
-      } else if (this.nfts.uniqueNfts) {
-        return this.nfts.uniqueNfts.map(nft => {
+      } else if (this.nfts.polkadotUniqueNft) {
+        return this.nfts.polkadotUniqueNft.map(nft => {
           let metadata = {}
-          const attributes = nft["attributes"]
-          for(const attr in attributes) {
+          const attributes = nft["metadata"]["attributes"]
+          for(const attr of attributes) {
             const key = attr["name"]
             const value = attr["value"]
             metadata = {
               ...metadata,
               [key]: value
             }
+          }
+          metadata["name"] = "name" in metadata ? metadata["name"] : "placeholder name";
+          metadata = {
+            ...metadata,
+            image: `${nft["metadata"]["fullUrl"]}`
           }
           return {
             id: { tokenId: nft.tokenId },
@@ -125,6 +130,8 @@ export default {
           }
         })
       }else {
+        console.log("I am in else")
+        console.log("nfts: ", this.nfts)
         return []
       }
     }
@@ -167,14 +174,19 @@ export default {
       });
       return { nfts: { nearNfts: nfts } }
     } else if(accountId) {
-      const chain = this.$route.params.chain
-      const collection = await $axios.$get(`unique/chain/${chain}/account/${accountId}`);
+      const chain = (this.$route.params.chain).toUpperCase();
+      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+      console.log(collection)
       let nfts = []
-      for(const nft in collection["data"]) {
-        const collectionId = nft["collection_id"]
-        const tokenId = nft["token_Id"]
-        const metadata = await $axios.$get(`unique/chain/${chain}/collection/${collectionId}/token/${tokenId}/metadata`);
+      for(const nft in collection["polkadotUniqueNft"]) {
+        const collectionId = nft["collectionId"]
+        const tokenId = nft["tokenId"]
+        const metadata = nft["metadata"]
+        // const metadata = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`);
 
+        console.log(collectionId)
+        console.log(tokenId)
+        console.log(metadata)
         nfts.push(
           {
             collectionId,
