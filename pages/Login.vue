@@ -564,7 +564,7 @@ export default {
     // Connect polkadot-related ecosystems
     async polkadotjsWallet() {
       // Request permission to access accounts
-      const extensions = await web3Enable('my dapp (test output)');
+      const extensions = await web3Enable('Walt.id | Wallet');
       if (extensions.length === 0) {
         // No extension installed, or the user did not accept the authorization
         return;

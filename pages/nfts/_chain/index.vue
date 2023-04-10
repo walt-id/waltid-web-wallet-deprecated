@@ -116,7 +116,7 @@ export default {
               [key]: value
             }
           }
-          metadata["name"] = "name" in metadata ? metadata["name"] : "placeholder name";
+          metadata["name"] = "title" in metadata ? metadata["title"] : "placeholder title";
           metadata = {
             ...metadata,
             image: `${nft["metadata"]["fullUrl"]}`
@@ -128,10 +128,9 @@ export default {
               address: nft.collectionId
             },
           }
+
         })
       }else {
-        console.log("I am in else")
-        console.log("nfts: ", this.nfts)
         return []
       }
     }
