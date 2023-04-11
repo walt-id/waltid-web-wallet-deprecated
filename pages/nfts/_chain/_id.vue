@@ -142,7 +142,6 @@ export default {
       const contractAddress = route.params.id.split(":")[0]
       const tokenId = route.params.id.split(":")[1]
       const result = await $axios.$get("/v2/nftkit/nft/near/chain/" + route.params.chain + "/contract/" + contractAddress + "/NFT/" + tokenId)
-<<<<<<< HEAD
       return {
         nfts: [{
           contract: {
@@ -152,82 +151,6 @@ export default {
             tokenId: result.token_id,
             tokenMetadata: {
               tokenType: null
-=======
-      return { nfts: [{
-        contract: {
-          address: contractAddress
-        },
-        id: {
-          tokenId: result.token_id,
-          tokenMetadata: {
-            tokenType: null
-          }
-        },
-        metadata: {
-          name: result.metadata?.title,
-          description: result.metadata?.description,
-          image: result.metadata?.media,
-          external_url: null
-        }
-      }]}
-    } else if ((route.params.chain).toLowerCase() == "opal" || (route.params.chain).toLowerCase() == "unique") {
-      const collectionId = route.params.id.split(":")[0]
-      const tokenId = route.params.id.split(":")[1]
-      const result = await $axios.$get(`/v2/nftkit/nft/unique/chain/${(route.params.chain).toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`)
-      console.log(result)
-      let metadata = {}
-      const attributes = result["attributes"]
-      for(const attr of attributes) {
-        const key = attr["name"]
-        const value = attr["value"]
-        metadata = {
-          ...metadata,
-          [key]: value
-        }
-      }
-      metadata["name"] = "title" in metadata ? metadata["title"] : "placeholder title";
-      metadata = {
-        ...metadata,
-        image: `${result["fullUrl"]}`
-      }
-      
-      console.log(metadata)
-      return { nfts: [{
-        contract: {
-          address: collectionId
-        },
-        id: {
-          tokenId: tokenId,
-          tokenMetadata: {
-            tokenType: null
-          }
-        },
-        metadata
-      }]}
-    }else {
-      const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
-      if(result.evmNfts){
-        const nfts= result.evmNfts
-        return {nfts}
-      }else if(result.tezosNfts){
-        const nfts= result.tezosNfts.map(nft => {
-            return {
-              contract:{
-                address: nft.token.contract.address
-              },
-              id:{
-                tokenId: nft.token.tokenId,
-                tokenMetadata: {
-                  tokenType: nft.token.standard
-                }
-              },
-              metadata:{
-                name: nft.token.metadata?.name,
-                description: nft.token.metadata?.name.description,
-                image: nft.token.metadata?.image ? nft.token.metadata?.image : nft.token.metadata?.displayUri,
-                external_url: route.params.chain == "TEZOS"? `https://tzkt.io/${nft.token.contract.address}/operations/` : `https://ghostnet.tzkt.io/${nft.token.contract.address}/operations/`
-              }
->>>>>>> 0f788f5431c6532b7b11e5c5b3a97850d81fdcd5
             }
           },
           metadata: {
@@ -242,30 +165,7 @@ export default {
       const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       if (result.evmNfts) {
         const nfts = result.evmNfts
-        return { nfts }
-
-      } else if (result.polkadotEvmNft) {
-        const nfts = result.polkadotEvmNft.map(nft => {
-          return {
-            contract: {
-              address: nft.constractAddress
-            },
-            id: {
-              tokenId: nft.tokenId,
-              tokenMetadata: {
-                tokenType: null
-              }
-            },
-            metadata: {
-              name: nft.nftMetadata?.name,
-              description: nft.nftMetadata?.description,
-              image: nft.nftMetadata?.image ? nft.nftMetadata?.image : nft.nftMetadata?.displayUri,
-              external_url: null
-            }
-          }
-        })
-        return { nfts }
-      }
+        return { nfts }}
       else if (result.tezosNfts) {
         const nfts = result.tezosNfts.map(nft => {
           return {
@@ -287,7 +187,28 @@ export default {
           }
         })
         return { nfts }
-      }
+      } else if (result.polkadotEvmNft) {
+        const nfts = result.polkadotEvmNft.map(nft => {
+          return {
+            contract: {
+              address: nft.constractAddress
+            },
+            id: {
+              tokenId: nft.tokenId,
+              tokenMetadata: {
+                tokenType: null
+              }
+            },
+            metadata: {
+              name: nft.nftMetadata?.name,
+              description: nft.nftMetadata?.description,
+              image: nft.nftMetadata?.image ? nft.nftMetadata?.image : nft.nftMetadata?.displayUri,
+              external_url: null
+            }
+          }
+        })
+        return { nfts }
+      }ZZ
     }
   },
   mounted() {

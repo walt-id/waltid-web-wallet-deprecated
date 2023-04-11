@@ -15,11 +15,11 @@
                 : 'border rounded px-3 border-danger'
             " autocomplete="off" v-model="email" />
           <span style="
-                  margin-left: -35px;
-                  margin-right: 15px;
-                  z-index: 999;
-                  position: absolute;
-                ">
+                    margin-left: -35px;
+                    margin-right: 15px;
+                    z-index: 999;
+                    position: absolute;
+                  ">
             <i class="bi bi-people"></i>
           </span>
         </div>
@@ -31,11 +31,11 @@
                 : 'border rounded  ps-3 border-danger'
             " autocomplete="off" v-model="password" />
           <span style="
-                  margin-left: -35px;
-                  margin-right: 15px;
-                  z-index: 999;
-                  position: absolute;
-                ">
+                    margin-left: -35px;
+                    margin-right: 15px;
+                    z-index: 999;
+                    position: absolute;
+                  ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
@@ -105,11 +105,11 @@
                 : 'border rounded px-3 border-danger'
             " autocomplete="off" v-model="email" />
           <span style="
-                  margin-left: -35px;
-                  margin-right: 15px;
-                  z-index: 999;
-                  position: absolute;
-                ">
+                    margin-left: -35px;
+                    margin-right: 15px;
+                    z-index: 999;
+                    position: absolute;
+                  ">
             <i class="bi bi-people"></i>
           </span>
         </div>
@@ -121,11 +121,11 @@
                 : 'border rounded px-3 border-danger'
             " autocomplete="off" v-model="password" />
           <span style="
-                  margin-left: -35px;
-                  margin-right: 15px;
-                  z-index: 999;
-                  position: absolute;
-                ">
+                    margin-left: -35px;
+                    margin-right: 15px;
+                    z-index: 999;
+                    position: absolute;
+                  ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
@@ -137,11 +137,11 @@
                 : 'border rounded px-3'
             " autocomplete="off" v-model="repassword" @input="confirmPassword()" />
           <span style="
-                  margin-left: -35px;
-                  margin-right: 15px;
-                  z-index: 999;
-                  position: absolute;
-                ">
+                    margin-left: -35px;
+                    margin-right: 15px;
+                    z-index: 999;
+                    position: absolute;
+                  ">
             <i class="bi bi-lock"></i>
           </span>
         </div>
@@ -496,33 +496,33 @@ export default {
       if (extensions.length === 0) {
         // No extension installed, or the user did not accept the authorization
         return;
-        
+
       }
 
-// Get all the accounts
-const allAccounts = await web3Accounts();
-if (allAccounts.length === 0) {
-  // No account has been found
-  return;
-}
+      // Get all the accounts
+      const allAccounts = await web3Accounts();
+      if (allAccounts.length === 0) {
+        // No account has been found
+        return;
+      }
 
-// Use the first account
-const account = allAccounts[0];
-this.polkadot_account = account.address;
+      // Use the first account
+      const account = allAccounts[0];
+      this.polkadot_account = account.address;
 
-const loginResponse = await this.$auth.loginWith("local", {
-    data: {
-      id: `${this.polkadot_account}`,
+      const loginResponse = await this.$auth.loginWith("local", {
+        data: {
+          id: `${this.polkadot_account}`,
+        },
+      });
+
+      this.$auth.options.redirect = false;
+      this.$store.commit("wallet/setDefaultChain", config.polkadotdefaultChain);
+      this.$auth.setUser(loginResponse.data);
+      this.$router.push("/nfts");
     },
-  });
 
-this.$auth.options.redirect = false;
-this.$store.commit("wallet/setDefaultChain", config.polkadotdefaultChain);
-this.$auth.setUser(loginResponse.data);
-this.$router.push("/nfts");
-},
-
-        async polkadotEvm() {
+    async polkadotEvm() {
       const web3Modal = new Web3Modal({
         cacheProvider: false, // optional
         providerOptions, // required
