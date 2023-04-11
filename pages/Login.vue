@@ -505,7 +505,7 @@ export default {
       try {
         const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            polkadotEvmAccount: `p${this.polkadot_evm_account}`,
+            id: `p${this.polkadot_evm_account}`,
           },
         });
         console.log(loginResponse.data);
