@@ -32,6 +32,7 @@ const config = {
         "TEZOS": "https://rarible.com/token/tezos/",
         "MOONBEAM":"https://tofunft.com/nft/moonbeam/",
         "ASTAR": "https://tofunft.com/nft/astar/",
+        "Unique": "https://unqnft.io/market",
         "mainnet": ""
     }
 }

@@ -45,6 +45,8 @@
 import {config} from '/config.js'
 import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
+// import isValidPolkadotAddress from "../../../utils/polkadot";
+
 export default {
   name: 'NFTs',
   data() {
@@ -117,7 +119,33 @@ export default {
           }
         })
 
-      } else  {
+      } else if (this.nfts.polkadotUniqueNft) {
+        return this.nfts.polkadotUniqueNft.map(nft => {
+          let metadata = {}
+          const attributes = nft["metadata"]["attributes"]
+          for(const attr of attributes) {
+            const key = attr["name"]
+            const value = attr["value"]
+            metadata = {
+              ...metadata,
+              [key]: value
+            }
+          }
+          metadata["name"] = "title" in metadata ? metadata["title"] : "placeholder title";
+          metadata = {
+            ...metadata,
+            image: `${nft["metadata"]["fullUrl"]}`
+          }
+          return {
+            id: { tokenId: nft.tokenId },
+            metadata,
+            contract: {
+              address: nft.collectionId
+            },
+          }
+
+        })
+      }else {
         return []
       }
     }
@@ -159,6 +187,29 @@ export default {
         }
       });
       return { nfts: { nearNfts: nfts } }
+    } else if(accountId) {
+      const chain = (this.$route.params.chain).toUpperCase();
+      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+      console.log(collection)
+      let nfts = []
+      for(const nft in collection["polkadotUniqueNft"]) {
+        const collectionId = nft["collectionId"]
+        const tokenId = nft["tokenId"]
+        const metadata = nft["metadata"]
+        // const metadata = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`);
+
+        console.log(collectionId)
+        console.log(tokenId)
+        console.log(metadata)
+        nfts.push(
+          {
+            collectionId,
+            tokenId,
+            metadata
+          }
+        )
+      }
+      return {nfts: {uniqueNfts: nfts}}
     }
     return { nfts: [] }
   },
