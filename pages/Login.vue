@@ -355,7 +355,7 @@ export default {
         try {
           const loginResponse = await this.$auth.loginWith("local", {
             data: {
-              id: `${this.eth_account}`,
+              id: "eth##"+`${this.eth_account}`,
             },
           });
           this.$auth.options.redirect = false;
@@ -389,7 +389,7 @@ export default {
       try {
         const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            id: `${this.eth_account}`,
+            id: 'eth##'+`${this.eth_account}`,
           },
         });
         console.log(loginResponse.data);
@@ -501,11 +501,10 @@ export default {
         this.polkadot_evm_account = provider.accounts[0];
         provider.disconnect();
       }
-
       try {
         const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            id: `p${this.polkadot_evm_account}`,
+            id: 'polevm##'+`${this.polkadot_evm_account}` ,
           },
         });
         console.log(loginResponse.data);
