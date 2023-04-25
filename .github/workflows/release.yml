@@ -64,4 +64,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: waltid/ssikit-web-wallet:latest
+          tags: waltid/ssikit-web-wallet:latest, waltid/walletkit:${{ env.release_version }}
