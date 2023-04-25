@@ -23,7 +23,6 @@ jobs:
       - name: Calculate release version
         run: |
           echo "release_version=1.$(date +'%g%m%d%H%M').$(echo ${{ github.ref_name }} | tr / -)" >> $GITHUB_ENV
-      - name: Set version
       - run: |
           git tag v${{ env.release_version }}
           git push --tags
