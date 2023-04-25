@@ -17,17 +17,17 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      #- name: Setup build tools
+      # - name: Setup build tools
       #  run: sudo apt-get install g++ build-essential python3-dev
 
       - uses: actions/checkout@v3
-      #- name: Calculate release version
-      #  run: |
-      #    echo "release_version=1.$(date +'%g%m%d%H%M').$(echo ${{ github.ref_name }} | tr / -)" >> $GITHUB_ENV
-      #- name: Set version
-      #- run: |
-      #    git tag v${{ env.release_version }}
-      #    git push --tags
+      - name: Calculate release version
+       run: |
+         echo "release_version=1.$(date +'%g%m%d%H%M').0 | tr / -)" >> $GITHUB_ENV
+      - name: Set version
+      - run: |
+         git tag v${{ env.release_version }}
+         git push --tags
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.4.1
