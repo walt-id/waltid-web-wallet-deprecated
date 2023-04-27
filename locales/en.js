@@ -18,7 +18,7 @@ export default {
         SEARCH: 'Search...'
     },
     RECEIVE_CREDENTIALS: {
-        CONFIRM_TITLE: 'Connection request',
+        CONFIRM_TITLE: 'Retrieve credentials',
         CONFIRM_CONNECTION_WITH: 'Confirm connection with',
         CONFIRM: 'Confirm',
         REJECT: 'Reject',

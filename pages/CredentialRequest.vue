@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if="presentationSessionInfo && !selectedCredential" id="content">
-          <h2>Connection request</h2>
+          <h2>Retrieve credentials</h2>
           <div class="_scrollable _container d-flex flex-column align-items-center justify-content-center">
               <div v-if="presentableCredentials.length > 0">
                 <div class="form-check col-md-9 col-sm-12 mb-3" v-for="credential in presentableCredentials" :key="credential.id">
@@ -10,7 +10,7 @@
                     <input class="form-check-input me-4" type="checkbox" :id="'credential-' + credential.id" :name="'credential-' + credential.id" :value="credential.id" v-model="checkedCredentialIds">
                     </div>
                     <div class="col-10">
-                    <a @click="selectedCredential = credential">{{credential.title ? credential.title : $t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1]) }}</a>
+                    <a @click="selectedCredential = credential" class="text-white">{{credential.title ? credential.title : $t('CREDENTIAL.TYPE.' + credential.type[credential.type.length-1]) }}</a>
                     </div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export default {
   methods:{
     peSubmit: async function() {
       const selectedPresentableCredentials = this.presentationSessionInfo.presentableCredentials.filter(c => this.checkedCredentialIds.findIndex(id => id == c.credentialId) >= 0)
-    
+
       const siopResp = await this.$axios.$post("/api/wallet/presentation/fulfill", selectedPresentableCredentials, { params: { sessionId: this.presentationSessionInfo.id }})
       console.log("PE Response:", siopResp)
       if(!siopResp.fulfilled) {
