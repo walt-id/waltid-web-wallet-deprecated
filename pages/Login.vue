@@ -430,7 +430,7 @@ export default {
         try {
           const loginResponse = await this.$auth.loginWith("local", {
             data: {
-              id: `${this.eth_account}`,
+              id: `eth##${this.eth_account}`,
             },
           });
           this.$auth.options.redirect = false;
@@ -583,7 +583,7 @@ export default {
 
       const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            id: `${this.polkadot_account}`,
+            id: `pol##${this.polkadot_account}`,
           },
         });
 
