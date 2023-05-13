@@ -84,6 +84,7 @@ export default {
         GRADING_SCHEMA: 'Grading schema',
         TYPE: {
             VerifiableId: 'Verifiable ID document',
+            StudentId: 'Verifiable ID document',
             VerifiableDiploma: 'Verifiable university diploma',
             VerifiableVaccinationCertificate: 'Verifiable certificate of vaccination',
             ProofOfResidence: 'Proof of residence',
