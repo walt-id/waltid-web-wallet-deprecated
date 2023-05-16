@@ -54,7 +54,7 @@ export default {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: this.$auth.user.ethAccount ? config.evmChains : this.$auth.user.tezosAccount? config.tezosChains : this.$auth.user.polkadotAccount ? config.polkadotChains: config.nearChains,
+      chainOptions: this.$auth.user.ethAccount ? config.evmChains : this.$auth.user.tezosAccount? config.tezosChains : this.$auth.user.polkadotAccount ? config.polkadotChains: this.$auth.user.flowAccount ? config.flowChains: config.nearChains,
       adjustModal: false,
     }
   },
@@ -130,14 +130,16 @@ export default {
           }
 
         })
-      }else {
+      } else if(this.nfts.flowNfts) {
+
+      } else {
         return []
       }
     }
   },
   async asyncData ({ $axios, $auth, route, store }) {
-    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null || $auth.user.polkadotAccount != null || $auth.user.nearAccount != null) {
-      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.nearAccount
+    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null || $auth.user.polkadotAccount != null|| $auth.user.flowAccount != null || $auth.user.nearAccount != null) {
+      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.flowAccount ? $auth.user.flowAccount : $auth.user.nearAccount
       store.commit('wallet/setFetchingChains', true)
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       store.commit('wallet/setFetchingChains', false)
@@ -145,6 +147,7 @@ export default {
       return { nfts}
     } 
     let accountId = $auth.user.id
+    console.log("This is the account ID")
     if (accountId && accountId.endsWith(".testnet")) {
       const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
       let nfts = []
@@ -172,7 +175,7 @@ export default {
         }
       });
       return { nfts: { nearNfts: nfts } }
-    } else if(accountId) {
+    } else if(accountId) { // Polkadot Blockchain
       const chain = (this.$route.params.chain).toUpperCase();
       const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
       console.log(collection)
@@ -181,11 +184,7 @@ export default {
         const collectionId = nft["collectionId"]
         const tokenId = nft["tokenId"]
         const metadata = nft["metadata"]
-        // const metadata = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`);
 
-        console.log(collectionId)
-        console.log(tokenId)
-        console.log(metadata)
         nfts.push(
           {
             collectionId,
@@ -195,6 +194,13 @@ export default {
         )
       }
       return {nfts: {uniqueNfts: nfts}}
+    } else if (true) { // Flow Blockchain
+      const chain = (this.$route.params.chain).toUpperCase();
+      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+      let nfts = []
+
+      
+
     }
     return { nfts: [] }
   },

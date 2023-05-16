@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     showNFTSLink() {
-      return this.$auth.user != null && (this.$auth.user.ethAccount != null || this.$auth.user.tezosAccount != null || this.$auth.user.polkadotAccount != null || this.$auth.user.nearAccount != null)
+      return this.$auth.user != null && (this.$auth.user.ethAccount != null || this.$auth.user.tezosAccount != null || this.$auth.user.polkadotAccount != null || this.$auth.user.flowAccount != null || this.$auth.user.nearAccount != null)
     },
     defaultChain() {
       return this.$store.state.wallet.defaultChain

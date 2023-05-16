@@ -127,7 +127,7 @@ export default {
   },
   async asyncData ({ $axios, $auth, route }) {
     // TODO: get info for single token
-    let account = $auth.user.ethAccount ? $auth.user.ethAccount : $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.nearAccount
+    let account = $auth.user.ethAccount ? $auth.user.ethAccount : $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount :  $auth.user.flowAccount ? $auth.user.flowAccount : $auth.user.nearAccount
     console.log("ACCOUNT: ", account)
     if(route.params.chain == 'testnet'){
       const contractAddress = route.params.id.split(":")[0]
@@ -184,7 +184,13 @@ export default {
         },
         metadata
       }]}
-    }else {
+    } else if (account === $auth.user.flowAccount) {
+      if (route.params.chain == "Mainnet") {
+
+      } else if (route.params.chain = "Testnet") {
+        
+      }
+    } else {
       const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       if(result.evmNfts){
         const nfts= result.evmNfts

@@ -19,16 +19,18 @@ const config = {
     tezosdefaultChain: "TEZOS",
     neardefaultChain: "testnet",
     polkadotdefaultChain: "Unique",
+    flowDefaultChain: "Mainnet",
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
     tezosChains: ["TEZOS", "GHOSTNET"],
     nearChains: ["mainnet" , "testnet"],
     polkadotChains: ["Unique", "Opal"],
+    flowChains: ["Mainnet", "Testnet"],
     marketplaces: {
         "POLYGON": "https://opensea.io/assets/matic/",
         "ETHEREUM": "https://opensea.io/assets/ethereum/",
         "TEZOS": "https://rarible.com/token/tezos/",
         "Unique": "https://unqnft.io/market",
-        "mainnet": ""
+        "Flow": "https://nft.flowverse.co/marketplace"
     }
 }
 export{config}
