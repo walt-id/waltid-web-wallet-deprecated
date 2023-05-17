@@ -100,6 +100,7 @@
                 <div class="_did-content h-100">
                     <h2>Select default DID</h2>
                     <br>
+                    <div v-if="dids.length === 0" class="_animation-fade">No DIDs available to choose from.</div>
                     <div class="d-grid justify-content-center holder">
                         <div v-for="did in dids" v-bind:key="did.index">
                             <a href="#" @click="setDefaultDID(did)"
@@ -149,7 +150,7 @@ export default {
             return this.dids.findIndex(d => this.hasType(d, type)) != -1
         },
         hasType: function (did, type) {
-            return did.match(`\\w+:${type}:.*`)
+            return did !== undefined && did.match(`\\w+:${type}:.*`)
         },
         showModal: function () {
             this.didListModal = true
