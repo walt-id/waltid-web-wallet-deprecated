@@ -45,16 +45,32 @@
 import {config} from '/config.js'
 import TokenMediaComponent from "~/components/TokenMediaComponent.vue";
 
-// import isValidPolkadotAddress from "../../../utils/polkadot";
-
 export default {
   name: 'NFTs',
   data() {
+    let chainOptions = null;
+    if (this.$auth.user.ethAccount) {
+      chainOptions = config.evmChains
+    } else if (this.$auth.user.tezosAccount) {
+      chainOptions = config.tezosChainsn
+    } else if (this.$auth.user.id) {
+      const [ecosystem] = this.$auth.user.id.split("##")
+      if (ecosystem == "pol") {
+        chainOptions = config.polkadotChains
+      } else if (ecosystem == "flow") {
+        chainOptions = config.flowChains
+      } else {
+        chainOptions = config.nearChains
+      }
+    } else {
+      throw new Error("Unspecified case for chainOptions: fallback to default")
+    }
+
     return {
       search: '',
       nfts: [],
       chain: this.$route.params.chain,
-      chainOptions: this.$auth.user.ethAccount ? config.evmChains : this.$auth.user.tezosAccount? config.tezosChains : this.$auth.user.polkadotAccount ? config.polkadotChains: this.$auth.user.flowAccount ? config.flowChains: config.nearChains,
+      chainOptions,
       adjustModal: false,
     }
   },
