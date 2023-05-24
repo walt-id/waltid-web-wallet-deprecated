@@ -36,6 +36,7 @@
         "@nuxtjs/axios": "^5.13.6",
         "@nuxtjs/i18n": "^7.3.1",
         "@nuxtjs/pwa": "^3.3.5",
+        "@nuxtjs/robots": "<3",
         "@nuxtjs/toast": "^3.3.1",
         "@open-wc/webpack-import-meta-loader": "^0.4.7",
         "@polkadot/extension-dapp": "^0.45.4",
