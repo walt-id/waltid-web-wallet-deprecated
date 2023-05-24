@@ -55,7 +55,14 @@ export default {
     "@nuxtjs/i18n",
     "@nuxtjs/toast",
     "@nuxtjs/proxy",
+    '@nuxtjs/robots',
   ],
+
+  // Robots
+  robots: {
+    UserAgent: '*',
+    Disallow: '/'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
