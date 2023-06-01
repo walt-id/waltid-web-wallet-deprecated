@@ -52,18 +52,13 @@ export default {
     if (this.$auth.user.ethAccount) {
       chainOptions = config.evmChains
     } else if (this.$auth.user.tezosAccount) {
-      chainOptions = config.tezosChainsn
-    } else if (this.$auth.user.id) {
-      const [ecosystem] = this.$auth.user.id.split("##")
-      if (ecosystem == "pol") {
+      chainOptions = config.tezosChains
+    } else if (this.$auth.user.polkadotAccount) {
         chainOptions = config.polkadotChains
-      } else if (ecosystem == "flow") {
+    } else if (this.$auth.user.flowAccount) {
         chainOptions = config.flowChains
-      } else {
-        chainOptions = config.nearChains
-      }
     } else {
-      throw new Error("Unspecified case for chainOptions: fallback to default")
+        chainOptions = config.nearChains
     }
 
     return {
@@ -147,23 +142,36 @@ export default {
 
         })
       } else if(this.nfts.flowNfts) {
-
+        console.log("mapping nfts")
+        return this.nfts.flowNfts.map(nft => {
+          return {
+            id: { tokenId: `${nft.id}` },
+            metadata: {
+              ...nft.metadata,
+              image: `${nft.image}`,
+              name: `${nft.name}`,
+            },
+            contract: {
+              address: `${this.$auth.user.flowAccount}`
+            },
+          }
+        })
       } else {
         return []
       }
     }
   },
   async asyncData ({ $axios, $auth, route, store }) {
-    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null || $auth.user.polkadotAccount != null|| $auth.user.flowAccount != null || $auth.user.nearAccount != null) {
-      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.flowAccount ? $auth.user.flowAccount : $auth.user.nearAccount
+
+    if($auth.user.ethAccount != null || $auth.user.tezosAccount != null || $auth.user.nearAccount != null) {
+      const account= $auth.user.ethAccount ? $auth.user.ethAccount: $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.nearAccount
       store.commit('wallet/setFetchingChains', true)
       const nfts = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       store.commit('wallet/setFetchingChains', false)
       if(store.state.utils.fullPageModal) store.commit('utils/toggleFullPageModal')
       return { nfts}
-    } 
-    let [ecosystem, accountId] = $auth.user.id.split("##")
-
+    }
+    let accountId = $auth.user.id
     if (accountId && accountId.endsWith(".testnet")) {
       const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
       let nfts = []
@@ -191,8 +199,10 @@ export default {
         }
       });
       return { nfts: { nearNfts: nfts } }
-    } else if(ecosystem === "pol") { // Polkadot Blockchain (Unique network)
-      const chain = (route.params.chain).toUpperCase();
+    } else if($auth.user.polkadotAccount) { // Polkadot Blockchain (Unique network)
+      const chain = route.params.chain;
+      const accountId = $auth.user.polkadotAccount;
+
       const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
       let nfts = []
       for(const nft in collection["polkadotUniqueNft"]) {
@@ -209,13 +219,43 @@ export default {
         )
       }
       return {nfts: {uniqueNfts: nfts}}
-    } else if (true) { // Flow Blockchain
-      const chain = (this.$route.params.chain).toUpperCase();
-      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+
+    } else if ($auth.user.flowAccount) { // Flow Blockchain
+      const chain = route.params.chain;
+      const accountId = $auth.user.flowAccount;
+      const allNFTs = await $axios.$post(`/v2/nftkit/nft/flow/chain/${chain}/account/${accountId}/AllNFTs`);
+      console.log("ALL NFTS", allNFTs)
       let nfts = []
+      for (const nft of allNFTs) {
+        console.log("ONE NFT", nft)
+        const id = nft["id"]
+        const thumbnail = nft["thumbnail"];
+        const collectionName = nft["collectionName"];
+        const name = nft["name"];
+        const description = nft["description"];
+        // TODO: display traits (Blocker: current collection has no traits in it)
+        // const traits = nft["traits"];
+        console.log("PUSHED NFT", {
+            id,
+            image: thumbnail,
+            collectionName,
+            name,
+            description,
+            contract: $auth.user.flowAccount
+          })
+        nfts.push(
+          {
+            id,
+            image: thumbnail,
+            collectionName,
+            name,
+            description,
+            contract: $auth.user.flowAccount
+          }
+        )
+      }
 
-      
-
+      return {nfts: {flowNfts: nfts}}
     }
     return { nfts: [] }
   },
