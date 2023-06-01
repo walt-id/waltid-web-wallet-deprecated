@@ -628,7 +628,7 @@ export default {
       this.$router.push("/nfts");
     },
     async flowWallet() {
-      fcl.authenticate()
+      await fcl.authenticate()
       fcl.currentUser.subscribe(async (currentUser) => {
         console.log("The Current User", currentUser);
 
@@ -636,7 +636,7 @@ export default {
 
         const loginResponse = await this.$auth.loginWith("local", {
           data: {
-            id: `${this.flow_account}`,
+            id: `flow##${this.flow_account}`,
           },
         });
         this.$auth.options.redirect = false;
