@@ -126,9 +126,9 @@ export default {
     },
   },
   async asyncData ({ $axios, $auth, route }) {
-    // TODO: get info for single token
-    let account = $auth.user.ethAccount ? $auth.user.ethAccount : $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount : $auth.user.nearAccount
-    console.log("ACCOUNT: ", account)
+
+    let account = $auth.user.ethAccount ? $auth.user.ethAccount : $auth.user.tezosAccount ? $auth.user.tezosAccount : $auth.user.polkadotAccount ? $auth.user.polkadotAccount :  $auth.user.flowAccount ? $auth.user.flowAccount : $auth.user.nearAccount
+  
     if(route.params.chain == 'testnet'){
       const contractAddress = route.params.id.split(":")[0]
       const tokenId = route.params.id.split(":")[1]
@@ -154,7 +154,7 @@ export default {
       const collectionId = route.params.id.split(":")[0]
       const tokenId = route.params.id.split(":")[1]
       const result = await $axios.$get(`/v2/nftkit/nft/unique/chain/${(route.params.chain).toUpperCase()}/collection/${collectionId}/token/${tokenId}/metadata`)
-      console.log(result)
+
       let metadata = {}
       const attributes = result["attributes"]
       for(const attr of attributes) {
@@ -171,7 +171,6 @@ export default {
         image: `${result["fullUrl"]}`
       }
       
-      console.log(metadata)
       return { nfts: [{
         contract: {
           address: collectionId
@@ -184,7 +183,57 @@ export default {
         },
         metadata
       }]}
-    }else {
+    } else if ($auth.user.flowAccount) {
+      const addressId = route.params.id.split(":")[0]
+      const tokenId = route.params.id.split(":")[1]
+      const chain = route.params.chain;
+
+      const tokens = await $axios.$post(`/v2/nftkit/nft/flow/chain/${chain}/account/${addressId}/AllNFTs`)
+      const token = tokens.filter(token => {
+        return token.id == tokenId
+      })[0];
+
+      const contractAddress = `0x${token.publicLinkedType.type.typeID.content.split(".")[1]}`
+      const collectionPublicPath = `%2F${token.collectionPublicPath.domain}%2F${token.collectionStoragePath.identifier}`
+
+      const result = await $axios.$post(`/v2/nftkit/nft/flow/chain/${chain}/account/${addressId}/${contractAddress}/${collectionPublicPath}/${tokenId}/getNFTById`);
+
+      let metadata = {}
+
+      metadata = {
+        name: `${result["name"]}`,
+        image: `${result["thumbnail"]}`,
+        description: `${result["description"]}`,
+      }
+
+      let traits = []
+      for(const trait of result.traits.traits) {
+        const key = trait["name"]
+        const value = trait["value"]
+        traits.push({
+          [key]: value,
+          rarity: trait["rarity"]
+        })
+      }
+
+      metadata = {
+        ...metadata,
+        traits
+      }
+
+      return { nfts: [{
+        contract: {
+          address: $auth.user.flowAccount
+        },
+        id: {
+          tokenId: result.id,
+          tokenMetadata: {
+            tokenType: "FLIP-0636"
+          }
+        },
+        metadata
+      }]}
+    } else {
       const result = await $axios.$get("/v2/nftkit/nft/chain/" + route.params.chain + "/owner/" + account)
       if(result.evmNfts){
         const nfts= result.evmNfts
