@@ -10,7 +10,7 @@
                     <div class="d-flex mt-3 align-items-start _setting-items">
                         <div class="flex-grow-1 _item">
                             <h4>EBSI/ESSIF</h4>
-                            <p>Based on the<br>EU blockchain (EBSI).</p>
+                            <p>Based on the EU blockchain (EBSI).</p>
                             <b v-if="hasType(currentDid, 'ebsi')" class="_tag"><em>Selected</em></b>
                         </div>
                         <div class="ms-auto">
@@ -20,8 +20,8 @@
                     <!-- DNS (web) -->
                     <div class="d-flex mt-4 align-items-start _setting-items">
                         <div class="flex-grow-1 _item">
-                            <h4>DNS</h4>
-                            <p>Based on the domain<br>name service (DNS).</p>
+                            <h4>Web</h4>
+                            <p>Based on <code>.well-known/</code>.</p>
                             <b v-if="hasType(currentDid, 'web')" class="_tag">
                                 <em>Selected</em>
                             </b>
@@ -54,11 +54,23 @@
                             <NuxtLink to="/settings/ecosystems/iota" class="_button-view _bounce">Add</NuxtLink>
                         </div>
                     </div>
+                    <!-- CHEQD -->
+                    <div class="d-flex mt-4 align-items-start _setting-items">
+                        <div class="flex-grow-1 _item">
+                            <h4>CHEQD</h4>
+                            <p>Onboard the CHEQD ecosystem.</p>
+                            <b v-if="hasType(currentDid, 'cheqd')" class="_tag">
+                            </b>
+                        </div>
+                        <div class="ms-auto">
+                            <NuxtLink to="/settings/ecosystems/cheqd" class="_button-view _bounce">Add</NuxtLink>
+                        </div>
+                    </div>
                     <!-- Key -->
                     <div class="d-flex mt-4 align-items-start _setting-items">
                         <div class="flex-grow-1 _item">
                             <h4>Key</h4>
-                            <p>Peer-to-peer based<br>key distribution.</p>
+                            <p>P2P based key distribution.</p>
                             <b v-if="hasType(currentDid, 'key')" class="_tag"><em>Selected</em></b>
                         </div>
                         <div class="ms-auto">
@@ -88,6 +100,7 @@
                 <div class="_did-content h-100">
                     <h2>Select default DID</h2>
                     <br>
+                    <div v-if="dids.length === 0" class="_animation-fade">No DIDs available to choose from.</div>
                     <div class="d-grid justify-content-center holder">
                         <div v-for="did in dids" v-bind:key="did.index">
                             <a href="#" @click="setDefaultDID(did)"
@@ -100,7 +113,7 @@
                                 <div class="col d-flex justify-content-end align-items-start">
                                     <b v-if="currentDid === did" class="_tag mt-2"><em>Default</em></b>
                                     <b v-else class="_tag-active mt-2"><em>Set default</em></b>
-    
+
                                 </div>
                             </a>
                         </div>
@@ -137,7 +150,7 @@ export default {
             return this.dids.findIndex(d => this.hasType(d, type)) != -1
         },
         hasType: function (did, type) {
-            return did.match(`\\w+:${type}:.*`)
+            return did !== undefined && did.match(`\\w+:${type}:.*`)
         },
         showModal: function () {
             this.didListModal = true

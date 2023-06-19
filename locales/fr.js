@@ -72,6 +72,7 @@ export default {
         GRADING_SCHEMA: 'Schéma de notation',
         TYPE: {
             VerifiableId: 'Document d\'identification vérifiable',
+            StudentId: 'Carte d\'etudiant',
             VerifiableDiploma: 'Diplôme universitaire vérifiable',
             VerifiableVaccinationCertificate: 'Certificat de vaccination vérifiable',
             ProofOfResidence: 'Certificat de Résidence',

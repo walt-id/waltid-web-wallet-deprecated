@@ -170,6 +170,7 @@ export default {
       if(store.state.utils.fullPageModal) store.commit('utils/toggleFullPageModal')
       return { nfts}
     }
+    
     let accountId = $auth.user.id
     if (accountId && accountId.endsWith(".testnet")) {
       const list_of_smart_contracts = await $axios.$get(`https://testnet-api.kitwallet.app/account/${accountId}/likelyNFTs`);
@@ -202,6 +203,10 @@ export default {
       const chain = route.params.chain;
       const accountId = $auth.user.polkadotAccount;
 
+      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
+
+    } else if(ecosystem === "pol") { // Polkadot Blockchain (Unique network)
+      const chain = (route.params.chain).toUpperCase();
       const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
       let nfts = []
       for(const nft in collection["polkadotUniqueNft"]) {

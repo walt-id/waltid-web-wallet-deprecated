@@ -72,6 +72,7 @@ export default {
         GRADING_SCHEMA: 'Bewertungsschema',
         TYPE: {
             VerifiableId: 'Verifizierbares ID Dokument',
+            StudentId: 'Student ID Dokument',
             VerifiableDiploma: 'Verifizierbares Universitätsdiplom',
             VerifiableVaccinationCertificate: 'Verifizierbares Impfzertifikat',
             ProofOfResidence: 'Nachweis des Wohnsitzes',
