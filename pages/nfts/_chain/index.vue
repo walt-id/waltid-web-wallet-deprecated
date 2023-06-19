@@ -142,7 +142,6 @@ export default {
 
         })
       } else if(this.nfts.flowNfts) {
-        console.log("mapping nfts")
         return this.nfts.flowNfts.map(nft => {
           return {
             id: { tokenId: `${nft.id}` },
@@ -224,25 +223,13 @@ export default {
       const chain = route.params.chain;
       const accountId = $auth.user.flowAccount;
       const allNFTs = await $axios.$post(`/v2/nftkit/nft/flow/chain/${chain}/account/${accountId}/AllNFTs`);
-      console.log("ALL NFTS", allNFTs)
       let nfts = []
       for (const nft of allNFTs) {
-        console.log("ONE NFT", nft)
         const id = nft["id"]
         const thumbnail = nft["thumbnail"];
         const collectionName = nft["collectionName"];
         const name = nft["name"];
         const description = nft["description"];
-        // TODO: display traits (Blocker: current collection has no traits in it)
-        // const traits = nft["traits"];
-        console.log("PUSHED NFT", {
-            id,
-            image: thumbnail,
-            collectionName,
-            name,
-            description,
-            contract: $auth.user.flowAccount
-          })
         nfts.push(
           {
             id,
