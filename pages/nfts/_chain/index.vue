@@ -204,10 +204,6 @@ export default {
       const accountId = $auth.user.polkadotAccount;
 
       const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
-
-    } else if(ecosystem === "pol") { // Polkadot Blockchain (Unique network)
-      const chain = (route.params.chain).toUpperCase();
-      const collection = await $axios.$get(`/v2/nftkit/nft/unique/chain/${chain.toUpperCase()}/account/${accountId}`);
       let nfts = []
       for(const nft in collection["polkadotUniqueNft"]) {
         const collectionId = nft["collectionId"]
