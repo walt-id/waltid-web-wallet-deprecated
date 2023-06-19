@@ -19,7 +19,7 @@ const config = {
     tezosdefaultChain: "TEZOS",
     neardefaultChain: "testnet",
     polkadotdefaultChain: "Unique",
-    flowDefaultChain: "Mainnet",
+    flowdefaultChain: "Mainnet",
     evmChains: ["ETHEREUM", "POLYGON", "MUMBAI"],
     tezosChains: ["TEZOS", "GHOSTNET"],
     nearChains: ["mainnet" , "testnet"],
