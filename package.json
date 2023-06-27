@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@near-wallet-selector/coin98-wallet": "^7.8.2",
     "@near-wallet-selector/core": "^7.8.2",
     "@near-wallet-selector/default-wallets": "^7.8.2",
