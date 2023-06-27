@@ -1,4 +1,3 @@
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -55,13 +54,13 @@ export default {
     "@nuxtjs/i18n",
     "@nuxtjs/toast",
     "@nuxtjs/proxy",
-    '@nuxtjs/robots',
+    "@nuxtjs/robots",
   ],
 
   // Robots
   robots: {
-    UserAgent: '*',
-    Disallow: '/'
+    UserAgent: "*",
+    Disallow: "/",
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -150,28 +149,55 @@ export default {
       config.module.rules.push(
         {
           test: /\.js$/,
-          loader: require.resolve('@open-wc/webpack-import-meta-loader'),
+          loader: require.resolve("@open-wc/webpack-import-meta-loader"),
           exclude: /\.vue$/,
+        },
+        {
+          test: /\.m?js$/,
+          include: /node_modules[/\\|]@onflow/i,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@vue/cli-plugin-babel/preset"],
+              plugins: [
+                "@babel/plugin-proposal-private-methods",
+                "@babel/plugin-proposal-class-properties",
+                "@babel/plugin-proposal-object-rest-spread",
+              ],
+            },
+          },
         },
         {
           test: /\.m?js$/,
           include: /node_modules[/\\|]@polkadot/i,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: [
-                '@babel/preset-env',
-                '@vue/cli-plugin-babel/preset',
-              ],
+              presets: ["@babel/preset-env", "@vue/cli-plugin-babel/preset"],
               plugins: [
                 "@babel/plugin-proposal-private-methods",
                 "@babel/plugin-proposal-class-properties",
-                '@babel/plugin-proposal-object-rest-spread',
-              ]
-            }
-          }
+                "@babel/plugin-proposal-object-rest-spread",
+              ],
+            },
+          },
+        },
+        {
+          test: /\.m?js$/,
+          include: /node_modules[/\\|]@noble/i,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@vue/cli-plugin-babel/preset"],
+              plugins: [
+                "@babel/plugin-proposal-private-methods",
+                "@babel/plugin-proposal-class-properties",
+                "@babel/plugin-proposal-object-rest-spread",
+              ],
+            },
+          },
         }
-      )
+      );
     },
   },
 
