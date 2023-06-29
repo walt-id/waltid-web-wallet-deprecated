@@ -16,11 +16,14 @@
               <div class="_item">
                 <h4>Step 2</h4>
 <!--                              <p>Define key and domain. On default a new key will be generated and the did:key will be hosted at walt.id.</p>-->
-                <p>The did:key will does not require any DLT, as the identifier is the encoded public key.</p>
+                <p>The did:key does not require any DLT, as the identifier is the encoded public key.</p>
               </div>
               <div class="mt-3 d-flex _button-view justify-content-center">
                   <div>
                       <form action="" id="generate-did-submit" @submit.prevent="DIDgenerate">
+                        <p><label for="checkbox">Use jwk_jcs-pub</label></p>
+                        <input type="checkbox" id="checkbox" v-model="useJwkJcsPub" />
+                        
                         <BlockingButtonComponent :loading="generationLoading" label="Generate DID" />
                       </form>
                   </div>
@@ -66,6 +69,7 @@ export default {
       didHost: '',
       generationLoading: false,
       didContent: '',
+      useJwkJcsPub: false,
       coppied: false
     }
   },
@@ -88,8 +92,9 @@ export default {
             })
           } else {
                did = await this.$axios.$post('/api/wallet/did/create', {
-              "method": 'key'
-            })
+                  "method": "key",
+                  "useJwkJcsPub": this.useJwkJcsPub
+              })
           }
             console.log(did)
             this.$axios.$get(`/api/wallet/did/${did}`)
