@@ -1,4 +1,4 @@
-# waltid-web-wallet
+## waltid-web-wallet
 
 An SSI web wallet front-end, leveraging the backend API of https://github.com/walt-id/waltid-walletkit
 
